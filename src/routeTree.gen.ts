@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
+  id: '/proyectos-mineros/',
+  path: '/proyectos-mineros/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
@@ -26,27 +32,31 @@ const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/institucional': typeof InstitucionalIndexRoute
+  '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/institucional/'
+  fullPaths: '/' | '/institucional/' | '/proyectos-mineros/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/institucional'
-  id: '__root__' | '/' | '/institucional/'
+  to: '/' | '/institucional' | '/proyectos-mineros'
+  id: '__root__' | '/' | '/institucional/' | '/proyectos-mineros/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
+  ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proyectos-mineros/': {
+      id: '/proyectos-mineros/'
+      path: '/proyectos-mineros'
+      fullPath: '/proyectos-mineros/'
+      preLoaderRoute: typeof ProyectosMinerosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/institucional/': {
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
+  ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
