@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
+import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,33 +29,51 @@ const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
   path: '/institucional/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DatosAbiertosIndexRoute = DatosAbiertosIndexRouteImport.update({
+  id: '/datos-abiertos/',
+  path: '/datos-abiertos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
   '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/institucional/' | '/proyectos-mineros/'
+  fullPaths:
+    | '/'
+    | '/datos-abiertos/'
+    | '/institucional/'
+    | '/proyectos-mineros/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/institucional' | '/proyectos-mineros'
-  id: '__root__' | '/' | '/institucional/' | '/proyectos-mineros/'
+  to: '/' | '/datos-abiertos' | '/institucional' | '/proyectos-mineros'
+  id:
+    | '__root__'
+    | '/'
+    | '/datos-abiertos/'
+    | '/institucional/'
+    | '/proyectos-mineros/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
   ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
 }
@@ -82,11 +101,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InstitucionalIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/datos-abiertos/': {
+      id: '/datos-abiertos/'
+      path: '/datos-abiertos'
+      fullPath: '/datos-abiertos/'
+      preLoaderRoute: typeof DatosAbiertosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
   ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
 }
