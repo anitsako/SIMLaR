@@ -20,6 +20,7 @@ import {
   Link,
   Newspaper,
   Pickaxe,
+  Settings,
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -44,7 +45,7 @@ export const AppBar = () => {
           </Button>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="max-w-xs border rounded-md">
+      <NavbarMenu className="max-w-xs border rounded-md flex flex-col justify-between">
         <Listbox>
           <ListboxItem href="/" color="primary" startContent={<House />}>
             Inicio
@@ -74,6 +75,11 @@ export const AppBar = () => {
           </ListboxItem>
           <ListboxItem href="/contacto" color="primary" startContent={<ContactRound />}>
             Contacto
+          </ListboxItem>
+        </Listbox>
+        <Listbox className="mb-2">
+          <ListboxItem href="/configuraciones" color="primary" startContent={<Settings />}>
+            Configuración
           </ListboxItem>
         </Listbox>
       </NavbarMenu>
