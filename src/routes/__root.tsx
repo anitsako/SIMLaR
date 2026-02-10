@@ -4,6 +4,7 @@ import appCss from '../styles.css?url';
 import type { NavigateOptions, ToOptions } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
+import { AppBar } from '@/common/app-bar';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -34,7 +35,12 @@ function RootComponent() {
         navigate={(to, options) => router.navigate({ to, ...options })}
         useHref={(to) => router.buildLocation({ to }).href}
       >
-        <Outlet />
+        <main className="h-screen w-screen flex flex-col items-center gap-2">
+          <div className="max-w-6xl w-full">
+            <AppBar />
+          </div>
+          <Outlet />
+        </main>
       </HeroUIProvider>
     </RootDocument>
   );
