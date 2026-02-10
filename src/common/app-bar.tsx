@@ -9,7 +9,7 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
 } from '@heroui/react';
-import { Braces, Briefcase, Building, CircleUserRound, House, Link, Pickaxe } from 'lucide-react';
+import { Blend, Braces, Briefcase, Building, CircleUserRound, House, Link, Pickaxe } from 'lucide-react';
 import { useState } from 'react';
 
 export const AppBar = () => {
@@ -54,6 +54,9 @@ export const AppBar = () => {
           </ListboxItem>
           <ListboxItem href="/servicios" color="primary" startContent={<Briefcase />}>
             Servicios
+          </ListboxItem>
+          <ListboxItem href="/transparencia" color="primary" startContent={<Blend />}>
+            Transparencia
           </ListboxItem>
         </Listbox>
       </NavbarMenu>
