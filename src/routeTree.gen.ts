@@ -16,6 +16,7 @@ import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mi
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
+import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,9 +53,15 @@ const DatosAbiertosIndexRoute = DatosAbiertosIndexRouteImport.update({
   path: '/datos-abiertos/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactoIndexRoute = ContactoIndexRouteImport.update({
+  id: '/contacto/',
+  path: '/contacto/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contacto': typeof ContactoIndexRoute
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
   '/noticias': typeof NoticiasIndexRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contacto/'
     | '/datos-abiertos/'
     | '/institucional/'
     | '/noticias/'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contacto'
     | '/datos-abiertos'
     | '/institucional'
     | '/noticias'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/contacto/'
     | '/datos-abiertos/'
     | '/institucional/'
     | '/noticias/'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactoIndexRoute: typeof ContactoIndexRoute
   DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
@@ -172,11 +185,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DatosAbiertosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contacto/': {
+      id: '/contacto/'
+      path: '/contacto'
+      fullPath: '/contacto/'
+      preLoaderRoute: typeof ContactoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactoIndexRoute: ContactoIndexRoute,
   DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
