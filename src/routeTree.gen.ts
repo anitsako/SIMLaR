@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
 import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
+import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 
@@ -36,6 +37,11 @@ const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
   path: '/proyectos-mineros/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
+  id: '/noticias/',
+  path: '/noticias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
   id: '/institucional/',
   path: '/institucional/',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/noticias/': typeof NoticiasIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
+  '/noticias': typeof NoticiasIndexRoute
   '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
   '/servicios': typeof ServiciosIndexRoute
   '/transparencia': typeof TransparenciaIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/noticias/': typeof NoticiasIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/datos-abiertos/'
     | '/institucional/'
+    | '/noticias/'
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/datos-abiertos'
     | '/institucional'
+    | '/noticias'
     | '/proyectos-mineros'
     | '/servicios'
     | '/transparencia'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/datos-abiertos/'
     | '/institucional/'
+    | '/noticias/'
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
+  NoticiasIndexRoute: typeof NoticiasIndexRoute
   ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
   ServiciosIndexRoute: typeof ServiciosIndexRoute
   TransparenciaIndexRoute: typeof TransparenciaIndexRoute
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProyectosMinerosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/noticias/': {
+      id: '/noticias/'
+      path: '/noticias'
+      fullPath: '/noticias/'
+      preLoaderRoute: typeof NoticiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/institucional/': {
       id: '/institucional/'
       path: '/institucional'
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
+  NoticiasIndexRoute: NoticiasIndexRoute,
   ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
   ServiciosIndexRoute: ServiciosIndexRoute,
   TransparenciaIndexRoute: TransparenciaIndexRoute,
