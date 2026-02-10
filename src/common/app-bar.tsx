@@ -9,7 +9,7 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
 } from '@heroui/react';
-import { Building, CircleUserRound, House, Pickaxe } from 'lucide-react';
+import { Building, CircleUserRound, House, Link, Pickaxe } from 'lucide-react';
 import { useState } from 'react';
 
 export const AppBar = () => {
@@ -43,6 +43,11 @@ export const AppBar = () => {
           </ListboxItem>
           <ListboxItem href="/proyectos-mineros" color="primary" startContent={<Pickaxe />}>
             Proyectos mineros
+          </ListboxItem>
+          <ListboxItem color="primary" startContent={<Link />}>
+            <a href="http://www.catastrolr.com.ar/home.php" target="_blank">
+              Catastro minero
+            </a>
           </ListboxItem>
         </Listbox>
       </NavbarMenu>
