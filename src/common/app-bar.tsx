@@ -1,14 +1,15 @@
 import {
   Button,
+  Listbox,
+  ListboxItem,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
 } from '@heroui/react';
-import { CircleUserRound } from 'lucide-react';
+import { Building, CircleUserRound, House } from 'lucide-react';
 import { useState } from 'react';
 
 export const AppBar = () => {
@@ -32,9 +33,15 @@ export const AppBar = () => {
           </Button>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="bg-default-50 max-w-xs border rounded-md">
-        <NavbarMenuItem>Opción 1</NavbarMenuItem>
-        <NavbarMenuItem>Opción 2</NavbarMenuItem>
+      <NavbarMenu className="max-w-xs border rounded-md">
+        <Listbox>
+          <ListboxItem href="/" color="primary" startContent={<House />}>
+            Inicio
+          </ListboxItem>
+          <ListboxItem href="/institucional" color="primary" startContent={<Building />}>
+            Institucional
+          </ListboxItem>
+        </Listbox>
       </NavbarMenu>
     </Navbar>
   );
