@@ -1,6 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { ClientOnly, createFileRoute } from '@tanstack/react-router';
 import { Alert } from '@heroui/react';
 import { Construction } from 'lucide-react';
+import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -15,9 +16,9 @@ function Home() {
         </Alert>
       </div>
       <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          Mapa satelital de proyectos en construccion
-        </Alert>
+        <ClientOnly>
+          <MapaPrincipal />
+        </ClientOnly>
       </div>
       <div className="max-w-6xl w-full">
         <Alert icon={<Construction />} color="warning">
