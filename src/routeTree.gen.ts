@@ -18,6 +18,7 @@ import { Route as InstitucionalIndexRouteImport } from './routes/institucional/i
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as ConfiguracionesIndexRouteImport } from './routes/configuraciones/index'
+import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const ConfiguracionesIndexRoute = ConfiguracionesIndexRouteImport.update({
   path: '/configuraciones/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
+  id: '/archivos/$id/$nombre',
+  path: '/archivos/$id/$nombre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
+  '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
   '/servicios': typeof ServiciosIndexRoute
   '/transparencia': typeof TransparenciaIndexRoute
+  '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
+  '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
+    | '/archivos/$id/$nombre'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros'
     | '/servicios'
     | '/transparencia'
+    | '/archivos/$id/$nombre'
   id:
     | '__root__'
     | '/'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
+    | '/archivos/$id/$nombre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +157,7 @@ export interface RootRouteChildren {
   ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
   ServiciosIndexRoute: typeof ServiciosIndexRoute
   TransparenciaIndexRoute: typeof TransparenciaIndexRoute
+  ArchivosIdNombreRoute: typeof ArchivosIdNombreRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConfiguracionesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/archivos/$id/$nombre': {
+      id: '/archivos/$id/$nombre'
+      path: '/archivos/$id/$nombre'
+      fullPath: '/archivos/$id/$nombre'
+      preLoaderRoute: typeof ArchivosIdNombreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
   ServiciosIndexRoute: ServiciosIndexRoute,
   TransparenciaIndexRoute: TransparenciaIndexRoute,
+  ArchivosIdNombreRoute: ArchivosIdNombreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

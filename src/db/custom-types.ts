@@ -6,11 +6,16 @@ export const multipolygon = customType<{
   driverData: string;
 }>({
   dataType(config) {
-    return config?.srid
-      ? `geometry(MultiPolygon,${config.srid})`
-      : 'geometry(MultiPolygon)';
+    return config?.srid ? `geometry(MultiPolygon,${config.srid})` : 'geometry(MultiPolygon)';
   },
   toDriver(value: string): string {
     return value;
+  },
+});
+
+// bytea recien estará disponible en drizzle-orm version 1
+export const bytea = customType<{ data: Buffer }>({
+  dataType() {
+    return 'bytea';
   },
 });
