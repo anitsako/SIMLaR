@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "db:generate": "drizzle-kit generate --config=drizzle-dev.config.ts",
-    "db:migrate": "drizzle-kit migrate --config=drizzle-dev.config.ts",
-    "db:push": "drizzle-kit push --config=drizzle-dev.config.ts"
+    "db:generate": "drizzle-kit generate --config=drizzle.config.local.ts",
+    "db:migrate": "drizzle-kit migrate --config=drizzle.config.local.ts",
+    "db:push": "drizzle-kit push --config=drizzle.config.local.ts",
+    "db:generate:prod": "drizzle-kit generate --config=drizzle.config.prod.ts",
+    "db:migrate:prod": "drizzle-kit migrate --config=drizzle.config.prod.ts"
   },
   "keywords": [],
   "author": "",
