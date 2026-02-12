@@ -17,7 +17,7 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <div className="max-w-6xl w-full mb-8">
+      <div className="max-w-6xl w-full">
         <Swiper
           modules={[Autoplay, Navigation, Pagination, Scrollbar]}
           loop={true}
@@ -26,15 +26,13 @@ function Home() {
           autoplay={{ delay: 3000 }}
           scrollbar={{ draggable: true }}
           navigation
-          className="w-full h-[420px]"
+          className="h-[420px]"
         >
-          <div className="w-full h-[300px] bg-gray-200 flex items-center justify-center mt-4">
             <SwiperSlide>Imagen 1</SwiperSlide>
             <SwiperSlide>Imagen 2</SwiperSlide>
             <SwiperSlide>Imagen 3</SwiperSlide>
             <SwiperSlide>Imagen 4</SwiperSlide>
             <SwiperSlide>Imagen 5</SwiperSlide>
-          </div>
         </Swiper>
       </div>
       <div className="max-w-6xl w-full">
