@@ -5,9 +5,13 @@ import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 
+// @ts-ignore: Se ignora css
 import 'swiper/css';
+// @ts-ignore: Se ignora css
 import 'swiper/css/navigation';
+// @ts-ignore: Se ignora css
 import 'swiper/css/pagination';
+// @ts-ignore: Se ignora css
 import 'swiper/css/scrollbar';
 
 export const Route = createFileRoute('/')({
@@ -28,11 +32,11 @@ function Home() {
           navigation
           className="h-[420px]"
         >
-            <SwiperSlide>Imagen 1</SwiperSlide>
-            <SwiperSlide>Imagen 2</SwiperSlide>
-            <SwiperSlide>Imagen 3</SwiperSlide>
-            <SwiperSlide>Imagen 4</SwiperSlide>
-            <SwiperSlide>Imagen 5</SwiperSlide>
+          <SwiperSlide>Imagen 1</SwiperSlide>
+          <SwiperSlide>Imagen 2</SwiperSlide>
+          <SwiperSlide>Imagen 3</SwiperSlide>
+          <SwiperSlide>Imagen 4</SwiperSlide>
+          <SwiperSlide>Imagen 5</SwiperSlide>
         </Swiper>
       </div>
       <div className="max-w-6xl w-full">
