@@ -4,11 +4,13 @@ import { Construction } from 'lucide-react';
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
+import { FeaturedNews } from './noticias/-featured-news'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -41,9 +43,7 @@ function Home() {
         </ClientOnly>
       </div>
       <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          Sección de noticias destacadas en construcción
-        </Alert>
+        <FeaturedNews />
       </div>
       <div className="max-w-6xl w-full">
         <Alert icon={<Construction />} color="warning">
