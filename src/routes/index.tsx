@@ -2,6 +2,7 @@ import { ClientOnly, createFileRoute } from '@tanstack/react-router';
 import { Alert } from '@heroui/react';
 import { Construction } from 'lucide-react';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
+import { FeaturedNews } from './noticias/NoticiasDestacadas'
 import { Carrousel } from '@/carrousel-imagenes/carrousel';
 
 
@@ -21,9 +22,7 @@ function Home() {
         </ClientOnly>
       </div>
       <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          Sección de noticias destacadas en construcción
-        </Alert>
+        <FeaturedNews />
       </div>
       <div className="max-w-6xl w-full">
         <Alert icon={<Construction />} color="warning">
