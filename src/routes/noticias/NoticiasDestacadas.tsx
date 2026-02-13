@@ -13,7 +13,7 @@ import { ExternalLink, RefreshCcw } from 'lucide-react';
 import {
   getLatestFromRssDirect,
   type LatestRssItem,
-} from './rss/-get-latest-from-rss-direct';
+} from './rss/noticias-rss';
 
 function formatDate(d?: string | Date | null) {
   if (!d) return '';

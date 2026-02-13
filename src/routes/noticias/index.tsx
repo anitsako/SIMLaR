@@ -2,7 +2,7 @@ import { Button, Card, CardBody, Chip, Divider, Spinner } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { ExternalLink, RefreshCcw } from 'lucide-react';
-import { getLatestFromRssDirect } from './rss/-get-latest-from-rss-direct';
+import { getLatestFromRssDirect } from './rss/noticias-rss';
 
 export const Route = createFileRoute('/noticias/')({
   component: RouteComponent,
