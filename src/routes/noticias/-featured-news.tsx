@@ -27,7 +27,6 @@ function formatDate(d?: string | Date | null) {
 }
 
 export function FeaturedNews() {
-  // 1) Destacadas (curadas): links a medios/redes externos.
   const featured: Array<{
     title: string;
     url: string;
@@ -56,7 +55,6 @@ export function FeaturedNews() {
     },
   ];
 
-  // 2) Últimas: RSS (Minería & Desarrollo).
   const rssQuery = useQuery({
     queryKey: ['news', 'rss', { feed: 'mineriaydesarrollo', limit: 6 }],
     queryFn: () =>
@@ -143,7 +141,7 @@ export function FeaturedNews() {
           </div>
         </div>
 
-        {/* RSS */}
+
         <div>
           <h3 className="text-lg font-semibold">Últimas (Minería &amp; Desarrollo)</h3>
           {rssQuery.isLoading ? (

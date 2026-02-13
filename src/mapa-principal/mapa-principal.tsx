@@ -4,7 +4,7 @@ import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
 
 export const MapaPrincipal = () => {
   return (
-    <div className="w-full h-[600px] md:h-[700px]">
+    <div className="w-full h-[600px] md:h-[700px] relative z-0">
       <MapContainer
         center={[-29.8135, -66.8558]}
         zoom={7}

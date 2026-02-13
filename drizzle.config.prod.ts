@@ -6,5 +6,5 @@ export default defineConfig({
   schema: './src/db/schemas/',
   dialect: 'postgresql',
   extensionsFilters: ['postgis'],
-  dbCredentials: { url: process.env.DATABASE_URL! },
+  dbCredentials: { url: process.env.DATABASE_PROD_URL! },
 });
