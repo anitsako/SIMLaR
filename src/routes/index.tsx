@@ -1,8 +1,8 @@
 import { ClientOnly, createFileRoute } from '@tanstack/react-router';
 import { Alert } from '@heroui/react';
 import { Construction } from 'lucide-react';
+import { FeaturedNews } from './noticias/NoticiasDestacadas';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
-import { FeaturedNews } from './noticias/NoticiasDestacadas'
 import { Carrousel } from '@/carrousel-imagenes/carrousel';
 
 

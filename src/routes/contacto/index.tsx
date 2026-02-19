@@ -2,6 +2,7 @@ import { Alert, Button, Card, CardBody, CardFooter, CardHeader, Image } from '@h
 import { createFileRoute } from '@tanstack/react-router';
 import { Construction } from 'lucide-react';
 import { GoogleMaps } from '@/common/google-maps-svg';
+import Formulario from '@/form-consultas/form';
 
 export const Route = createFileRoute('/contacto/')({
   component: RouteComponent,
@@ -59,10 +60,8 @@ function RouteComponent() {
       <div className="max-w-6xl w-full mt-4">
         <p className="text-3xl font-bold">Formulario de consultas</p>
       </div>
-      <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          En construcción
-        </Alert>
+      <div className="max-w-6xl w-full mt-4">
+        <Formulario />
       </div>
     </>
   );

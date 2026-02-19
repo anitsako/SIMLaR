@@ -28,6 +28,7 @@
     "framer-motion": "^12.33.0",
     "geojson": "^0.5.0",
     "leaflet": "^1.9.4",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.563.0",
     "pg": "^8.18.0",
     "react": "^19.2.4",
