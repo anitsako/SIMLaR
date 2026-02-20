@@ -9,6 +9,7 @@ interface Props {
   value: number | string;
   title?: string;
   color?: MarkerColor;
+  onClick?: () => void;
   onMouseOver?: () => void;
   onMouseOut?: () => void;
 }
@@ -25,7 +26,7 @@ const colorClasses: Record<MarkerColor, { normal: string; hover: string }> = {
   white: { normal: 'bg-white text-gray-800', hover: 'bg-gray-100 text-gray-800' },
 };
 
-export const CircleMarker = ({ position, value, title, color = 'white', onMouseOver, onMouseOut }: Props) => {
+export const CircleMarker = ({ position, value, title, color = 'white', onClick, onMouseOver, onMouseOut }: Props) => {
   const [hovered, setHovered] = useState(false);
 
   const { normal, hover } = colorClasses[color];
@@ -43,6 +44,9 @@ export const CircleMarker = ({ position, value, title, color = 'white', onMouseO
       position={position}
       icon={icon}
       eventHandlers={{
+        click: () => {
+          onClick?.();
+        },
         mouseover: () => {
           setHovered(true);
           onMouseOver?.();
