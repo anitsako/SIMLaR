@@ -12,6 +12,16 @@ export const CapaDepartamentos = () => {
   return (
     <GeoJSON
       data={data}
+      onEachFeature={(feature, layer) => {
+        const nombre = feature.properties?.nombre;
+        if (nombre) {
+          layer.bindTooltip(`Departamento: ${nombre}`, {
+            direction: 'top',
+            // Los estilos no funcionan
+            // className: 'bg-transparent text-red border-0 shadow-none',
+          });
+        }
+      }}
       pathOptions={{
         color: semanticColors.light.default[500],
         fillColor: semanticColors.light.default[500],
