@@ -8,7 +8,7 @@ export const metaliferosTable = pgTable('metaliferos', {
   ubicacion: varchar('ubicacion', { length: 100 }).notNull(),
   provinciaGeologica: varchar('provincia_geologica', { length: 100 }).notNull(),
   area: varchar('area', { length: 10 }).notNull(),
-  litografia: text('litografia').notNull(),
+  litologia: text('litologia').notNull(),
   mineralizacion: text('mineralizacion').notNull(),
   mineralInteres: varchar('mineral_interes', { length: 100 }).notNull(),
   modeloGenetico: text('modelo_genetico').notNull(),
