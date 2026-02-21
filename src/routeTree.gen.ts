@@ -18,6 +18,7 @@ import { Route as InstitucionalIndexRouteImport } from './routes/institucional/i
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as ConfiguracionesIndexRouteImport } from './routes/configuraciones/index'
+import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +66,11 @@ const ConfiguracionesIndexRoute = ConfiguracionesIndexRouteImport.update({
   path: '/configuraciones/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
   id: '/archivos/$id/$nombre',
   path: '/archivos/$id/$nombre',
@@ -73,6 +79,7 @@ const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/contact': typeof ApiContactRoute
   '/configuraciones/': typeof ConfiguracionesIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/contact': typeof ApiContactRoute
   '/configuraciones': typeof ConfiguracionesIndexRoute
   '/contacto': typeof ContactoIndexRoute
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/contact': typeof ApiContactRoute
   '/configuraciones/': typeof ConfiguracionesIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/api/contact'
     | '/configuraciones/'
     | '/contacto/'
     | '/datos-abiertos/'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/api/contact'
     | '/configuraciones'
     | '/contacto'
     | '/datos-abiertos'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/api/contact'
     | '/configuraciones/'
     | '/contacto/'
     | '/datos-abiertos/'
@@ -149,6 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiContactRoute: typeof ApiContactRoute
   ConfiguracionesIndexRoute: typeof ConfiguracionesIndexRoute
   ContactoIndexRoute: typeof ContactoIndexRoute
   DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConfiguracionesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/archivos/$id/$nombre': {
       id: '/archivos/$id/$nombre'
       path: '/archivos/$id/$nombre'
@@ -237,6 +257,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiContactRoute: ApiContactRoute,
   ConfiguracionesIndexRoute: ConfiguracionesIndexRoute,
   ContactoIndexRoute: ContactoIndexRoute,
   DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
