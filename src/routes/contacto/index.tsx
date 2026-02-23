@@ -24,7 +24,7 @@ function RouteComponent() {
       </div>
       <div className="max-w-6xl w-full mt-4">
         <p className="text-3xl font-bold mb-4">Ubicación</p>
-        <Card className="flex flex-row items-center gap-4 w-[800px]">
+        <Card className="flex flex-row items-center gap-4 w-200">
           <Image
             src="https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=QxtLXoEX57hPXT4yG2d3Zw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=335.22635&pitch=0&thumbfov=100"
             alt="Ubicación de la institución"

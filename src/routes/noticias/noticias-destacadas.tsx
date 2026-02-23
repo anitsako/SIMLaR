@@ -1,3 +1,4 @@
+
 import {
   Button,
   Card,
@@ -10,10 +11,9 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ExternalLink, RefreshCcw } from 'lucide-react';
-import {
-  getLatestFromRssDirect,
-  type LatestRssItem,
-} from './rss/noticias-rss';
+
+import { getLatestFromRssDirect } from './rss/noticias-rss';
+import type { LatestRssItem } from './rss/noticias-rss';
 
 function formatDate(d?: string | Date | null) {
   if (!d) return '';
@@ -66,7 +66,7 @@ export function FeaturedNews() {
       }),
   });
 
-  const rssItems: LatestRssItem[] = rssQuery.data ?? [];
+  const rssItems: Array<LatestRssItem> = rssQuery.data ?? [];
 
   return (
     <section className="w-full">

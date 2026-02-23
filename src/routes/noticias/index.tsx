@@ -1,15 +1,16 @@
 import { Button, Card, CardBody, Chip, Divider, Spinner } from '@heroui/react';
-import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 import { ExternalLink, RefreshCcw } from 'lucide-react';
 import { getLatestFromRssDirect } from './rss/noticias-rss';
+import type { LatestRssItem } from './rss/noticias-rss';
 
 export const Route = createFileRoute('/noticias/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const rssQuery = useQuery({
+  const rssQuery = useQuery<Array<LatestRssItem>>({
     queryKey: ['news', 'rss', { feed: 'mineriaydesarrollo', limit: 30 }],
     queryFn: () =>
       getLatestFromRssDirect({
@@ -20,8 +21,9 @@ function RouteComponent() {
       }),
   });
 
-  const items = rssQuery.data ?? [];
-  const [top, ...rest] = items;
+  const items: Array<LatestRssItem> = rssQuery.data ?? [];
+  const top: LatestRssItem | undefined = items.at(0);
+  const rest: Array<LatestRssItem> = items.slice(1);
 
   return (
     <>
@@ -62,7 +64,7 @@ function RouteComponent() {
         ) : (
           <div className="flex flex-col gap-6">
             {/* NOTICIA PRINCIPAL */}
-            {top ? (
+            {top && (
               <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                 {top.imageUrl ? (
                   <div className="w-full h-72 md:h-80 overflow-hidden">
@@ -112,10 +114,10 @@ function RouteComponent() {
                   </div>
                 </CardBody>
               </Card>
-            ) : null}
+            )}
 
             {/* RESTO EN GRILLA */}
-            <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(320px,1fr))]">
+            <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
               {rest.map((n) => (
                 <Card
                   key={n.url}

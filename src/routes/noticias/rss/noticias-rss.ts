@@ -18,7 +18,7 @@ function firstString(v: unknown): string | undefined {
   if (!v) return undefined;
   if (typeof v === 'string') return v;
   if (Array.isArray(v)) {
-    const s = v.find((x) => typeof x === 'string') as string | undefined;
+    const s = v.find((x) => typeof x === 'string');
     return s;
   }
   return undefined;
@@ -78,12 +78,13 @@ const parser = new Parser({
 });
 
 export const getLatestFromRssDirect = createServerFn({ method: 'POST' })
-  .handler(async ({ data }: { data: Input }) => {
+.inputValidator((data: Input) => data)
+.handler(async ({ data }) => {
     const limit = Math.max(1, Math.min(50, data.limit ?? 20));
 
     const feed = await parser.parseURL(data.feedUrl);
 
-    const items = (feed.items ?? []).slice(0, limit).map((it: any): LatestRssItem => {
+    const items = feed.items.slice(0, limit).map((it: any): LatestRssItem => {
       const title = (it.title ?? '').toString().trim();
       const url = (it.link ?? it.guid ?? '').toString().trim();
 
