@@ -9,6 +9,10 @@ export const getMetaliferosFn = createServerFn({
     .select({
       id: metaliferosTable.id,
       nombre: metaliferosTable.nombre,
+      ubicacion: metaliferosTable.ubicacion,
+      mineral: metaliferosTable.mineralInteres,
+      etapa: metaliferosTable.etapa,
+      propietario: metaliferosTable.propietario,
       coordenadasGeograficas: metaliferosTable.coordenadasGeograficas,
     })
     .from(metaliferosTable);
