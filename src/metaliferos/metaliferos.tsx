@@ -20,7 +20,7 @@ export const Metaliferos = () => {
           key={metalifero.id}
           position={[metalifero.coordenadasGeograficas[1], metalifero.coordenadasGeograficas[0]]}
           value={index + 1}
-          title={metalifero.nombre}
+          title={`Proyecto: ${metalifero.nombre}`}
           color="red"
           onClick={() => {
             setSelectedId(metalifero.id);
