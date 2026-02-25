@@ -1,6 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Facebook, Instagram, Twitter } from 'lucide-react'
+<<<<<<< HEAD
 import { Card, CardBody } from '@heroui/react'
+=======
+
+import gobernadorImg from '../../assets/autoridades/gobernador.jpg'
+import ministroImg from '../../assets/autoridades/ministro.jpg'
+import kalpaImg from '../../assets/autoridades/kalpa.jpg'
+import secComImg from '../../assets/autoridades/sec-com.jpg'
+import secMinImg from '../../assets/autoridades/sec-min.jpg'
+import emseImg from '../../assets/autoridades/emse.jpg'
+import viceImg from '../../assets/autoridades/vicegob.jpg'
+import gabineteImg from '../../assets/autoridades/gabinete.jpg'
+import secAmbImg from '../../assets/autoridades/sec-amb.png'
+
+>>>>>>> 1605f37 (actualizacion de seccion de autoridades)
 
 export const Route = createFileRoute('/institucional/')({
   component: RouteComponent,
@@ -36,7 +50,11 @@ const AUTORIDADES: Array<Autoridad> = [
   {
     nombre: 'FEDERICO BAZAN',
     cargo: 'Ministro de Trabajo, Empleo, Industria y Minería',
+<<<<<<< HEAD
     foto: '/autoridades/ministro.jpg',
+=======
+    foto: ministroImg,
+>>>>>>> 1605f37 (actualizacion de seccion de autoridades)
   },
   {
     nombre: 'LUZ SANTANGELO',
@@ -54,7 +72,11 @@ const AUTORIDADES: Array<Autoridad> = [
   {
     nombre: 'SANTIAGO AZULAY',
     cargo: 'Secretario de Ambiente',
+<<<<<<< HEAD
     foto: '/autoridades/sec-amb.png',
+=======
+    foto: secAmbImg,
+>>>>>>> 1605f37 (actualizacion de seccion de autoridades)
   },
   {
     nombre: 'WALTER GOMEZ',
