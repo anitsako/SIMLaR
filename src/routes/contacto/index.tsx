@@ -1,8 +1,8 @@
-import { Alert, Button, Card, CardBody, CardFooter, CardHeader, Image } from '@heroui/react';
+import {Button, Card, CardBody, CardFooter, CardHeader, Image } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Construction } from 'lucide-react';
 import { GoogleMaps } from '@/common/google-maps-svg';
 import Formulario from '@/form-consultas/form';
+import { ContactoInstitucional } from '@/form-consultas/contacto-institucional';
 
 export const Route = createFileRoute('/contacto/')({
   component: RouteComponent,
@@ -11,16 +11,14 @@ export const Route = createFileRoute('/contacto/')({
 function RouteComponent() {
   return (
     <>
-      <div className="max-w-6xl w-full mt-4">
+      <div className="max-w-6xl w-full mt-4 mb-8">
         <p className="text-5xl font-bold text-center">Contacto</p>
       </div>
-      <div className="max-w-6xl w-full mt-4">
+      {/* <div className="max-w-6xl w-full mt-4">
         <p className="text-3xl font-bold">Contacto institucional</p>
-      </div>
+      </div> */}
       <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          En construcción
-        </Alert>
+        <ContactoInstitucional />
       </div>
       <div className="max-w-6xl w-full mt-4">
         <p className="text-3xl font-bold mb-4">Ubicación</p>
