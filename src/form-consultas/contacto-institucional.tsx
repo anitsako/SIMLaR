@@ -7,7 +7,6 @@ export function ContactoInstitucional() {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(email);
-      // si querés feedback visual: toast/snackbar (si tienen)
       addToast({
         title: 'Email copiado',
         description: `El email se copió al portapapeles`,
@@ -40,7 +39,6 @@ export function ContactoInstitucional() {
       <Divider />
 
       <CardBody className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Email */}
         <div className="rounded-2xl p-4 bg-default-50 border border-default-200">
           <div className="flex items-center gap-2">
             <Mail className="w-5 h-5" />
@@ -69,7 +67,6 @@ export function ContactoInstitucional() {
           <p className="mt-3 text-sm text-default-500">Tiempo estimado de respuesta: 24–48 h hábiles.</p>
         </div>
 
-        {/* Horario / info */}
         <div className="rounded-2xl p-4 bg-default-50 border border-default-200">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5" />
