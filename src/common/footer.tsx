@@ -1,5 +1,5 @@
-import { Button, Image } from '@heroui/react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Button, Image } from '@heroui/react'
+import { Mail, MapPin, Phone } from 'lucide-react'
 
 export const Footer = () => {
   return (
@@ -7,7 +7,7 @@ export const Footer = () => {
       <div
         className="w-full text-white"
         style={{
-          backgroundImage: `url('/images/footer-trama-gris.png')`,
+          backgroundImage: `url('/branding/footer-trama-gris.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -17,13 +17,22 @@ export const Footer = () => {
         <div className="w-full bg-black/40">
           <div className="max-w-6xl mx-auto px-6 py-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+
               <div className="flex items-start gap-4">
-                <Image
-                  src="/images/la-rioja-gobierno-white.png"
-                  alt="La Rioja Gobierno"
-                  className="h-16 w-auto"
-                  radius="none"
-                />
+                <a
+                  href="https://larioja.gob.ar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-opacity hover:opacity-80"
+                  aria-label="Ir al sitio oficial del Gobierno de La Rioja"
+                >
+                  <Image
+                    src="/branding/la-rioja-gobierno-white.png"
+                    alt="La Rioja Gobierno"
+                    className="h-16 w-auto"
+                    radius="none"
+                  />
+                </a>
 
                 <div>
                   <p className="text-2xl font-semibold tracking-wide">LA RIOJA</p>
@@ -44,7 +53,9 @@ export const Footer = () => {
                   </li>
                   <li className="flex gap-3">
                     <Mail className="h-4 w-4 mt-1" />
-                    info@larioja.gob.ar
+                    <a className="hover:opacity-80 underline underline-offset-4" href="mailto:info@larioja.gob.ar">
+                      info@larioja.gob.ar
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -73,6 +84,5 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
-
+  )
+}
