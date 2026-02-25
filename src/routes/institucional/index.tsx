@@ -1,20 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Facebook, Instagram, Twitter } from 'lucide-react'
-<<<<<<< HEAD
 import { Card, CardBody } from '@heroui/react'
-=======
-
-import gobernadorImg from '../../assets/autoridades/gobernador.jpg'
-import ministroImg from '../../assets/autoridades/ministro.jpg'
-import kalpaImg from '../../assets/autoridades/kalpa.jpg'
-import secComImg from '../../assets/autoridades/sec-com.jpg'
-import secMinImg from '../../assets/autoridades/sec-min.jpg'
-import emseImg from '../../assets/autoridades/emse.jpg'
-import viceImg from '../../assets/autoridades/vicegob.jpg'
-import gabineteImg from '../../assets/autoridades/gabinete.jpg'
-import secAmbImg from '../../assets/autoridades/sec-amb.png'
-
->>>>>>> 1605f37 (actualizacion de seccion de autoridades)
 
 export const Route = createFileRoute('/institucional/')({
   component: RouteComponent,
@@ -50,33 +36,22 @@ const AUTORIDADES: Array<Autoridad> = [
   {
     nombre: 'FEDERICO BAZAN',
     cargo: 'Ministro de Trabajo, Empleo, Industria y Minería',
-<<<<<<< HEAD
     foto: '/autoridades/ministro.jpg',
-=======
-    foto: ministroImg,
->>>>>>> 1605f37 (actualizacion de seccion de autoridades)
   },
   {
     nombre: 'LUZ SANTANGELO',
     cargo: 'Secretaria de Comunicación y Planificación Pública',
     foto: '/autoridades/sec-com.jpg',
   },
-
   {
     nombre: 'IVANA GUARDIA',
     cargo: 'Secretaria Mineria',
     foto: '/autoridades/sec-min.jpg',
   },
-
-
   {
     nombre: 'SANTIAGO AZULAY',
     cargo: 'Secretario de Ambiente',
-<<<<<<< HEAD
     foto: '/autoridades/sec-amb.png',
-=======
-    foto: secAmbImg,
->>>>>>> 1605f37 (actualizacion de seccion de autoridades)
   },
   {
     nombre: 'WALTER GOMEZ',
@@ -169,7 +144,6 @@ function RouteComponent() {
           <p className="text-3xl font-bold">Autoridades</p>
 
           <div className="mt-10 space-y-16">
-
             {/* Gobernador */}
             <div className="flex justify-center">
               <div className="w-full max-w-sm">
@@ -221,7 +195,6 @@ function RouteComponent() {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
 
