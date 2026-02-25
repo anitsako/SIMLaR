@@ -1,6 +1,6 @@
-import { Alert } from '@heroui/react';
+import { Tab, Tabs } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Construction } from 'lucide-react';
+import { UsuariosTable } from '@/usuarios/usuarios.table';
 
 export const Route = createFileRoute('/_authed/configuraciones/')({
   component: RouteComponent,
@@ -8,15 +8,13 @@ export const Route = createFileRoute('/_authed/configuraciones/')({
 
 function RouteComponent() {
   return (
-    <>
-      <div className="max-w-6xl w-full mt-4">
-        <p className="text-5xl font-bold text-center">Configuraciones</p>
-      </div>
-      <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          En construcción
-        </Alert>
-      </div>
-    </>
+    <div className="flex flex-col mt-4">
+      <p className="text-5xl font-bold text-center">Configuraciones</p>
+      <Tabs className="mt-4">
+        <Tab key="usuarios" title="Usuarios">
+          <UsuariosTable />
+        </Tab>
+      </Tabs>
+    </div>
   );
 }
