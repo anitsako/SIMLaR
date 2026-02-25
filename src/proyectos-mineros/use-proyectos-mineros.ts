@@ -6,5 +6,6 @@ export const useProyectosMineros = (data: { visible?: boolean } = {}, options?: 
     queryKey: ['proyectos-mineros'],
     queryFn: () => getProyectosMinerosFn({ data }),
     enabled: options?.enabled ?? true,
+    initialData: [],
   });
 };
