@@ -1,8 +1,14 @@
-import { Button, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
-import { CircleUserRound } from 'lucide-react';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
+import { getRouteApi } from '@tanstack/react-router';
 import { PanelLateral } from './panel-lateral';
+import { UserMenu } from '@/auth/user-menu';
+import { UserLogin } from '@/auth/user-login';
+
+const rootRoute = getRouteApi('__root__');
 
 export const AppBar = () => {
+  const { usuario } = rootRoute.useRouteContext();
+
   return (
     <Navbar classNames={{ wrapper: 'px-4' }} maxWidth="full">
       <NavbarContent>
@@ -15,11 +21,7 @@ export const AppBar = () => {
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Button color="primary" startContent={<CircleUserRound />}>
-            Ingresar
-          </Button>
-        </NavbarItem>
+        <NavbarItem>{usuario ? <UserMenu /> : <UserLogin />}</NavbarItem>
       </NavbarContent>
     </Navbar>
   );

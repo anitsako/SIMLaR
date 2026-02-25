@@ -1,13 +1,18 @@
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext, useRouter } from '@tanstack/react-router';
 import { HeroUIProvider } from '@heroui/system';
-import {ToastProvider} from "@heroui/toast";
+import { ToastProvider } from '@heroui/toast';
 import appCss from '../styles.css?url';
 import type { NavigateOptions, ToOptions } from '@tanstack/react-router';
 import type { QueryClient } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { AppBar } from '@/common/app-bar';
+import { getCurrentUserFn } from '@/auth/get-current-user.fn';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  beforeLoad: async () => {
+    const usuario = await getCurrentUserFn();
+    return { usuario };
+  },
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -40,7 +45,7 @@ function RootComponent() {
           <div className="max-w-6xl w-full">
             <AppBar />
           </div>
-          <ToastProvider placement='top-center' />
+          <ToastProvider placement="top-center" />
           <Outlet />
         </main>
       </HeroUIProvider>

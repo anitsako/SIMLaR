@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
@@ -17,10 +18,14 @@ import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
-import { Route as ConfiguracionesIndexRouteImport } from './routes/configuraciones/index'
 import { Route as ApiContactRouteImport } from './routes/api/contact'
+import { Route as AuthedConfiguracionesIndexRouteImport } from './routes/_authed/configuraciones/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
 
+const AuthedRoute = AuthedRouteImport.update({
+  id: '/_authed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,16 +66,17 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
   path: '/contacto/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConfiguracionesIndexRoute = ConfiguracionesIndexRouteImport.update({
-  id: '/configuraciones/',
-  path: '/configuraciones/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ApiContactRoute = ApiContactRouteImport.update({
   id: '/api/contact',
   path: '/api/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthedConfiguracionesIndexRoute =
+  AuthedConfiguracionesIndexRouteImport.update({
+    id: '/configuraciones/',
+    path: '/configuraciones/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
   id: '/archivos/$id/$nombre',
   path: '/archivos/$id/$nombre',
@@ -80,7 +86,6 @@ const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/contact': typeof ApiContactRoute
-  '/configuraciones/': typeof ConfiguracionesIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
@@ -89,11 +94,11 @@ export interface FileRoutesByFullPath {
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
+  '/configuraciones/': typeof AuthedConfiguracionesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/contact': typeof ApiContactRoute
-  '/configuraciones': typeof ConfiguracionesIndexRoute
   '/contacto': typeof ContactoIndexRoute
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
@@ -102,12 +107,13 @@ export interface FileRoutesByTo {
   '/servicios': typeof ServiciosIndexRoute
   '/transparencia': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
+  '/configuraciones': typeof AuthedConfiguracionesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authed': typeof AuthedRouteWithChildren
   '/api/contact': typeof ApiContactRoute
-  '/configuraciones/': typeof ConfiguracionesIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
@@ -116,13 +122,13 @@ export interface FileRoutesById {
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
+  '/_authed/configuraciones/': typeof AuthedConfiguracionesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/api/contact'
-    | '/configuraciones/'
     | '/contacto/'
     | '/datos-abiertos/'
     | '/institucional/'
@@ -131,11 +137,11 @@ export interface FileRouteTypes {
     | '/servicios/'
     | '/transparencia/'
     | '/archivos/$id/$nombre'
+    | '/configuraciones/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/api/contact'
-    | '/configuraciones'
     | '/contacto'
     | '/datos-abiertos'
     | '/institucional'
@@ -144,11 +150,12 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/transparencia'
     | '/archivos/$id/$nombre'
+    | '/configuraciones'
   id:
     | '__root__'
     | '/'
+    | '/_authed'
     | '/api/contact'
-    | '/configuraciones/'
     | '/contacto/'
     | '/datos-abiertos/'
     | '/institucional/'
@@ -157,12 +164,13 @@ export interface FileRouteTypes {
     | '/servicios/'
     | '/transparencia/'
     | '/archivos/$id/$nombre'
+    | '/_authed/configuraciones/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthedRoute: typeof AuthedRouteWithChildren
   ApiContactRoute: typeof ApiContactRoute
-  ConfiguracionesIndexRoute: typeof ConfiguracionesIndexRoute
   ContactoIndexRoute: typeof ContactoIndexRoute
   DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
@@ -175,6 +183,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -231,19 +246,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/configuraciones/': {
-      id: '/configuraciones/'
-      path: '/configuraciones'
-      fullPath: '/configuraciones/'
-      preLoaderRoute: typeof ConfiguracionesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/api/contact': {
       id: '/api/contact'
       path: '/api/contact'
       fullPath: '/api/contact'
       preLoaderRoute: typeof ApiContactRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authed/configuraciones/': {
+      id: '/_authed/configuraciones/'
+      path: '/configuraciones'
+      fullPath: '/configuraciones/'
+      preLoaderRoute: typeof AuthedConfiguracionesIndexRouteImport
+      parentRoute: typeof AuthedRoute
     }
     '/archivos/$id/$nombre': {
       id: '/archivos/$id/$nombre'
@@ -255,10 +270,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthedRouteChildren {
+  AuthedConfiguracionesIndexRoute: typeof AuthedConfiguracionesIndexRoute
+}
+
+const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedConfiguracionesIndexRoute: AuthedConfiguracionesIndexRoute,
+}
+
+const AuthedRouteWithChildren =
+  AuthedRoute._addFileChildren(AuthedRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthedRoute: AuthedRouteWithChildren,
   ApiContactRoute: ApiContactRoute,
-  ConfiguracionesIndexRoute: ConfiguracionesIndexRoute,
   ContactoIndexRoute: ContactoIndexRoute,
   DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
