@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Pagination,
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
   TableRow,
   getKeyValue,
 } from '@heroui/react';
+import { DetallesTablaSVG } from '@/common/detalles-tabla-proyectos-svg';
 import { useMetaliferos } from '@/metaliferos/use-metaliferos';
 
 function decimalToDms(decimal: number, isLat: boolean): string {
@@ -70,7 +72,7 @@ return (
           <TableColumn key="etapa">ETAPA</TableColumn>
           <TableColumn key="propietario">PROPIETARIO</TableColumn>
           <TableColumn key="coordenadas">COORDENADAS</TableColumn>
-          <TableColumn>DETALLES</TableColumn>
+          <TableColumn key='detalles'>DETALLES</TableColumn>
         </TableHeader>
         <TableBody items={items}>
           {(item) => (
@@ -80,6 +82,7 @@ return (
                   {columnKey === 'coordenadas'
                     ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
                     : getKeyValue(item, columnKey)}
+                    {columnKey === 'detalles' && <Button size="sm"><DetallesTablaSVG className="ml-2 opacity-10" /></Button>}
                 </TableCell>
               )}
             </TableRow>
