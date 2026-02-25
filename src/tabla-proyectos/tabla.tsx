@@ -10,7 +10,7 @@ import {
   TableRow,
   getKeyValue,
 } from '@heroui/react';
-import { DetallesTablaSVG } from '@/common/detalles-tabla-proyectos-svg';
+import { ModalTablaProyectos } from './tabla-proyectos-modal';
 import { useMetaliferos } from '@/metaliferos/use-metaliferos';
 
 function decimalToDms(decimal: number, isLat: boolean): string {
@@ -67,6 +67,7 @@ return (
       >
         <TableHeader>
           <TableColumn key="nombre">NOMBRE</TableColumn>
+          <TableColumn key="tipo">TIPO</TableColumn>
           <TableColumn key="ubicacion">UBICACION</TableColumn>
           <TableColumn key="mineral">MINERAL</TableColumn>
           <TableColumn key="etapa">ETAPA</TableColumn>
@@ -82,7 +83,7 @@ return (
                   {columnKey === 'coordenadas'
                     ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
                     : getKeyValue(item, columnKey)}
-                    {columnKey === 'detalles' && <Button size="sm"><DetallesTablaSVG className="ml-2 opacity-10" /></Button>}
+                    {columnKey === 'detalles' && <ModalTablaProyectos />}
                 </TableCell>
               )}
             </TableRow>
