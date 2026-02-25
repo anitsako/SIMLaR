@@ -1,10 +1,14 @@
 import { boolean, geometry, integer, pgTable, serial, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 import { usuariosTable } from './usuarios.schema';
 import { archivosTable } from './archivos.schema';
+import { proyectosMinerosTiposTable } from './proyectos-mineros-tipos.schema';
 
 export const proyectosMinerosTable = pgTable('proyectos_mineros', {
   id: serial('id').primaryKey(),
   nombre: varchar('nombre', { length: 100 }).notNull().unique(),
+  tipoId: integer('tipo_id')
+    .notNull()
+    .references(() => proyectosMinerosTiposTable.id),
   ubicacion: varchar('ubicacion', { length: 100 }).notNull(),
   provinciaGeologica: varchar('provincia_geologica', { length: 100 }).notNull(),
   area: varchar('area', { length: 10 }).notNull(),

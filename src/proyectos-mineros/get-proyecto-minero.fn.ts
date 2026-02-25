@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { db } from '../db';
 import { archivosTable } from '../db/schemas/archivos.schema';
 import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
+import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos.schema';
 
 export const getProyectoMineroFn = createServerFn({ method: 'GET' })
   .inputValidator(z.object({ id: z.number().int().positive() }))
@@ -12,6 +13,11 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
       .select({
         id: proyectosMinerosTable.id,
         nombre: proyectosMinerosTable.nombre,
+        tipo: {
+          id: proyectosMinerosTiposTable.id,
+          nombre: proyectosMinerosTiposTable.nombre,
+          color: proyectosMinerosTiposTable.color,
+        },
         ubicacion: proyectosMinerosTable.ubicacion,
         provinciaGeologica: proyectosMinerosTable.provinciaGeologica,
         area: proyectosMinerosTable.area,
@@ -34,6 +40,7 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
         fechaModificacion: proyectosMinerosTable.fechaModificacion,
       })
       .from(proyectosMinerosTable)
+      .innerJoin(proyectosMinerosTiposTable, eq(proyectosMinerosTable.tipoId, proyectosMinerosTiposTable.id))
       .leftJoin(archivosTable, eq(proyectosMinerosTable.archivoMapaId, archivosTable.id))
       .where(eq(proyectosMinerosTable.id, data.id))
       .then((r) => r[0] ?? null);

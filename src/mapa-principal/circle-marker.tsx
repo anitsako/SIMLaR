@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Marker, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 
-type MarkerColor = 'red' | 'green' | 'blue' | 'yellow' | 'orange' | 'purple' | 'pink' | 'teal' | 'white';
+export type MarkerColor = 'red' | 'green' | 'blue' | 'yellow' | 'orange' | 'purple' | 'pink' | 'teal' | 'white';
 
 interface Props {
   position: [number, number];
