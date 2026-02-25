@@ -33,39 +33,36 @@ declare module '@react-types/shared' {
 }
 
 function RootComponent() {
-  const router = useRouter();
-
   return (
     <RootDocument>
-      <HeroUIProvider
-        locale="es-ES"
-        navigate={(to, options) => router.navigate({ to, ...(options as unknown as Record<string, unknown>) })}
-        useHref={(to) => router.buildLocation({ to }).href}
-      >
-        <main className="min-h-screen w-screen flex flex-col">
-          <AppBar />
-          <ToastProvider placement="top-center" />
-          <div className="w-full max-w-6xl mx-auto px-4 flex-1">
-            <Outlet />
-          </div>
-          <Footer />
-        </main>
-      </HeroUIProvider>
+      <Outlet />
     </RootDocument>
   );
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+  const router = useRouter();
+
   return (
     <html lang="es">
       <head>
         <HeadContent />
       </head>
       <body>
-        {children}
+        <HeroUIProvider
+          locale="es-ES"
+          navigate={(to, options) => router.navigate({ to, ...(options as unknown as Record<string, unknown>) })}
+          useHref={(to) => router.buildLocation({ to }).href}
+        >
+          <ToastProvider placement="top-center" />
+          <main className="min-h-screen w-screen flex flex-col items-center">
+            <AppBar />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </main>
+        </HeroUIProvider>
         <Scripts />
       </body>
     </html>
   );
 }
-
