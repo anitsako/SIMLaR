@@ -1,13 +1,13 @@
-import { Image, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
-import { getRouteApi } from '@tanstack/react-router';
-import { PanelLateral } from './panel-lateral';
-import { UserMenu } from '@/auth/user-menu';
-import { UserLogin } from '@/auth/user-login';
+import { Image, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react'
+import { getRouteApi } from '@tanstack/react-router'
+import { PanelLateral } from './panel-lateral'
+import { UserMenu } from '@/auth/user-menu'
+import { UserLogin } from '@/auth/user-login'
 
-const rootRoute = getRouteApi('__root__');
+const rootRoute = getRouteApi('__root__')
 
 export const AppBar = () => {
-  const { usuario } = rootRoute.useRouteContext();
+  const { usuario } = rootRoute.useRouteContext()
 
   return (
     <Navbar
@@ -22,7 +22,20 @@ export const AppBar = () => {
 
         <NavbarBrand>
           <div className="flex items-center gap-4">
-            <Image src="/images/la-rioja-gobierno.png" alt="La Rioja Gobierno" className="h-9" radius="none" />
+            <a
+              href="https://larioja.gob.ar/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-opacity hover:opacity-80"
+              aria-label="Ir al sitio oficial del Gobierno de La Rioja"
+            >
+              <Image
+                src="/branding/la-rioja-gobierno.png"
+                alt="La Rioja Gobierno"
+                className="h-9 w-auto"
+                radius="none"
+              />
+            </a>
 
             <div className="h-10 w-1.5 rounded-sm bg-success" />
 
@@ -38,6 +51,5 @@ export const AppBar = () => {
         <NavbarItem>{usuario ? <UserMenu /> : <UserLogin />}</NavbarItem>
       </NavbarContent>
     </Navbar>
-  );
-};
-
+  )
+}
