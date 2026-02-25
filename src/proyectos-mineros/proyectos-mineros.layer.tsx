@@ -6,7 +6,7 @@ import type { MarkerColor } from '@/mapa-principal/circle-marker';
 import { CircleMarker } from '@/mapa-principal/circle-marker';
 
 export const ProyectosMinerosLayer = () => {
-  const { data: proyectosMineros } = useProyectosMineros();
+  const { data: proyectosMineros } = useProyectosMineros({ visible: true });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
