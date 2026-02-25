@@ -2,7 +2,7 @@ import { boolean, geometry, integer, pgTable, serial, text, timestamp, uuid, var
 import { usuariosTable } from './usuarios.schema';
 import { archivosTable } from './archivos.schema';
 
-export const metaliferosTable = pgTable('metaliferos', {
+export const proyectosMinerosTable = pgTable('proyectos_mineros', {
   id: serial('id').primaryKey(),
   nombre: varchar('nombre', { length: 100 }).notNull().unique(),
   ubicacion: varchar('ubicacion', { length: 100 }).notNull(),

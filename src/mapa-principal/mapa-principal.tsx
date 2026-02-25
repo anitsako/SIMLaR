@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
-import { Metaliferos } from '@/metaliferos/metaliferos';
+import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.layer';
 
 export const MapaPrincipal = () => {
   return (
@@ -17,7 +17,7 @@ export const MapaPrincipal = () => {
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
         />
         <CapaDepartamentos />
-        <Metaliferos />
+        <ProyectosMinerosLayer />
       </MapContainer>
     </div>
   );

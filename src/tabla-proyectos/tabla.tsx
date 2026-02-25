@@ -11,7 +11,7 @@ import {
   getKeyValue,
 } from '@heroui/react';
 import { ModalTablaProyectos } from './tabla-proyectos-modal';
-import { useMetaliferos } from '@/metaliferos/use-metaliferos';
+import { useProyectosMineros } from '@/proyectos-mineros/use-proyectos-mineros';
 
 function decimalToDms(decimal: number, isLat: boolean): string {
   const dir = isLat ? (decimal >= 0 ? 'N' : 'S') : decimal >= 0 ? 'E' : 'O';
@@ -24,7 +24,7 @@ function decimalToDms(decimal: number, isLat: boolean): string {
 }
 
 export default function TablaProyectos() {
-  const { data = [], isLoading, error } = useMetaliferos();
+  const { data = [], isLoading, error } = useProyectosMineros();
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 8;
 
@@ -40,57 +40,55 @@ export default function TablaProyectos() {
   if (error) return <div>Error al cargar los proyectos</div>;
   if (isLoading) return <div className="flex align-center justify-center text-lg">Cargando proyectos...</div>;
 
-return (
-  <>
-    {!data.length && (
-      <div className="flex align-center justify-center text-xl">No hay proyectos para mostrar</div>
-    )}
-    {data.length > 0 && (
-      <Table
-        aria-label="Example table with client side pagination"
-        bottomContent={
-          <div className="flex w-full justify-center">
-            <Pagination
-              isCompact
-              showControls
-              showShadow
-              color="primary"
-              page={page}
-              total={pages}
-              onChange={(p) => setPage(p)}
-            />
-          </div>
-        }
-        classNames={{
-          wrapper: 'min-h-[400px]',
-        }}
-      >
-        <TableHeader>
-          <TableColumn key="nombre">NOMBRE</TableColumn>
-          <TableColumn key="tipo">TIPO</TableColumn>
-          <TableColumn key="ubicacion">UBICACION</TableColumn>
-          <TableColumn key="mineral">MINERAL</TableColumn>
-          <TableColumn key="etapa">ETAPA</TableColumn>
-          <TableColumn key="propietario">PROPIETARIO</TableColumn>
-          <TableColumn key="coordenadas">COORDENADAS</TableColumn>
-          <TableColumn key='detalles'>DETALLES</TableColumn>
-        </TableHeader>
-        <TableBody items={items}>
-          {(item) => (
-            <TableRow key={item.nombre}>
-              {(columnKey) => (
-                <TableCell>
-                  {columnKey === 'coordenadas'
-                    ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
-                    : getKeyValue(item, columnKey)}
+  return (
+    <>
+      {!data.length && <div className="flex align-center justify-center text-xl">No hay proyectos para mostrar</div>}
+      {data.length > 0 && (
+        <Table
+          aria-label="Example table with client side pagination"
+          bottomContent={
+            <div className="flex w-full justify-center">
+              <Pagination
+                isCompact
+                showControls
+                showShadow
+                color="primary"
+                page={page}
+                total={pages}
+                onChange={(p) => setPage(p)}
+              />
+            </div>
+          }
+          classNames={{
+            wrapper: 'min-h-[400px]',
+          }}
+        >
+          <TableHeader>
+            <TableColumn key="nombre">NOMBRE</TableColumn>
+            <TableColumn key="tipo">TIPO</TableColumn>
+            <TableColumn key="ubicacion">UBICACION</TableColumn>
+            <TableColumn key="mineral">MINERAL</TableColumn>
+            <TableColumn key="etapa">ETAPA</TableColumn>
+            <TableColumn key="propietario">PROPIETARIO</TableColumn>
+            <TableColumn key="coordenadas">COORDENADAS</TableColumn>
+            <TableColumn key="detalles">DETALLES</TableColumn>
+          </TableHeader>
+          <TableBody items={items}>
+            {(item) => (
+              <TableRow key={item.nombre}>
+                {(columnKey) => (
+                  <TableCell>
+                    {columnKey === 'coordenadas'
+                      ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
+                      : getKeyValue(item, columnKey)}
                     {columnKey === 'detalles' && <ModalTablaProyectos />}
-                </TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    )}
-  </>
-);
+                  </TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      )}
+    </>
+  );
 }

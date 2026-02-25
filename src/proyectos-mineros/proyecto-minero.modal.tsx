@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { Expand } from 'lucide-react';
-import { useMetalifero } from './use-metalifero';
+import { useProyectoMinero } from './use-proyecto-minero';
 
 function decimalToDms(decimal: number, isLat: boolean): string {
   const dir = isLat ? (decimal >= 0 ? 'N' : 'S') : decimal >= 0 ? 'E' : 'O';
@@ -38,8 +38,8 @@ interface Props {
   onClose: () => void;
 }
 
-export const MetaliferoModal = ({ id, isOpen, onClose }: Props) => {
-  const { data } = useMetalifero(id!, { enabled: id !== null && isOpen });
+export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
+  const { data } = useProyectoMinero(id!, { enabled: id !== null && isOpen });
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure();
 
   if (!data) return null;
