@@ -1,9 +1,15 @@
-import { Button, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react'
-import { CircleUserRound } from 'lucide-react'
-import { PanelLateral } from './panel-lateral'
-import logoGob from '@/assets/branding/la-rioja-gobierno.png'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
+import { getRouteApi } from '@tanstack/react-router';
+import { PanelLateral } from './panel-lateral';
+import logoGob from '@/assets/branding/la-rioja-gobierno.png';
+import { UserMenu } from '@/auth/user-menu';
+import { UserLogin } from '@/auth/user-login';
+
+const rootRoute = getRouteApi('__root__');
 
 export const AppBar = () => {
+  const { usuario } = rootRoute.useRouteContext();
+
   return (
     <Navbar
       maxWidth="full"
@@ -17,29 +23,22 @@ export const AppBar = () => {
 
         <NavbarBrand>
           <div className="flex items-center gap-4">
-
             <img src={logoGob} alt="La Rioja Gobierno" className="h-9" />
 
             <div className="h-10 w-1.5 rounded-sm bg-success" />
 
-
             <div className="flex flex-col leading-tight">
               <p className="text-2xl font-bold text-default-800">SIMLaR</p>
-              <p className="text-sm text-default-500">
-                Sistema de Información Minera La Rioja
-              </p>
+              <p className="text-sm text-default-500">Sistema de Información Minera La Rioja</p>
             </div>
           </div>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Button color="success" startContent={<CircleUserRound />}>
-            Ingresar
-          </Button>
-        </NavbarItem>
+        <NavbarItem>{usuario ? <UserMenu /> : <UserLogin />}</NavbarItem>
       </NavbarContent>
     </Navbar>
-  )
-}
+  );
+};
+

@@ -2,7 +2,7 @@ import { Alert } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Construction } from 'lucide-react';
 
-export const Route = createFileRoute('/configuraciones/')({
+export const Route = createFileRoute('/_authed/configuraciones/')({
   component: RouteComponent,
 });
 
