@@ -55,9 +55,9 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           useHref={(to) => router.buildLocation({ to }).href}
         >
           <ToastProvider placement="top-center" />
-          <main className="min-h-screen w-screen flex flex-col items-center">
+          <main className="min-h-screen flex flex-col items-center">
             <AppBar />
-            <div className="flex-1">{children}</div>
+            <div className="flex-1 md:w-full lg:max-w-4xl xl:max-w-6xl">{children}</div>
             <Footer />
           </main>
         </HeroUIProvider>
