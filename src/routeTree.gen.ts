@@ -21,6 +21,7 @@ import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as AuthedConfiguracionesIndexRouteImport } from './routes/_authed/configuraciones/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
+import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
 
 const AuthedRoute = AuthedRouteImport.update({
   id: '/_authed',
@@ -82,6 +83,12 @@ const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
   path: '/archivos/$id/$nombre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthedProyectosMinerosCrearIndexRoute =
+  AuthedProyectosMinerosCrearIndexRouteImport.update({
+    id: '/proyectos-mineros/crear/',
+    path: '/proyectos-mineros/crear/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/transparencia/': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/configuraciones/': typeof AuthedConfiguracionesIndexRoute
+  '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/transparencia': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/configuraciones': typeof AuthedConfiguracionesIndexRoute
+  '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/transparencia/': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/_authed/configuraciones/': typeof AuthedConfiguracionesIndexRoute
+  '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/transparencia/'
     | '/archivos/$id/$nombre'
     | '/configuraciones/'
+    | '/proyectos-mineros/crear/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/transparencia'
     | '/archivos/$id/$nombre'
     | '/configuraciones'
+    | '/proyectos-mineros/crear'
   id:
     | '__root__'
     | '/'
@@ -165,6 +177,7 @@ export interface FileRouteTypes {
     | '/transparencia/'
     | '/archivos/$id/$nombre'
     | '/_authed/configuraciones/'
+    | '/_authed/proyectos-mineros/crear/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -267,15 +280,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArchivosIdNombreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authed/proyectos-mineros/crear/': {
+      id: '/_authed/proyectos-mineros/crear/'
+      path: '/proyectos-mineros/crear'
+      fullPath: '/proyectos-mineros/crear/'
+      preLoaderRoute: typeof AuthedProyectosMinerosCrearIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
   }
 }
 
 interface AuthedRouteChildren {
   AuthedConfiguracionesIndexRoute: typeof AuthedConfiguracionesIndexRoute
+  AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedConfiguracionesIndexRoute: AuthedConfiguracionesIndexRoute,
+  AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
 }
 
 const AuthedRouteWithChildren =
