@@ -1,5 +1,5 @@
 import { createServerFn } from '@tanstack/react-start';
-import { eq } from 'drizzle-orm';
+import { and, eq, ilike } from 'drizzle-orm';
 import { z } from 'zod';
 import { db } from '../db';
 import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
@@ -8,7 +8,7 @@ import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos
 export const getProyectosMinerosFn = createServerFn({
   method: 'GET',
 })
-  .inputValidator(z.object({ visible: z.boolean().optional() }))
+  .inputValidator(z.object({ nombreLike: z.string().optional(), visible: z.boolean().optional() }))
   .handler(async ({ data }) => {
     const { visible } = data;
     return db
@@ -28,6 +28,11 @@ export const getProyectosMinerosFn = createServerFn({
       })
       .from(proyectosMinerosTable)
       .innerJoin(proyectosMinerosTiposTable, eq(proyectosMinerosTable.tipoId, proyectosMinerosTiposTable.id))
-      .where(eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined))
+      .where(
+        and(
+          ilike(proyectosMinerosTable.nombre, `%${data.nombreLike}%`).if(data.nombreLike !== undefined),
+          eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined)
+        )
+      )
       .orderBy(proyectosMinerosTable.nombre);
   });

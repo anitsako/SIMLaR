@@ -12,12 +12,14 @@ import {
 } from '@heroui/react';
 import { useMemo, useState } from 'react';
 import { BookOpenText } from 'lucide-react';
+import { useSearch } from '@tanstack/react-router';
 import { ProyectoMineroModal } from './proyecto-minero.modal';
 import { useProyectosMineros } from '@/proyectos-mineros/use-proyectos-mineros';
 import { decimalToDms } from '@/common/decimal-to-dms';
 
 export const ProyectosMinerosTable = () => {
-  const { data, isFetching, error } = useProyectosMineros();
+  const { nombreLike } = useSearch({ from: '/proyectos-mineros/' });
+  const { data, isFetching, error } = useProyectosMineros({ nombreLike });
   const [page, setPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);

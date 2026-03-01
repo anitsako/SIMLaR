@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { getProyectosMinerosFn } from './get-proyectos-mineros.fn';
 
-export const useProyectosMineros = (data: { visible?: boolean } = {}, options?: { enabled?: boolean }) => {
+export const useProyectosMineros = (
+  data: { nombreLike?: string; visible?: boolean } = {},
+  options?: { enabled?: boolean }
+) => {
   return useQuery({
-    queryKey: ['proyectos-mineros'],
+    queryKey: ['proyectos-mineros', data],
     queryFn: () => getProyectosMinerosFn({ data }),
     enabled: options?.enabled ?? true,
     initialData: [],
