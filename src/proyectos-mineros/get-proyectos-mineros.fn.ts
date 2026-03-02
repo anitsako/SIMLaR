@@ -3,15 +3,25 @@ import { and, eq, ilike } from 'drizzle-orm';
 import { z } from 'zod';
 import { db } from '../db';
 import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
+import { getProyectosMinerosCountFn } from './get-proyectos-mineros-count-fn';
 import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos.schema';
 
 export const getProyectosMinerosFn = createServerFn({
   method: 'GET',
 })
-  .inputValidator(z.object({ nombreLike: z.string().optional(), visible: z.boolean().optional() }))
+  .inputValidator(
+    z.object({
+      nombreLike: z.string().optional(),
+      visible: z.boolean().optional(),
+      page: z.number().int().positive().optional().default(1),
+      limit: z.number().int().positive().optional().default(8),
+    })
+  )
   .handler(async ({ data }) => {
-    const { visible } = data;
-    return db
+    const { visible, page, limit } = data;
+    const offset = (page - 1) * limit;
+
+    const result = await db
       .select({
         id: proyectosMinerosTable.id,
         nombre: proyectosMinerosTable.nombre,
@@ -34,5 +44,15 @@ export const getProyectosMinerosFn = createServerFn({
           eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined)
         )
       )
-      .orderBy(proyectosMinerosTable.nombre);
+      .orderBy(proyectosMinerosTable.nombre)
+      .limit(limit)
+      .offset(offset)
+
+      return {
+        result,
+        nombreLike: data.nombreLike,
+        page,
+        limit,
+        total: await getProyectosMinerosCountFn({ data: { visible } }),
+      }
   });
