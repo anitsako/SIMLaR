@@ -12,28 +12,23 @@ import {
 } from '@heroui/react';
 import { useMemo, useState } from 'react';
 import { BookOpenText } from 'lucide-react';
-import { useSearch } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { ProyectoMineroModal } from './proyecto-minero.modal';
 import { useProyectosMineros } from '@/proyectos-mineros/use-proyectos-mineros';
 import { decimalToDms } from '@/common/decimal-to-dms';
 
 export const ProyectosMinerosTable = () => {
-  const { nombreLike } = useSearch({ from: '/proyectos-mineros/' });
-  const { data, isFetching, error } = useProyectosMineros({ nombreLike });
-  const [page, setPage] = useState(1);
+  const { nombreLike, page = 1, limit = 8 } = useSearch({ from: '/proyectos-mineros/' });
+  const navigate = useNavigate({ from: '/proyectos-mineros/' });
+  const { data, isFetching, error } = useProyectosMineros({ nombreLike, page, limit });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const rowsPerPage = 8;
-
-  const pages = Math.ceil((data.length || 0) / rowsPerPage);
+  const pages = Math.ceil((data.total || 0) / limit);
 
   const items = useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-
-    return data.slice(start, end);
-  }, [page, data]);
+    return data.result;
+  }, [data]);
 
   if (error) {
     return <div>Error al cargar los proyectos</div>;
@@ -43,7 +38,7 @@ export const ProyectosMinerosTable = () => {
     return <div className="flex align-center justify-center text-lg">Cargando proyectos...</div>;
   }
 
-  if (data.length === 0) {
+  if (data.result.length === 0) {
     return <div className="flex align-center justify-center text-xl">No hay proyectos para mostrar</div>;
   }
 
@@ -59,7 +54,11 @@ export const ProyectosMinerosTable = () => {
               color="primary"
               page={page}
               total={pages}
-              onChange={(p) => setPage(p)}
+              onChange={(p) =>
+                navigate({
+                  search: (prev) => ({ ...prev, page: p }),
+                })
+              }
             />
           </div>
         }
