@@ -6,7 +6,18 @@ import { ProyectosMinerosFilters } from '@/proyectos-mineros/proyectos-mineros.f
 import { ProyectosMinerosActiveFilters } from '@/proyectos-mineros/proyectos-mineros.active-filters';
 
 export const Route = createFileRoute('/proyectos-mineros/')({
-  validateSearch: z.object({ nombreLike: z.string().optional() }),
+  validateSearch: z.object({
+    nombreLike: z.string().optional(),
+    page: z.coerce.number().int().positive().optional(),
+    limit: z.coerce.number().int().positive().optional(),
+  }),
+  preSearchFilters: [
+    (search) => ({
+      ...search,
+      page: search.page ?? 1,
+      limit: search.limit ?? 8,
+    }),
+  ],
   component: RouteComponent,
 });
 
