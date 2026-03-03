@@ -4,6 +4,8 @@ import { sql } from 'drizzle-orm';
 import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
+import { archivosTable } from '@/db/schemas/archivos.schema';
+import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 
 const createProyectoMineroSchema = z.object({
   nombre: z.string().min(1).max(100),
@@ -23,6 +25,12 @@ const createProyectoMineroSchema = z.object({
   msnm: z.number().int(),
   convenioEmse: z.boolean(),
   visible: z.boolean().default(true),
+  archivoMapa: z.object({
+    nombre: z.string(),
+    tamaño: z.number(),
+    mimeType: z.string(),
+    base64: z.string(),
+  }),
 });
 
 export const createProyectoMineroFn = createServerFn({ method: 'POST' })
@@ -35,15 +43,38 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
       throw new Error('Usuario no autenticado');
     }
 
-    const [proyectoMinero] = await db
-      .insert(proyectosMinerosTable)
-      .values({
-        ...data,
-        coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${data.coordenadasGeograficas.lng}, ${data.coordenadasGeograficas.lat}), 4326)`,
-        usuarioCreadorId: usuarioId,
-        usuarioModificadorId: usuarioId,
-      })
-      .returning();
+    const { archivoMapa } = data;
+    const buffer = Buffer.from(archivoMapa.base64, 'base64');
+
+    const proyectoMinero = await db.transaction(async (tx) => {
+      const [nuevoArchivoMapa] = await tx
+        .insert(archivosTable)
+        .values({
+          nombre: archivoMapa.nombre,
+          tamaño: archivoMapa.tamaño,
+          mimeType: archivoMapa.mimeType,
+          usuarioCreadorId: usuarioId,
+          usuarioModificadorId: usuarioId,
+        })
+        .returning();
+
+      await tx
+        .insert(archivosContenidosTable)
+        .values({ archivoId: nuevoArchivoMapa.id, contenido: buffer });
+
+      const [nuevoProyectoMinero] = await tx
+        .insert(proyectosMinerosTable)
+        .values({
+          ...data,
+          coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${data.coordenadasGeograficas.lng}, ${data.coordenadasGeograficas.lat}), 4326)`,
+          archivoMapaId: nuevoArchivoMapa.id,
+          usuarioCreadorId: usuarioId,
+          usuarioModificadorId: usuarioId,
+        })
+        .returning();
+
+      return nuevoProyectoMinero;
+    });
 
     return proyectoMinero;
   });
