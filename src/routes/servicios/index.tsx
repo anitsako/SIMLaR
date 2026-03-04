@@ -1,10 +1,9 @@
-import { Alert, Card, CardBody, Button } from '@heroui/react'
+import { Alert, Button, Card, CardBody } from '@heroui/react'
 import { createFileRoute } from '@tanstack/react-router'
 import {
+  ClipboardList,
   Construction,
   ExternalLink,
-  ClipboardList,
-  FileText,
 } from 'lucide-react'
 
 export const Route = createFileRoute('/servicios/')({
