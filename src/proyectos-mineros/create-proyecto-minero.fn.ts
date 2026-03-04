@@ -1,6 +1,7 @@
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
 import { sql } from 'drizzle-orm';
+import { detectImageMime } from '@/common/detect-image-mime';
 import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
@@ -43,8 +44,14 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
       throw new Error('Usuario no autenticado');
     }
 
+    const maxTamañoArchivo = 10 * 1024 * 1024; // 10MB de tamaño maximo
     const { archivoMapa } = data;
     const buffer = Buffer.from(archivoMapa.base64, 'base64');
+
+    const mime = detectImageMime(buffer);
+
+    if (!mime && buffer.length > maxTamañoArchivo)
+      throw new Error('Archivo no es una imagen valida (JPG, PNG o WEBP) o excede el tamaño máximo permitido de 10MB');
 
     const proyectoMinero = await db.transaction(async (tx) => {
       const [nuevoArchivoMapa] = await tx
@@ -58,9 +65,7 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
         })
         .returning();
 
-      await tx
-        .insert(archivosContenidosTable)
-        .values({ archivoId: nuevoArchivoMapa.id, contenido: buffer });
+      await tx.insert(archivosContenidosTable).values({ archivoId: nuevoArchivoMapa.id, contenido: buffer });
 
       const [nuevoProyectoMinero] = await tx
         .insert(proyectosMinerosTable)
