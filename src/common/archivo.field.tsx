@@ -22,6 +22,7 @@ export const ArchivoField = ({ label, onChange }: { label: string; onChange: (fi
       <input
         id="file-upload"
         type="file"
+        accept='image/png, image/jpeg, image/webp'
         onChange={handleFileChange}
         className="block w-full text-sm text-default
                   file:mr-4 file:py-2 file:px-4
