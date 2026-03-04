@@ -182,7 +182,7 @@ function RouteComponent() {
 
           <Card className="border rounded-none shadow-sm overflow-hidden">
             <CardBody className="p-0">
-              <div className="w-full h-[360px] md:h-[420px]">
+              <div className="w-full h-90 md:h-105">
                 <iframe
                   title="Ubicación EMSE"
                   src="https://www.google.com/maps?q=-29.4114941,-66.850607&z=16&output=embed"
