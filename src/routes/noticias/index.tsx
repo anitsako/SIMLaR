@@ -1,29 +1,33 @@
-import { Button, Card, CardBody, Chip, Divider, Spinner } from '@heroui/react';
-import { useQuery } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
-import { ExternalLink, RefreshCcw } from 'lucide-react';
-import { getLatestFromRssDirect } from './rss/noticias-rss';
-import type { LatestRssItem } from './rss/noticias-rss';
+import { Button, Card, CardBody, Chip, Divider, Spinner } from '@heroui/react'
+import { useQuery } from '@tanstack/react-query'
+import { createFileRoute } from '@tanstack/react-router'
+import { ExternalLink, RefreshCcw } from 'lucide-react'
+
+import { NUEVAS_FUENTES } from './rss/nuevas-fuentes'
+
+import { getLatestFromSources } from './rss/noticias-rss'
+import type { LatestNewsItem } from './rss/noticias-rss'
 
 export const Route = createFileRoute('/noticias/')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const rssQuery = useQuery<Array<LatestRssItem>>({
-    queryKey: ['news', 'rss', { feed: 'mineriaydesarrollo', limit: 30 }],
+  const rssQuery = useQuery<Array<LatestNewsItem>>({
+    queryKey: ['news', 'multi', { limit: 20 }],
     queryFn: () =>
-      getLatestFromRssDirect({
+      getLatestFromSources({
         data: {
-          limit: 30,
-          feedUrl: 'https://www.mineriaydesarrollo.com/rss/noticias/',
+          limit: 20,
+          perSource: 8,
+          sources: NUEVAS_FUENTES,
         },
-      }),
-  });
+      }) as any,
+  })
 
-  const items: Array<LatestRssItem> = rssQuery.data ?? [];
-  const top: LatestRssItem | undefined = items.at(0);
-  const rest: Array<LatestRssItem> = items.slice(1);
+  const items: Array<LatestNewsItem> = (rssQuery.data ?? []) as any
+  const top: LatestNewsItem | undefined = items.at(0)
+  const rest: Array<LatestNewsItem> = items.slice(1)
 
   return (
     <>
@@ -32,7 +36,7 @@ function RouteComponent() {
           <div>
             <p className="text-5xl font-bold">Noticias</p>
             <p className="text-sm opacity-80 mt-2">
-              Últimas noticias desde RSS (Minería &amp; Desarrollo).
+              Últimas noticias desde múltiples portales.
             </p>
           </div>
 
@@ -58,7 +62,7 @@ function RouteComponent() {
         ) : items.length === 0 ? (
           <Card>
             <CardBody>
-              <p>No se pudieron cargar noticias desde RSS.</p>
+              <p>No se pudieron cargar noticias desde las fuentes configuradas.</p>
             </CardBody>
           </Card>
         ) : (
@@ -81,7 +85,7 @@ function RouteComponent() {
                 <CardBody className="flex flex-col gap-3">
                   <div className="flex items-center gap-2 flex-wrap">
                     <Chip size="sm" variant="flat">
-                      Minería &amp; Desarrollo
+                      {top.source ?? 'Noticias'}
                     </Chip>
                     {top.publishedAt ? (
                       <span className="text-xs opacity-70">
@@ -90,9 +94,7 @@ function RouteComponent() {
                     ) : null}
                   </div>
 
-                  <p className="text-2xl md:text-3xl font-bold leading-tight">
-                    {top.title}
-                  </p>
+                  <p className="text-2xl md:text-3xl font-bold leading-tight">{top.title}</p>
 
                   {top.summary ? (
                     <p className="text-base opacity-80 leading-relaxed line-clamp-4">
@@ -120,7 +122,7 @@ function RouteComponent() {
             <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
               {rest.map((n) => (
                 <Card
-                  key={n.url}
+                  key={`${n.source ?? 'src'}-${n.url}`}
                   className="h-full overflow-hidden hover:shadow-lg transition-shadow"
                 >
                   {n.imageUrl ? (
@@ -138,7 +140,7 @@ function RouteComponent() {
                   <CardBody className="flex flex-col gap-3">
                     <div className="flex items-center gap-2 flex-wrap">
                       <Chip size="sm" variant="flat">
-                        Minería &amp; Desarrollo
+                        {n.source ?? 'Noticias'}
                       </Chip>
                       {n.publishedAt ? (
                         <span className="text-xs opacity-70">
@@ -147,14 +149,10 @@ function RouteComponent() {
                       ) : null}
                     </div>
 
-                    <p className="text-lg font-semibold leading-snug line-clamp-2">
-                      {n.title}
-                    </p>
+                    <p className="text-lg font-semibold leading-snug line-clamp-2">{n.title}</p>
 
                     {n.summary ? (
-                      <p className="text-sm opacity-80 line-clamp-3">
-                        {n.summary}
-                      </p>
+                      <p className="text-sm opacity-80 line-clamp-3">{n.summary}</p>
                     ) : null}
 
                     <div className="mt-auto">
@@ -178,5 +176,7 @@ function RouteComponent() {
         )}
       </div>
     </>
-  );
+  )
 }
+
+export default RouteComponent
