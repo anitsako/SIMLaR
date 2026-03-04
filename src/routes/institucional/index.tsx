@@ -205,7 +205,47 @@ function RouteComponent() {
 
         <div className="mt-14">
           <p className="text-3xl font-bold">Organismos vinculados</p>
-          <div className="mt-4 text-default-500">En construcción</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <a
+              href="https://emse.ar/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center h-24 hover:opacity-80 transition"
+            >
+              <img
+                src="/accesos/emse.png"
+                alt="EMSE"
+                className="max-h-14 w-auto object-contain"
+              />
+            </a>
+
+            <a
+              href="https://kallpaenergia.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center h-24 hover:opacity-80 transition"
+            >
+              <img
+                src="/accesos/kallpa.png"
+                alt="Kallpa"
+                className="max-h-14 w-auto object-contain"
+              />
+            </a>
+
+            <a
+              href="https://www.facebook.com/minerialr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center h-24 hover:opacity-80 transition"
+            >
+              <img
+                src="/accesos/mineria.jpg"
+                alt="Secretaría de Minería"
+                className="max-h-14 w-auto object-contain"
+              />
+            </a>
+          </div>
+
         </div>
       </div>
     </div>

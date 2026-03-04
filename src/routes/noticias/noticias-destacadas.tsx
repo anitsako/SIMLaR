@@ -56,11 +56,11 @@ export function FeaturedNews() {
   ];
 
   const rssQuery = useQuery({
-    queryKey: ['news', 'rss', { feed: 'mineriaydesarrollo', limit: 6 }],
+    queryKey: ['news', 'rss', { feed: 'mineriaydesarrollo', limit: 2 }],
     queryFn: () =>
       getLatestFromRssDirect({
         data: {
-          limit: 6,
+          limit: 2,
           feedUrl: 'https://www.mineriaydesarrollo.com/rss/noticias/',
         },
       }),
@@ -71,10 +71,6 @@ export function FeaturedNews() {
   return (
     <section className="w-full">
       <div className="flex items-center justify-between gap-3">
-        <div>
-          <h2 className="text-3xl font-bold">Noticias destacadas</h2>
-        </div>
-
         <div className="flex items-center gap-2">
           <Button
             variant="flat"
@@ -91,7 +87,6 @@ export function FeaturedNews() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
-        {/* Destacadas curadas */}
         <div>
           <h3 className="text-lg font-semibold">Selección editorial</h3>
           <div className="grid grid-cols-1 gap-4 mt-3">

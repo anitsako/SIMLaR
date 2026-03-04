@@ -1,5 +1,5 @@
-import { Button, Image } from '@heroui/react'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Image } from '@heroui/react'
+import { Mail, MapPin } from 'lucide-react'
 
 export const Footer = () => {
   return (
@@ -16,9 +16,9 @@ export const Footer = () => {
       >
         <div className="w-full bg-black/40">
           <div className="max-w-6xl mx-auto px-6 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center text-center">
 
-              <div className="flex items-start gap-4">
+              <div className="flex justify-center">
                 <a
                   href="https://larioja.gob.ar/"
                   target="_blank"
@@ -29,49 +29,27 @@ export const Footer = () => {
                   <Image
                     src="/branding/la-rioja-gobierno-white.png"
                     alt="La Rioja Gobierno"
-                    className="h-16 w-auto"
+                    className="h-30 w-auto"
                     radius="none"
                   />
                 </a>
-
-                <div>
-                  <p className="text-2xl font-semibold tracking-wide">LA RIOJA</p>
-                  <p className="text-sm tracking-[0.35em] opacity-90">GOBIERNO</p>
-                </div>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold mb-4">Contacto</h3>
                 <ul className="space-y-3 text-sm">
-                  <li className="flex gap-3">
+                  <li className="flex items-center justify-center gap-3">
                     <MapPin className="h-4 w-4 mt-1" />
-                    25 de Mayo y San Nicolás de Bari, Ciudad de La Rioja
+                    Pelagio B.Luna 173, La Rioja, Capital
                   </li>
-                  <li className="flex gap-3">
-                    <Phone className="h-4 w-4 mt-1" />
-                    +54 0380 4453156 | +54 0380 4453039 (Fax)
-                  </li>
-                  <li className="flex gap-3">
+                  
+                  <li className="flex items-center justify-center gap-3">
                     <Mail className="h-4 w-4 mt-1" />
                     <a className="hover:opacity-80 underline underline-offset-4" href="mailto:info@larioja.gob.ar">
-                      info@larioja.gob.ar
+                      simlar@emse.ar
                     </a>
                   </li>
                 </ul>
-              </div>
-
-              <div className="md:text-right">
-                <h3 className="text-xl font-semibold mb-4">Descargá La Rioja Provincia</h3>
-
-                <div className="flex md:justify-end gap-3">
-                  <Button variant="bordered" className="border-white text-white hover:bg-white/10">
-                    Google Play
-                  </Button>
-
-                  <Button variant="bordered" className="border-white text-white hover:bg-white/10">
-                    App Store
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
@@ -80,7 +58,7 @@ export const Footer = () => {
 
       <div className="w-full bg-[#E62138]">
         <div className="max-w-6xl mx-auto px-6 py-4 text-center text-white">
-          © 2026 | Gobierno de la Provincia de La Rioja
+          © 2026 | Sistema de Informacion Minera La Rioja
         </div>
       </div>
     </footer>
