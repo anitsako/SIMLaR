@@ -36,6 +36,20 @@
       "when": 1770940026155,
       "tag": "0004_same_strong_guy",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1772827468034,
+      "tag": "0005_fluffy_invaders",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1772827547879,
+      "tag": "0006_wonderful_thaddeus_ross",
+      "breakpoints": true
     }
   ]
 }
