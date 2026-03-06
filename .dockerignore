@@ -1,0 +1,12 @@
+Dockerfile
+.dockerignore
+dist
+node_modules
+npm-debug.log
+README.md
+.git
+.nitro
+.output
+.tanstack
+.env
+.env.*
