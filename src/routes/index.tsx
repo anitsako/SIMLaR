@@ -1,21 +1,20 @@
-import { ClientOnly, createFileRoute } from '@tanstack/react-router'
+import { ClientOnly, createFileRoute } from '@tanstack/react-router';
 
-import { FeaturedNews } from './noticias/noticias-destacadas'
-import { Carrousel } from '@/carrousel-imagenes/carrousel'
-import { MapaPrincipal } from '@/mapa-principal/mapa-principal'
+import { FeaturedNews } from './noticias/noticias-destacadas';
+import { Carrousel } from '@/carrousel-imagenes/carrousel';
+import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 
 export const Route = createFileRoute('/')({
   component: Home,
-})
+});
 
 function Home() {
   return (
     <main className="w-full bg-white">
       <div className="mx-auto max-w-6xl px-6 py-8 space-y-12">
-
         {/* Carrousel */}
         <section>
-          <div className="h-60 md:h-80 overflow-hidden">
+          <div className="h-60 md:h-100 overflow-hidden">
             <Carrousel />
           </div>
         </section>
@@ -25,15 +24,10 @@ function Home() {
           <div className="border-b border-[#E62138]/50 pb-2 mb-4 flex items-start justify-between">
             <div>
               <h2 className="text-lg font-semibold">Visor de proyectos</h2>
-              <p className="text-sm text-black/60">
-                Explorá nuestros proyectos en un entorno interactivo
-              </p>
+              <p className="text-sm text-black/60">Explorá nuestros proyectos en un entorno interactivo</p>
             </div>
 
-            <a
-              href="/proyectos-mineros"
-              className="text-sm font-medium text-[#E62138] hover:underline"
-            >
+            <a href="/proyectos-mineros" className="text-sm font-medium text-[#E62138] hover:underline">
               Abrir proyectos mineros
             </a>
           </div>
@@ -49,9 +43,7 @@ function Home() {
         <section>
           <div className="border-b border-[#E62138]/50 pb-2 mb-4">
             <h2 className="text-lg font-semibold">Noticias destacadas</h2>
-            <p className="text-sm text-black/60">
-              Selección editorial y últimas noticias
-            </p>
+            <p className="text-sm text-black/60">Selección editorial y últimas noticias</p>
           </div>
 
           <FeaturedNews />
@@ -61,9 +53,7 @@ function Home() {
         <section>
           <div className="border-b border-[#E62138]/50 pb-2 mb-4">
             <h2 className="text-lg font-semibold">Accesos rápidos</h2>
-            <p className="text-sm text-black/60">
-              Organismos y sitios vinculados
-            </p>
+            <p className="text-sm text-black/60">Organismos y sitios vinculados</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -73,11 +63,7 @@ function Home() {
               rel="noopener noreferrer"
               className="flex items-center justify-center h-24 hover:opacity-80 transition"
             >
-              <img
-                src="/accesos/emse.png"
-                alt="EMSE"
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src="/accesos/emse.png" alt="EMSE" className="max-h-14 w-auto object-contain" />
             </a>
 
             <a
@@ -86,11 +72,7 @@ function Home() {
               rel="noopener noreferrer"
               className="flex items-center justify-center h-24 hover:opacity-80 transition"
             >
-              <img
-                src="/accesos/kallpa.png"
-                alt="Kallpa"
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src="/accesos/kallpa.png" alt="Kallpa" className="max-h-14 w-auto object-contain" />
             </a>
 
             <a
@@ -99,16 +81,11 @@ function Home() {
               rel="noopener noreferrer"
               className="flex items-center justify-center h-24 hover:opacity-80 transition"
             >
-              <img
-                src="/accesos/mineria.jpg"
-                alt="Secretaría de Minería"
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src="/accesos/mineria.jpg" alt="Secretaría de Minería" className="max-h-14 w-auto object-contain" />
             </a>
           </div>
         </section>
-
       </div>
     </main>
-  )
+  );
 }

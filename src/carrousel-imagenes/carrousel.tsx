@@ -1,7 +1,8 @@
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Image } from '@heroui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Por el momento se deja el carrousel sin props, 
+// Por el momento se deja el carrousel sin props,
 // pero se pueden agregar en el futuro para hacerlo más dinámico y reutilizable
 
 // @ts-ignore: Se ignora css
@@ -18,18 +19,35 @@ export const Carrousel = () => {
     <Swiper
       modules={[Autoplay, Navigation, Pagination, Scrollbar]}
       loop={true}
-      spaceBetween={100}
+      spaceBetween={50}
       slidesPerView={1}
       autoplay={{ delay: 3000 }}
       scrollbar={{ draggable: true }}
       navigation
-      className="h-[420px]"
+      className="h-[400px] w-full"
     >
-      <SwiperSlide>Imagen 1</SwiperSlide>
-      <SwiperSlide>Imagen 2</SwiperSlide>
-      <SwiperSlide>Imagen 3</SwiperSlide>
-      <SwiperSlide>Imagen 4</SwiperSlide>
-      <SwiperSlide>Imagen 5</SwiperSlide>
+      <SwiperSlide className="h-full">
+        <img
+          src="mineria-estatico/img-lr.jpg"
+          alt="personal de mineria la rioja"
+          className="h-full w-full object-cover"
+        />
+      </SwiperSlide>
+      <SwiperSlide className="h-full">
+        <img src="/mineria-estatico/img-lr-toronto.jpeg" alt="pdac la rioja-toronto" className="w-full object-cover" />
+      </SwiperSlide>
+
+      <SwiperSlide className="h-full">
+        <img src="/mineria-estatico/img-lr-gob.jpg" alt="gobierno de la rioja" className="h-full w-full object-cover" />
+      </SwiperSlide>
+
+      <SwiperSlide className="h-full">
+        <img
+          src="/mineria-estatico/exploracion.jpeg"
+          alt="dos trabajadores explorando una mina"
+          className="h-full w-full object-cover"
+        />
+      </SwiperSlide>
     </Swiper>
   );
 };
