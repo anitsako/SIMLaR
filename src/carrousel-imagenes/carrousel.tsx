@@ -1,5 +1,4 @@
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
-import { Image } from '@heroui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Por el momento se deja el carrousel sin props,

@@ -1,25 +1,17 @@
-import { Button, Card, CardBody, Chip, Spinner } from '@heroui/react'
-import { useQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
-import { ExternalLink, RefreshCcw } from 'lucide-react'
+import { Button, Card, CardBody, Chip, Spinner } from '@heroui/react';
+import { useQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
+import { ExternalLink, RefreshCcw } from 'lucide-react';
 
-import { NUEVAS_FUENTES } from './rss/nuevas-fuentes'
-import { getLatestFromSources } from './rss/noticias-rss'
-import type { LatestNewsItem } from './rss/noticias-rss'
+import { NUEVAS_FUENTES } from '../../noticias/rss/nuevas-fuentes';
+import { getLatestFromSources } from '../../noticias/rss/noticias-rss';
+import type { LatestNewsItem } from '../../noticias/rss/noticias-rss';
 
 export const Route = createFileRoute('/noticias/')({
   component: RouteComponent,
-})
+});
 
-function SectionHeader({
-  title,
-  subtitle,
-  right,
-}: {
-  title: string
-  subtitle?: string
-  right?: React.ReactNode
-}) {
+function SectionHeader({ title, subtitle, right }: { title: string; subtitle?: string; right?: React.ReactNode }) {
   return (
     <div className="border-b border-[#E62138]/50 pb-2 mb-4 flex items-start justify-between gap-6">
       <div>
@@ -28,7 +20,7 @@ function SectionHeader({
       </div>
       {right ? <div className="shrink-0">{right}</div> : null}
     </div>
-  )
+  );
 }
 
 function RouteComponent() {
@@ -42,11 +34,11 @@ function RouteComponent() {
           sources: NUEVAS_FUENTES,
         },
       }) as any,
-  })
+  });
 
-  const items: Array<LatestNewsItem> = (rssQuery.data ?? []) as any
-  const top: LatestNewsItem | undefined = items.at(0)
-  const rest: Array<LatestNewsItem> = items.slice(1)
+  const items: Array<LatestNewsItem> = (rssQuery.data ?? []) as any;
+  const top: LatestNewsItem | undefined = items.at(0);
+  const rest: Array<LatestNewsItem> = items.slice(1);
 
   return (
     <main className="w-full bg-white">
@@ -55,9 +47,7 @@ function RouteComponent() {
         <section>
           <div className="border-b border-[#E62138]/50 pb-3 mb-4">
             <h1 className="text-3xl md:text-4xl font-bold">Noticias</h1>
-            <p className="text-sm text-black/60">
-              Últimas noticias desde múltiples portales.
-            </p>
+            <p className="text-sm text-black/60">Últimas noticias desde múltiples portales.</p>
           </div>
         </section>
 
@@ -87,9 +77,7 @@ function RouteComponent() {
           ) : items.length === 0 ? (
             <Card className="rounded-none border shadow-sm">
               <CardBody>
-                <p className="text-black/70">
-                  No se pudieron cargar noticias desde las fuentes configuradas.
-                </p>
+                <p className="text-black/70">No se pudieron cargar noticias desde las fuentes configuradas.</p>
               </CardBody>
             </Card>
           ) : (
@@ -121,14 +109,10 @@ function RouteComponent() {
                       ) : null}
                     </div>
 
-                    <p className="text-2xl md:text-3xl font-bold leading-tight">
-                      {top.title}
-                    </p>
+                    <p className="text-2xl md:text-3xl font-bold leading-tight">{top.title}</p>
 
                     {top.summary ? (
-                      <p className="text-base text-black/70 leading-relaxed line-clamp-4">
-                        {top.summary}
-                      </p>
+                      <p className="text-base text-black/70 leading-relaxed line-clamp-4">{top.summary}</p>
                     ) : null}
 
                     <div className="mt-2">
@@ -178,15 +162,9 @@ function RouteComponent() {
                         ) : null}
                       </div>
 
-                      <p className="text-lg font-semibold leading-snug line-clamp-2">
-                        {n.title}
-                      </p>
+                      <p className="text-lg font-semibold leading-snug line-clamp-2">{n.title}</p>
 
-                      {n.summary ? (
-                        <p className="text-sm text-black/70 line-clamp-3">
-                          {n.summary}
-                        </p>
-                      ) : null}
+                      {n.summary ? <p className="text-sm text-black/70 line-clamp-3">{n.summary}</p> : null}
 
                       <div className="mt-auto">
                         <Button
@@ -211,7 +189,7 @@ function RouteComponent() {
         </section>
       </div>
     </main>
-  )
+  );
 }
 
-export default RouteComponent
+export default RouteComponent;

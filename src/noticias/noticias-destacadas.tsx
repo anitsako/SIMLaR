@@ -1,31 +1,31 @@
-import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Spinner } from '@heroui/react'
-import { useQuery } from '@tanstack/react-query'
-import { Link } from '@tanstack/react-router'
-import { ExternalLink, RefreshCcw } from 'lucide-react'
+import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Spinner } from '@heroui/react';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
+import { ExternalLink, RefreshCcw } from 'lucide-react';
 
-import { getLatestFromSources } from './rss/noticias-rss'
-import { NUEVAS_FUENTES } from './rss/nuevas-fuentes'
-import type { LatestNewsItem } from './rss/noticias-rss'
+import { getLatestFromSources } from './rss/noticias-rss';
+import { NUEVAS_FUENTES } from './rss/nuevas-fuentes';
+import type { LatestNewsItem } from './rss/noticias-rss';
 
 function formatDate(d?: string | Date | null) {
-  if (!d) return ''
-  const date = typeof d === 'string' ? new Date(d) : d
-  if (Number.isNaN(date.getTime())) return ''
+  if (!d) return '';
+  const date = typeof d === 'string' ? new Date(d) : d;
+  if (Number.isNaN(date.getTime())) return '';
   return date.toLocaleDateString('es-AR', {
     year: 'numeric',
     month: 'short',
     day: '2-digit',
-  })
+  });
 }
 
 export function FeaturedNews() {
   const featured: Array<{
-    title: string
-    url: string
-    source: string
-    date?: string
-    summary?: string
-    imageUrl?: string
+    title: string;
+    url: string;
+    source: string;
+    date?: string;
+    summary?: string;
+    imageUrl?: string;
   }> = [
     {
       title: 'EMSE',
@@ -51,7 +51,7 @@ export function FeaturedNews() {
       source: 'Rumbo Minero',
       summary: 'Actualidad del sector minero en la región.',
     },
-  ]
+  ];
 
   const rssQuery = useQuery<Array<LatestNewsItem>>({
     queryKey: ['news', 'multi', { limit: 3 }],
@@ -63,9 +63,9 @@ export function FeaturedNews() {
           sources: NUEVAS_FUENTES,
         },
       }) as any,
-  })
+  });
 
-  const items: Array<LatestNewsItem> = (rssQuery.data ?? []) as any
+  const items: Array<LatestNewsItem> = (rssQuery.data ?? []) as any;
 
   return (
     <section className="w-full">
@@ -157,9 +157,7 @@ export function FeaturedNews() {
                       <Chip size="sm" variant="flat">
                         {n.source ?? 'Noticias'}
                       </Chip>
-                      {n.publishedAt ? (
-                        <span className="text-xs opacity-70">{formatDate(n.publishedAt)}</span>
-                      ) : null}
+                      {n.publishedAt ? <span className="text-xs opacity-70">{formatDate(n.publishedAt)}</span> : null}
                     </div>
                     <p className="font-semibold leading-snug">{n.title}</p>
                   </CardHeader>
@@ -197,5 +195,5 @@ export function FeaturedNews() {
         </div>
       </div>
     </section>
-  )
+  );
 }

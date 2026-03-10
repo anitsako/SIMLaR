@@ -1,6 +1,6 @@
 import { ClientOnly, createFileRoute } from '@tanstack/react-router';
 
-import { FeaturedNews } from './noticias/noticias-destacadas';
+import { FeaturedNews } from '../noticias/noticias-destacadas';
 import { Carrousel } from '@/carrousel-imagenes/carrousel';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 
