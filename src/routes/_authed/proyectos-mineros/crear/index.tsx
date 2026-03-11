@@ -1,7 +1,7 @@
 import { ClientOnly, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { Button, Input, NumberInput, Switch, Textarea, addToast } from '@heroui/react';
+import { Alert, Button, Input, NumberInput, Switch, Textarea, addToast } from '@heroui/react';
 import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
 import type { SubmitEvent } from 'react';
@@ -236,9 +236,9 @@ function RouteComponent() {
         />
 
         {(validationError || error) && (
-          <p className="text-red-500 text-sm">
+          <Alert color="danger">
             {validationError ?? (error as any)?.message ?? 'Error al crear el proyecto minero.'}
-          </p>
+          </Alert>
         )}
 
         <Button type="submit" color="primary" isLoading={isPending} className="w-full">

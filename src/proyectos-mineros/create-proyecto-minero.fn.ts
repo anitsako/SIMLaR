@@ -44,14 +44,19 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
       throw new Error('Usuario no autenticado');
     }
 
-    const maxTamañoArchivo = 10 * 1024 * 1024; // 10MB de tamaño maximo
+    const maxTamañoArchivo = 5 * 1024 * 1024; // 5MB de tamaño maximo
     const { archivoMapa } = data;
     const buffer = Buffer.from(archivoMapa.base64, 'base64');
 
+    if (buffer.length > maxTamañoArchivo) {
+      throw new Error('Archivo excede el tamaño máximo permitido de 5MB');
+    }
+
     const mime = detectImageMime(buffer);
 
-    if (!mime && buffer.length > maxTamañoArchivo)
-      throw new Error('Archivo no es una imagen valida (JPG, PNG o WEBP) o excede el tamaño máximo permitido de 10MB');
+    if (!mime) {
+      throw new Error('Archivo no es una imagen válida (JPG, PNG o WEBP)');
+    }
 
     const proyectoMinero = await db.transaction(async (tx) => {
       const [nuevoArchivoMapa] = await tx

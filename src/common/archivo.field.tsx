@@ -45,7 +45,7 @@ export const ArchivoField = ({ label, onChange }: { label: string; onChange: (fi
           <p className="text-sm text-default-500">
             Archivo seleccionado: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(2)} KB)
           </p>
-          <Button size="sm" variant="solid" radius="full" onClick={() => setIsModalOpen(true)}>
+          <Button size="sm" variant="solid" radius="full" onPress={() => setIsModalOpen(true)}>
             Ver
           </Button>
         </div>
