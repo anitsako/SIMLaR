@@ -19,7 +19,7 @@ function SectionHeader({
   right?: React.ReactNode
 }) {
   return (
-    <div className="border-b border-[#E62138]/50 pb-2 mb-4 flex items-start justify-between gap-6">
+    <div className="border-b border-primary/50 pb-2 mb-4 flex items-start justify-between gap-6">
       <div>
         <h2 className="text-lg font-semibold">{title}</h2>
         {subtitle ? <p className="text-sm text-black/60">{subtitle}</p> : null}
@@ -36,10 +36,10 @@ function RouteComponent() {
       <div className="mx-auto max-w-6xl px-6 py-8 space-y-12 scroll-smooth">
         {/* Título */}
         <section>
-          <div className="border-b border-[#E62138]/50 pb-3 mb-4">
+          <div className="border-b border-primary/50 pb-3 mb-4">
             <div className="flex items-center gap-3 flex-wrap">
               <h1 className="text-3xl md:text-4xl font-bold">Contacto</h1>
-              <span className="text-xs px-3 py-1 rounded-full bg-[#E62138]/10 text-[#E62138] font-medium">
+              <span className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium">
                 Atención online
               </span>
             </div>
@@ -52,19 +52,19 @@ function RouteComponent() {
             <div className="flex flex-wrap gap-3 mt-4">
               <a
                 href="#contacto-institucional"
-                className="text-sm px-4 py-2 border rounded-full hover:shadow-sm transition text-[#E62138]"
+                className="text-sm px-4 py-2 border rounded-full hover:shadow-sm transition text-primary"
               >
                 Contacto institucional
               </a>
               <a
                 href="#ubicacion"
-                className="text-sm px-4 py-2 border rounded-full hover:shadow-sm transition text-[#E62138]"
+                className="text-sm px-4 py-2 border rounded-full hover:shadow-sm transition text-primary"
               >
                 Ubicación
               </a>
               <a
                 href="#formulario"
-                className="text-sm px-4 py-2 border rounded-full hover:shadow-sm transition text-[#E62138]"
+                className="text-sm px-4 py-2 border rounded-full hover:shadow-sm transition text-primary"
               >
                 Formulario
               </a>
@@ -78,7 +78,7 @@ function RouteComponent() {
             {/* Correo */}
             <Card className="border rounded-none shadow-sm">
               <CardBody className="p-6 flex items-start gap-4">
-                <Mail className="h-8 w-8 text-[#E62138]" />
+                <Mail className="h-8 w-8 text-primary" />
                 <div>
                   <p className="font-semibold">Correo institucional</p>
                   <p className="text-sm text-black/60 mt-1">
@@ -87,7 +87,7 @@ function RouteComponent() {
 
                   <a
                     href="mailto:simlar@emse.ar"
-                    className="text-[#E62138] hover:underline mt-2 block"
+                    className="text-primary hover:underline mt-2 block"
                   >
                     simlar@emse.ar
                   </a>
@@ -102,7 +102,7 @@ function RouteComponent() {
             {/* Dirección */}
             <Card className="border rounded-none shadow-sm">
               <CardBody className="p-6 flex items-start gap-4">
-                <MapPin className="h-8 w-8 text-[#E62138]" />
+                <MapPin className="h-8 w-8 text-primary" />
                 <div>
                   <p className="font-semibold">Dirección</p>
                   <p className="text-sm text-black/60 mt-1">
@@ -121,7 +121,7 @@ function RouteComponent() {
             {/* Formulario */}
             <Card className="border rounded-none shadow-sm">
               <CardBody className="p-6 flex items-start gap-4">
-                <MessageSquare className="h-8 w-8 text-[#E62138]" />
+                <MessageSquare className="h-8 w-8 text-primary" />
                 <div>
                   <p className="font-semibold">Formulario de consultas</p>
                   <p className="text-sm text-black/60 mt-1">
@@ -151,7 +151,7 @@ function RouteComponent() {
               Para una respuesta más rápida, utilizá el <strong>formulario</strong>{' '}
               o el correo oficial{' '}
               <a
-                className="text-[#E62138] hover:underline"
+                className="text-primary hover:underline"
                 href="mailto:simlar@emse.ar"
               >
                 simlar@emse.ar
@@ -173,7 +173,7 @@ function RouteComponent() {
                 href="https://www.google.com/maps/place/EMSE/@-29.4114941,-66.850607,15z/data=!4m6!3m5!1s0x9427dbceeb2c1623:0x29e8bdc76eefe5fd!8m2!3d-29.4114941!4d-66.850607!16s%2Fg%2F11kjlzvjrj"
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm font-medium text-[#E62138] hover:underline"
+                className="text-sm font-medium text-primary hover:underline"
               >
                 Abrir en Google Maps
               </a>
@@ -204,7 +204,8 @@ function RouteComponent() {
                   as="a"
                   href="https://www.google.com/maps/place/EMSE/@-29.4114941,-66.850607"
                   target="_blank"
-                  className="bg-[#E62138] text-white"
+                  rel="noreferrer"
+                  className="bg-primary text-white"
                 >
                   Ver en Google Maps
                 </Button>

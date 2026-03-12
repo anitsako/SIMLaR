@@ -1,41 +1,31 @@
-import { Alert } from '@heroui/react';
-import { createFileRoute } from '@tanstack/react-router';
-import { Construction } from 'lucide-react';
+import { Alert } from '@heroui/react'
+import { createFileRoute } from '@tanstack/react-router'
+import { Construction } from 'lucide-react'
 
 export const Route = createFileRoute('/transparencia/')({
   component: RouteComponent,
-});
+})
+
+const SECCIONES: Array<string> = [
+  'Acceso a la información pública',
+  'Marco normativo',
+  'Convenios',
+]
 
 function RouteComponent() {
   return (
-    <>
-      <div className="max-w-6xl w-full mt-4">
-        <p className="text-5xl font-bold text-center">Transparencia</p>
-      </div>
-      <div className="max-w-6xl w-full mt-4">
-        <p className="text-3xl font-bold">Acceso a la información pública</p>
-      </div>
-      <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          En construcción
-        </Alert>
-      </div>
-      <div className="max-w-6xl w-full mt-4">
-        <p className="text-3xl font-bold">Marco normativo</p>
-      </div>
-      <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          En construcción
-        </Alert>
-      </div>
-      <div className="max-w-6xl w-full mt-4">
-        <p className="text-3xl font-bold">Convenios</p>
-      </div>
-      <div className="max-w-6xl w-full">
-        <Alert icon={<Construction />} color="warning">
-          En construcción
-        </Alert>
-      </div>
-    </>
-  );
+    <div className="mt-4 w-full max-w-6xl space-y-6">
+      <p className="text-center text-5xl font-bold">Transparencia</p>
+
+      {SECCIONES.map((titulo) => (
+        <div key={titulo}>
+          <p className="mt-4 text-3xl font-bold">{titulo}</p>
+
+          <Alert icon={<Construction />} color="warning">
+            En construcción
+          </Alert>
+        </div>
+      ))}
+    </div>
+  )
 }
