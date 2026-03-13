@@ -1,12 +1,12 @@
-import { ClientOnly, Link, createFileRoute } from '@tanstack/react-router'
+import { ClientOnly, Link, createFileRoute } from '@tanstack/react-router';
 
-import { FeaturedNews } from '../noticias/noticias-destacadas'
-import { Carrousel } from '@/carrousel-imagenes/carrousel'
-import { MapaPrincipal } from '@/mapa-principal/mapa-principal'
+import { FeaturedNews } from '../noticias/noticias-destacadas';
+import { Carrousel } from '@/carrousel-imagenes/carrousel';
+import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 
 export const Route = createFileRoute('/')({
   component: Home,
-})
+});
 
 function Home() {
   return (
@@ -24,33 +24,24 @@ function Home() {
           <div className="mb-4 flex items-start justify-between border-b border-primary/50 pb-2">
             <div>
               <h2 className="text-lg font-semibold">Visor de proyectos</h2>
-              <p className="text-sm text-black/60">
-                Explorá nuestros proyectos en un entorno interactivo
-              </p>
+              <p className="text-sm text-black/60">Explorá nuestros proyectos en un entorno interactivo</p>
             </div>
 
-            <Link
-              to="/proyectos-mineros"
-              className="text-sm font-medium text-primary hover:underline"
-            >
+            <Link to="/proyectos-mineros" className="text-sm font-medium text-primary hover:underline">
               Abrir proyectos mineros
             </Link>
           </div>
 
-          <div className="relative h-90 overflow-hidden md:h-130">
-            <ClientOnly>
-              <MapaPrincipal />
-            </ClientOnly>
-          </div>
+          <ClientOnly>
+            <MapaPrincipal />
+          </ClientOnly>
         </section>
 
         {/* Noticias */}
         <section>
           <div className="mb-4 border-b border-primary/50 pb-2">
             <h2 className="text-lg font-semibold">Noticias destacadas</h2>
-            <p className="text-sm text-black/60">
-              Selección editorial y últimas noticias
-            </p>
+            <p className="text-sm text-black/60">Selección editorial y últimas noticias</p>
           </div>
 
           <FeaturedNews />
@@ -60,9 +51,7 @@ function Home() {
         <section>
           <div className="mb-4 border-b border-primary/50 pb-2">
             <h2 className="text-lg font-semibold">Accesos rápidos</h2>
-            <p className="text-sm text-black/60">
-              Organismos y sitios vinculados
-            </p>
+            <p className="text-sm text-black/60">Organismos y sitios vinculados</p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -72,11 +61,7 @@ function Home() {
               rel="noopener noreferrer"
               className="flex h-24 items-center justify-center transition hover:opacity-80"
             >
-              <img
-                src="/accesos/emse.png"
-                alt="EMSE"
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src="/accesos/emse.png" alt="EMSE" className="max-h-14 w-auto object-contain" />
             </a>
 
             <a
@@ -85,11 +70,7 @@ function Home() {
               rel="noopener noreferrer"
               className="flex h-24 items-center justify-center transition hover:opacity-80"
             >
-              <img
-                src="/accesos/kallpa.png"
-                alt="Kallpa"
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src="/accesos/kallpa.png" alt="Kallpa" className="max-h-14 w-auto object-contain" />
             </a>
 
             <a
@@ -98,15 +79,12 @@ function Home() {
               rel="noopener noreferrer"
               className="flex h-24 items-center justify-center transition hover:opacity-80"
             >
-              <img
-                src="/accesos/mineria.jpg"
-                alt="Secretaría de Minería"
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src="/accesos/mineria.jpg" alt="Secretaría de Minería" className="max-h-14 w-auto object-contain" />
             </a>
           </div>
         </section>
       </div>
     </main>
-  )
+  );
 }
+

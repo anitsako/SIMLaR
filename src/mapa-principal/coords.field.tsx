@@ -35,7 +35,14 @@ export const CoordsField = ({
       </div>
       <p className="text-xs text-gray-500">Arrastre el marcador para seleccionar la ubicación.</p>
       <div className="h-128 rounded-lg overflow-hidden border border-gray-300 relative z-0">
-        <MapContainer center={[-29.8135, -66.8558]} zoom={7} style={{ height: '100%', width: '100%' }}>
+        <MapContainer
+          bounds={[
+            [-27.5647, -69.7471],
+            [-32.0868, -65.264],
+          ]}
+          zoom={7}
+          style={{ height: '100%', width: '100%' }}
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"

@@ -5,9 +5,12 @@ import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.lay
 
 export const MapaPrincipal = () => {
   return (
-    <div className="w-full h-[600px] md:h-[700px] relative z-0">
+    <div className="w-full h-[500px] relative z-0">
       <MapContainer
-        center={[-29.8135, -66.8558]}
+        bounds={[
+          [-27.5647, -69.7471],
+          [-32.0868, -65.264],
+        ]}
         zoom={7}
         style={{ height: '100%', width: '100%' }}
         zoomControl={false}
