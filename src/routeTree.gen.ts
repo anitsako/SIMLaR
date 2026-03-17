@@ -20,6 +20,7 @@ import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as AuthedConfiguracionesIndexRouteImport } from './routes/_authed/configuraciones/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
+import { Route as AuthedUsuariosCrearIndexRouteImport } from './routes/_authed/usuarios/crear/index'
 import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
 
 const AuthedRoute = AuthedRouteImport.update({
@@ -77,6 +78,12 @@ const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
   path: '/archivos/$id/$nombre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthedUsuariosCrearIndexRoute =
+  AuthedUsuariosCrearIndexRouteImport.update({
+    id: '/usuarios/crear/',
+    path: '/usuarios/crear/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedProyectosMinerosCrearIndexRoute =
   AuthedProyectosMinerosCrearIndexRouteImport.update({
     id: '/proyectos-mineros/crear/',
@@ -96,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/configuraciones/': typeof AuthedConfiguracionesIndexRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
+  '/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -109,6 +117,7 @@ export interface FileRoutesByTo {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/configuraciones': typeof AuthedConfiguracionesIndexRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
+  '/usuarios/crear': typeof AuthedUsuariosCrearIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -124,6 +133,7 @@ export interface FileRoutesById {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/_authed/configuraciones/': typeof AuthedConfiguracionesIndexRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
+  '/_authed/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/configuraciones/'
     | '/proyectos-mineros/crear/'
+    | '/usuarios/crear/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/configuraciones'
     | '/proyectos-mineros/crear'
+    | '/usuarios/crear'
   id:
     | '__root__'
     | '/'
@@ -166,6 +178,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/_authed/configuraciones/'
     | '/_authed/proyectos-mineros/crear/'
+    | '/_authed/usuarios/crear/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -260,6 +273,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArchivosIdNombreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authed/usuarios/crear/': {
+      id: '/_authed/usuarios/crear/'
+      path: '/usuarios/crear'
+      fullPath: '/usuarios/crear/'
+      preLoaderRoute: typeof AuthedUsuariosCrearIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/proyectos-mineros/crear/': {
       id: '/_authed/proyectos-mineros/crear/'
       path: '/proyectos-mineros/crear'
@@ -273,11 +293,13 @@ declare module '@tanstack/react-router' {
 interface AuthedRouteChildren {
   AuthedConfiguracionesIndexRoute: typeof AuthedConfiguracionesIndexRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
+  AuthedUsuariosCrearIndexRoute: typeof AuthedUsuariosCrearIndexRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedConfiguracionesIndexRoute: AuthedConfiguracionesIndexRoute,
   AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
+  AuthedUsuariosCrearIndexRoute: AuthedUsuariosCrearIndexRoute,
 }
 
 const AuthedRouteWithChildren =
