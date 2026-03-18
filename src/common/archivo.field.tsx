@@ -2,7 +2,15 @@ import { useState } from 'react';
 import { Button, Modal, ModalBody, ModalContent, ModalHeader } from '@heroui/react';
 import type { ChangeEvent } from 'react';
 
-export const ArchivoField = ({ label, onChange }: { label: string; onChange: (file: File | undefined) => void }) => {
+export const ArchivoField = ({
+  label,
+  required,
+  onChange,
+}: {
+  label: string;
+  required?: boolean;
+  onChange: (file: File | undefined) => void;
+}) => {
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
   const [previewUrl, setPreviewUrl] = useState<string | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +46,7 @@ export const ArchivoField = ({ label, onChange }: { label: string; onChange: (fi
                   file:bg-primary file:text-white
                   hover:file:bg-primary
                   file:cursor-pointer cursor-pointer"
-        required
+        required={required}
       />
       {selectedFile && (
         <div className="flex items-center justify-between">

@@ -32,6 +32,7 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
         coordenadasGeograficas: proyectosMinerosTable.coordenadasGeograficas,
         msnm: proyectosMinerosTable.msnm,
         convenioEmse: proyectosMinerosTable.convenioEmse,
+        visible: proyectosMinerosTable.visible,
         archivoMapa: {
           id: archivosTable.id,
           nombre: archivosTable.nombre,
