@@ -59,11 +59,6 @@ function RouteComponent() {
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
 
-    if (!data.tipoId) {
-      setValidationError('Debe seleccionar un tipo de proyecto.');
-      return;
-    }
-
     if (!data.msnm) {
       setValidationError('Debe ingresar la altitud (msnm).');
       return;
@@ -86,7 +81,7 @@ function RouteComponent() {
     crearProyectoMinero({
       data: {
         ...data,
-        tipoId: data.tipoId,
+        tipoId: data.tipoId!,
         msnm: data.msnm,
         archivoMapa: {
           nombre: data.archivoMapa.name,
@@ -111,7 +106,11 @@ function RouteComponent() {
           isRequired
         />
 
-        <ProyectoMineroTipoField id={data.tipoId} onChange={(v) => setData((prev) => ({ ...prev, tipoId: v }))} />
+        <ProyectoMineroTipoField
+          required
+          id={data.tipoId}
+          onChange={(v) => setData((prev) => ({ ...prev, tipoId: v }))}
+        />
 
         <Textarea
           label="Ubicación"
@@ -231,6 +230,7 @@ function RouteComponent() {
         </div>
 
         <ArchivoField
+          required
           label="Archivo de mapa"
           onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}
         />
