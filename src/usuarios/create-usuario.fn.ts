@@ -28,12 +28,15 @@ export const createUsuarioFn = createServerFn({ method: 'POST' })
     const hashPassword = await bcrypt.hash(password, 12);
 
     try {
-      const nuevoUsuario = await db.insert(usuariosTable).values({
-        ...dataNoPassword,
-        hashPassword,
-        usuarioCreadorId: usuarioId,
-        usuarioModificadorId: usuarioId,
-      });
+      const nuevoUsuario = await db
+        .insert(usuariosTable)
+        .values({
+          ...dataNoPassword,
+          hashPassword,
+          usuarioCreadorId: usuarioId,
+          usuarioModificadorId: usuarioId,
+        })
+        .returning();
       return nuevoUsuario;
     } catch (e) {
       throw new Error('Error creando el usuario');
