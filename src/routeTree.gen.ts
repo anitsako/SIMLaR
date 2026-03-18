@@ -21,6 +21,7 @@ import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as AuthedConfiguracionesIndexRouteImport } from './routes/_authed/configuraciones/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
 import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
+import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
 
 const AuthedRoute = AuthedRouteImport.update({
   id: '/_authed',
@@ -83,6 +84,12 @@ const AuthedProyectosMinerosCrearIndexRoute =
     path: '/proyectos-mineros/crear/',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedProyectosMinerosIdModificarRoute =
+  AuthedProyectosMinerosIdModificarRouteImport.update({
+    id: '/proyectos-mineros/$id/modificar',
+    path: '/proyectos-mineros/$id/modificar',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/transparencia/': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/configuraciones/': typeof AuthedConfiguracionesIndexRoute
+  '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/transparencia': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/configuraciones': typeof AuthedConfiguracionesIndexRoute
+  '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/transparencia/': typeof TransparenciaIndexRoute
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/_authed/configuraciones/': typeof AuthedConfiguracionesIndexRoute
+  '/_authed/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
 }
 export interface FileRouteTypes {
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/transparencia/'
     | '/archivos/$id/$nombre'
     | '/configuraciones/'
+    | '/proyectos-mineros/$id/modificar'
     | '/proyectos-mineros/crear/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/transparencia'
     | '/archivos/$id/$nombre'
     | '/configuraciones'
+    | '/proyectos-mineros/$id/modificar'
     | '/proyectos-mineros/crear'
   id:
     | '__root__'
@@ -165,6 +177,7 @@ export interface FileRouteTypes {
     | '/transparencia/'
     | '/archivos/$id/$nombre'
     | '/_authed/configuraciones/'
+    | '/_authed/proyectos-mineros/$id/modificar'
     | '/_authed/proyectos-mineros/crear/'
   fileRoutesById: FileRoutesById
 }
@@ -267,16 +280,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedProyectosMinerosCrearIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/proyectos-mineros/$id/modificar': {
+      id: '/_authed/proyectos-mineros/$id/modificar'
+      path: '/proyectos-mineros/$id/modificar'
+      fullPath: '/proyectos-mineros/$id/modificar'
+      preLoaderRoute: typeof AuthedProyectosMinerosIdModificarRouteImport
+      parentRoute: typeof AuthedRoute
+    }
   }
 }
 
 interface AuthedRouteChildren {
   AuthedConfiguracionesIndexRoute: typeof AuthedConfiguracionesIndexRoute
+  AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedConfiguracionesIndexRoute: AuthedConfiguracionesIndexRoute,
+  AuthedProyectosMinerosIdModificarRoute:
+    AuthedProyectosMinerosIdModificarRoute,
   AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
 }
 

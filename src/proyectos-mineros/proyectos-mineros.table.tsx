@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { useMemo, useState } from 'react';
-import { BookOpenText } from 'lucide-react';
+import { BookOpenText, Edit } from 'lucide-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { ProyectoMineroModal } from './proyecto-minero.modal';
 import { useProyectosMineros } from '@/proyectos-mineros/use-proyectos-mineros';
@@ -84,18 +84,34 @@ export const ProyectosMinerosTable = () => {
                     ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
                     : getKeyValue(item, columnKey)}
                   {columnKey === 'detalles' && (
-                    <Button
-                      isIconOnly
-                      size="sm"
-                      variant="light"
-                      color="primary"
-                      onPress={() => {
-                        setSelectedId(item.id);
-                        onOpen();
-                      }}
-                    >
-                      <BookOpenText />
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        variant="light"
+                        color="primary"
+                        onPress={() => {
+                          setSelectedId(item.id);
+                          onOpen();
+                        }}
+                      >
+                        <BookOpenText />
+                      </Button>
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        variant="light"
+                        color="secondary"
+                        onPress={() =>
+                          navigate({
+                            to: '/proyectos-mineros/$id/modificar',
+                            params: { id: item.id.toString() },
+                          })
+                        }
+                      >
+                        <Edit />
+                      </Button>
+                    </div>
                   )}
                 </TableCell>
               )}
