@@ -28,7 +28,7 @@ export const getProyectosMinerosFn = createServerFn({
         tipo: {
           id: proyectosMinerosTiposTable.id,
           nombre: proyectosMinerosTiposTable.nombre,
-          color: proyectosMinerosTiposTable.color,
+          forma: proyectosMinerosTiposTable.forma,
         },
         ubicacion: proyectosMinerosTable.ubicacion,
         mineral: proyectosMinerosTable.mineralInteres,
@@ -46,13 +46,13 @@ export const getProyectosMinerosFn = createServerFn({
       )
       .orderBy(proyectosMinerosTable.nombre)
       .limit(limit)
-      .offset(offset)
+      .offset(offset);
 
-      return {
-        result,
-        nombreLike: data.nombreLike,
-        page,
-        limit,
-        total: await getProyectosMinerosCountFn({ data: { visible } }),
-      }
+    return {
+      result,
+      nombreLike: data.nombreLike,
+      page,
+      limit,
+      total: await getProyectosMinerosCountFn({ data: { visible } }),
+    };
   });
