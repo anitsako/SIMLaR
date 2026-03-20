@@ -5,6 +5,7 @@ export const proyectosMinerosTiposTable = pgTable('proyectos_mineros_tipos', {
   id: serial('id').primaryKey(),
   nombre: varchar('nombre', { length: 100 }).notNull().unique(),
   color: varchar('color', { length: 50 }).notNull(),
+  forma: varchar('forma', { length: 50 }),
   usuarioCreadorId: integer('usuario_creador_id')
     .notNull()
     .references(() => usuariosTable.id),
