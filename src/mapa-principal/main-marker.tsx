@@ -26,7 +26,7 @@ const colorClasses: Record<MarkerColor, { normal: string; hover: string }> = {
   white: { normal: 'bg-white text-gray-800', hover: 'bg-gray-100 text-gray-800' },
 };
 
-export const CircleMarker = ({ position, value, title, color = 'white', onClick, onMouseOver, onMouseOut }: Props) => {
+export const MainMarker = ({ position, value, title, color = 'white', onClick, onMouseOver, onMouseOut }: Props) => {
   const [hovered, setHovered] = useState(false);
 
   const { normal, hover } = colorClasses[color];
