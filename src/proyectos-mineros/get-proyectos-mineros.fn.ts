@@ -1,28 +1,24 @@
 import { createServerFn } from '@tanstack/react-start';
 import { and, eq, ilike } from 'drizzle-orm';
 import { z } from 'zod';
-import { db } from '../db';
-import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
-import { getProyectosMinerosCountFn } from './get-proyectos-mineros-count-fn';
+import { db } from '@/db';
+import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos.schema';
 import { proyectosMinerosEtapasTable } from '@/db/schemas/proyectos-mineros-etapas.schema';
 
-export const getProyectosMinerosFn = createServerFn({
-  method: 'GET',
-})
+export const getProyectosMinerosFn = createServerFn({ method: 'GET' })
   .inputValidator(
     z.object({
       nombreLike: z.string().optional(),
       visible: z.boolean().optional(),
-      page: z.number().int().positive().optional().default(1),
-      limit: z.number().int().positive().optional().default(8),
+      limit: z.number().int().positive().optional(),
+      offset: z.number().int().min(0).optional(),
     })
   )
   .handler(async ({ data }) => {
-    const { visible, page, limit } = data;
-    const offset = (page - 1) * limit;
+    const { nombreLike, visible, limit, offset } = data;
 
-    const result = await db
+    const proyectosMineros = db
       .select({
         id: proyectosMinerosTable.id,
         nombre: proyectosMinerosTable.nombre,
@@ -46,19 +42,19 @@ export const getProyectosMinerosFn = createServerFn({
       .leftJoin(proyectosMinerosEtapasTable, eq(proyectosMinerosTable.etapaId, proyectosMinerosEtapasTable.id))
       .where(
         and(
-          ilike(proyectosMinerosTable.nombre, `%${data.nombreLike}%`).if(data.nombreLike !== undefined),
+          ilike(proyectosMinerosTable.nombre, `%${nombreLike}%`).if(nombreLike !== undefined),
           eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined)
         )
       )
-      .orderBy(proyectosMinerosTable.nombre)
-      .limit(limit)
-      .offset(offset);
+      .orderBy(proyectosMinerosTable.nombre);
 
-    return {
-      result,
-      nombreLike: data.nombreLike,
-      page,
-      limit,
-      total: await getProyectosMinerosCountFn({ data: { visible } }),
-    };
+    if (limit !== undefined) {
+      proyectosMineros.limit(limit);
+    }
+
+    if (offset !== undefined) {
+      proyectosMineros.offset(offset);
+    }
+
+    return proyectosMineros;
   });

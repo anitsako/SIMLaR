@@ -1,25 +1,27 @@
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
-import { eq, sql } from 'drizzle-orm';
-import { db } from '../db';
-import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
+import { and, count, eq, ilike } from 'drizzle-orm';
+import { db } from '@/db';
+import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 
-export const getProyectosMinerosCountFn = createServerFn({
-  method: 'GET',
-})
+export const getProyectosMinerosCountFn = createServerFn({ method: 'GET' })
   .inputValidator(
     z.object({
+      nombreLike: z.string().optional(),
       visible: z.boolean().optional(),
     })
   )
   .handler(async ({ data }) => {
-    const { visible } = data;
+    const { nombreLike, visible } = data;
 
-    const result = await db
-      .select({ count: sql<number>`count(*)` })
+    return db
+      .select({ count: count() })
       .from(proyectosMinerosTable)
       .where(
-        eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined)
+        and(
+          ilike(proyectosMinerosTable.nombre, `%${nombreLike}%`).if(nombreLike !== undefined),
+          eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined)
+        )
       )
-      return result[0].count
+      .then((r) => r[0]?.count ?? 0);
   });

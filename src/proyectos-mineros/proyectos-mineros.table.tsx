@@ -10,35 +10,40 @@ import {
   getKeyValue,
   useDisclosure,
 } from '@heroui/react';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { BookOpenText, Edit } from 'lucide-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { ProyectoMineroModal } from './proyecto-minero.modal';
+import { useProyectosMinerosCount } from './use-proyectos-mineros-count';
 import { useProyectosMineros } from '@/proyectos-mineros/use-proyectos-mineros';
 import { decimalToDms } from '@/common/decimal-to-dms';
 
 export const ProyectosMinerosTable = () => {
-  const { nombreLike, page = 1, limit = 8 } = useSearch({ from: '/proyectos-mineros/' });
+  const { nombreLike, page, pageSize } = useSearch({ from: '/proyectos-mineros/' });
   const navigate = useNavigate({ from: '/proyectos-mineros/' });
-  const { data, isFetching, error } = useProyectosMineros({ nombreLike, page, limit });
+  const {
+    data: proyectosMineros,
+    isFetching: isProyectosMinerosFetching,
+    error,
+  } = useProyectosMineros({ nombreLike, limit: pageSize, offset: (page - 1) * pageSize });
+  const { data: proyectosMinerosCount, isFetching: isProyectosMinerosCountFetching } = useProyectosMinerosCount({
+    nombreLike,
+  });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const pages = Math.ceil((data.total || 0) / limit);
-
-  const items = useMemo(() => {
-    return data.result;
-  }, [data]);
+  const totalPages = Math.ceil(proyectosMinerosCount / pageSize);
 
   if (error) {
+    console.error(error);
     return <div>Error al cargar los proyectos</div>;
   }
 
-  if (isFetching) {
+  if (isProyectosMinerosFetching || isProyectosMinerosCountFetching) {
     return <div className="flex align-center justify-center text-lg">Cargando proyectos...</div>;
   }
 
-  if (data.result.length === 0) {
+  if (proyectosMineros.length === 0) {
     return <div className="flex align-center justify-center text-xl">No hay proyectos para mostrar</div>;
   }
 
@@ -53,7 +58,7 @@ export const ProyectosMinerosTable = () => {
               showShadow
               color="primary"
               page={page}
-              total={pages}
+              total={totalPages}
               onChange={(p) =>
                 navigate({
                   search: (prev) => ({ ...prev, page: p }),
@@ -74,7 +79,7 @@ export const ProyectosMinerosTable = () => {
           <TableColumn key="coordenadas">COORDENADAS</TableColumn>
           <TableColumn key="detalles">DETALLES</TableColumn>
         </TableHeader>
-        <TableBody items={items}>
+        <TableBody items={proyectosMineros}>
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => (

@@ -12,7 +12,7 @@ export const ProyectosMinerosLayer = () => {
 
   return (
     <>
-      {proyectosMineros.result.map((proyectoMinero, index) => (
+      {proyectosMineros.map((proyectoMinero, index) => (
         <MainMarker
           key={proyectoMinero.id}
           position={[proyectoMinero.coordenadasGeograficas[1], proyectoMinero.coordenadasGeograficas[0]]}
