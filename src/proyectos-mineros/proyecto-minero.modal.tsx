@@ -67,7 +67,7 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
               <Divider className="my-2" />
               <FieldRow label="Área" value={data.area} />
               <Divider className="my-2" />
-              <FieldRow label="Etapa" value={data.etapa} />
+              <FieldRow label="Etapa" value={data.etapa?.nombre} />
               <Divider className="my-2" />
               <FieldRow label="Propietario" value={data.propietario} />
               <Divider className="my-2" />

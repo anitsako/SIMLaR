@@ -2,6 +2,7 @@ import { boolean, geometry, integer, pgTable, serial, text, timestamp, uuid, var
 import { usuariosTable } from './usuarios.schema';
 import { archivosTable } from './archivos.schema';
 import { proyectosMinerosTiposTable } from './proyectos-mineros-tipos.schema';
+import { proyectosMinerosEtapasTable } from './proyectos-mineros-etapas.schema';
 
 export const proyectosMinerosTable = pgTable('proyectos_mineros', {
   id: serial('id').primaryKey(),
@@ -18,6 +19,7 @@ export const proyectosMinerosTable = pgTable('proyectos_mineros', {
   modeloGenetico: text('modelo_genetico').notNull(),
   accesos: text('accesos').notNull(),
   etapa: varchar('etapa', { length: 100 }).notNull(),
+  etapaId: integer('etapa_id').references(() => proyectosMinerosEtapasTable.id),
   propietario: varchar('propietario', { length: 100 }).notNull(),
   localidadesCercanas: varchar('localidades_cercanas', { length: 100 }).notNull(),
   coordenadasGeograficas: geometry('coordenadas_geograficas', { type: 'point', srid: 4326 }).notNull(),

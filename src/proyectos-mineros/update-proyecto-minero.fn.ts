@@ -20,7 +20,7 @@ const updateProyectoMineroSchema = z.object({
   mineralInteres: z.string().min(1).max(100),
   modeloGenetico: z.string().min(1),
   accesos: z.string().min(1),
-  etapa: z.string().min(1).max(100),
+  etapaId: z.number().int().positive(),
   propietario: z.string().min(1).max(100),
   localidadesCercanas: z.string().min(1).max(100),
   coordenadasGeograficas: z.object({ lat: z.number(), lng: z.number() }),

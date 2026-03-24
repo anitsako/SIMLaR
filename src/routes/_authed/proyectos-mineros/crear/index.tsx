@@ -9,6 +9,7 @@ import { createProyectoMineroFn } from '@/proyectos-mineros/create-proyecto-mine
 import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-minero-tipo.field';
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
+import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/crear/')({
   component: RouteComponent,
@@ -27,7 +28,7 @@ function RouteComponent() {
     mineralInteres: '',
     modeloGenetico: '',
     accesos: '',
-    etapa: '',
+    etapaId: undefined as number | undefined,
     propietario: '',
     localidadesCercanas: '',
     coordenadasGeograficas: { lat: -29.8135, lng: -66.8558 },
@@ -82,6 +83,7 @@ function RouteComponent() {
       data: {
         ...data,
         tipoId: data.tipoId!,
+        etapaId: data.etapaId!,
         msnm: data.msnm,
         archivoMapa: {
           nombre: data.archivoMapa.name,
@@ -178,12 +180,10 @@ function RouteComponent() {
           minRows={3}
         />
 
-        <Input
-          label="Etapa"
-          value={data.etapa}
-          onValueChange={(v) => setData((prev) => ({ ...prev, etapa: v }))}
-          maxLength={100}
-          isRequired
+        <ProyectoMineroEtapaField
+          required
+          id={data.etapaId}
+          onChange={(v) => setData((prev) => ({ ...prev, etapaId: v }))}
         />
 
         <Input

@@ -5,6 +5,7 @@ import { db } from '../db';
 import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
 import { getProyectosMinerosCountFn } from './get-proyectos-mineros-count-fn';
 import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos.schema';
+import { proyectosMinerosEtapasTable } from '@/db/schemas/proyectos-mineros-etapas.schema';
 
 export const getProyectosMinerosFn = createServerFn({
   method: 'GET',
@@ -32,12 +33,17 @@ export const getProyectosMinerosFn = createServerFn({
         },
         ubicacion: proyectosMinerosTable.ubicacion,
         mineral: proyectosMinerosTable.mineralInteres,
-        etapa: proyectosMinerosTable.etapa,
+        etapa: {
+          id: proyectosMinerosEtapasTable.id,
+          nombre: proyectosMinerosEtapasTable.nombre,
+          color: proyectosMinerosEtapasTable.color,
+        },
         propietario: proyectosMinerosTable.propietario,
         coordenadasGeograficas: proyectosMinerosTable.coordenadasGeograficas,
       })
       .from(proyectosMinerosTable)
       .innerJoin(proyectosMinerosTiposTable, eq(proyectosMinerosTable.tipoId, proyectosMinerosTiposTable.id))
+      .leftJoin(proyectosMinerosEtapasTable, eq(proyectosMinerosTable.etapaId, proyectosMinerosEtapasTable.id))
       .where(
         and(
           ilike(proyectosMinerosTable.nombre, `%${data.nombreLike}%`).if(data.nombreLike !== undefined),

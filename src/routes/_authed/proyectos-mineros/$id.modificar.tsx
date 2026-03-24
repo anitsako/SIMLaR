@@ -10,6 +10,7 @@ import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-mine
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { proyectoMineroQuery } from '@/proyectos-mineros/use-proyecto-minero';
+import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/$id/modificar')({
   loader: ({ context: { queryClient }, params: { id } }) => {
@@ -37,7 +38,7 @@ function RouteComponent() {
     mineralInteres: proyecto.mineralInteres,
     modeloGenetico: proyecto.modeloGenetico,
     accesos: proyecto.accesos,
-    etapa: proyecto.etapa,
+    etapaId: proyecto.etapa?.id,
     propietario: proyecto.propietario,
     localidadesCercanas: proyecto.localidadesCercanas,
     coordenadasGeograficas: { lat: coords[1], lng: coords[0] },
@@ -107,6 +108,7 @@ function RouteComponent() {
         id: proyecto.id,
         ...data,
         tipoId: data.tipoId,
+        etapaId: data.etapaId!,
         msnm: data.msnm,
         archivoMapa,
       },
@@ -198,12 +200,10 @@ function RouteComponent() {
           minRows={3}
         />
 
-        <Input
-          label="Etapa"
-          value={data.etapa}
-          onValueChange={(v) => setData((prev) => ({ ...prev, etapa: v }))}
-          maxLength={100}
-          isRequired
+        <ProyectoMineroEtapaField
+          required
+          id={data.etapaId ?? undefined}
+          onChange={(v) => setData((prev) => ({ ...prev, etapaId: v! }))}
         />
 
         <Input

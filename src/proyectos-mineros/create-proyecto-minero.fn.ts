@@ -19,7 +19,7 @@ const createProyectoMineroSchema = z.object({
   mineralInteres: z.string().min(1).max(100),
   modeloGenetico: z.string().min(1),
   accesos: z.string().min(1),
-  etapa: z.string().min(1).max(100),
+  etapaId: z.number().int().positive(),
   propietario: z.string().min(1).max(100),
   localidadesCercanas: z.string().min(1).max(100),
   coordenadasGeograficas: z.object({ lat: z.number(), lng: z.number() }),
@@ -78,6 +78,7 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
           ...data,
           coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${data.coordenadasGeograficas.lng}, ${data.coordenadasGeograficas.lat}), 4326)`,
           archivoMapaId: nuevoArchivoMapa.id,
+          etapa: '',
           usuarioCreadorId: usuarioId,
           usuarioModificadorId: usuarioId,
         })

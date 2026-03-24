@@ -5,6 +5,7 @@ import { db } from '../db';
 import { archivosTable } from '../db/schemas/archivos.schema';
 import { proyectosMinerosTable } from '../db/schemas/proyectos-mineros.schema';
 import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos.schema';
+import { proyectosMinerosEtapasTable } from '@/db/schemas/proyectos-mineros-etapas.schema';
 
 export const getProyectoMineroFn = createServerFn({ method: 'GET' })
   .inputValidator(z.object({ id: z.number().int().positive() }))
@@ -26,7 +27,11 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
         mineralInteres: proyectosMinerosTable.mineralInteres,
         modeloGenetico: proyectosMinerosTable.modeloGenetico,
         accesos: proyectosMinerosTable.accesos,
-        etapa: proyectosMinerosTable.etapa,
+        etapa: {
+          id: proyectosMinerosEtapasTable.id,
+          nombre: proyectosMinerosEtapasTable.nombre,
+          color: proyectosMinerosEtapasTable.color,
+        },
         propietario: proyectosMinerosTable.propietario,
         localidadesCercanas: proyectosMinerosTable.localidadesCercanas,
         coordenadasGeograficas: proyectosMinerosTable.coordenadasGeograficas,
@@ -42,6 +47,7 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
       })
       .from(proyectosMinerosTable)
       .innerJoin(proyectosMinerosTiposTable, eq(proyectosMinerosTable.tipoId, proyectosMinerosTiposTable.id))
+      .leftJoin(proyectosMinerosEtapasTable, eq(proyectosMinerosTable.etapaId, proyectosMinerosEtapasTable.id))
       .leftJoin(archivosTable, eq(proyectosMinerosTable.archivoMapaId, archivosTable.id))
       .where(eq(proyectosMinerosTable.id, data.id))
       .then((r) => r[0] ?? null);

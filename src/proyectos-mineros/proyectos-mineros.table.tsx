@@ -69,7 +69,7 @@ export const ProyectosMinerosTable = () => {
           <TableColumn key="tipo.nombre">TIPO</TableColumn>
           <TableColumn key="ubicacion">UBICACION</TableColumn>
           <TableColumn key="mineral">MINERAL</TableColumn>
-          <TableColumn key="etapa">ETAPA</TableColumn>
+          <TableColumn key="etapa.nombre">ETAPA</TableColumn>
           <TableColumn key="propietario">PROPIETARIO</TableColumn>
           <TableColumn key="coordenadas">COORDENADAS</TableColumn>
           <TableColumn key="detalles">DETALLES</TableColumn>
@@ -80,6 +80,7 @@ export const ProyectosMinerosTable = () => {
               {(columnKey) => (
                 <TableCell>
                   {columnKey === 'tipo.nombre' ? item.tipo.nombre : ''}
+                  {columnKey === 'etapa.nombre' ? item.etapa?.nombre : ''}
                   {columnKey === 'coordenadas'
                     ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
                     : getKeyValue(item, columnKey)}
