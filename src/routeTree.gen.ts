@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
 import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
+import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
@@ -46,6 +47,11 @@ const ServiciosIndexRoute = ServiciosIndexRouteImport.update({
 const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
   id: '/proyectos-mineros/',
   path: '/proyectos-mineros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
+  id: '/noticias/',
+  path: '/noticias/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
@@ -104,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/noticias/': typeof NoticiasIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
@@ -119,6 +126,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoIndexRoute
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
+  '/noticias': typeof NoticiasIndexRoute
   '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
   '/servicios': typeof ServiciosIndexRoute
   '/transparencia': typeof TransparenciaIndexRoute
@@ -136,6 +144,7 @@ export interface FileRoutesById {
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/noticias/': typeof NoticiasIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/contacto/'
     | '/datos-abiertos/'
     | '/institucional/'
+    | '/noticias/'
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/datos-abiertos'
     | '/institucional'
+    | '/noticias'
     | '/proyectos-mineros'
     | '/servicios'
     | '/transparencia'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/contacto/'
     | '/datos-abiertos/'
     | '/institucional/'
+    | '/noticias/'
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
@@ -201,6 +213,7 @@ export interface RootRouteChildren {
   ContactoIndexRoute: typeof ContactoIndexRoute
   DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
+  NoticiasIndexRoute: typeof NoticiasIndexRoute
   ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
   ServiciosIndexRoute: typeof ServiciosIndexRoute
   TransparenciaIndexRoute: typeof TransparenciaIndexRoute
@@ -242,6 +255,13 @@ declare module '@tanstack/react-router' {
       path: '/proyectos-mineros'
       fullPath: '/proyectos-mineros/'
       preLoaderRoute: typeof ProyectosMinerosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/noticias/': {
+      id: '/noticias/'
+      path: '/noticias'
+      fullPath: '/noticias/'
+      preLoaderRoute: typeof NoticiasIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/institucional/': {
@@ -335,6 +355,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoIndexRoute: ContactoIndexRoute,
   DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
+  NoticiasIndexRoute: NoticiasIndexRoute,
   ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
   ServiciosIndexRoute: ServiciosIndexRoute,
   TransparenciaIndexRoute: TransparenciaIndexRoute,
