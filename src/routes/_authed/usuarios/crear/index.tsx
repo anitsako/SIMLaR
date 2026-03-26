@@ -110,6 +110,9 @@ function RouteComponent() {
         <Button type="submit" isLoading={isPending} color="primary">
           Crear Usuario
         </Button>
+        <Button type="button" onClick={() => navigate({ to: '/configuraciones' })} className="bg-primary-50 ml-2">
+          Volver
+        </Button>
       </form>
     </div>
   );
