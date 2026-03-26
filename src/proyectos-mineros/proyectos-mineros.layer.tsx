@@ -12,11 +12,11 @@ export const ProyectosMinerosLayer = () => {
 
   return (
     <>
-      {proyectosMineros.map((proyectoMinero, index) => (
+      {proyectosMineros.map((proyectoMinero) => (
         <MainMarker
           key={proyectoMinero.id}
           position={[proyectoMinero.coordenadasGeograficas[1], proyectoMinero.coordenadasGeograficas[0]]}
-          value={index + 1}
+          value={proyectoMinero.id}
           title={`Proyecto: ${proyectoMinero.nombre}`}
           color={proyectoMinero.etapa?.color as MarkerColor}
           shape={proyectoMinero.tipo.forma as MarkerShape}
