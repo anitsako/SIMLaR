@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, Form, Input, Textarea, addToast } from '@heroui/react';
 import { useState } from 'react';
-import Lottie from 'lottie-react';
-import HandShake from '../assets/lotties/Handshake Loop.json';
+// import Lottie from 'lottie-react';
+// import HandShake from '../assets/lotties/Handshake Loop.json';
 
 export default function Formulario() {
   const [isSending, setIsSending] = useState(false);
@@ -30,7 +30,7 @@ export default function Formulario() {
         description: 'Por favor, escribí una consulta más detallada (al menos 50 caracteres).',
         color: 'warning',
         variant: 'solid',
-      })
+      });
       setIsSending(false);
       return;
     }
@@ -61,7 +61,10 @@ export default function Formulario() {
       console.error('Error al enviar el formulario:', error);
       addToast({
         title: 'Error al enviar',
-        description: error instanceof Error ? error.message : 'Ocurrió un error al enviar tu consulta. Por favor, intentá nuevamente.',
+        description:
+          error instanceof Error
+            ? error.message
+            : 'Ocurrió un error al enviar tu consulta. Por favor, intentá nuevamente.',
         color: 'danger',
       });
     } finally {
@@ -76,7 +79,7 @@ export default function Formulario() {
             Por favor, ingresá tu email y tu consulta en el formulario. Nos pondremos en contacto contigo lo antes
             posible para brindarte la asistencia que necesitás.
           </p>
-          <Lottie animationData={HandShake} loop={true} className="w-48" />
+          {/* <Lottie animationData={HandShake} loop={true} className="w-48" /> */}
         </CardBody>
       </Card>
       <Form
