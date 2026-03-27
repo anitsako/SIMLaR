@@ -1,10 +1,14 @@
 import { Button, Card, CardBody, Form, Input, Textarea, addToast } from '@heroui/react';
 import { useState } from 'react';
+import { useServerFn } from '@tanstack/react-start';
+import { sendEmailFn } from './send-email.fn';
 // import Lottie from 'lottie-react';
 // import HandShake from '../assets/lotties/Handshake Loop.json';
 
 export default function Formulario() {
   const [isSending, setIsSending] = useState(false);
+
+  const sendEmail = useServerFn(sendEmailFn);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,19 +40,9 @@ export default function Formulario() {
     }
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, consulta }),
+      await sendEmail({
+        data: { email, consulta },
       });
-
-      const data = await response.json().catch(() => null);
-
-      if (!response.ok) {
-        // Si el server manda un mensaje, usalo
-        const msg = data?.error ?? 'Error al enviar el formulario';
-        throw new Error(msg);
-      }
 
       addToast({
         title: '¡Gracias por contactarnos!',
