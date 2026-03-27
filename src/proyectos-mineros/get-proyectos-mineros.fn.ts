@@ -1,5 +1,5 @@
 import { createServerFn } from '@tanstack/react-start';
-import { and, eq, ilike } from 'drizzle-orm';
+import { and, eq, ilike, inArray } from 'drizzle-orm';
 import { z } from 'zod';
 import { db } from '@/db';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
@@ -10,13 +10,15 @@ export const getProyectosMinerosFn = createServerFn({ method: 'GET' })
   .inputValidator(
     z.object({
       nombreLike: z.string().optional(),
+      etapasIds: z.array(z.number().int().positive()).optional(),
+      tiposIds: z.array(z.number().int().positive()).optional(),
       visible: z.boolean().optional(),
       limit: z.number().int().positive().optional(),
       offset: z.number().int().min(0).optional(),
     })
   )
   .handler(async ({ data }) => {
-    const { nombreLike, visible, limit, offset } = data;
+    const { nombreLike, etapasIds, tiposIds, visible, limit, offset } = data;
 
     const proyectosMineros = db
       .select({
@@ -43,6 +45,8 @@ export const getProyectosMinerosFn = createServerFn({ method: 'GET' })
       .where(
         and(
           ilike(proyectosMinerosTable.nombre, `%${nombreLike}%`).if(nombreLike !== undefined),
+          inArray(proyectosMinerosTable.etapaId, etapasIds!).if(etapasIds !== undefined),
+          inArray(proyectosMinerosTable.tipoId, tiposIds!).if(tiposIds !== undefined),
           eq(proyectosMinerosTable.visible, visible!).if(visible !== undefined)
         )
       )

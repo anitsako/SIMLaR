@@ -5,8 +5,14 @@ import { useProyectosMineros } from './use-proyectos-mineros';
 import type { MarkerColor, MarkerShape } from '@/mapa-principal/main-marker';
 import { MainMarker } from '@/mapa-principal/main-marker';
 
-export const ProyectosMinerosLayer = () => {
-  const { data: proyectosMineros } = useProyectosMineros({ visible: true });
+export const ProyectosMinerosLayer = ({
+  tiposIds,
+  etapasIds,
+}: {
+  tiposIds?: Array<number>;
+  etapasIds?: Array<number>;
+}) => {
+  const { data: proyectosMineros } = useProyectosMineros({ etapasIds, tiposIds, visible: true });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
