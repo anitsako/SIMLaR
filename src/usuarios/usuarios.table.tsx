@@ -1,4 +1,5 @@
 import {
+  Button,
   Pagination,
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
   getKeyValue,
 } from '@heroui/react';
 import { useMemo, useState } from 'react';
+import { SquarePen } from 'lucide-react';
 import { useUsuarios } from './use-usuarios';
 
 export const UsuariosTable = () => {
@@ -60,6 +62,7 @@ export const UsuariosTable = () => {
         <TableColumn key="nombreCompleto">Nombre completo</TableColumn>
         <TableColumn key="username">Nombre de usuario</TableColumn>
         <TableColumn key="email">Email</TableColumn>
+        <TableColumn key="detalle">Detalles</TableColumn>
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
@@ -67,6 +70,11 @@ export const UsuariosTable = () => {
             {(columnKey) => (
               <TableCell>
                 {columnKey === 'nombreCompleto' ? `${item.apellido}, ${item.nombre}` : getKeyValue(item, columnKey)}
+                {columnKey === 'detalle' && (
+                  <Button isIconOnly size="sm" variant="light" color="primary">
+                    <SquarePen />
+                  </Button>
+                )}
               </TableCell>
             )}
           </TableRow>

@@ -17,6 +17,9 @@ function RouteComponent() {
         <Button as={Link} to="/usuarios/crear" variant="flat" color="primary">
           Crear Usuario
         </Button>
+        <Button as={Link} to="/carrousel/cargar" variant="flat" color="primary">
+          Cargar Imágenes Carrousel
+        </Button>
       </div>
       <div className="mt-4">
         <UsuariosTable />
