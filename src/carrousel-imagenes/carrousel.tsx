@@ -1,5 +1,6 @@
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useImagenesCarrousel } from './use-imagenes-carrousel.fn';
 
 // Por el momento se deja el carrousel sin props,
 // pero se pueden agregar en el futuro para hacerlo más dinámico y reutilizable
@@ -14,6 +15,19 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export const Carrousel = () => {
+  const { data: imagenes = [] } = useImagenesCarrousel();
+
+  const slides = imagenes.map((img: any) => {
+    const src = img.base64 ? `data:${img.mimeType};base64,${img.base64}` : '';
+
+    // console.log('src', src);
+    return {
+      src,
+      positionY: img.positionY ?? 50,
+      key: img.archivoId || Math.random().toString(36).slice(2),
+    };
+  });
+
   return (
     <Swiper
       modules={[Autoplay, Navigation, Pagination, Scrollbar]}
@@ -25,28 +39,16 @@ export const Carrousel = () => {
       navigation
       className="h-[400px] w-full"
     >
-      <SwiperSlide className="h-full">
-        <img
-          src="mineria-estatico/img-lr.jpg"
-          alt="personal de mineria la rioja"
-          className="h-full w-full object-cover"
-        />
-      </SwiperSlide>
-      <SwiperSlide className="h-full">
-        <img src="/mineria-estatico/img-lr-toronto.jpeg" alt="pdac la rioja-toronto" className="w-full object-cover" />
-      </SwiperSlide>
-
-      <SwiperSlide className="h-full">
-        <img src="/mineria-estatico/img-lr-gob.jpg" alt="gobierno de la rioja" className="h-full w-full object-cover" />
-      </SwiperSlide>
-
-      <SwiperSlide className="h-full">
-        <img
-          src="/mineria-estatico/exploracion.jpeg"
-          alt="dos trabajadores explorando una mina"
-          className="h-full w-full object-cover"
-        />
-      </SwiperSlide>
+      {slides.map((slide, index) => (
+        <SwiperSlide key={slide.key || index} className="h-full">
+          <img
+            src={slide.src}
+            alt={`Slide ${index + 1}`}
+            className="h-full w-full object-cover"
+            style={{ objectPosition: `center ${slide.positionY}%` }}
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };
