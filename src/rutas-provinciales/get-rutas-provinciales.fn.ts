@@ -4,7 +4,7 @@ import { db } from '../db';
 import type { MultiLineString } from 'geojson';
 import { rutasProvincialesTable } from '@/db/schemas/rutas-provinciales.schema';
 
-export const getRutasProvinciales = createServerFn({ method: 'GET' }).handler(async () => {
+export const getRutasProvincialesFn = createServerFn({ method: 'GET' }).handler(async () => {
   return db
     .select({
       id: rutasProvincialesTable.id,

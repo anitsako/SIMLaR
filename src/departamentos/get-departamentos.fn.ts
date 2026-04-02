@@ -4,7 +4,7 @@ import { db } from '../db';
 import { departamentosTable } from '../db/schemas/departamentos.schema';
 import type { MultiPolygon } from 'geojson';
 
-export const getDepartamentos = createServerFn({
+export const getDepartamentosFn = createServerFn({
   method: 'GET',
 }).handler(async () => {
   return db

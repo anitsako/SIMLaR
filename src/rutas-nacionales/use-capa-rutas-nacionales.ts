@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRutasNacionales } from './get-rutas-nacionales';
+import { getRutasNacionalesFn } from './get-rutas-nacionales.fn';
 import type { FeatureCollection, MultiLineString } from 'geojson';
 
 export const useCapaRutasNacionales = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['capa-rutas-nacionales'],
     queryFn: async () => {
-      const rutasNacionales = await getRutasNacionales();
+      const rutasNacionales = await getRutasNacionalesFn();
 
       return {
         type: 'FeatureCollection',

@@ -4,7 +4,7 @@ import { db } from '../db';
 import type { MultiLineString } from 'geojson';
 import { riosTable } from '@/db/schemas/rios.schema';
 
-export const getRios = createServerFn({ method: 'GET' }).handler(async () => {
+export const getRiosFn = createServerFn({ method: 'GET' }).handler(async () => {
   return db
     .select({
       id: riosTable.id,

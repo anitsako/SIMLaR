@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAeropuertos } from './get-aeropuertos';
+import { getAeropuertosFn } from './get-aeropuertos.fn';
 import type { FeatureCollection, Point } from 'geojson';
 
 export const useCapaDiques = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['capa-aeropuertos'],
     queryFn: async () => {
-      const aeropuertos = await getAeropuertos();
+      const aeropuertos = await getAeropuertosFn();
 
       return {
         type: 'FeatureCollection',

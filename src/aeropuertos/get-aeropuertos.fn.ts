@@ -4,7 +4,7 @@ import { db } from '../db';
 import type { Point } from 'geojson';
 import { aeropuertosTable } from '@/db/schemas/aeropuertos.schema';
 
-export const getAeropuertos = createServerFn({ method: 'GET' }).handler(async () => {
+export const getAeropuertosFn = createServerFn({ method: 'GET' }).handler(async () => {
   return db
     .select({
       id: aeropuertosTable.id,

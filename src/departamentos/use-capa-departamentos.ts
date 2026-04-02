@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { getDepartamentos } from './get-departamentos';
+import { getDepartamentosFn } from './get-departamentos.fn';
 import type { FeatureCollection, MultiPolygon } from 'geojson';
 
 export const useCapaDepartamentos = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['capa-departamentos'],
     queryFn: async () => {
-      const departamentos = await getDepartamentos();
+      const departamentos = await getDepartamentosFn();
 
       return {
         type: 'FeatureCollection',

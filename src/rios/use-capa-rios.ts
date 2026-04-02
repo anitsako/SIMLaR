@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRios } from './get-rios';
+import { getRiosFn } from './get-rios.fn';
 import type { FeatureCollection, MultiLineString } from 'geojson';
 
 export const useCapaRutasNacionales = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['capa-rios'],
     queryFn: async () => {
-      const rios = await getRios();
+      const rios = await getRiosFn();
 
       return {
         type: 'FeatureCollection',

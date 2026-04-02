@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRutasProvinciales } from './get-rutas-provinciales';
+import { getRutasProvincialesFn } from './get-rutas-provinciales.fn';
 import type { FeatureCollection, MultiLineString } from 'geojson';
 
 export const useCapaRutasProvinciales = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['capa-rutas-provinciales'],
     queryFn: async () => {
-      const rutasProvinciales = await getRutasProvinciales();
+      const rutasProvinciales = await getRutasProvincialesFn();
 
       return {
         type: 'FeatureCollection',

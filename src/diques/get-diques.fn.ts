@@ -4,7 +4,7 @@ import { db } from '../db';
 import type { MultiPolygon } from 'geojson';
 import { diquesTable } from '@/db/schemas/diques.schema';
 
-export const getDiques = createServerFn({ method: 'GET' }).handler(async () => {
+export const getDiquesFn = createServerFn({ method: 'GET' }).handler(async () => {
   return db
     .select({
       id: diquesTable.id,

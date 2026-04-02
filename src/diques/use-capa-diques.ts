@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { getDiques } from './get-diques';
+import { getDiquesFn } from './get-diques.fn';
 import type { FeatureCollection, MultiPolygon } from 'geojson';
 
 export const useCapaDiques = (options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: ['capa-diques'],
     queryFn: async () => {
-      const diques = await getDiques();
+      const diques = await getDiquesFn();
 
       return {
         type: 'FeatureCollection',
