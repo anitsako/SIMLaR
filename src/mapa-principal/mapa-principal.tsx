@@ -6,6 +6,7 @@ import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.lay
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
+import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provinciales';
 
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
@@ -33,6 +34,7 @@ export const MapaPrincipal = () => {
           />
           <CapaDepartamentos />
           <CapaRutasNacionales />
+          <CapaRutasProvinciales />
           <ProyectosMinerosLayer etapasIds={etapasIds} tiposIds={tiposIds} />
         </MapContainer>
       </div>
