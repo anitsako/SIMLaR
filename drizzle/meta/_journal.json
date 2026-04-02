@@ -78,6 +78,13 @@
       "when": 1774390624083,
       "tag": "0010_acoustic_tag",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1775134343429,
+      "tag": "0011_zippy_mimic",
+      "breakpoints": true
     }
   ]
 }
