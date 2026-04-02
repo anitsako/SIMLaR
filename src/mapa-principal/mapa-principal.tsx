@@ -35,7 +35,7 @@ export const MapaPrincipal = () => {
           <SelectItem key="rutas-provinciales">Rutas provinciales</SelectItem>
         </Select>
       </div>
-      <div className="w-full h-[500px] relative z-0">
+      <div className="w-full h-[550px] relative z-0">
         <MapContainer
           bounds={[
             [-27.5647, -69.7471],
