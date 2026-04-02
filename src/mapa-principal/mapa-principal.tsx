@@ -7,6 +7,7 @@ import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.lay
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
 import { CapaDiques } from '@/diques/capa-diques';
+import { CapaRios } from '@/rios/capa-rios';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
 import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provinciales';
 
@@ -27,6 +28,7 @@ export const MapaPrincipal = () => {
           onSelectionChange={(keys) => setCapasExtras(Array.from(keys as Set<string>).map(String))}
         >
           <SelectItem key="diques">Diques</SelectItem>
+          <SelectItem key="rios">Ríos</SelectItem>
           <SelectItem key="rutas-nacionales">Rutas nacionales</SelectItem>
           <SelectItem key="rutas-provinciales">Rutas provinciales</SelectItem>
         </Select>
@@ -47,6 +49,7 @@ export const MapaPrincipal = () => {
           />
           <CapaDepartamentos />
           {capasExtras.includes('diques') && <CapaDiques />}
+          {capasExtras.includes('rios') && <CapaRios />}
           {capasExtras.includes('rutas-nacionales') && <CapaRutasNacionales />}
           {capasExtras.includes('rutas-provinciales') && <CapaRutasProvinciales />}
           <ProyectosMinerosLayer etapasIds={etapasIds} tiposIds={tiposIds} />
