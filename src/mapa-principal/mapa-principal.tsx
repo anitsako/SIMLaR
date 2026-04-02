@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
+import { Select, SelectItem } from '@heroui/react';
 import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
 import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.layer';
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
@@ -11,12 +12,22 @@ import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provincia
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
   const [tiposIds, setTiposIds] = useState<Array<number>>([]);
+  const [capasExtras, setCapasExtras] = useState<Array<string>>([]);
 
   return (
     <>
       <div className="flex flex-row gap-2 mb-2">
         <ProyectoMineroEtapasField ids={etapasIds} onChange={setEtapasIds} />
         <ProyectoMineroTiposField ids={tiposIds} onChange={setTiposIds} />
+        <Select
+          label="Capas extras"
+          selectionMode="multiple"
+          selectedKeys={capasExtras.map(String)}
+          onSelectionChange={(keys) => setCapasExtras(Array.from(keys as Set<string>).map(String))}
+        >
+          <SelectItem key="rutas-nacionales">Rutas nacionales</SelectItem>
+          <SelectItem key="rutas-provinciales">Rutas provinciales</SelectItem>
+        </Select>
       </div>
       <div className="w-full h-[500px] relative z-0">
         <MapContainer
@@ -33,8 +44,8 @@ export const MapaPrincipal = () => {
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           />
           <CapaDepartamentos />
-          <CapaRutasNacionales />
-          <CapaRutasProvinciales />
+          {capasExtras.includes('rutas-nacionales') && <CapaRutasNacionales />}
+          {capasExtras.includes('rutas-provinciales') && <CapaRutasProvinciales />}
           <ProyectosMinerosLayer etapasIds={etapasIds} tiposIds={tiposIds} />
         </MapContainer>
       </div>
