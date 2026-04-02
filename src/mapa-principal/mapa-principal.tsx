@@ -5,6 +5,7 @@ import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
 import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.layer';
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
+import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
 
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
@@ -31,6 +32,7 @@ export const MapaPrincipal = () => {
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           />
           <CapaDepartamentos />
+          <CapaRutasNacionales />
           <ProyectosMinerosLayer etapasIds={etapasIds} tiposIds={tiposIds} />
         </MapContainer>
       </div>

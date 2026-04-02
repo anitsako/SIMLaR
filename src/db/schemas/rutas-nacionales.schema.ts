@@ -1,0 +1,10 @@
+import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';
+import { multilinestring } from '../custom-types';
+
+export const rutasNacionalesTable = pgTable('rutas_nacionales', {
+  id: serial('id').primaryKey(),
+  geom: multilinestring('geom', { srid: 4326 }).notNull(),
+  nombre: varchar('nombre', { length: 30 }).notNull(),
+  jurisdiccion: varchar('jurisdiccion', { length: 25 }).notNull(),
+  clase: varchar('clase', { length: 22 }).notNull(),
+});
