@@ -6,6 +6,7 @@ import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
 import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.layer';
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
+import { CapaAeropuertos } from '@/aeropuertos/capa-aeropuertos';
 import { CapaDiques } from '@/diques/capa-diques';
 import { CapaRios } from '@/rios/capa-rios';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
@@ -27,6 +28,7 @@ export const MapaPrincipal = () => {
           selectedKeys={capasExtras.map(String)}
           onSelectionChange={(keys) => setCapasExtras(Array.from(keys as Set<string>).map(String))}
         >
+          <SelectItem key="aeropuertos">Aeropuertos</SelectItem>
           <SelectItem key="diques">Diques</SelectItem>
           <SelectItem key="rios">Ríos</SelectItem>
           <SelectItem key="rutas-nacionales">Rutas nacionales</SelectItem>
@@ -48,6 +50,7 @@ export const MapaPrincipal = () => {
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           />
           <CapaDepartamentos />
+          {capasExtras.includes('aeropuertos') && <CapaAeropuertos />}
           {capasExtras.includes('diques') && <CapaDiques />}
           {capasExtras.includes('rios') && <CapaRios />}
           {capasExtras.includes('rutas-nacionales') && <CapaRutasNacionales />}
