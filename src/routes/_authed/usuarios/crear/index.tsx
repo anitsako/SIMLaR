@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useMutation } from '@tanstack/react-query';
-import { Alert, Button, Input, Select, SelectItem, addToast } from '@heroui/react';
+import { Alert, Button, Input, addToast } from '@heroui/react';
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import { createUsuarioFn } from '@/usuarios/create-usuario.fn';
@@ -38,7 +38,7 @@ function RouteComponent() {
         color: 'success',
         variant: 'flat',
       });
-      navigate({ to: '/configuraciones' });
+      navigate({ to: '/usuarios' });
     },
   });
 
@@ -96,10 +96,8 @@ function RouteComponent() {
           maxLength={250}
           isRequired
         />
-        {/* <Select label="Activo">
-          <SelectItem>Si</SelectItem>
-          <SelectItem>No</SelectItem>
-        </Select> */}
+
+        {/* TODO: Usuario activo */}
 
         {(validationError || error) && (
           <Alert color="danger">
@@ -110,7 +108,7 @@ function RouteComponent() {
         <Button type="submit" isLoading={isPending} color="primary">
           Crear Usuario
         </Button>
-        <Button type="button" onClick={() => navigate({ to: '/configuraciones' })} className="bg-primary-50 ml-2">
+        <Button type="button" onPress={() => navigate({ to: '/usuarios' })} className="bg-primary-50 ml-2">
           Volver
         </Button>
       </form>

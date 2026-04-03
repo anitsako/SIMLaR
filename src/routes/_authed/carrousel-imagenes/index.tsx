@@ -28,7 +28,7 @@ import 'swiper/css/pagination';
 // @ts-ignore: Se ignora css
 import 'swiper/css/navigation';
 
-export const Route = createFileRoute('/_authed/carrousel/cargar/')({
+export const Route = createFileRoute('/_authed/carrousel-imagenes/')({
   component: RouteComponent,
 });
 
@@ -122,7 +122,7 @@ function RouteComponent() {
 
   const handleGoBack = () => {
     if (!cambios) {
-      navigate({ to: '/configuraciones' });
+      navigate({ to: '/' });
       return;
     }
 
@@ -170,8 +170,8 @@ function RouteComponent() {
   };
 
   return (
-    <div>
-      <p className="text-5xl font-bold text-center">Vista previa carrousel de Imágenes</p>
+    <div className="flex flex-col mt-4">
+      <p className="text-5xl font-bold text-center">Configuración del carrousel de imágenes</p>
       <div className="mt-4">
         <Swiper
           modules={[Autoplay, FreeMode, Navigation, Thumbs]}
@@ -253,7 +253,7 @@ function RouteComponent() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-4 mb-4">
             <Button
               onPress={() => {
                 handleSave();
@@ -281,7 +281,7 @@ function RouteComponent() {
               color="danger"
               onPress={() => {
                 onClose();
-                navigate({ to: '/configuraciones' });
+                navigate({ to: '/' });
               }}
             >
               Salir sin guardar

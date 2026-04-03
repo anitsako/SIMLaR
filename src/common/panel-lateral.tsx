@@ -4,6 +4,10 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Listbox,
   ListboxItem,
   useDisclosure,
@@ -15,11 +19,13 @@ import {
   Building,
   ContactRound,
   House,
+  Images,
   Link,
   MenuIcon,
   Newspaper,
   Pickaxe,
   Settings,
+  Users,
 } from 'lucide-react';
 
 export const PanelLateral = () => {
@@ -65,11 +71,21 @@ export const PanelLateral = () => {
                 Contacto
               </ListboxItem>
             </Listbox>
-            <Listbox className="mb-2">
-              <ListboxItem href="/configuraciones" color="primary" startContent={<Settings />}>
-                Configuración
-              </ListboxItem>
-            </Listbox>
+            <Dropdown className="mb-2" placement="right">
+              <DropdownTrigger>
+                <Button className=" justify-start" color="default" variant="light" startContent={<Settings />}>
+                  Configuración
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem key="carrousel-imagenes" href="/carrousel-imagenes" startContent={<Images />}>
+                  Carrousel de imágenes
+                </DropdownItem>
+                <DropdownItem key="usuarios" href="/usuarios" startContent={<Users />}>
+                  Usuarios
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
