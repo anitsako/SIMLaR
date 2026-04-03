@@ -1,8 +1,13 @@
-# Build stage
-FROM node:24.14.0-alpine AS builder
+# Dependencies stage
+FROM node:24.14.0-alpine AS deps
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
+
+# Build stage
+FROM node:24.14.0-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
