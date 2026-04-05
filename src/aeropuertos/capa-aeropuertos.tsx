@@ -1,7 +1,18 @@
 import { useState } from 'react';
 import { commonColors } from '@heroui/react';
+import L from 'leaflet';
 import { GeoJSON, useMapEvents } from 'react-leaflet';
 import { useCapaDiques } from './use-capa-aeropuertos';
+
+const customIcon = L.icon({
+  iconUrl: '/markers/marker-icon.png',
+  iconRetinaUrl: '/markers/marker-icon-2x.png',
+  shadowUrl: '/markers/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 export const CapaAeropuertos = () => {
   const { data } = useCapaDiques();
@@ -27,6 +38,7 @@ export const CapaAeropuertos = () => {
           layer.bindTooltip(nombre, { direction: 'top' });
         }
       }}
+      pointToLayer={(_, latlng) => L.marker(latlng, { icon: customIcon })}
       pathOptions={{
         color: commonColors.zinc[500],
         fillColor: commonColors.zinc[500],
