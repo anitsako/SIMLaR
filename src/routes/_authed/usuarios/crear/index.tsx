@@ -100,9 +100,7 @@ function RouteComponent() {
         {/* TODO: Usuario activo */}
 
         {(validationError || error) && (
-          <Alert color="danger">
-            {validationError ?? (error as any)?.message ?? 'Error al crear el proyecto minero.'}
-          </Alert>
+          <Alert color="danger">{validationError ?? (error as any)?.message ?? 'Error al crear el usuario.'}</Alert>
         )}
 
         <Button type="submit" isLoading={isPending} color="primary">
