@@ -11,11 +11,13 @@ import {
 } from '@heroui/react';
 import { useMemo, useState } from 'react';
 import { SquarePen } from 'lucide-react';
+import { useNavigate } from '@tanstack/react-router';
 import { useUsuarios } from './use-usuarios';
 
 export const UsuariosTable = () => {
   const { data, isFetching, error } = useUsuarios();
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   const rowsPerPage = 8;
 
@@ -71,7 +73,18 @@ export const UsuariosTable = () => {
               <TableCell>
                 {columnKey === 'nombreCompleto' ? `${item.apellido}, ${item.nombre}` : getKeyValue(item, columnKey)}
                 {columnKey === 'detalle' && (
-                  <Button isIconOnly size="sm" variant="light" color="primary">
+                  <Button
+                    isIconOnly
+                    size="sm"
+                    variant="light"
+                    color="primary"
+                    onPress={() =>
+                      navigate({
+                        to: '/usuarios/$id/modificar',
+                        params: { id: item.id.toString() },
+                      })
+                    }
+                  >
                     <SquarePen />
                   </Button>
                 )}
