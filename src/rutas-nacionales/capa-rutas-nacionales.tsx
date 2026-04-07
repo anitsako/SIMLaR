@@ -28,8 +28,8 @@ export const CapaRutasNacionales = () => {
         }
       }}
       pathOptions={{
-        color: commonColors.purple[500],
-        fillColor: commonColors.purple[500],
+        color: commonColors.white,
+        fillColor: commonColors.white,
         opacity: 0.7,
         fillOpacity: 0.3,
       }}
