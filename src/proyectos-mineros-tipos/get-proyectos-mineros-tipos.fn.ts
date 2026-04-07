@@ -10,6 +10,7 @@ export const getProyectosMinerosTiposFn = createServerFn({
       id: proyectosMinerosTiposTable.id,
       nombre: proyectosMinerosTiposTable.nombre,
       color: proyectosMinerosTiposTable.color,
+      forma: proyectosMinerosTiposTable.forma,
     })
     .from(proyectosMinerosTiposTable)
     .orderBy(proyectosMinerosTiposTable.nombre);
