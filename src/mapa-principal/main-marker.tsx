@@ -16,7 +16,7 @@ interface Props {
   onMouseOut?: () => void;
 }
 
-const colorValues: Record<
+export const colorValues: Record<
   MarkerColor,
   { normal: { fill: string; text: string }; hover: { fill: string; text: string } }
 > = {
