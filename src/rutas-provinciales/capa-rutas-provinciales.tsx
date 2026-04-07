@@ -28,8 +28,8 @@ export const CapaRutasProvinciales = () => {
         }
       }}
       pathOptions={{
-        color: commonColors.purple[300],
-        fillColor: commonColors.purple[300],
+        color: commonColors.yellow[400],
+        fillColor: commonColors.yellow[400],
         opacity: 0.7,
         fillOpacity: 0.3,
       }}
