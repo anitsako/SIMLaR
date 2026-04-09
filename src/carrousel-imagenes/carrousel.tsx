@@ -37,7 +37,7 @@ export const Carrousel = () => {
       autoplay={{ delay: 3000 }}
       scrollbar={{ draggable: true }}
       navigation
-      className="h-[340px] w-full"
+      className="h-[300px] w-full"
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={slide.key || index} className="h-full">

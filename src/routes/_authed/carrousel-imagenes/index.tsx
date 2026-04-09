@@ -181,7 +181,7 @@ function RouteComponent() {
           thumbs={{ swiper: thumbsSwiper, slideThumbActiveClass: 'thumb-active' }}
           scrollbar={{ draggable: true }}
           navigation
-          className="h-[400px] w-full"
+          className="h-[300px] w-full"
         >
           {images.map((image, index) => (
             <SwiperSlide key={index} className="h-full">
