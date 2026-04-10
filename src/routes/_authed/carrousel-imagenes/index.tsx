@@ -147,6 +147,7 @@ function RouteComponent() {
           imagenes: images.map((img, index) => ({
             archivoId: img.archivoId!,
             positionY: positions[index],
+            orden: index,
           })),
         },
       });
