@@ -13,6 +13,7 @@ export const getImagenesCarrouselFn = createServerFn({ method: 'GET' })
       .select({
         archivoId: carrouselImagenesTable.archivoId,
         positionY: carrouselImagenesTable.positionY,
+        orden: carrouselImagenesTable.orden,
         nombre: archivosTable.nombre,
         mimeType: archivosTable.mimeType,
         base64: sql<string>`encode(${archivosContenidosTable.contenido}, 'base64')`,
@@ -20,6 +21,6 @@ export const getImagenesCarrouselFn = createServerFn({ method: 'GET' })
       .from(carrouselImagenesTable)
       .innerJoin(archivosTable, eq(carrouselImagenesTable.archivoId, archivosTable.id))
       .innerJoin(archivosContenidosTable, eq(carrouselImagenesTable.archivoId, archivosContenidosTable.archivoId))
-      .orderBy(sql`${archivosTable.nombre} ASC`);
+      .orderBy(sql`${carrouselImagenesTable.orden} ASC`);
     return imagenes;
   });
