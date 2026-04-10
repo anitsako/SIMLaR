@@ -1,6 +1,6 @@
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
-import { eq } from 'drizzle-orm';
+import { inArray } from 'drizzle-orm';
 import { db } from '@/db';
 import { useAppSession } from '@/auth/use-app-session';
 import { carrouselImagenesTable } from '@/db/schemas/carrousel-imagenes.schema';
@@ -12,6 +12,7 @@ const cargarImagenesCarrouselSchema = z.object({
       z.object({
         archivoId: z.string().uuid(),
         positionY: z.number().int(),
+        orden: z.number().int(),
       })
     )
     .length(4), // Exactamente 4 imágenes
@@ -28,8 +29,15 @@ export const cargarImagenesCarrouselFn = createServerFn({ method: 'POST' })
     }
 
     // Validar que todos los archivos existen
-    const archivos = await db.select().from(archivosTable).where(eq(archivosTable.usuarioCreadorId, usuarioId)); // O el filtro que hayas
-
+    const archivos = await db
+      .select()
+      .from(archivosTable)
+      .where(
+        inArray(
+          archivosTable.id,
+          data.imagenes.map((img) => img.archivoId)
+        )
+      );
     const archivoIds = new Set(archivos.map((a) => a.id));
 
     for (const img of data.imagenes) {
@@ -38,16 +46,17 @@ export const cargarImagenesCarrouselFn = createServerFn({ method: 'POST' })
       }
     }
 
-    // Borrar TODAS las imágenes actuales del usuario
-    await db.delete(carrouselImagenesTable).where(eq(carrouselImagenesTable.usuarioCreadorId, usuarioId));
+    // Borrar las imágenes actuales del carrusel
+    await db.delete(carrouselImagenesTable);
 
     // Insertar las 4 nuevas
     const resultado = await db
       .insert(carrouselImagenesTable)
       .values(
-        data.imagenes.map((img) => ({
+        data.imagenes.map((img, index) => ({
           archivoId: img.archivoId,
           positionY: img.positionY,
+          orden: index,
           usuarioCreadorId: usuarioId,
           usuarioModificadorId: usuarioId,
         }))
