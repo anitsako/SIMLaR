@@ -8,6 +8,7 @@ export const carrouselImagenesTable = pgTable('carrousel_imagenes', {
     .notNull()
     .references(() => archivosTable.id),
   positionY: serial('position_y').notNull(),
+  orden: integer('orden').notNull(),
   usuarioCreadorId: integer('usuario_creador_id')
     .notNull()
     .references(() => usuariosTable.id),
