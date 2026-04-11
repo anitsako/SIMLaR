@@ -54,8 +54,16 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           navigate={(to, options) => router.navigate({ to, ...(options as unknown as Record<string, unknown>) })}
           useHref={(to) => router.buildLocation({ to }).href}
         >
+          <div
+            aria-hidden
+            className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('/branding/fondo.png')",
+            }}
+          />
           <ToastProvider placement="top-center" />
-          <main className="min-h-screen flex flex-col items-center">
+          <main className="relative z-10 min-h-screen flex flex-col items-center">
             <AppBar />
             <div className="flex-1 md:w-full lg:max-w-4xl xl:max-w-6xl">{children}</div>
             <Footer />
