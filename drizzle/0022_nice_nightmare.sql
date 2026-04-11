@@ -1,0 +1,1 @@
+ALTER TABLE "carrousel_imagenes" ADD COLUMN "orden" integer;
