@@ -16,7 +16,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useEffect, useState } from 'react';
 import type { Swiper as SwiperInstance } from 'swiper';
 import { cargarImagenesCarrouselFn } from '@/carrousel-imagenes/cargar-imagenes-carrousel.fn';
-import { useImagenesCarrousel } from '@/carrousel-imagenes/use-imagenes-carrousel.fn';
+import { useImagenesCarrousel } from '@/carrousel-imagenes/use-imagenes-carrousel';
 import { uploadArchivoFn } from '@/common/uploadArchivo';
 
 // @ts-ignore: Se ignora css
