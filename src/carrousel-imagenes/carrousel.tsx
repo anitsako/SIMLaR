@@ -1,6 +1,6 @@
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useImagenesCarrousel } from './use-imagenes-carrousel.fn';
+import { useImagenesCarrousel } from './use-imagenes-carrousel';
 
 // Por el momento se deja el carrousel sin props,
 // pero se pueden agregar en el futuro para hacerlo más dinámico y reutilizable
@@ -18,9 +18,9 @@ export const Carrousel = () => {
   const { data: imagenes = [] } = useImagenesCarrousel();
 
   const slides = imagenes.map((img: any) => {
-    const src = img.base64 ? `data:${img.mimeType};base64,${img.base64}` : '';
+    const src = `/archivos/${img.archivoId}/${img.nombre}`;
 
-    // console.log('src', src);
+    console.log('src', src);
     return {
       src,
       positionY: img.positionY ?? 50,
