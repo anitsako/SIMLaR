@@ -20,6 +20,7 @@ import {
   ContactRound,
   House,
   Images,
+  LibraryBig,
   Link,
   MenuIcon,
   Newspaper,
@@ -66,6 +67,9 @@ export const PanelLateral = () => {
               </ListboxItem>
               <ListboxItem href="/noticias" color="primary" startContent={<Newspaper />}>
                 Noticias
+              </ListboxItem>
+              <ListboxItem href="/educacion" color="primary" startContent={<LibraryBig />}>
+                Educación minera
               </ListboxItem>
               <ListboxItem href="/contacto" color="primary" startContent={<ContactRound />}>
                 Contacto
