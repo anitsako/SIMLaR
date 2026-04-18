@@ -42,7 +42,7 @@ export const ProyectoMineroTiposField = ({
       onSelectionChange={(keys) => onChange(Array.from(keys as Set<string>).map(Number))}
     >
       {proyectosMinerosTipos.map((tipo) => (
-        <SelectItem key={tipo.id} startContent={shape[tipo.forma!]}>
+        <SelectItem key={tipo.id} startContent={shape[tipo.forma]}>
           {tipo.nombre}
         </SelectItem>
       ))}

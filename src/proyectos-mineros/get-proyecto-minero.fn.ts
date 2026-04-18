@@ -17,7 +17,7 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
         tipo: {
           id: proyectosMinerosTiposTable.id,
           nombre: proyectosMinerosTiposTable.nombre,
-          color: proyectosMinerosTiposTable.color,
+          forma: proyectosMinerosTiposTable.forma,
         },
         ubicacion: proyectosMinerosTable.ubicacion,
         provinciaGeologica: proyectosMinerosTable.provinciaGeologica,
