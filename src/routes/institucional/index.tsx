@@ -1,55 +1,46 @@
-import { createFileRoute } from '@tanstack/react-router'
-import {
-  Database,
-  Eye,
-  Facebook,
-  Instagram,
-  Layers,
-  Map,
-  Network,
-  Twitter,
-} from 'lucide-react'
-import { Card, CardBody } from '@heroui/react'
+import { createFileRoute } from '@tanstack/react-router';
+import { Database, Eye, Facebook, Instagram, Layers, Map, Network, Twitter } from 'lucide-react';
+import { Card, CardBody } from '@heroui/react';
 
 export const Route = createFileRoute('/institucional/')({
   component: RouteComponent,
-})
+});
 
 type Autoridad = {
-  nombre: string
-  cargo: string
-  foto: string
+  nombre: string;
+  cargo: string;
+  foto: string;
   redes?: {
-    facebook?: string
-    instagram?: string
-    twitter?: string
-  }
-}
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+  };
+};
 
 type SeccionAutoridades = {
-  titulo: string
-  items: Array<Autoridad>
-  columns: string
-  centered: boolean
-  itemWrapper?: string
-}
+  titulo: string;
+  items: Array<Autoridad>;
+  columns: string;
+  centered: boolean;
+  itemWrapper?: string;
+};
 
 type Metrica = {
-  valor: string
-  label: string
-}
+  valor: string;
+  label: string;
+};
 
 type Objetivo = {
-  icon: React.ComponentType<{ className?: string }>
-  titulo: string
-  descripcion: string
-}
+  icon: React.ComponentType<{ className?: string }>;
+  titulo: string;
+  descripcion: string;
+};
 
 type AccesoRapido = {
-  href: string
-  alt: string
-  src: string
-}
+  href: string;
+  alt: string;
+  src: string;
+};
 
 const AUTORIDADES: Array<Autoridad> = [
   {
@@ -85,7 +76,7 @@ const AUTORIDADES: Array<Autoridad> = [
   {
     nombre: 'SANTIAGO AZULAY',
     cargo: 'Secretario de Ambiente',
-    foto: '/autoridades/sec-amb.png',
+    foto: '/autoridades/sec-amb.jpg',
   },
   {
     nombre: 'WALTER GOMEZ',
@@ -97,7 +88,7 @@ const AUTORIDADES: Array<Autoridad> = [
     cargo: 'Presidente de KALLPA',
     foto: '/autoridades/kalpa.jpg',
   },
-]
+];
 
 const SECCIONES_AUTORIDADES: Array<SeccionAutoridades> = [
   {
@@ -140,20 +131,19 @@ const SECCIONES_AUTORIDADES: Array<SeccionAutoridades> = [
     columns: 'grid grid-cols-1 sm:grid-cols-2 gap-8',
     centered: false,
   },
-]
+];
 
 const METRICAS: Array<Metrica> = [
   { valor: '+120', label: 'Proyectos mineros' },
   { valor: '+25', label: 'Capas geográficas' },
   { valor: '+3', label: 'Organismos integrados' },
-]
+];
 
 const OBJETIVOS: Array<Objetivo> = [
   {
     icon: Database,
     titulo: 'Centralización de información',
-    descripcion:
-      'Integrar y organizar información minera provincial en una plataforma digital unificada.',
+    descripcion: 'Integrar y organizar información minera provincial en una plataforma digital unificada.',
   },
   {
     icon: Map,
@@ -164,22 +154,19 @@ const OBJETIVOS: Array<Objetivo> = [
   {
     icon: Eye,
     titulo: 'Transparencia y acceso público',
-    descripcion:
-      'Promover el acceso a información actualizada sobre el desarrollo del sector minero en la provincia.',
+    descripcion: 'Promover el acceso a información actualizada sobre el desarrollo del sector minero en la provincia.',
   },
   {
     icon: Layers,
     titulo: 'Planificación territorial',
-    descripcion:
-      'Apoyar la planificación y gestión del territorio mediante herramientas de visualización geoespacial.',
+    descripcion: 'Apoyar la planificación y gestión del territorio mediante herramientas de visualización geoespacial.',
   },
   {
     icon: Network,
     titulo: 'Articulación institucional',
-    descripcion:
-      'Fortalecer la vinculación entre organismos públicos, empresas estatales y actores del sector minero.',
+    descripcion: 'Fortalecer la vinculación entre organismos públicos, empresas estatales y actores del sector minero.',
   },
-]
+];
 
 const ACCESOS_RAPIDOS: Array<AccesoRapido> = [
   {
@@ -197,17 +184,13 @@ const ACCESOS_RAPIDOS: Array<AccesoRapido> = [
     alt: 'Secretaría de Minería',
     src: '/accesos/mineria.jpg',
   },
-]
+];
 
 function AutoridadCard({ item }: { item: Autoridad }) {
   return (
     <Card className="overflow-hidden rounded-none shadow-md">
       <div className="w-full bg-default-200">
-        <img
-          src={item.foto}
-          alt={item.nombre}
-          className="w-full h-85 object-cover"
-        />
+        <img src={item.foto} alt={item.nombre} className="w-full h-85 object-cover" />
       </div>
 
       <CardBody className="p-0">
@@ -258,18 +241,10 @@ function AutoridadCard({ item }: { item: Autoridad }) {
         </div>
       </CardBody>
     </Card>
-  )
+  );
 }
 
-function SectionHeader({
-  title,
-  subtitle,
-  right,
-}: {
-  title: string
-  subtitle?: string
-  right?: React.ReactNode
-}) {
+function SectionHeader({ title, subtitle, right }: { title: string; subtitle?: string; right?: React.ReactNode }) {
   return (
     <div className="mb-4 flex items-start justify-between gap-6 border-b border-primary/50 pb-2">
       <div>
@@ -278,7 +253,7 @@ function SectionHeader({
       </div>
       {right ? <div className="shrink-0">{right}</div> : null}
     </div>
-  )
+  );
 }
 
 function RouteComponent() {
@@ -288,26 +263,17 @@ function RouteComponent() {
         <section>
           <div className="mb-4 border-b border-primary/50 pb-3">
             <h1 className="text-3xl font-bold md:text-4xl">Institucional</h1>
-            <p className="text-sm text-black/60">
-              Autoridades, objetivos y organismos vinculados
-            </p>
+            <p className="text-sm text-black/60">Autoridades, objetivos y organismos vinculados</p>
           </div>
         </section>
 
         <section>
-          <SectionHeader
-            title="Autoridades"
-            subtitle="Gobierno provincial, áreas vinculadas y empresas estatales"
-          />
+          <SectionHeader title="Autoridades" subtitle="Gobierno provincial, áreas vinculadas y empresas estatales" />
 
           <div className="space-y-14">
             {SECCIONES_AUTORIDADES.map((seccion) => (
               <div key={seccion.titulo}>
-                <p
-                  className={`mb-4 text-sm font-medium text-black/60 ${
-                    seccion.centered ? 'text-center' : ''
-                  }`}
-                >
+                <p className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''}`}>
                   {seccion.titulo}
                 </p>
 
@@ -319,7 +285,7 @@ function RouteComponent() {
                       </div>
                     ) : (
                       <AutoridadCard key={item.nombre} item={item} />
-                    ),
+                    )
                   )}
                 </div>
               </div>
@@ -328,39 +294,25 @@ function RouteComponent() {
         </section>
 
         <section>
-          <SectionHeader
-            title="Objetivos y alcance de SIMLaR"
-            subtitle="Marco general y líneas de trabajo"
-          />
+          <SectionHeader title="Objetivos y alcance de SIMLaR" subtitle="Marco general y líneas de trabajo" />
 
           <div className="mt-6 space-y-6">
             <p className="leading-relaxed text-black/70">
-              <strong>SIMLaR – Sistema de Información Minera de La Rioja</strong>{' '}
-              es una plataforma digital desarrollada por mano de obra riojana
-              destinada a centralizar, organizar y visualizar información
-              geográfica y técnica vinculada a la actividad minera de la
-              provincia.
+              <strong>SIMLaR – Sistema de Información Minera de La Rioja</strong> es una plataforma digital desarrollada
+              por mano de obra riojana destinada a centralizar, organizar y visualizar información geográfica y técnica
+              vinculada a la actividad minera de la provincia.
             </p>
 
             <p className="leading-relaxed text-black/70">
-              A través de herramientas de visualización geoespacial, el sistema
-              permite integrar distintas fuentes de información y facilitar el
-              acceso a datos estratégicos para la planificación y gestión del
-              sector minero.
+              A través de herramientas de visualización geoespacial, el sistema permite integrar distintas fuentes de
+              información y facilitar el acceso a datos estratégicos para la planificación y gestión del sector minero.
             </p>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               {METRICAS.map((metrica) => (
-                <div
-                  key={metrica.label}
-                  className="rounded-lg border p-6 text-center transition hover:shadow-md"
-                >
-                  <p className="text-4xl font-bold text-primary">
-                    {metrica.valor}
-                  </p>
-                  <p className="mt-2 text-sm uppercase tracking-wide text-black/60">
-                    {metrica.label}
-                  </p>
+                <div key={metrica.label} className="rounded-lg border p-6 text-center transition hover:shadow-md">
+                  <p className="text-4xl font-bold text-primary">{metrica.valor}</p>
+                  <p className="mt-2 text-sm uppercase tracking-wide text-black/60">{metrica.label}</p>
                 </div>
               ))}
             </div>
@@ -369,30 +321,22 @@ function RouteComponent() {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {OBJETIVOS.map((objetivo) => {
-                const Icon = objetivo.icon
+                const Icon = objetivo.icon;
 
                 return (
-                  <div
-                    key={objetivo.titulo}
-                    className="rounded-lg border p-5 transition hover:shadow-md"
-                  >
+                  <div key={objetivo.titulo} className="rounded-lg border p-5 transition hover:shadow-md">
                     <Icon className="mb-3 h-8 w-8 text-primary" />
                     <p className="mb-1 font-semibold">{objetivo.titulo}</p>
-                    <p className="text-sm text-black/60">
-                      {objetivo.descripcion}
-                    </p>
+                    <p className="text-sm text-black/60">{objetivo.descripcion}</p>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
         </section>
 
         <section>
-          <SectionHeader
-            title="Accesos rápidos"
-            subtitle="Organismos y sitios vinculados"
-          />
+          <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {ACCESOS_RAPIDOS.map((acceso) => (
@@ -403,16 +347,13 @@ function RouteComponent() {
                 rel="noopener noreferrer"
                 className="flex h-24 items-center justify-center transition hover:opacity-80"
               >
-                <img
-                  src={acceso.src}
-                  alt={acceso.alt}
-                  className="max-h-14 w-auto object-contain"
-                />
+                <img src={acceso.src} alt={acceso.alt} className="max-h-14 w-auto object-contain" />
               </a>
             ))}
           </div>
         </section>
       </div>
     </main>
-  )
+  );
 }
+
