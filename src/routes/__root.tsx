@@ -59,7 +59,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
             className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('/branding/fondo.png')",
+                "linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)), url('/branding/fondo.jpg')",
             }}
           />
           <ToastProvider placement="top-center" />
