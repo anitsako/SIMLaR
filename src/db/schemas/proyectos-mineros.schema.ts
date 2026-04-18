@@ -18,8 +18,9 @@ export const proyectosMinerosTable = pgTable('proyectos_mineros', {
   mineralInteres: varchar('mineral_interes', { length: 100 }).notNull(),
   modeloGenetico: text('modelo_genetico').notNull(),
   accesos: text('accesos').notNull(),
-  etapa: varchar('etapa', { length: 100 }).notNull(),
-  etapaId: integer('etapa_id').references(() => proyectosMinerosEtapasTable.id),
+  etapaId: integer('etapa_id')
+    .notNull()
+    .references(() => proyectosMinerosEtapasTable.id),
   propietario: varchar('propietario', { length: 100 }).notNull(),
   localidadesCercanas: varchar('localidades_cercanas', { length: 100 }).notNull(),
   coordenadasGeograficas: geometry('coordenadas_geograficas', { type: 'point', srid: 4326 }).notNull(),

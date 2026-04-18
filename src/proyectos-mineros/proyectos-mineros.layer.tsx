@@ -24,7 +24,7 @@ export const ProyectosMinerosLayer = ({
           position={[proyectoMinero.coordenadasGeograficas[1], proyectoMinero.coordenadasGeograficas[0]]}
           value={proyectoMinero.id}
           title={`Proyecto: ${proyectoMinero.nombre}`}
-          color={proyectoMinero.etapa?.color as MarkerColor}
+          color={proyectoMinero.etapa.color as MarkerColor}
           shape={proyectoMinero.tipo.forma as MarkerShape}
           onClick={() => {
             setSelectedId(proyectoMinero.id);

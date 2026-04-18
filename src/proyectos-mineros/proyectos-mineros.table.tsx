@@ -85,7 +85,7 @@ export const ProyectosMinerosTable = () => {
               {(columnKey) => (
                 <TableCell>
                   {columnKey === 'tipo.nombre' ? item.tipo.nombre : ''}
-                  {columnKey === 'etapa.nombre' ? item.etapa?.nombre : ''}
+                  {columnKey === 'etapa.nombre' ? item.etapa.nombre : ''}
                   {columnKey === 'coordenadas'
                     ? `${decimalToDms(item.coordenadasGeograficas[1], true)}, ${decimalToDms(item.coordenadasGeograficas[0], false)}`
                     : getKeyValue(item, columnKey)}

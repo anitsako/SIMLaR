@@ -78,7 +78,6 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
           ...data,
           coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${data.coordenadasGeograficas.lng}, ${data.coordenadasGeograficas.lat}), 4326)`,
           archivoMapaId: nuevoArchivoMapa.id,
-          etapa: '',
           usuarioCreadorId: usuarioId,
           usuarioModificadorId: usuarioId,
         })

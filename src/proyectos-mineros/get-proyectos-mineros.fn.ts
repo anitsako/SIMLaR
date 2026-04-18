@@ -41,7 +41,7 @@ export const getProyectosMinerosFn = createServerFn({ method: 'GET' })
       })
       .from(proyectosMinerosTable)
       .innerJoin(proyectosMinerosTiposTable, eq(proyectosMinerosTable.tipoId, proyectosMinerosTiposTable.id))
-      .leftJoin(proyectosMinerosEtapasTable, eq(proyectosMinerosTable.etapaId, proyectosMinerosEtapasTable.id))
+      .innerJoin(proyectosMinerosEtapasTable, eq(proyectosMinerosTable.etapaId, proyectosMinerosEtapasTable.id))
       .where(
         and(
           ilike(proyectosMinerosTable.nombre, `%${nombreLike}%`).if(nombreLike !== undefined),

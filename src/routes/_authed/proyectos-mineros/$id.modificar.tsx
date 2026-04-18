@@ -38,7 +38,7 @@ function RouteComponent() {
     mineralInteres: proyecto.mineralInteres,
     modeloGenetico: proyecto.modeloGenetico,
     accesos: proyecto.accesos,
-    etapaId: proyecto.etapa?.id,
+    etapaId: proyecto.etapa.id,
     propietario: proyecto.propietario,
     localidadesCercanas: proyecto.localidadesCercanas,
     coordenadasGeograficas: { lat: coords[1], lng: coords[0] },
@@ -108,7 +108,7 @@ function RouteComponent() {
         id: proyecto.id,
         ...data,
         tipoId: data.tipoId,
-        etapaId: data.etapaId!,
+        etapaId: data.etapaId,
         msnm: data.msnm,
         archivoMapa,
       },
@@ -202,7 +202,7 @@ function RouteComponent() {
 
         <ProyectoMineroEtapaField
           required
-          id={data.etapaId ?? undefined}
+          id={data.etapaId}
           onChange={(v) => setData((prev) => ({ ...prev, etapaId: v! }))}
         />
 
