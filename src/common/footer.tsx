@@ -1,5 +1,5 @@
-import { Image } from '@heroui/react'
-import { Mail, MapPin } from 'lucide-react'
+import { Image } from '@heroui/react';
+import { Mail, MapPin } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -7,7 +7,7 @@ export const Footer = () => {
       <div
         className="w-full text-white"
         style={{
-          backgroundImage: `url('/branding/footer-trama-gris.png')`,
+          backgroundImage: `url('/branding/footer-trama-gris.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -17,7 +17,6 @@ export const Footer = () => {
         <div className="w-full bg-black/40">
           <div className="max-w-6xl mx-auto px-6 py-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center text-center">
-
               <div className="flex justify-center">
                 <a
                   href="https://larioja.gob.ar/"
@@ -42,7 +41,7 @@ export const Footer = () => {
                     <MapPin className="h-4 w-4 mt-1" />
                     Pelagio B.Luna 173, La Rioja, Capital
                   </li>
-                  
+
                   <li className="flex items-center justify-center gap-3">
                     <Mail className="h-4 w-4 mt-1" />
                     <a className="hover:opacity-80 underline underline-offset-4" href="mailto:info@larioja.gob.ar">
@@ -62,5 +61,6 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
+
