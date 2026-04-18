@@ -1,13 +1,13 @@
-import { Image, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react'
-import { getRouteApi } from '@tanstack/react-router'
-import { PanelLateral } from './panel-lateral'
-import { UserMenu } from '@/auth/user-menu'
-import { UserLogin } from '@/auth/user-login'
+import { Image, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
+import { getRouteApi } from '@tanstack/react-router';
+import { PanelLateral } from './panel-lateral';
+import { UserMenu } from '@/auth/user-menu';
+import { UserLogin } from '@/auth/user-login';
 
-const rootRoute = getRouteApi('__root__')
+const rootRoute = getRouteApi('__root__');
 
 export const AppBar = () => {
-  const { usuario } = rootRoute.useRouteContext()
+  const { usuario } = rootRoute.useRouteContext();
 
   return (
     <Navbar
@@ -29,12 +29,20 @@ export const AppBar = () => {
               className="transition-opacity hover:opacity-80"
               aria-label="Ir al sitio oficial del Gobierno de La Rioja"
             >
-              <Image
-                src="/branding/la-rioja-gobierno.png"
-                alt="La Rioja Gobierno"
-                className="h-9 w-auto"
-                radius="none"
-              />
+              <>
+                <Image
+                  src="/branding/la-rioja-gobierno.png"
+                  alt="La Rioja Gobierno"
+                  className="hidden h-9 min-w-[142px] max-w-[142px] shrink-0 object-contain md:block"
+                  radius="none"
+                />
+                <Image
+                  src="/branding/la-rioja-gobierno-small.png"
+                  alt="La Rioja Gobierno"
+                  className="block h-9 min-w-[39px] max-w-[39px] shrink-0 object-contain md:hidden"
+                  radius="none"
+                />
+              </>
             </a>
 
             <div className="h-10 w-1.5 rounded-sm bg-success" />
@@ -51,5 +59,5 @@ export const AppBar = () => {
         <NavbarItem>{usuario ? <UserMenu /> : <UserLogin />}</NavbarItem>
       </NavbarContent>
     </Navbar>
-  )
-}
+  );
+};
