@@ -250,12 +250,10 @@ function RouteComponent() {
         </div>
 
         <div className="space-y-1">
-          {proyecto.archivoMapa && (
-            <p className="text-sm text-default-500">
-              Archivo actual: <span className="font-medium">{proyecto.archivoMapa.nombre}</span>. Seleccioná un nuevo
-              archivo solo si querés reemplazarlo.
-            </p>
-          )}
+          <p className="text-sm text-default-500">
+            Archivo actual: <span className="font-medium">{proyecto.archivoMapa.nombre}</span>. Seleccioná un nuevo
+            archivo solo si querés reemplazarlo.
+          </p>
           <ArchivoField
             label="Archivo de mapa"
             onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}

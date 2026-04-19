@@ -176,6 +176,13 @@
       "when": 1776556035567,
       "tag": "0024_pretty_ego",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1776637275928,
+      "tag": "0025_bent_alex_wilder",
+      "breakpoints": true
     }
   ]
 }

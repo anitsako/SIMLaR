@@ -26,7 +26,9 @@ export const proyectosMinerosTable = pgTable('proyectos_mineros', {
   coordenadasGeograficas: geometry('coordenadas_geograficas', { type: 'point', srid: 4326 }).notNull(),
   msnm: integer('msnm').notNull(),
   convenioEmse: boolean('convenio_emse').notNull(),
-  archivoMapaId: uuid('archivo_mapa_id').references(() => archivosTable.id),
+  archivoMapaId: uuid('archivo_mapa_id')
+    .notNull()
+    .references(() => archivosTable.id),
   visible: boolean('visible').notNull().default(true),
   usuarioCreadorId: integer('usuario_creador_id')
     .notNull()

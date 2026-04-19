@@ -41,25 +41,23 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
         <ModalHeader className="flex flex-col gap-1">{data.nombre}</ModalHeader>
         <ModalBody className="pb-6">
           <div className="flex flex-col gap-4">
-            {data.archivoMapa && (
-              <div className="relative">
-                <Image
-                  className="w-full"
-                  src={`/archivos/${data.archivoMapa.id}/${data.archivoMapa.nombre}`}
-                  alt={data.archivoMapa.nombre}
-                  radius="none"
-                />
-                <Button
-                  isIconOnly
-                  size="sm"
-                  variant="solid"
-                  className="absolute bottom-2 right-2 z-10"
-                  onPress={onImageOpen}
-                >
-                  <Expand size={16} />
-                </Button>
-              </div>
-            )}
+            <div className="relative">
+              <Image
+                className="w-full"
+                src={`/archivos/${data.archivoMapa.id}/${data.archivoMapa.nombre}`}
+                alt={data.archivoMapa.nombre}
+                radius="none"
+              />
+              <Button
+                isIconOnly
+                size="sm"
+                variant="solid"
+                className="absolute bottom-2 right-2 z-10"
+                onPress={onImageOpen}
+              >
+                <Expand size={16} />
+              </Button>
+            </div>
             <div className="flex flex-col">
               <FieldRow label="Ubicación" value={data.ubicacion} />
               <Divider className="my-2" />
@@ -101,20 +99,18 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
             </div>
           </div>
 
-          {data.archivoMapa && (
-            <Modal isOpen={isImageOpen} onClose={onImageClose} size="full">
-              <ModalContent>
-                <ModalBody className="flex items-center justify-center p-0 bg-black">
-                  <Image
-                    className="max-h-screen max-w-full object-contain"
-                    src={`/archivos/${data.archivoMapa.id}/${data.archivoMapa.nombre}`}
-                    alt={data.archivoMapa.nombre}
-                    radius="none"
-                  />
-                </ModalBody>
-              </ModalContent>
-            </Modal>
-          )}
+          <Modal isOpen={isImageOpen} onClose={onImageClose} size="full">
+            <ModalContent>
+              <ModalBody className="flex items-center justify-center p-0 bg-black">
+                <Image
+                  className="max-h-screen max-w-full object-contain"
+                  src={`/archivos/${data.archivoMapa.id}/${data.archivoMapa.nombre}`}
+                  alt={data.archivoMapa.nombre}
+                  radius="none"
+                />
+              </ModalBody>
+            </ModalContent>
+          </Modal>
         </ModalBody>
       </ModalContent>
     </Modal>

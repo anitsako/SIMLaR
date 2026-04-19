@@ -50,8 +50,6 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
     const { id, archivoMapa, ...fields } = data;
 
     const proyectoMinero = await db.transaction(async (tx) => {
-      let archivoMapaId: string | undefined;
-
       if (archivoMapa) {
         const maxTamañoArchivo = 5 * 1024 * 1024;
         const buffer = Buffer.from(archivoMapa.base64, 'base64');
@@ -77,39 +75,20 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
 
         const archivoMapaActualId = proyectoActual[0].archivoMapaId;
 
-        if (archivoMapaActualId) {
-          // Reemplazar el archivo existente en-place
-          await tx
-            .update(archivosTable)
-            .set({
-              nombre: archivoMapa.nombre,
-              tamaño: archivoMapa.tamaño,
-              mimeType: archivoMapa.mimeType,
-              usuarioModificadorId: usuarioId,
-            })
-            .where(eq(archivosTable.id, archivoMapaActualId));
+        await tx
+          .update(archivosTable)
+          .set({
+            nombre: archivoMapa.nombre,
+            tamaño: archivoMapa.tamaño,
+            mimeType: archivoMapa.mimeType,
+            usuarioModificadorId: usuarioId,
+          })
+          .where(eq(archivosTable.id, archivoMapaActualId));
 
-          await tx
-            .update(archivosContenidosTable)
-            .set({ contenido: buffer })
-            .where(eq(archivosContenidosTable.archivoId, archivoMapaActualId));
-        } else {
-          // El proyecto no tenía archivo previo: crear uno nuevo
-          const [nuevoArchivoMapa] = await tx
-            .insert(archivosTable)
-            .values({
-              nombre: archivoMapa.nombre,
-              tamaño: archivoMapa.tamaño,
-              mimeType: archivoMapa.mimeType,
-              usuarioCreadorId: usuarioId,
-              usuarioModificadorId: usuarioId,
-            })
-            .returning();
-
-          await tx.insert(archivosContenidosTable).values({ archivoId: nuevoArchivoMapa.id, contenido: buffer });
-
-          archivoMapaId = nuevoArchivoMapa.id;
-        }
+        await tx
+          .update(archivosContenidosTable)
+          .set({ contenido: buffer })
+          .where(eq(archivosContenidosTable.archivoId, archivoMapaActualId));
       }
 
       const [proyectoActualizado] = await tx
@@ -118,7 +97,6 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
           ...fields,
           coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${fields.coordenadasGeograficas.lng}, ${fields.coordenadasGeograficas.lat}), 4326)`,
           usuarioModificadorId: usuarioId,
-          ...(archivoMapaId ? { archivoMapaId } : {}),
         })
         .where(eq(proyectosMinerosTable.id, id))
         .returning();

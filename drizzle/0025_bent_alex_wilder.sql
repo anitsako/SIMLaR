@@ -1,0 +1,1 @@
+ALTER TABLE "proyectos_mineros" ALTER COLUMN "archivo_mapa_id" SET NOT NULL;

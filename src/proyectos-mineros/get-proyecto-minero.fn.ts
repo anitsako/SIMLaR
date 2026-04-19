@@ -48,7 +48,7 @@ export const getProyectoMineroFn = createServerFn({ method: 'GET' })
       .from(proyectosMinerosTable)
       .innerJoin(proyectosMinerosTiposTable, eq(proyectosMinerosTable.tipoId, proyectosMinerosTiposTable.id))
       .innerJoin(proyectosMinerosEtapasTable, eq(proyectosMinerosTable.etapaId, proyectosMinerosEtapasTable.id))
-      .leftJoin(archivosTable, eq(proyectosMinerosTable.archivoMapaId, archivosTable.id))
+      .innerJoin(archivosTable, eq(proyectosMinerosTable.archivoMapaId, archivosTable.id))
       .where(eq(proyectosMinerosTable.id, data.id))
       .then((r) => r[0] ?? null);
   });
