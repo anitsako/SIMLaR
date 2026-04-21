@@ -191,5 +191,3 @@ function RouteComponent() {
     </main>
   );
 }
-
-export default RouteComponent;
