@@ -41,9 +41,10 @@ export const MapaPrincipal = () => {
             [-27.5647, -69.7471],
             [-32.0868, -65.264],
           ]}
-          zoom={7}
           style={{ height: '100%', width: '100%' }}
-          zoomControl={false}
+          maxZoom={17}
+          zoomSnap={0}
+          zoomDelta={0.25}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
