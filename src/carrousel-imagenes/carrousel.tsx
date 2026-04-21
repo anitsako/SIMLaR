@@ -20,7 +20,6 @@ export const Carrousel = () => {
   const slides = imagenes.map((img: any) => {
     const src = `/archivos/${img.archivoId}/${img.nombre}`;
 
-    console.log('src', src);
     return {
       src,
       positionY: img.positionY ?? 50,
