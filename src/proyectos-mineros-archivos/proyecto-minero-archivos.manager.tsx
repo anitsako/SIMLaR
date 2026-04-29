@@ -6,7 +6,7 @@ import { File as FileIcon, Trash2, Upload } from 'lucide-react';
 import { addProyectoMineroArchivosFn } from './add-proyecto-minero-archivos.fn';
 import { removeProyectoMineroArchivoFn } from './remove-proyecto-minero-archivo.fn';
 import { useProyectoMineroArchivos } from './use-proyecto-minero-archivos';
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, DragEvent } from 'react';
 import { formatBytes } from '@/common/format-bytes';
 
 const fileToBase64 = (file: File) =>
@@ -23,6 +23,7 @@ type ProyectoMineroArchivosManagerProps = {
 
 export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMineroArchivosManagerProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
   const [archivoAEliminar, setArchivoAEliminar] = useState<{ archivoId: string; nombre: string } | null>(null);
   const queryClient = useQueryClient();
   const { data: archivos = [], isFetching } = useProyectoMineroArchivos(proyectoMineroId);
@@ -87,14 +88,33 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
     event.target.value = '';
   };
 
+  const onDrop = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragOver(false);
+    const file = event.dataTransfer.files[0];
+    handleFile(file);
+  };
+
   return (
     <div className="space-y-6">
       <input ref={inputRef} type="file" className="hidden" onChange={onInputChange} />
 
-      <div className="rounded-xl border border-default-300 bg-default-50 p-6 text-center">
+      <div
+        className={`rounded-xl border-2 border-dashed p-6 text-center transition ${
+          isDragOver ? 'border-primary bg-primary/10' : 'border-default-300 bg-default-50'
+        }`}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setIsDragOver(true);
+        }}
+        onDragLeave={() => setIsDragOver(false)}
+        onDrop={onDrop}
+      >
         <div className="mx-auto flex max-w-xl flex-col items-center gap-3">
           <Upload className="h-8 w-8 text-default-500" />
-          <p className="text-sm text-default-600">Seleccioná un archivo para agregar al proyecto minero.</p>
+          <p className="text-sm text-default-600">
+            Arrastrá y soltá un archivo aquí o seleccioná un archivo para agregar al proyecto minero.
+          </p>
           <Button onPress={() => inputRef.current?.click()} isLoading={agregarArchivosMutation.isPending}>
             Agregar archivo
           </Button>
