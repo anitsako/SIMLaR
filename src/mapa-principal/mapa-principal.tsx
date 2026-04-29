@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
-import { Select, SelectItem } from '@heroui/react';
 import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
 import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.layer';
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
@@ -11,6 +10,7 @@ import { CapaDiques } from '@/diques/capa-diques';
 import { CapaRios } from '@/rios/capa-rios';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
 import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provinciales';
+import { CapasExtrasSelect } from '@/capas-extras/capas-extras.select';
 
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
@@ -22,18 +22,7 @@ export const MapaPrincipal = () => {
       <div className="flex flex-row gap-2 mb-2">
         <ProyectoMineroEtapasField ids={etapasIds} onChange={setEtapasIds} />
         <ProyectoMineroTiposField ids={tiposIds} onChange={setTiposIds} />
-        <Select
-          label="Capas extras"
-          selectionMode="multiple"
-          selectedKeys={capasExtras.map(String)}
-          onSelectionChange={(keys) => setCapasExtras(Array.from(keys as Set<string>).map(String))}
-        >
-          <SelectItem key="aeropuertos">Aeropuertos</SelectItem>
-          <SelectItem key="diques">Diques</SelectItem>
-          <SelectItem key="rios">Ríos</SelectItem>
-          <SelectItem key="rutas-nacionales">Rutas nacionales</SelectItem>
-          <SelectItem key="rutas-provinciales">Rutas provinciales</SelectItem>
-        </Select>
+        <CapasExtrasSelect capasExtras={capasExtras} setCapasExtras={setCapasExtras} />
       </div>
       <div className="w-full h-[550px] relative z-0">
         <MapContainer
