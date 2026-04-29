@@ -5,6 +5,7 @@ export const proyectoMineroArchivosQuery = (proyectoMineroId: number, options?: 
   queryOptions({
     queryKey: ['proyectos-mineros-archivos', proyectoMineroId],
     queryFn: () => getProyectoMineroArchivosFn({ data: { proyectoMineroId } }),
+    initialData: [],
     enabled: options?.enabled ?? true,
   });
 

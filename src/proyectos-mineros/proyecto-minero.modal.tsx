@@ -10,9 +10,11 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@heroui/react';
-import { Expand } from 'lucide-react';
+import { Expand, File as FileIcon } from 'lucide-react';
 import { useProyectoMinero } from './use-proyecto-minero';
 import { decimalToDms } from '@/common/decimal-to-dms';
+import { formatBytes } from '@/common/format-bytes';
+import { useProyectoMineroArchivos } from '@/proyectos-mineros-archivos/use-proyecto-minero-archivos';
 
 function FieldRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
@@ -31,6 +33,9 @@ interface Props {
 
 export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
   const { data } = useProyectoMinero(id!, { enabled: id !== null && isOpen });
+  const { data: archivos, isFetching: isArchivosFetching } = useProyectoMineroArchivos(id!, {
+    enabled: id !== null && isOpen,
+  });
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure();
 
   if (!data) return null;
@@ -96,6 +101,32 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
                   <p className="text-sm pb-2">{data.accesos}</p>
                 </AccordionItem>
               </Accordion>
+
+              <Divider className="my-2" />
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold">Archivos del proyecto</h3>
+                {isArchivosFetching ? (
+                  <p className="text-sm text-default-500">Cargando archivos...</p>
+                ) : archivos.length === 0 ? (
+                  <p className="text-sm text-default-500">No hay archivos adicionales cargados.</p>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    {archivos.map((archivo) => (
+                      <a
+                        key={archivo.archivoId}
+                        href={`/archivos/${archivo.archivoId}/${archivo.nombre}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex flex-col items-center gap-1 rounded-lg border border-default-200 p-2 text-center hover:bg-default-50"
+                      >
+                        <FileIcon size={32} className="text-default-600" />
+                        <span className="line-clamp-2 break-all text-xs font-medium">{archivo.nombre}</span>
+                        <span className="text-xs text-default-500">{formatBytes(archivo.tamaño)}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
