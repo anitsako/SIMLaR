@@ -183,6 +183,13 @@
       "when": 1776637275928,
       "tag": "0025_bent_alex_wilder",
       "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1777504544607,
+      "tag": "0026_clear_korvac",
+      "breakpoints": true
     }
   ]
 }

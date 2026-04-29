@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { useState } from 'react';
-import { BookOpenText, Edit } from 'lucide-react';
+import { BookOpenText, Edit, Files } from 'lucide-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { ProyectoMineroModal } from './proyecto-minero.modal';
 import { useProyectosMinerosCount } from './use-proyectos-mineros-count';
@@ -116,6 +116,20 @@ export const ProyectosMinerosTable = () => {
                         }
                       >
                         <Edit />
+                      </Button>
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        variant="light"
+                        color="secondary"
+                        onPress={() =>
+                          navigate({
+                            to: '/proyectos-mineros/$id/archivos',
+                            params: { id: item.id.toString() },
+                          })
+                        }
+                      >
+                        <Files />
                       </Button>
                     </div>
                   )}

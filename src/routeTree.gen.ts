@@ -26,6 +26,7 @@ import { Route as AuthedUsuariosCrearIndexRouteImport } from './routes/_authed/u
 import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
 import { Route as AuthedUsuariosIdModificarRouteImport } from './routes/_authed/usuarios/$id.modificar'
 import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
+import { Route as AuthedProyectosMinerosIdArchivosRouteImport } from './routes/_authed/proyectos-mineros/$id.archivos'
 
 const AuthedRoute = AuthedRouteImport.update({
   id: '/_authed',
@@ -116,6 +117,12 @@ const AuthedProyectosMinerosIdModificarRoute =
     path: '/proyectos-mineros/$id/modificar',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedProyectosMinerosIdArchivosRoute =
+  AuthedProyectosMinerosIdArchivosRouteImport.update({
+    id: '/proyectos-mineros/$id/archivos',
+    path: '/proyectos-mineros/$id/archivos',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
   '/usuarios/': typeof AuthedUsuariosIndexRoute
+  '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
@@ -148,6 +156,7 @@ export interface FileRoutesByTo {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/carrousel-imagenes': typeof AuthedCarrouselImagenesIndexRoute
   '/usuarios': typeof AuthedUsuariosIndexRoute
+  '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
@@ -168,6 +177,7 @@ export interface FileRoutesById {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/_authed/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
   '/_authed/usuarios/': typeof AuthedUsuariosIndexRoute
+  '/_authed/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/_authed/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/_authed/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/carrousel-imagenes/'
     | '/usuarios/'
+    | '/proyectos-mineros/$id/archivos'
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/modificar'
     | '/proyectos-mineros/crear/'
@@ -206,6 +217,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/carrousel-imagenes'
     | '/usuarios'
+    | '/proyectos-mineros/$id/archivos'
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/modificar'
     | '/proyectos-mineros/crear'
@@ -225,6 +237,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/_authed/carrousel-imagenes/'
     | '/_authed/usuarios/'
+    | '/_authed/proyectos-mineros/$id/archivos'
     | '/_authed/proyectos-mineros/$id/modificar'
     | '/_authed/usuarios/$id/modificar'
     | '/_authed/proyectos-mineros/crear/'
@@ -366,12 +379,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedProyectosMinerosIdModificarRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/proyectos-mineros/$id/archivos': {
+      id: '/_authed/proyectos-mineros/$id/archivos'
+      path: '/proyectos-mineros/$id/archivos'
+      fullPath: '/proyectos-mineros/$id/archivos'
+      preLoaderRoute: typeof AuthedProyectosMinerosIdArchivosRouteImport
+      parentRoute: typeof AuthedRoute
+    }
   }
 }
 
 interface AuthedRouteChildren {
   AuthedCarrouselImagenesIndexRoute: typeof AuthedCarrouselImagenesIndexRoute
   AuthedUsuariosIndexRoute: typeof AuthedUsuariosIndexRoute
+  AuthedProyectosMinerosIdArchivosRoute: typeof AuthedProyectosMinerosIdArchivosRoute
   AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
   AuthedUsuariosIdModificarRoute: typeof AuthedUsuariosIdModificarRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
@@ -381,6 +402,7 @@ interface AuthedRouteChildren {
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedCarrouselImagenesIndexRoute: AuthedCarrouselImagenesIndexRoute,
   AuthedUsuariosIndexRoute: AuthedUsuariosIndexRoute,
+  AuthedProyectosMinerosIdArchivosRoute: AuthedProyectosMinerosIdArchivosRoute,
   AuthedProyectosMinerosIdModificarRoute:
     AuthedProyectosMinerosIdModificarRoute,
   AuthedUsuariosIdModificarRoute: AuthedUsuariosIdModificarRoute,
