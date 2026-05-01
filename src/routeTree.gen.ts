@@ -19,6 +19,7 @@ import { Route as InstitucionalIndexRouteImport } from './routes/institucional/i
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
+import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
 import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
 import { Route as AuthedCarrouselImagenesIndexRouteImport } from './routes/_authed/carrousel-imagenes/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
@@ -77,6 +78,12 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
   path: '/contacto/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EducacionInformativaIndexRoute =
+  EducacionInformativaIndexRouteImport.update({
+    id: '/educacion/informativa/',
+    path: '/educacion/informativa/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthedUsuariosIndexRoute = AuthedUsuariosIndexRouteImport.update({
   id: '/usuarios/',
   path: '/usuarios/',
@@ -137,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
   '/usuarios/': typeof AuthedUsuariosIndexRoute
+  '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
@@ -156,6 +164,7 @@ export interface FileRoutesByTo {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/carrousel-imagenes': typeof AuthedCarrouselImagenesIndexRoute
   '/usuarios': typeof AuthedUsuariosIndexRoute
+  '/educacion/informativa': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/archivos/$id/$nombre': typeof ArchivosIdNombreRoute
   '/_authed/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
   '/_authed/usuarios/': typeof AuthedUsuariosIndexRoute
+  '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/_authed/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/_authed/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/_authed/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/carrousel-imagenes/'
     | '/usuarios/'
+    | '/educacion/informativa/'
     | '/proyectos-mineros/$id/archivos'
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/modificar'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/carrousel-imagenes'
     | '/usuarios'
+    | '/educacion/informativa'
     | '/proyectos-mineros/$id/archivos'
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/modificar'
@@ -237,6 +249,7 @@ export interface FileRouteTypes {
     | '/archivos/$id/$nombre'
     | '/_authed/carrousel-imagenes/'
     | '/_authed/usuarios/'
+    | '/educacion/informativa/'
     | '/_authed/proyectos-mineros/$id/archivos'
     | '/_authed/proyectos-mineros/$id/modificar'
     | '/_authed/usuarios/$id/modificar'
@@ -256,6 +269,7 @@ export interface RootRouteChildren {
   ServiciosIndexRoute: typeof ServiciosIndexRoute
   TransparenciaIndexRoute: typeof TransparenciaIndexRoute
   ArchivosIdNombreRoute: typeof ArchivosIdNombreRoute
+  EducacionInformativaIndexRoute: typeof EducacionInformativaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -328,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/contacto'
       fullPath: '/contacto/'
       preLoaderRoute: typeof ContactoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/educacion/informativa/': {
+      id: '/educacion/informativa/'
+      path: '/educacion/informativa'
+      fullPath: '/educacion/informativa/'
+      preLoaderRoute: typeof EducacionInformativaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authed/usuarios/': {
@@ -425,6 +446,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServiciosIndexRoute: ServiciosIndexRoute,
   TransparenciaIndexRoute: TransparenciaIndexRoute,
   ArchivosIdNombreRoute: ArchivosIdNombreRoute,
+  EducacionInformativaIndexRoute: EducacionInformativaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
