@@ -1,6 +1,6 @@
 import { ClientOnly, Link, createFileRoute } from '@tanstack/react-router';
 
-import { FeaturedNews } from '../noticias/noticias-destacadas';
+// import { FeaturedNews } from '../noticias/noticias-destacadas';
 import { Carrousel } from '@/carrousel-imagenes/carrousel';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 
@@ -35,6 +35,7 @@ function Home() {
       </section>
 
       {/* Noticias */}
+      {/*
       <section>
         <div className="mb-4 border-b border-primary/50 pb-2">
           <h2 className="text-lg font-semibold">Noticias destacadas</h2>
@@ -43,6 +44,7 @@ function Home() {
 
         <FeaturedNews />
       </section>
+      */}
 
       {/* Accesos rápidos */}
       <section>

@@ -23,7 +23,7 @@ import {
   LibraryBig,
   Link,
   MenuIcon,
-  Newspaper,
+  // Newspaper,
   Pickaxe,
   Settings,
   Users,
@@ -65,9 +65,11 @@ export const PanelLateral = () => {
               <ListboxItem href="/transparencia" color="primary" startContent={<Blend />}>
                 Transparencia
               </ListboxItem>
+              {/*
               <ListboxItem href="/noticias" color="primary" startContent={<Newspaper />}>
                 Noticias
               </ListboxItem>
+              */}
               <ListboxItem href="/educacion" color="primary" startContent={<LibraryBig />}>
                 Educación minera
               </ListboxItem>
