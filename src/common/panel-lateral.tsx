@@ -21,7 +21,7 @@ import {
   House,
   Images,
   LibraryBig,
-  Link,
+  // Link,
   MenuIcon,
   // Newspaper,
   Pickaxe,
@@ -51,11 +51,13 @@ export const PanelLateral = () => {
               <ListboxItem href="/proyectos-mineros" color="primary" startContent={<Pickaxe />}>
                 Proyectos mineros
               </ListboxItem>
+              {/*
               <ListboxItem color="primary" startContent={<Link />}>
                 <a href="http://www.catastrolr.com.ar/home.php" target="_blank">
                   Catastro minero
                 </a>
               </ListboxItem>
+              */}
               <ListboxItem href="/datos-abiertos" color="primary" startContent={<Braces />}>
                 Datos abiertos
               </ListboxItem>
