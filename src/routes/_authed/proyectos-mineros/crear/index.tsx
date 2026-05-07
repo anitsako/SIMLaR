@@ -96,7 +96,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="mt-4 space-y-6">
+    <div className="my-4 space-y-6">
       <h1 className="text-2xl font-bold">Crear proyecto minero</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
