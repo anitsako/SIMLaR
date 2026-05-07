@@ -8,7 +8,7 @@ export const Route = createFileRoute('/educacion/')({
 
 function RouteComponent() {
   return (
-    <div className="max-w-6xl w-full mt-4 space-y-6">
+    <div className="mt-4 space-y-6">
       <h1 className="text-5xl font-bold flex justify-center">Educación minera</h1>
       <div className="flex flex-row gap-4">
         <Link to="/educacion/informativa">

@@ -16,7 +16,7 @@ export const Route = createFileRoute('/educacion/informativa/')({
 
 function RouteComponent() {
   return (
-    <div className="max-w-6xl mx-auto px-25 overflow-visible">
+    <div className="mt-4 space-y-6">
       <div className="flex flex-row justify-center mt-5 gap-4">
         <Link to="/educacion">
           <Button variant="flat" color="primary">

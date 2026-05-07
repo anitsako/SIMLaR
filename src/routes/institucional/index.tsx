@@ -258,102 +258,99 @@ function SectionHeader({ title, subtitle, right }: { title: string; subtitle?: s
 
 function RouteComponent() {
   return (
-    <main className="w-full bg-white">
-      <div className="mx-auto max-w-6xl space-y-12 px-6 py-8">
-        <section>
-          <div className="mb-4 border-b border-primary/50 pb-3">
-            <h1 className="text-3xl font-bold md:text-4xl">Institucional</h1>
-            <p className="text-sm text-black/60">Autoridades, objetivos y organismos vinculados</p>
-          </div>
-        </section>
+    <div className="mt-4 space-y-6">
+      <section>
+        <div className="mb-4 border-b border-primary/50 pb-3">
+          <h1 className="text-3xl font-bold md:text-4xl">Institucional</h1>
+          <p className="text-sm text-black/60">Autoridades, objetivos y organismos vinculados</p>
+        </div>
+      </section>
 
-        <section>
-          <SectionHeader title="Autoridades" subtitle="Gobierno provincial, áreas vinculadas y empresas estatales" />
+      <section>
+        <SectionHeader title="Autoridades" subtitle="Gobierno provincial, áreas vinculadas y empresas estatales" />
 
-          <div className="space-y-14">
-            {SECCIONES_AUTORIDADES.map((seccion) => (
-              <div key={seccion.titulo}>
-                <p className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''}`}>
-                  {seccion.titulo}
-                </p>
+        <div className="space-y-14">
+          {SECCIONES_AUTORIDADES.map((seccion) => (
+            <div key={seccion.titulo}>
+              <p className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''}`}>
+                {seccion.titulo}
+              </p>
 
-                <div className={seccion.columns}>
-                  {seccion.items.map((item) =>
-                    seccion.itemWrapper ? (
-                      <div key={item.nombre} className={seccion.itemWrapper}>
-                        <AutoridadCard item={item} />
-                      </div>
-                    ) : (
-                      <AutoridadCard key={item.nombre} item={item} />
-                    )
-                  )}
-                </div>
+              <div className={seccion.columns}>
+                {seccion.items.map((item) =>
+                  seccion.itemWrapper ? (
+                    <div key={item.nombre} className={seccion.itemWrapper}>
+                      <AutoridadCard item={item} />
+                    </div>
+                  ) : (
+                    <AutoridadCard key={item.nombre} item={item} />
+                  )
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <SectionHeader title="Objetivos y alcance de SIMLaR" subtitle="Marco general y líneas de trabajo" />
+
+        <div className="mt-6 space-y-6">
+          <p className="leading-relaxed text-black/70">
+            <strong>SIMLaR – Sistema de Información Minera de La Rioja</strong> es una plataforma digital desarrollada
+            por mano de obra riojana destinada a centralizar, organizar y visualizar información geográfica y técnica
+            vinculada a la actividad minera de la provincia.
+          </p>
+
+          <p className="leading-relaxed text-black/70">
+            A través de herramientas de visualización geoespacial, el sistema permite integrar distintas fuentes de
+            información y facilitar el acceso a datos estratégicos para la planificación y gestión del sector minero.
+          </p>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {METRICAS.map((metrica) => (
+              <div key={metrica.label} className="rounded-lg border p-6 text-center transition hover:shadow-md">
+                <p className="text-4xl font-bold text-primary">{metrica.valor}</p>
+                <p className="mt-2 text-sm uppercase tracking-wide text-black/60">{metrica.label}</p>
               </div>
             ))}
           </div>
-        </section>
 
-        <section>
-          <SectionHeader title="Objetivos y alcance de SIMLaR" subtitle="Marco general y líneas de trabajo" />
+          <p className="mt-2 text-lg font-semibold">Objetivos del sistema</p>
 
-          <div className="mt-6 space-y-6">
-            <p className="leading-relaxed text-black/70">
-              <strong>SIMLaR – Sistema de Información Minera de La Rioja</strong> es una plataforma digital desarrollada
-              por mano de obra riojana destinada a centralizar, organizar y visualizar información geográfica y técnica
-              vinculada a la actividad minera de la provincia.
-            </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {OBJETIVOS.map((objetivo) => {
+              const Icon = objetivo.icon;
 
-            <p className="leading-relaxed text-black/70">
-              A través de herramientas de visualización geoespacial, el sistema permite integrar distintas fuentes de
-              información y facilitar el acceso a datos estratégicos para la planificación y gestión del sector minero.
-            </p>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-              {METRICAS.map((metrica) => (
-                <div key={metrica.label} className="rounded-lg border p-6 text-center transition hover:shadow-md">
-                  <p className="text-4xl font-bold text-primary">{metrica.valor}</p>
-                  <p className="mt-2 text-sm uppercase tracking-wide text-black/60">{metrica.label}</p>
+              return (
+                <div key={objetivo.titulo} className="rounded-lg border p-5 transition hover:shadow-md">
+                  <Icon className="mb-3 h-8 w-8 text-primary" />
+                  <p className="mb-1 font-semibold">{objetivo.titulo}</p>
+                  <p className="text-sm text-black/60">{objetivo.descripcion}</p>
                 </div>
-              ))}
-            </div>
-
-            <p className="mt-2 text-lg font-semibold">Objetivos del sistema</p>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {OBJETIVOS.map((objetivo) => {
-                const Icon = objetivo.icon;
-
-                return (
-                  <div key={objetivo.titulo} className="rounded-lg border p-5 transition hover:shadow-md">
-                    <Icon className="mb-3 h-8 w-8 text-primary" />
-                    <p className="mb-1 font-semibold">{objetivo.titulo}</p>
-                    <p className="text-sm text-black/60">{objetivo.descripcion}</p>
-                  </div>
-                );
-              })}
-            </div>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section>
-          <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
+      <section>
+        <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {ACCESOS_RAPIDOS.map((acceso) => (
-              <a
-                key={acceso.href}
-                href={acceso.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-24 items-center justify-center transition hover:opacity-80"
-              >
-                <img src={acceso.src} alt={acceso.alt} className="max-h-14 w-auto object-contain" />
-              </a>
-            ))}
-          </div>
-        </section>
-      </div>
-    </main>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {ACCESOS_RAPIDOS.map((acceso) => (
+            <a
+              key={acceso.href}
+              href={acceso.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-24 items-center justify-center transition hover:opacity-80"
+            >
+              <img src={acceso.src} alt={acceso.alt} className="max-h-14 w-auto object-contain" />
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
-

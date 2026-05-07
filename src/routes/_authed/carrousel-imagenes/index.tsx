@@ -171,7 +171,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="flex flex-col mt-4">
+    <div className="flex flex-col mt-4 space-y-6">
       <p className="text-5xl font-bold text-center">Configuración del carrousel de imágenes</p>
       <div className="mt-4">
         <Swiper

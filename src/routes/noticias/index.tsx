@@ -41,55 +41,105 @@ function RouteComponent() {
   const rest: Array<LatestNewsItem> = items.slice(1);
 
   return (
-    <main className="w-full bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-8 space-y-12">
-        {/* Título */}
-        <section>
-          <div className="border-b border-[#E62138]/50 pb-3 mb-4">
-            <h1 className="text-3xl md:text-4xl font-bold">Noticias</h1>
-            <p className="text-sm text-black/60">Últimas noticias desde múltiples portales.</p>
+    <div className="mt-4 space-y-6">
+      {/* Título */}
+      <section>
+        <div className="border-b border-[#E62138]/50 pb-3 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold">Noticias</h1>
+          <p className="text-sm text-black/60">Últimas noticias desde múltiples portales.</p>
+        </div>
+      </section>
+
+      {/* Contenido */}
+      <section>
+        <SectionHeader
+          title="Últimas noticias"
+          subtitle="Selección automática desde fuentes configuradas"
+          right={
+            <Button
+              variant="flat"
+              startContent={<RefreshCcw size={16} />}
+              isLoading={rssQuery.isFetching}
+              onPress={() => void rssQuery.refetch()}
+              className="text-[#E62138]"
+            >
+              Actualizar
+            </Button>
+          }
+        />
+
+        {rssQuery.isLoading ? (
+          <div className="flex items-center gap-3 text-black/70">
+            <Spinner size="sm" />
+            <span>Cargando noticias…</span>
           </div>
-        </section>
+        ) : items.length === 0 ? (
+          <Card className="rounded-none border shadow-sm">
+            <CardBody>
+              <p className="text-black/70">No se pudieron cargar noticias desde las fuentes configuradas.</p>
+            </CardBody>
+          </Card>
+        ) : (
+          <div className="flex flex-col gap-6">
+            {/* NOTICIA PRINCIPAL */}
+            {top && (
+              <Card className="rounded-none overflow-hidden border hover:shadow-lg transition-shadow">
+                {top.imageUrl ? (
+                  <div className="w-full h-72 md:h-80 overflow-hidden">
+                    <img
+                      src={top.imageUrl}
+                      alt={top.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                ) : null}
 
-        {/* Contenido */}
-        <section>
-          <SectionHeader
-            title="Últimas noticias"
-            subtitle="Selección automática desde fuentes configuradas"
-            right={
-              <Button
-                variant="flat"
-                startContent={<RefreshCcw size={16} />}
-                isLoading={rssQuery.isFetching}
-                onPress={() => void rssQuery.refetch()}
-                className="text-[#E62138]"
-              >
-                Actualizar
-              </Button>
-            }
-          />
+                <CardBody className="flex flex-col gap-3 p-6">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Chip size="sm" variant="flat">
+                      {top.source ?? 'Noticias'}
+                    </Chip>
+                    {top.publishedAt ? (
+                      <span className="text-xs text-black/60">{new Date(top.publishedAt).toLocaleString('es-AR')}</span>
+                    ) : null}
+                  </div>
 
-          {rssQuery.isLoading ? (
-            <div className="flex items-center gap-3 text-black/70">
-              <Spinner size="sm" />
-              <span>Cargando noticias…</span>
-            </div>
-          ) : items.length === 0 ? (
-            <Card className="rounded-none border shadow-sm">
-              <CardBody>
-                <p className="text-black/70">No se pudieron cargar noticias desde las fuentes configuradas.</p>
-              </CardBody>
-            </Card>
-          ) : (
-            <div className="flex flex-col gap-6">
-              {/* NOTICIA PRINCIPAL */}
-              {top && (
-                <Card className="rounded-none overflow-hidden border hover:shadow-lg transition-shadow">
-                  {top.imageUrl ? (
-                    <div className="w-full h-72 md:h-80 overflow-hidden">
+                  <p className="text-2xl md:text-3xl font-bold leading-tight">{top.title}</p>
+
+                  {top.summary ? (
+                    <p className="text-base text-black/70 leading-relaxed line-clamp-4">{top.summary}</p>
+                  ) : null}
+
+                  <div className="mt-2">
+                    <Button
+                      as="a"
+                      href={top.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      endContent={<ExternalLink size={16} />}
+                      className="bg-[#E62138] text-white"
+                    >
+                      Leer nota
+                    </Button>
+                  </div>
+                </CardBody>
+              </Card>
+            )}
+
+            {/* RESTO EN GRILLA */}
+            <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
+              {rest.map((n) => (
+                <Card
+                  key={`${n.source ?? 'src'}-${n.url}`}
+                  className="h-full rounded-none overflow-hidden border hover:shadow-lg transition-shadow"
+                >
+                  {n.imageUrl ? (
+                    <div className="w-full h-44 overflow-hidden">
                       <img
-                        src={top.imageUrl}
-                        alt={top.title}
+                        src={n.imageUrl}
+                        alt={n.title}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                         referrerPolicy="no-referrer"
@@ -100,94 +150,40 @@ function RouteComponent() {
                   <CardBody className="flex flex-col gap-3 p-6">
                     <div className="flex items-center gap-2 flex-wrap">
                       <Chip size="sm" variant="flat">
-                        {top.source ?? 'Noticias'}
+                        {n.source ?? 'Noticias'}
                       </Chip>
-                      {top.publishedAt ? (
+                      {n.publishedAt ? (
                         <span className="text-xs text-black/60">
-                          {new Date(top.publishedAt).toLocaleString('es-AR')}
+                          {new Date(n.publishedAt).toLocaleDateString('es-AR')}
                         </span>
                       ) : null}
                     </div>
 
-                    <p className="text-2xl md:text-3xl font-bold leading-tight">{top.title}</p>
+                    <p className="text-lg font-semibold leading-snug line-clamp-2">{n.title}</p>
 
-                    {top.summary ? (
-                      <p className="text-base text-black/70 leading-relaxed line-clamp-4">{top.summary}</p>
-                    ) : null}
+                    {n.summary ? <p className="text-sm text-black/70 line-clamp-3">{n.summary}</p> : null}
 
-                    <div className="mt-2">
+                    <div className="mt-auto">
                       <Button
                         as="a"
-                        href={top.url}
+                        href={n.url}
                         target="_blank"
                         rel="noreferrer"
                         endContent={<ExternalLink size={16} />}
-                        className="bg-[#E62138] text-white"
+                        variant="flat"
+                        size="sm"
+                        className="text-[#E62138]"
                       >
                         Leer nota
                       </Button>
                     </div>
                   </CardBody>
                 </Card>
-              )}
-
-              {/* RESTO EN GRILLA */}
-              <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
-                {rest.map((n) => (
-                  <Card
-                    key={`${n.source ?? 'src'}-${n.url}`}
-                    className="h-full rounded-none overflow-hidden border hover:shadow-lg transition-shadow"
-                  >
-                    {n.imageUrl ? (
-                      <div className="w-full h-44 overflow-hidden">
-                        <img
-                          src={n.imageUrl}
-                          alt={n.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                    ) : null}
-
-                    <CardBody className="flex flex-col gap-3 p-6">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <Chip size="sm" variant="flat">
-                          {n.source ?? 'Noticias'}
-                        </Chip>
-                        {n.publishedAt ? (
-                          <span className="text-xs text-black/60">
-                            {new Date(n.publishedAt).toLocaleDateString('es-AR')}
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <p className="text-lg font-semibold leading-snug line-clamp-2">{n.title}</p>
-
-                      {n.summary ? <p className="text-sm text-black/70 line-clamp-3">{n.summary}</p> : null}
-
-                      <div className="mt-auto">
-                        <Button
-                          as="a"
-                          href={n.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          endContent={<ExternalLink size={16} />}
-                          variant="flat"
-                          size="sm"
-                          className="text-[#E62138]"
-                        >
-                          Leer nota
-                        </Button>
-                      </div>
-                    </CardBody>
-                  </Card>
-                ))}
-              </div>
+              ))}
             </div>
-          )}
-        </section>
-      </div>
-    </main>
+          </div>
+        )}
+      </section>
+    </div>
   );
 }

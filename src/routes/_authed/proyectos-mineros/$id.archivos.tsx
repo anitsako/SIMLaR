@@ -16,7 +16,7 @@ function RouteComponent() {
   const { data: proyecto } = useSuspenseQuery(proyectoMineroQuery(Number(id)));
 
   return (
-    <div className="mx-auto space-y-6 p-6">
+    <div className="mt-4 space-y-6">
       <div className="flex items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold">Archivos del proyecto minero</h1>
