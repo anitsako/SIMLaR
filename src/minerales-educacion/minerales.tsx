@@ -1,7 +1,19 @@
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stage, useGLTF } from '@react-three/drei';
+import { Html, OrbitControls, Stage, useGLTF } from '@react-three/drei';
 import { Suspense } from 'react';
-import { Card, CardBody, CardHeader, Chip, Divider } from '@heroui/react';
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Chip,
+  CircularProgress,
+  Divider,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSection,
+  DropdownTrigger,
+} from '@heroui/react';
 import type { Mineral, MineralProps, modelProps } from './datos-minerales';
 
 function Model(props: modelProps) {
@@ -47,19 +59,41 @@ export default function Mineral({ mineral }: MineralProps) {
             </div>
 
             <Divider />
-
-            <div>
-              <p className={`font-semibold text-${mineral.color}-700 mb-2`}>Usos y Aplicaciones:</p>
-              <div className="flex flex-wrap gap-2">
-                {mineral.usosAplicaciones.map((uso) => (
-                  <Chip key={uso} color={mineral.chipColor} variant="flat">
-                    {uso}
-                  </Chip>
-                ))}
+            {mineral.usosAplicaciones && (
+              <div>
+                <p className={`font-semibold text-${mineral.color}-700 mb-2`}>Usos y Aplicaciones:</p>
+                <div className="flex flex-wrap gap-2">
+                  {mineral.usosAplicaciones.map((uso) => (
+                    <Dropdown
+                      showArrow
+                      classNames={{
+                        base: 'before:bg-default-200 ',
+                        content: 'border border-default-200 bg-white text-black-400',
+                      }}
+                    >
+                      <DropdownTrigger>
+                        <Chip key={uso.name} color={mineral.chipColor} variant="flat" className="cursor-pointer">
+                          {uso.name}
+                        </Chip>
+                      </DropdownTrigger>
+                      <DropdownMenu className="max-w-[280px]">
+                        <DropdownSection title={uso.name}>
+                          <DropdownItem
+                            key={uso.name}
+                            isReadOnly
+                            className="data-[hover=true]:bg-white data-[hover=true]:text-black block w-full cursor-default text-left text-black text-md whitespace-normal break-words leading-relaxed"
+                          >
+                            <div className="whitespace-normal break-words">{uso.detalle}</div>
+                          </DropdownItem>
+                        </DropdownSection>
+                      </DropdownMenu>
+                    </Dropdown>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            <Divider />
+            {mineral.usosAplicaciones && <Divider />}
 
             {mineral.origenGeologico && (
               <div>
@@ -71,7 +105,13 @@ export default function Mineral({ mineral }: MineralProps) {
         </Card>
         {mineral.modelPath ? (
           <Canvas style={{ height: '650px', width: '50%' }} frameloop="always" dpr={[1, 1.15]}>
-            <Suspense fallback={null}>
+            <Suspense
+              fallback={
+                <Html center>
+                  <CircularProgress label="Cargando modelo..." color="default" />
+                </Html>
+              }
+            >
               <Stage environment="city" intensity={0.6} shadows={false}>
                 <Model modelPath={mineral.modelPath} />
               </Stage>
