@@ -26,9 +26,9 @@ function RouteComponent() {
         <h1 className="text-3xl font-bold text-center">Sección Informativa</h1>
       </div>
       <Swiper cssMode={true} navigation={true} spaceBetween={50} slidesPerView={1} modules={[Navigation]}>
-        {datosMinerales.map((mineral) => (
+        {datosMinerales.map((mineral, idx) => (
           <SwiperSlide key={mineral.name}>
-            <Mineral mineral={mineral} />
+            <Mineral key={idx} mineral={mineral} />
           </SwiperSlide>
         ))}
       </Swiper>
