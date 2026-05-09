@@ -19,7 +19,7 @@ export type Mapa = {
 
 export const mapas: Array<Mapa> = [
   {
-    path: '/public/hojas-geologicas/hoja-pais-h250.jpg',
+    path: '/hojas-geologicas/hoja-pais-h250.jpg',
     accordionDescription: [
       {
         key: 1,
@@ -60,7 +60,7 @@ export const mapas: Array<Mapa> = [
     ],
   },
   {
-    path: 'public/hojas-geologicas/Geológico-Regional-La Rioja.jpg',
+    path: '/hojas-geologicas/Geológico-Regional-La Rioja.jpg',
     accordionDescription: [
       {
         key: 1,
