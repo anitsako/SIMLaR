@@ -1,9 +1,10 @@
+import { unlink } from 'node:fs/promises';
+import path from 'node:path';
 import { createServerFn } from '@tanstack/react-start';
 import { and, eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
-import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 import { archivosTable } from '@/db/schemas/archivos.schema';
 import { proyectosMinerosArchivosTable } from '@/db/schemas/proyectos-mineros-archivos.schema';
 
@@ -22,6 +23,11 @@ export const removeProyectoMineroArchivoFn = createServerFn({ method: 'POST' })
       throw new Error('Usuario no autenticado');
     }
 
+    const filesPath = process.env.FILES_PATH;
+    if (!filesPath) {
+      throw new Error('FILES_PATH no está definida');
+    }
+
     return db.transaction(async (tx) => {
       await tx
         .delete(proyectosMinerosArchivosTable)
@@ -32,7 +38,15 @@ export const removeProyectoMineroArchivoFn = createServerFn({ method: 'POST' })
           )
         );
 
-      await tx.delete(archivosContenidosTable).where(eq(archivosContenidosTable.archivoId, data.archivoId));
+      try {
+        await unlink(path.join(filesPath, data.archivoId));
+      } catch (error) {
+        const isEnoent = typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
+        if (!isEnoent) {
+          throw error;
+        }
+      }
+
       await tx.delete(archivosTable).where(eq(archivosTable.id, data.archivoId));
 
       return { archivoId: data.archivoId };
