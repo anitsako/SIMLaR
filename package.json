@@ -11,6 +11,8 @@
     "db:push": "drizzle-kit push --config=drizzle.config.local.ts",
     "db:generate:prod": "drizzle-kit generate --config=drizzle.config.prod.ts",
     "db:migrate:prod": "drizzle-kit migrate --config=drizzle.config.prod.ts",
+    "files:download": "tsx scripts/download-archivos.local.ts",
+    "files:download:prod": "tsx scripts/download-archivos.prod.ts",
     "docker:build:prod": "docker build -t ghcr.io/mfpuentear/simlar:$npm_package_version .",
     "docker:push:prod": "docker push ghcr.io/mfpuentear/simlar:$npm_package_version"
   },
