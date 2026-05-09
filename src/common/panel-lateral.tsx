@@ -21,6 +21,7 @@ import {
   House,
   Images,
   LibraryBig,
+  Map,
   // Link,
   MenuIcon,
   // Newspaper,
@@ -74,6 +75,9 @@ export const PanelLateral = () => {
               */}
               <ListboxItem href="/educacion" color="primary" startContent={<LibraryBig />}>
                 Educación minera
+              </ListboxItem>
+              <ListboxItem href="/mapas-geologicos" color="primary" startContent={<Map />}>
+                Mapas geológicos
               </ListboxItem>
               <ListboxItem href="/contacto" color="primary" startContent={<ContactRound />}>
                 Contacto

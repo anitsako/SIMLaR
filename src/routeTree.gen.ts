@@ -15,6 +15,7 @@ import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/i
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
 import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
+import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
@@ -56,6 +57,11 @@ const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
 const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
   id: '/noticias/',
   path: '/noticias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapasGeologicosIndexRoute = MapasGeologicosIndexRouteImport.update({
+  id: '/mapas-geologicos/',
+  path: '/mapas-geologicos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
@@ -157,6 +164,7 @@ export interface FileRoutesByTo {
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/educacion': typeof EducacionIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
+  '/mapas-geologicos': typeof MapasGeologicosIndexRoute
   '/noticias': typeof NoticiasIndexRoute
   '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
   '/servicios': typeof ServiciosIndexRoute
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
+  '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/datos-abiertos/'
     | '/educacion/'
     | '/institucional/'
+    | '/mapas-geologicos/'
     | '/noticias/'
     | '/proyectos-mineros/'
     | '/servicios/'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/datos-abiertos'
     | '/educacion'
     | '/institucional'
+    | '/mapas-geologicos'
     | '/noticias'
     | '/proyectos-mineros'
     | '/servicios'
@@ -242,6 +253,7 @@ export interface FileRouteTypes {
     | '/datos-abiertos/'
     | '/educacion/'
     | '/institucional/'
+    | '/mapas-geologicos/'
     | '/noticias/'
     | '/proyectos-mineros/'
     | '/servicios/'
@@ -264,6 +276,7 @@ export interface RootRouteChildren {
   DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   EducacionIndexRoute: typeof EducacionIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
+  MapasGeologicosIndexRoute: typeof MapasGeologicosIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
   ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
   ServiciosIndexRoute: typeof ServiciosIndexRoute
@@ -314,6 +327,13 @@ declare module '@tanstack/react-router' {
       path: '/noticias'
       fullPath: '/noticias/'
       preLoaderRoute: typeof NoticiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapas-geologicos/': {
+      id: '/mapas-geologicos/'
+      path: '/mapas-geologicos'
+      fullPath: '/mapas-geologicos/'
+      preLoaderRoute: typeof MapasGeologicosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/institucional/': {
@@ -441,6 +461,7 @@ const rootRouteChildren: RootRouteChildren = {
   DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   EducacionIndexRoute: EducacionIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
+  MapasGeologicosIndexRoute: MapasGeologicosIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
   ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
   ServiciosIndexRoute: ServiciosIndexRoute,
