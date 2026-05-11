@@ -4,6 +4,7 @@ import { Button } from '@heroui/react';
 import { Navigation } from 'swiper/modules';
 import { datosMinerales } from 'src/minerales-educacion/datos-minerales';
 import Mineral from 'src/minerales-educacion/minerales';
+import SectionTitle from '@/common/sectionTitle';
 
 // @ts-ignore: Se ignora css
 import 'swiper/css';
@@ -23,7 +24,7 @@ function RouteComponent() {
             ← Volver
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold text-center">Sección Informativa</h1>
+        <SectionTitle title="Sección Informativa" sizeTitle="3xl" textCenter />
       </div>
       <Swiper cssMode={true} navigation={true} spaceBetween={50} slidesPerView={1} modules={[Navigation]}>
         {datosMinerales.map((mineral, idx) => (

@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Construction } from 'lucide-react';
 import { Alert, Card, CardBody, CardFooter, CardHeader } from '@heroui/react';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/educacion/')({
   component: RouteComponent,
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/educacion/')({
 function RouteComponent() {
   return (
     <div className="mt-4 space-y-6">
-      <h1 className="text-5xl font-bold flex justify-center">Educación minera</h1>
+      <SectionTitle title="Educación minera" sizeTitle="5xl" textCenter />
       <div className="flex flex-row gap-4">
         <Link to="/educacion/informativa">
           <Card className="w-xl py-4 transition duration-200 ease-in-out hover:scale-102 cursor-pointer">

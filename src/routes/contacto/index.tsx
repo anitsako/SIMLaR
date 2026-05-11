@@ -1,7 +1,7 @@
 import { Button, Card, CardBody } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Mail, MapPin, MessageSquare } from 'lucide-react';
-
+import SectionTitle from '@/common/sectionTitle';
 import Formulario from '@/form-consultas/form';
 import { ContactoInstitucional } from '@/form-consultas/contacto-institucional';
 
@@ -29,13 +29,15 @@ function RouteComponent() {
       <section>
         <div className="border-b border-primary/50 pb-3 mb-4">
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-3xl md:text-4xl font-bold">Contacto</h1>
+            <SectionTitle
+              title="Contacto"
+              subtitle="Información institucional y canales de comunicación"
+              sizeSubtitle="md"
+            />
             <span className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium">
               Atención online
             </span>
           </div>
-
-          <p className="text-sm text-black/60 mt-2">Información institucional y canales de comunicación</p>
 
           {/* Anclas rápidas */}
           <div className="flex flex-wrap gap-3 mt-4">

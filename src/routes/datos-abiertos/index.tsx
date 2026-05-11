@@ -1,6 +1,7 @@
 import { Alert } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Construction } from 'lucide-react';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/datos-abiertos/')({
   component: RouteComponent,
@@ -18,11 +19,11 @@ const sections = [
 function RouteComponent() {
   return (
     <div className="mt-4 space-y-6">
-      <p className="text-5xl font-bold text-center">Datos abiertos</p>
+      <SectionTitle title="Datos abiertos" sizeTitle="5xl" textCenter />
 
       {sections.map((title) => (
         <div key={title}>
-          <p className="text-3xl font-bold mt-4">{title}</p>
+          <SectionTitle title={title} sizeTitle="3xl" />
 
           <Alert icon={<Construction />} color="warning">
             En construcción

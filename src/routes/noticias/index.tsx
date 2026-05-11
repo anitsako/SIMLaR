@@ -6,6 +6,7 @@ import { ExternalLink, RefreshCcw } from 'lucide-react';
 import { NUEVAS_FUENTES } from '../../noticias/rss/nuevas-fuentes';
 import { getLatestFromSources } from '../../noticias/rss/noticias-rss';
 import type { LatestNewsItem } from '../../noticias/rss/noticias-rss';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/noticias/')({
   component: RouteComponent,
@@ -45,8 +46,13 @@ function RouteComponent() {
       {/* Título */}
       <section>
         <div className="border-b border-[#E62138]/50 pb-3 mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold">Noticias</h1>
-          <p className="text-sm text-black/60">Últimas noticias desde múltiples portales.</p>
+          <SectionTitle
+            title="Noticias"
+            sizeTitle="3xl"
+            responsiveMd
+            subtitle="Últimas noticias desde múltiples portales."
+            sizeSubtitle="sm"
+          />
         </div>
       </section>
 

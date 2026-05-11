@@ -17,6 +17,7 @@ import { Expand } from 'lucide-react';
 import { useState } from 'react';
 import type { Mapa } from '@/mapas/datos-mapas';
 import { mapas } from '@/mapas/datos-mapas';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/mapas-geologicos/')({
   component: RouteComponent,
@@ -33,7 +34,7 @@ function RouteComponent() {
 
   return (
     <>
-      <p className="text-5xl font-bold text-center mt-4">Mapas geológicos</p>
+      <SectionTitle title="Mapas geológicos" sizeTitle="5xl" textCenter />
       {mapas.map((mapa: Mapa, index: number) => (
         <div key={index} className="max-w-6xl mb-4">
           <div className="flex flex-col gap-6 mt-6">
@@ -75,7 +76,7 @@ function RouteComponent() {
           <Modal isOpen={isImageOpen} onClose={onImageClose} size="full">
             <ModalContent>
               <ModalBody className="pb-6 flex items-center justify-center">
-                <Image className="max-h-screen object-contain" src={selectedImage} alt="Hoja geológica" radius="none" />
+                <Image className="max-h-screen" src={selectedImage} alt="Hoja geológica" radius="none" />
               </ModalBody>
             </ModalContent>
           </Modal>

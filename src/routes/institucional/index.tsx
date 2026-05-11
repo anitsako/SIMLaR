@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Database, Eye, Facebook, Instagram, Layers, Map, Network, Twitter } from 'lucide-react';
 import { Card, CardBody } from '@heroui/react';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/institucional/')({
   component: RouteComponent,
@@ -261,8 +262,13 @@ function RouteComponent() {
     <div className="mt-4 space-y-6">
       <section>
         <div className="mb-4 border-b border-primary/50 pb-3">
-          <h1 className="text-3xl font-bold md:text-4xl">Institucional</h1>
-          <p className="text-sm text-black/60">Autoridades, objetivos y organismos vinculados</p>
+          <SectionTitle
+            title="Contacto institucional"
+            subtitle="Información de autoridades, organismos vinculados y objetivos del sistema"
+            sizeTitle="3xl"
+            sizeSubtitle="md"
+            responsiveMd
+          />
         </div>
       </section>
 
@@ -316,7 +322,7 @@ function RouteComponent() {
             ))}
           </div>
 
-          <p className="mt-2 text-lg font-semibold">Objetivos del sistema</p>
+          <SectionTitle title="Objetivos del sistema" sizeTitle="lg" fontSemiBold={true} />
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {OBJETIVOS.map((objetivo) => {

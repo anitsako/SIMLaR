@@ -18,6 +18,7 @@ import type { Swiper as SwiperInstance } from 'swiper';
 import { cargarImagenesCarrouselFn } from '@/carrousel-imagenes/cargar-imagenes-carrousel.fn';
 import { useImagenesCarrousel } from '@/carrousel-imagenes/use-imagenes-carrousel';
 import { uploadArchivoFn } from '@/common/uploadArchivo';
+import SectionTitle from '@/common/sectionTitle';
 
 // @ts-ignore: Se ignora css
 import 'swiper/css';
@@ -172,7 +173,7 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col mt-4 space-y-6">
-      <p className="text-5xl font-bold text-center">Configuración del carrousel de imágenes</p>
+      <SectionTitle title="Configuración del carrousel de imágenes" sizeTitle="5xl" textCenter />
       <div className="mt-4">
         <Swiper
           modules={[Autoplay, FreeMode, Navigation, Thumbs]}

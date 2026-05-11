@@ -1,6 +1,7 @@
 import { Alert, Button, Card, CardBody } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { ClipboardList, Construction, ExternalLink } from 'lucide-react';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/servicios/')({
   component: RouteComponent,
@@ -22,10 +23,13 @@ function RouteComponent() {
   return (
     <div className="mt-4 space-y-6">
       <section>
-        <div className="mb-4 border-b border-primary/50 pb-3">
-          <h1 className="text-3xl font-bold md:text-4xl">Servicios</h1>
-          <p className="text-sm text-black/60">Accesos y herramientas digitales para el sector</p>
-        </div>
+        <SectionTitle
+          title="Servicios"
+          sizeTitle="3xl"
+          subtitle="Accesos y herramientas digitales para el sector"
+          sizeSubtitle="sm"
+          responsiveMd
+        />
       </section>
 
       <section>
@@ -52,11 +56,13 @@ function RouteComponent() {
                   <ClipboardList className="h-10 w-10 text-primary" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">Portal de Proveedores Mineros</p>
-                  <p className="mt-1 text-sm text-black/60">
-                    Realizá el registro y gestioná la información vinculada a proveedores del sector minero en la
-                    provincia.
-                  </p>
+                  <SectionTitle
+                    title="Portal de Proveedores Mineros"
+                    sizeTitle="lg"
+                    subtitle="Realizá el registro y gestioná la información vinculada a proveedores del sector minero en la provincia."
+                    sizeSubtitle="sm"
+                    fontSemiBold={true}
+                  />
                 </div>
               </div>
 

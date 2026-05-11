@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { ProyectosMinerosTable } from '@/proyectos-mineros/proyectos-mineros.table';
 import { ProyectosMinerosFilters } from '@/proyectos-mineros/proyectos-mineros.filters';
 import { ProyectosMinerosActiveFilters } from '@/proyectos-mineros/proyectos-mineros.active-filters';
+import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/proyectos-mineros/')({
   validateSearch: z.object({
@@ -18,7 +19,7 @@ function RouteComponent() {
   return (
     <div className="mt-4">
       <div className="flex items-center justify-center mb-4 relative">
-        <p className="text-3xl font-bold text-center">Proyectos Mineros</p>
+        <SectionTitle title="Proyectos Mineros" sizeTitle="3xl" textCenter responsiveMd />
         <div className="absolute right-0 flex items-center gap-2">
           <ProyectosMinerosFilters />
           <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">

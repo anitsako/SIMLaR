@@ -30,8 +30,8 @@ export const mapas: Array<Mapa> = [
       },
       {
         key: 2,
-        ariaLabel: 'Escala cartográfica',
-        title: 'Escala cartográfica',
+        ariaLabel: 'Escala geográfica',
+        title: 'Escala geográfica',
         description:
           'El mapa utiliza una escala 1:250.000, permitiendo representar grandes áreas con buen nivel de detalle.',
       },
@@ -71,8 +71,8 @@ export const mapas: Array<Mapa> = [
       },
       {
         key: 2,
-        ariaLabel: 'Escalas geográficas',
-        title: 'Escalas geográficas',
+        ariaLabel: 'Escala geográfica',
+        title: 'Escala geográfica',
         description:
           'Está elaborado a escala 1:500.000, permitiendo observar la distribución regional de las unidades geológicas.',
       },
