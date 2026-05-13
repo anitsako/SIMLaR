@@ -1,3 +1,5 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 import { createServerFn } from '@tanstack/react-start';
 import { z } from 'zod';
 import { sql } from 'drizzle-orm';
@@ -6,7 +8,6 @@ import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 import { archivosTable } from '@/db/schemas/archivos.schema';
-import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 
 const createProyectoMineroSchema = z.object({
   nombre: z.string().min(1).max(100),
@@ -44,6 +45,12 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
       throw new Error('Usuario no autenticado');
     }
 
+    const filesPath = process.env.FILES_PATH;
+    if (!filesPath) {
+      throw new Error('FILES_PATH no está definida');
+    }
+    await mkdir(filesPath, { recursive: true });
+
     const maxTamañoArchivo = 5 * 1024 * 1024; // 5MB de tamaño maximo
     const { archivoMapa } = data;
     const buffer = Buffer.from(archivoMapa.base64, 'base64');
@@ -70,7 +77,7 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
         })
         .returning();
 
-      await tx.insert(archivosContenidosTable).values({ archivoId: nuevoArchivoMapa.id, contenido: buffer });
+      await writeFile(path.join(filesPath, nuevoArchivoMapa.id), buffer);
 
       const [nuevoProyectoMinero] = await tx
         .insert(proyectosMinerosTable)

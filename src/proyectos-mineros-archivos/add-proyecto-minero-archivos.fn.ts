@@ -1,9 +1,10 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 import { createServerFn } from '@tanstack/react-start';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
-import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 import { archivosTable } from '@/db/schemas/archivos.schema';
 import { proyectosMinerosArchivosTable } from '@/db/schemas/proyectos-mineros-archivos.schema';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
@@ -37,6 +38,12 @@ export const addProyectoMineroArchivosFn = createServerFn({ method: 'POST' })
       throw new Error('Proyecto minero no encontrado');
     }
 
+    const filesPath = process.env.FILES_PATH;
+    if (!filesPath) {
+      throw new Error('FILES_PATH no está definida');
+    }
+    await mkdir(filesPath, { recursive: true });
+
     const maxTamañoArchivo = 5 * 1024 * 1024;
 
     const buffer = Buffer.from(data.archivo.base64, 'base64');
@@ -68,10 +75,7 @@ export const addProyectoMineroArchivosFn = createServerFn({ method: 'POST' })
         })
         .returning({ id: archivosTable.id, nombre: archivosTable.nombre, tamaño: archivosTable.tamaño });
 
-      await tx.insert(archivosContenidosTable).values({
-        archivoId: archivoInsertado.id,
-        contenido: archivoNormalizado.contenido,
-      });
+      await writeFile(path.join(filesPath, archivoInsertado.id), archivoNormalizado.contenido);
 
       await tx.insert(proyectosMinerosArchivosTable).values({
         proyectoMineroId: data.proyectoMineroId,

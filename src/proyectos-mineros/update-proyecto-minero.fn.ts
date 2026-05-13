@@ -1,3 +1,5 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 import { createServerFn } from '@tanstack/react-start';
 import { eq, sql } from 'drizzle-orm';
 import { z } from 'zod';
@@ -6,7 +8,6 @@ import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 import { archivosTable } from '@/db/schemas/archivos.schema';
-import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 
 const updateProyectoMineroSchema = z.object({
   id: z.number().int().positive(),
@@ -47,6 +48,12 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
       throw new Error('Usuario no autenticado');
     }
 
+    const filesPath = process.env.FILES_PATH;
+    if (!filesPath) {
+      throw new Error('FILES_PATH no está definida');
+    }
+    await mkdir(filesPath, { recursive: true });
+
     const { id, archivoMapa, ...fields } = data;
 
     const proyectoMinero = await db.transaction(async (tx) => {
@@ -79,16 +86,13 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
           .update(archivosTable)
           .set({
             nombre: archivoMapa.nombre,
-            tamaño: archivoMapa.tamaño,
+            tamaño: buffer.length,
             mimeType: archivoMapa.mimeType,
             usuarioModificadorId: usuarioId,
           })
           .where(eq(archivosTable.id, archivoMapaActualId));
 
-        await tx
-          .update(archivosContenidosTable)
-          .set({ contenido: buffer })
-          .where(eq(archivosContenidosTable.archivoId, archivoMapaActualId));
+        await writeFile(path.join(filesPath, archivoMapaActualId), buffer);
       }
 
       const [proyectoActualizado] = await tx

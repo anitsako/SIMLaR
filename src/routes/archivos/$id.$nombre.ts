@@ -1,8 +1,9 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { createFileRoute } from '@tanstack/react-router';
 import { eq } from 'drizzle-orm';
 import { db } from '@/db';
 import { archivosTable } from '@/db/schemas/archivos.schema';
-import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 
 export const Route = createFileRoute('/archivos/$id/$nombre')({
   server: {
@@ -32,24 +33,33 @@ export const Route = createFileRoute('/archivos/$id/$nombre')({
           return new Response('Nombre de archivo no coincide', { status: 404 });
         }
 
-        // Obtener el contenido del archivo
-        const archivosContenidos = await db
-          .select({ id: archivosContenidosTable, contenido: archivosContenidosTable.contenido })
-          .from(archivosContenidosTable)
-          .where(eq(archivosContenidosTable.archivoId, id));
-
-        if (archivosContenidos.length === 0) {
-          return new Response('Contenido del archivo no encontrado', { status: 404 });
+        const filesPath = process.env.FILES_PATH;
+        if (!filesPath) {
+          return new Response('FILES_PATH no está definida', { status: 500 });
         }
 
-        const archivoContenido = archivosContenidos[0];
+        const archivoPath = path.join(filesPath, id);
+        let contenidoArchivo: Buffer;
+        try {
+          contenidoArchivo = await readFile(archivoPath);
+        } catch (error) {
+          if (
+            typeof error === 'object' &&
+            error !== null &&
+            'code' in error &&
+            error.code === 'ENOENT'
+          ) {
+            return new Response('Contenido del archivo no encontrado', { status: 404 });
+          }
+          throw error;
+        }
 
         // Retornar el archivo con los headers apropiados
-        return new Response(new Uint8Array(archivoContenido.contenido), {
+        return new Response(new Uint8Array(contenidoArchivo), {
           status: 200,
           headers: {
             'Content-Type': archivo.mimeType,
-            'Content-Length': archivo.tamaño.toString(),
+            'Content-Length': contenidoArchivo.length.toString(),
             'Content-Disposition': `inline; filename="${archivo.nombre}"`,
           },
         });
