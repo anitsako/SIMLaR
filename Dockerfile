@@ -15,6 +15,7 @@ RUN npm run build
 FROM node:24.14.0-alpine AS runner
 WORKDIR /app
 COPY --from=builder /app/.output ./.output
+RUN mkdir -p /app/files
 EXPOSE 3000
 ENV NODE_ENV=production
 CMD ["node", ".output/server/index.mjs"]
