@@ -15,17 +15,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export const Carrousel = () => {
-  const { data: imagenes = [] } = useImagenesCarrousel();
-
-  const slides = imagenes.map((img: any) => {
-    const src = `/archivos/${img.archivoId}/${img.nombre}`;
-
-    return {
-      src,
-      positionY: img.positionY ?? 50,
-      key: img.archivoId || Math.random().toString(36).slice(2),
-    };
-  });
+  const { data: imagenes } = useImagenesCarrousel();
 
   return (
     <Swiper
@@ -38,13 +28,13 @@ export const Carrousel = () => {
       navigation
       className="h-[300px] w-full"
     >
-      {slides.map((slide, index) => (
-        <SwiperSlide key={slide.key || index} className="h-full">
+      {imagenes.map((imagen, index) => (
+        <SwiperSlide key={imagen.archivoId} className="h-full">
           <img
-            src={slide.src}
+            src={`/archivos/${imagen.archivoId}/${imagen.nombre}`}
             alt={`Slide ${index + 1}`}
             className="h-full w-full object-cover"
-            style={{ objectPosition: `center ${slide.positionY}%` }}
+            style={{ objectPosition: `center ${imagen.positionY}%` }}
           />
         </SwiperSlide>
       ))}

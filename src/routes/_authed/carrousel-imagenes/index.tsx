@@ -1,30 +1,19 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useRef, useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Link, createFileRoute } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
-import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  Skeleton,
-  addToast,
-  useDisclosure,
-} from '@heroui/react';
+import { Autoplay, Navigation } from 'swiper/modules';
+import { Alert, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Skeleton, addToast } from '@heroui/react';
+import { ArrowDown, ArrowUp, Trash2, Upload } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useEffect, useState } from 'react';
-import type { Swiper as SwiperInstance } from 'swiper';
-import { cargarImagenesCarrouselFn } from '@/carrousel-imagenes/cargar-imagenes-carrousel.fn';
+import type { ChangeEvent, DragEvent } from 'react';
+import { addImagenCarrouselFn } from '@/carrousel-imagenes/add-imagen-carrousel.fn';
+import { removeImagenCarrouselFn } from '@/carrousel-imagenes/remove-imagen-carrousel.fn';
+import { updateImagenCarrouselFn } from '@/carrousel-imagenes/update-imagen-carrousel.fn';
 import { useImagenesCarrousel } from '@/carrousel-imagenes/use-imagenes-carrousel';
-import { uploadArchivoFn } from '@/common/uploadArchivo';
 
 // @ts-ignore: Se ignora css
 import 'swiper/css';
-// @ts-ignore: Se ignora css
-import 'swiper/css/free-mode';
-// @ts-ignore: Se ignora css
-import 'swiper/css/pagination';
 // @ts-ignore: Se ignora css
 import 'swiper/css/navigation';
 
@@ -32,77 +21,72 @@ export const Route = createFileRoute('/_authed/carrousel-imagenes/')({
   component: RouteComponent,
 });
 
-type ImageItem = {
-  preview: string | null;
-  archivoId: string | null;
-};
+const fileToBase64 = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve((reader.result as string).split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 
 function RouteComponent() {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperInstance | null>(null);
-  const [images, setImages] = useState<Array<ImageItem>>([
-    { preview: null, archivoId: null },
-    { preview: null, archivoId: null },
-    { preview: null, archivoId: null },
-    { preview: null, archivoId: null },
-  ]);
-  const { data: imagenesCarrousel = [] } = useImagenesCarrousel();
-  const [positions, setPositions] = useState<Array<number>>([50, 50, 50, 50]);
-  const [cambios, setCambios] = useState(false);
-  const [initialized, setInitialized] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [imagenAEliminar, setImagenAEliminar] = useState<{ archivoId: string; nombre: string } | null>(null);
+  const [positionDrafts, setPositionDrafts] = useState<Record<string, number | null>>({});
+  const queryClient = useQueryClient();
+  const { data: imagenesCarrousel = [], isFetching } = useImagenesCarrousel();
 
-  useEffect(() => {
-    if (initialized) return;
-    if (imagenesCarrousel.length > 0) {
-      const washed = imagenesCarrousel.slice(0, 4).map((img: any) => ({
-        preview: img.base64 ? `data:${img.mimeType};base64,${img.base64}` : null,
-        archivoId: img.archivoId ?? null,
-      }));
-      setImages((prev) => prev.map((item, idx) => (washed[idx] ? washed[idx] : item)));
-      const loadedPositions = imagenesCarrousel
-        .slice(0, 4)
-        .map((img: any) => img.positionY ?? 50)
-        .concat([50, 50, 50, 50])
-        .slice(0, 4);
-      setPositions(loadedPositions);
-      setInitialized(true);
+  const addImagenCarrousel = useServerFn(addImagenCarrouselFn);
+  const updateImagenCarrousel = useServerFn(updateImagenCarrouselFn);
+  const removeImagenCarrousel = useServerFn(removeImagenCarrouselFn);
+
+  const addMutation = useMutation({
+    mutationFn: addImagenCarrousel,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['imagenes-carrousel'] });
+      addToast({
+        title: 'Imagen agregada',
+        description: 'La imagen fue agregada al final del carrusel.',
+        color: 'success',
+        variant: 'solid',
+      });
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: updateImagenCarrousel,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['imagenes-carrousel'] });
+    },
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: removeImagenCarrousel,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['imagenes-carrousel'] });
+      addToast({
+        title: 'Imagen quitada',
+        description: 'La imagen fue removida del carrusel.',
+        color: 'success',
+        variant: 'solid',
+      });
+      setImagenAEliminar(null);
+    },
+  });
+
+  const getPositionDraft = (archivoId: string, positionY: number | null) => {
+    const draft = positionDrafts[archivoId];
+    return draft ?? positionY ?? 50;
+  };
+
+  const handleFile = async (file: File | undefined) => {
+    if (!file) {
+      return;
     }
-  }, [imagenesCarrousel, initialized]);
-
-  const cargarImagenesCarrousel = useServerFn(cargarImagenesCarrouselFn);
-  const uploadArchivo = useServerFn(uploadArchivoFn);
-
-  const navigate = useNavigate();
-
-  const handleChangeImage = async (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
     try {
-      const base64 = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve((reader.result as string).split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-
-      const res = await uploadArchivo({
-        data: {
-          archivo: {
-            nombre: file.name,
-            tamaño: file.size,
-            mimeType: file.type,
-            base64,
-          },
-        },
-      });
-
-      const url = URL.createObjectURL(file);
-
-      const newImages = [...images];
-      newImages[index] = { preview: url, archivoId: res.archivoId };
-      setImages(newImages);
-      setCambios(true);
+      const base64 = await fileToBase64(file);
+      addMutation.mutate({ data: { archivo: { nombre: file.name, tamaño: file.size, mimeType: file.type, base64 } } });
     } catch (error) {
       addToast({
         title: 'Error al subir imagen',
@@ -113,179 +97,203 @@ function RouteComponent() {
     }
   };
 
-  const handleRemoveImage = (index: number) => {
-    const newImages = [...images];
-    newImages[index] = { preview: null, archivoId: null };
-    setImages(newImages);
-    setCambios(true);
+  const handleAddImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    void handleFile(file);
   };
 
-  const handleGoBack = () => {
-    if (!cambios) {
-      navigate({ to: '/' });
-      return;
-    }
-
-    onOpen();
+  const handleDrop = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragOver(false);
+    const file = event.dataTransfer.files[0];
+    void handleFile(file);
   };
 
-  const handleSave = async () => {
-    const validImages = images.filter((img) => img.archivoId);
-    if (validImages.length !== 4) {
-      addToast({
-        title: 'No hay suficientes imágenes para cargar',
-        description: 'Agrega imagenes para cargar en el carrousel.',
-        color: 'warning',
-        variant: 'solid',
-      });
-      return;
-    }
+  const handleMove = (archivoId: string, move: 'up' | 'down') => {
+    updateMutation.mutate({ data: { archivoId, move } });
+  };
 
-    try {
-      await cargarImagenesCarrousel({
-        data: {
-          imagenes: images.map((img, index) => ({
-            archivoId: img.archivoId!,
-            positionY: positions[index],
-            orden: index,
-          })),
-        },
-      });
+  const handleSavePosition = (archivoId: string, value: number) => {
+    updateMutation.mutate({ data: { archivoId, positionY: value } });
+  };
 
-      setCambios(false);
-      addToast({
-        title: 'Imágenes cargadas',
-        description: 'Las imágenes del carrousel fueron cargadas correctamente.',
-        color: 'success',
-        variant: 'solid',
-      });
-      navigate({ to: '/' });
-    } catch (error) {
-      addToast({
-        title: 'Error al guardar',
-        description: error instanceof Error ? error.message : 'Ocurrió un error',
-        color: 'danger',
-        variant: 'solid',
-      });
-    }
+  const handleRemoveImage = (archivoId: string) => {
+    removeMutation.mutate({ data: { archivoId } });
   };
 
   return (
-    <div className="flex flex-col mt-4 space-y-6">
-      <p className="text-5xl font-bold text-center">Configuración del carrousel de imágenes</p>
-      <div className="mt-4">
-        <Swiper
-          modules={[Autoplay, FreeMode, Navigation, Thumbs]}
-          spaceBetween={10}
-          slidesPerView={1}
-          thumbs={{ swiper: thumbsSwiper, slideThumbActiveClass: 'thumb-active' }}
-          scrollbar={{ draggable: true }}
-          navigation
-          className="h-[300px] w-full"
-        >
-          {images.map((image, index) => (
-            <SwiperSlide key={index} className="h-full">
-              {image.preview ? (
+    <div className="mt-4 space-y-6">
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold">Configuración del carrusel de imágenes</h1>
+          <p className="text-sm text-default-500">
+            Podés agregar tantas imágenes como necesites. Las nuevas se agregan al final, con posición vertical en 50%.
+          </p>
+        </div>
+        <Button as={Link} to="/">
+          Volver
+        </Button>
+      </div>
+
+      {addMutation.error && <Alert color="danger">Error al agregar imagen: {addMutation.error.message}</Alert>}
+      {updateMutation.error && <Alert color="danger">Error al actualizar imagen: {updateMutation.error.message}</Alert>}
+      {removeMutation.error && <Alert color="danger">Error al quitar imagen: {removeMutation.error.message}</Alert>}
+
+      {isFetching ? (
+        <Skeleton className="h-[300px] w-full rounded-xl" />
+      ) : imagenesCarrousel.length === 0 ? (
+        <p>No hay imágenes cargadas en el carrusel.</p>
+      ) : (
+        <>
+          <Swiper
+            modules={[Autoplay, Navigation]}
+            spaceBetween={10}
+            slidesPerView={1}
+            navigation
+            className="h-[300px] w-full"
+          >
+            {imagenesCarrousel.map((image, index) => (
+              <SwiperSlide key={image.archivoId} className="h-full">
                 <img
-                  src={image.preview}
+                  src={`/archivos/${image.archivoId}/${image.nombre}`}
                   alt={`Slide ${index + 1}`}
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: `center ${positions[index]}%` }}
+                  style={{ objectPosition: `center ${image.positionY}%` }}
                 />
-              ) : (
-                <Skeleton className="h-full w-full rounded-xl" />
-              )}
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <form className="mt-4 flex flex-col items-center gap-4">
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            modules={[FreeMode, Navigation, Thumbs]}
-            spaceBetween={10}
-            slidesPerView={4}
-            className="h-[100px] w-full mt-4 cursor-pointer"
-          >
-            {images.map((image, index) => (
-              <SwiperSlide key={index} className="relative group h-full">
-                {image.preview ? (
-                  <img src={image.preview} className="h-full w-full object-cover" />
-                ) : (
-                  <Skeleton className="h-full w-full" />
-                )}
-
-                {/* Overlay hover */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center gap-2 transition">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    id={`file-${index}`}
-                    onChange={(e) => handleChangeImage(e, index)}
-                  />
-
-                  {image.archivoId === null ? (
-                    <Button onPress={() => document.getElementById(`file-${index}`)?.click()}>Agregar</Button>
-                  ) : (
-                    <Button onPress={() => document.getElementById(`file-${index}`)?.click()}>Cambiar</Button>
-                  )}
-
-                  {image.archivoId && (
-                    <Button color="danger" size="sm" onPress={() => handleRemoveImage(index)}>
-                      Eliminar
-                    </Button>
-                  )}
-
-                  {image.archivoId && (
-                    <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      value={positions[index]}
-                      onChange={(e) => {
-                        const newPos = [...positions];
-                        newPos[index] = Number(e.target.value);
-                        setPositions(newPos);
-                        setCambios(true);
-                      }}
-                    />
-                  )}
-                </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="flex flex-row gap-4 mb-4">
-            <Button
-              onPress={() => {
-                handleSave();
-              }}
-            >
-              Guardar
-            </Button>
 
-            <Button color="primary" onPress={handleGoBack}>
-              Volver
-            </Button>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {imagenesCarrousel.map((image, index) => {
+              const positionValue = getPositionDraft(image.archivoId, image.positionY);
+
+              return (
+                <div key={image.archivoId} className="rounded-xl border border-default-200 bg-content1 p-4">
+                  <div className="mb-3 h-[160px] overflow-hidden rounded-lg bg-default-100">
+                    <img
+                      src={`/archivos/${image.archivoId}/${image.nombre}`}
+                      alt={image.nombre}
+                      className="h-full w-full object-cover"
+                      style={{ objectPosition: `center ${positionValue}%` }}
+                    />
+                  </div>
+
+                  <div className="space-y-3">
+                    <p className="text-sm font-medium">Orden actual: {index + 1}</p>
+                    <p className="line-clamp-1 text-xs text-default-500">{image.nombre}</p>
+
+                    <div>
+                      <p className="mb-1 text-xs font-medium text-default-600">Altura / posición vertical</p>
+                      <input
+                        type="range"
+                        min={0}
+                        max={100}
+                        value={positionValue}
+                        className="w-full"
+                        onChange={(event) => {
+                          const value = Number(event.target.value);
+                          setPositionDrafts((prev) => ({ ...prev, [image.archivoId]: value }));
+                        }}
+                      />
+                      <div className="mt-2 flex items-center justify-between gap-2">
+                        <span className="text-xs text-default-500">{positionValue}%</span>
+                        <Button
+                          size="sm"
+                          onPress={() => handleSavePosition(image.archivoId, positionValue)}
+                          isLoading={updateMutation.isPending}
+                        >
+                          Guardar altura
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        size="sm"
+                        variant="flat"
+                        startContent={<ArrowUp className="h-4 w-4" />}
+                        isDisabled={index === 0}
+                        isLoading={updateMutation.isPending}
+                        onPress={() => handleMove(image.archivoId, 'up')}
+                      >
+                        Subir orden
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="flat"
+                        startContent={<ArrowDown className="h-4 w-4" />}
+                        isDisabled={index === imagenesCarrousel.length - 1}
+                        isLoading={updateMutation.isPending}
+                        onPress={() => handleMove(image.archivoId, 'down')}
+                      >
+                        Bajar orden
+                      </Button>
+                      <Button
+                        size="sm"
+                        color="danger"
+                        variant="flat"
+                        startContent={<Trash2 className="h-4 w-4" />}
+                        isLoading={removeMutation.isPending}
+                        onPress={() => setImagenAEliminar({ archivoId: image.archivoId, nombre: image.nombre })}
+                      >
+                        Quitar
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </form>
+        </>
+      )}
+
+      <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleAddImage} />
+
+      <div
+        className={`rounded-xl border-2 border-dashed p-6 text-center transition ${
+          isDragOver ? 'border-primary bg-primary/10' : 'border-default-300 bg-default-50'
+        }`}
+        onDragOver={(event) => {
+          event.preventDefault();
+          setIsDragOver(true);
+        }}
+        onDragLeave={() => setIsDragOver(false)}
+        onDrop={handleDrop}
+      >
+        <div className="mx-auto flex max-w-xl flex-col items-center gap-3">
+          <Upload className="h-8 w-8 text-default-500" />
+          <p className="text-sm text-default-600">Arrastrá y soltá una imagen aquí o seleccioná una imagen.</p>
+          <Button onPress={() => inputRef.current?.click()} isLoading={addMutation.isPending}>
+            Agregar imagen
+          </Button>
+        </div>
       </div>
 
-      <Modal isOpen={isOpen} onClose={onClose} placement="center">
+      <Modal isOpen={!!imagenAEliminar} onClose={() => setImagenAEliminar(null)}>
         <ModalContent>
-          <ModalHeader>Salir sin guardar</ModalHeader>
-          <ModalBody>Tienes cambios sin guardar. Si sales ahora, perderás esos cambios.</ModalBody>
+          <ModalHeader>Quitar imagen</ModalHeader>
+          <ModalBody>
+            {imagenAEliminar ? (
+              <p>
+                ¿Querés quitar <span className="font-semibold">{imagenAEliminar.nombre}</span> del carrusel?
+              </p>
+            ) : null}
+          </ModalBody>
           <ModalFooter>
-            <Button variant="flat" onPress={onClose}>
+            <Button variant="flat" onPress={() => setImagenAEliminar(null)}>
               Cancelar
             </Button>
             <Button
               color="danger"
+              isLoading={removeMutation.isPending}
               onPress={() => {
-                onClose();
-                navigate({ to: '/' });
+                if (!imagenAEliminar) return;
+                handleRemoveImage(imagenAEliminar.archivoId);
               }}
             >
-              Salir sin guardar
+              Quitar
             </Button>
           </ModalFooter>
         </ModalContent>

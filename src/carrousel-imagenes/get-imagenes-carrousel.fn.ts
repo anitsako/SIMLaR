@@ -1,9 +1,8 @@
 import { createServerFn } from '@tanstack/react-start';
-import { eq, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { db } from '@/db';
 import { carrouselImagenesTable } from '@/db/schemas/carrousel-imagenes.schema';
 import { archivosTable } from '@/db/schemas/archivos.schema';
-import { archivosContenidosTable } from '@/db/schemas/archivos-contenidos.schema';
 
 export const getImagenesCarrouselFn = createServerFn({ method: 'GET' }).handler(async () => {
   const imagenes = await db
@@ -13,11 +12,9 @@ export const getImagenesCarrouselFn = createServerFn({ method: 'GET' }).handler(
       orden: carrouselImagenesTable.orden,
       nombre: archivosTable.nombre,
       mimeType: archivosTable.mimeType,
-      base64: sql<string>`encode(${archivosContenidosTable.contenido}, 'base64')`,
     })
     .from(carrouselImagenesTable)
     .innerJoin(archivosTable, eq(carrouselImagenesTable.archivoId, archivosTable.id))
-    .innerJoin(archivosContenidosTable, eq(carrouselImagenesTable.archivoId, archivosContenidosTable.archivoId))
     .orderBy(carrouselImagenesTable.orden);
   return imagenes;
 });
