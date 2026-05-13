@@ -186,7 +186,7 @@ function RouteComponent() {
                     <p className="line-clamp-1 text-xs text-default-500">{image.nombre}</p>
 
                     <div>
-                      <p className="mb-1 text-xs font-medium text-default-600">Altura / posición vertical</p>
+                      <p className="mb-1 text-xs font-medium text-default-600">Posición vertical</p>
                       <input
                         type="range"
                         min={0}
