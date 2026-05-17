@@ -9,8 +9,11 @@
     "db:generate": "drizzle-kit generate --config=drizzle.config.local.ts",
     "db:migrate": "drizzle-kit migrate --config=drizzle.config.local.ts",
     "db:push": "drizzle-kit push --config=drizzle.config.local.ts",
+    "db:generate:test": "drizzle-kit generate --config=drizzle.config.test.ts",
+    "db:migrate:test": "drizzle-kit migrate --config=drizzle.config.test.ts",
     "db:generate:prod": "drizzle-kit generate --config=drizzle.config.prod.ts",
     "db:migrate:prod": "drizzle-kit migrate --config=drizzle.config.prod.ts",
+    "tests": "vitest run",
     "files:download": "tsx scripts/download-archivos.local.ts",
     "files:download:prod": "tsx scripts/download-archivos.prod.ts",
     "docker:build:prod": "docker build -t ghcr.io/mfpuentear/simlar:$npm_package_version .",
@@ -64,6 +67,7 @@
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vite": "^8.0.9"
+    "vite": "^8.0.9",
+    "vitest": "^4.1.6"
   }
 }

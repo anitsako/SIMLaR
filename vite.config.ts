@@ -8,4 +8,9 @@ export default defineConfig({
   server: { port: 3000 },
   resolve: { tsconfigPaths: true },
   plugins: [tailwindcss(), tanstackStart(), viteReact(), nitro()],
+  // @ts-ignore Ignoring type error for test configuration
+  test: {
+    include: ['src/**/*.test.ts'],
+    server: { deps: { inline: ['@tanstack/start-server-core', '@tanstack/react-start'] } },
+  },
 });
