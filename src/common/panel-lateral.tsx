@@ -17,6 +17,7 @@ import {
   Braces,
   Briefcase,
   Building,
+  ChartBar,
   ContactRound,
   House,
   Images,
@@ -95,6 +96,9 @@ export const PanelLateral = () => {
                 </DropdownItem>
                 <DropdownItem key="usuarios" href="/usuarios" startContent={<Users />}>
                   Usuarios
+                </DropdownItem>
+                <DropdownItem key="analytics" href="/analytics" startContent={<ChartBar />}>
+                  Analytics
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>

@@ -20,6 +20,7 @@ import { Route as InstitucionalIndexRouteImport } from './routes/institucional/i
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
 import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
+import { Route as AuthedAnalyticsRouteImport } from './routes/_authed/analytics'
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
 import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
 import { Route as AuthedCarrouselImagenesIndexRouteImport } from './routes/_authed/carrousel-imagenes/index'
@@ -84,6 +85,11 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
   path: '/contacto/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthedAnalyticsRoute = AuthedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthedRoute,
+} as any)
 const EducacionInformativaIndexRoute =
   EducacionInformativaIndexRouteImport.update({
     id: '/educacion/informativa/',
@@ -139,6 +145,7 @@ const AuthedProyectosMinerosIdArchivosRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AuthedAnalyticsRoute
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/educacion/': typeof EducacionIndexRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AuthedAnalyticsRoute
   '/contacto': typeof ContactoIndexRoute
   '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/educacion': typeof EducacionIndexRoute
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteWithChildren
+  '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/contacto/': typeof ContactoIndexRoute
   '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/educacion/': typeof EducacionIndexRoute
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analytics'
     | '/contacto/'
     | '/datos-abiertos/'
     | '/educacion/'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analytics'
     | '/contacto'
     | '/datos-abiertos'
     | '/educacion'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authed'
+    | '/_authed/analytics'
     | '/contacto/'
     | '/datos-abiertos/'
     | '/educacion/'
@@ -364,6 +376,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authed/analytics': {
+      id: '/_authed/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthedAnalyticsRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/educacion/informativa/': {
       id: '/educacion/informativa/'
       path: '/educacion/informativa'
@@ -431,6 +450,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthedRouteChildren {
+  AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
   AuthedCarrouselImagenesIndexRoute: typeof AuthedCarrouselImagenesIndexRoute
   AuthedUsuariosIndexRoute: typeof AuthedUsuariosIndexRoute
   AuthedProyectosMinerosIdArchivosRoute: typeof AuthedProyectosMinerosIdArchivosRoute
@@ -441,6 +461,7 @@ interface AuthedRouteChildren {
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
+  AuthedAnalyticsRoute: AuthedAnalyticsRoute,
   AuthedCarrouselImagenesIndexRoute: AuthedCarrouselImagenesIndexRoute,
   AuthedUsuariosIndexRoute: AuthedUsuariosIndexRoute,
   AuthedProyectosMinerosIdArchivosRoute: AuthedProyectosMinerosIdArchivosRoute,

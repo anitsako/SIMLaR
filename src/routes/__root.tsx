@@ -8,6 +8,7 @@ import type { ReactNode } from 'react';
 import { AppBar } from '@/common/app-bar';
 import { Footer } from '@/common/footer';
 import { getCurrentUserFn } from '@/auth/get-current-user.fn';
+import { AnalyticsTracker } from '@/analytics/analytics-tracker';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: async () => {
@@ -63,11 +64,13 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
             }}
           />
           <ToastProvider placement="top-center" />
-          <main className="relative z-10 min-h-screen flex flex-col items-center">
-            <AppBar />
-            <div className="flex-1 bg-white md:w-full lg:max-w-4xl xl:max-w-6xl px-6 my-6">{children}</div>
-            <Footer />
-          </main>
+          <AnalyticsTracker>
+            <main className="relative z-10 min-h-screen flex flex-col items-center">
+              <AppBar />
+              <div className="flex-1 bg-white md:w-full lg:max-w-4xl xl:max-w-6xl px-6 my-6">{children}</div>
+              <Footer />
+            </main>
+          </AnalyticsTracker>
         </HeroUIProvider>
         <Scripts />
       </body>
