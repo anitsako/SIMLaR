@@ -12,99 +12,251 @@ import {
   ListboxItem,
   useDisclosure,
 } from '@heroui/react';
+import { Link, getRouteApi, useRouterState } from '@tanstack/react-router';
 import {
   Blend,
   Braces,
   Briefcase,
   Building,
   ChartBar,
+  ChevronDown,
   ContactRound,
   House,
   Images,
   LibraryBig,
   Map,
-  // Link,
   MenuIcon,
-  // Newspaper,
   Pickaxe,
-  Settings,
+  Target,
   Users,
 } from 'lucide-react';
 
+const rootRoute = getRouteApi('__root__');
+
+const institucionalItems = [
+  {
+    label: 'Autoridades',
+    href: '/institucional',
+    icon: <Building size={18} />,
+  },
+
+  {
+  label: 'Objetivos',
+  href: '/objetivos',
+  icon: <Target size={18} />,
+},
+
+  {
+    label: 'Transparencia',
+    href: '/transparencia',
+    icon: <Blend size={18} />,
+  },
+  {
+    label: 'Contacto',
+    href: '/contacto',
+    icon: <ContactRound size={18} />,
+  },
+];
+
+const informacionMineraItems = [
+  {
+    label: 'Proyectos mineros',
+    href: '/proyectos-mineros',
+    icon: <Pickaxe size={18} />,
+  },
+  {
+    label: 'Mapas geológicos',
+    href: '/mapas-geologicos',
+    icon: <Map size={18} />,
+  },
+  {
+    label: 'Datos abiertos',
+    href: '/datos-abiertos',
+    icon: <Braces size={18} />,
+  },
+];
+
+const serviciosFormacionItems = [
+  {
+    label: 'Servicios',
+    href: '/servicios',
+    icon: <Briefcase size={18} />,
+  },
+  {
+    label: 'Educación minera',
+    href: '/educacion',
+    icon: <LibraryBig size={18} />,
+  },
+];
+
+const administracionItems = [
+  {
+    label: 'Carrousel de imágenes',
+    href: '/carrousel-imagenes',
+    icon: <Images size={18} />,
+  },
+  {
+    label: 'Usuarios',
+    href: '/usuarios',
+    icon: <Users size={18} />,
+  },
+  {
+    label: 'Analytics',
+    href: '/analytics',
+    icon: <ChartBar size={18} />,
+  },
+];
+
+const publicMenuGroups = [
+  {
+    label: 'Institucional',
+    items: institucionalItems,
+  },
+  {
+    label: 'Información minera',
+    items: informacionMineraItems,
+  },
+  {
+    label: 'Servicios y formación',
+    items: serviciosFormacionItems,
+  },
+];
+
+const adminMenuGroup = {
+  label: 'Administración',
+  items: administracionItems,
+};
+
 export const PanelLateral = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { usuario } = rootRoute.useRouteContext();
+
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
+
+  const menuGroups = usuario
+    ? [...publicMenuGroups, adminMenuGroup]
+    : publicMenuGroups;
+
+  const isGroupActive = (items: { href: string }[]) =>
+    items.some((item) => pathname === item.href || pathname.startsWith(`${item.href}/`));
 
   return (
     <>
-      <Button className="bg-white" isIconOnly onPress={onOpen} variant="flat">
-        <MenuIcon />
-      </Button>
-      <Drawer isOpen={isOpen} onClose={onClose} placement="left">
-        <DrawerContent className="max-w-xs">
-          <DrawerHeader />
-          <DrawerBody className="flex flex-col justify-between">
-            <Listbox>
-              <ListboxItem href="/" color="primary" startContent={<House />}>
-                Inicio
-              </ListboxItem>
-              <ListboxItem href="/institucional" color="primary" startContent={<Building />}>
-                Institucional
-              </ListboxItem>
-              <ListboxItem href="/proyectos-mineros" color="primary" startContent={<Pickaxe />}>
-                Proyectos mineros
-              </ListboxItem>
-              {/*
-              <ListboxItem color="primary" startContent={<Link />}>
-                <a href="http://www.catastrolr.com.ar/home.php" target="_blank">
-                  Catastro minero
-                </a>
-              </ListboxItem>
-              */}
-              <ListboxItem href="/datos-abiertos" color="primary" startContent={<Braces />}>
-                Datos abiertos
-              </ListboxItem>
-              <ListboxItem href="/servicios" color="primary" startContent={<Briefcase />}>
-                Servicios
-              </ListboxItem>
-              <ListboxItem href="/transparencia" color="primary" startContent={<Blend />}>
-                Transparencia
-              </ListboxItem>
-              {/*
-              <ListboxItem href="/noticias" color="primary" startContent={<Newspaper />}>
-                Noticias
-              </ListboxItem>
-              */}
-              <ListboxItem href="/educacion" color="primary" startContent={<LibraryBig />}>
-                Educación minera
-              </ListboxItem>
-              <ListboxItem href="/mapas-geologicos" color="primary" startContent={<Map />}>
-                Mapas geológicos
-              </ListboxItem>
-              <ListboxItem href="/contacto" color="primary" startContent={<ContactRound />}>
-                Contacto
-              </ListboxItem>
-            </Listbox>
-            <Dropdown className="mb-2" placement="right">
+      <nav className="hidden xl:flex items-center gap-2">
+        <Link
+          to="/"
+          className="px-3 py-2 text-sm font-bold uppercase text-default-700 transition-colors hover:text-danger"
+          activeProps={{
+            className:
+              'px-3 py-2 text-sm font-bold uppercase text-danger border-b-2 border-danger',
+          }}
+        >
+          Inicio
+        </Link>
+
+        {menuGroups.map((group) => {
+          const active = isGroupActive(group.items);
+
+          return (
+            <Dropdown key={group.label} placement="bottom-start">
               <DropdownTrigger>
-                <Button className=" justify-start" color="default" variant="light" startContent={<Settings />}>
-                  Configuración
+                <Button
+                  variant="light"
+                  className={
+                    active
+                      ? 'px-3 py-2 text-sm font-bold uppercase text-danger border-b-2 border-danger rounded-none'
+                      : 'px-3 py-2 text-sm font-bold uppercase text-default-700 hover:text-danger rounded-none'
+                  }
+                  endContent={<ChevronDown size={16} />}
+                >
+                  {group.label}
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem key="carrousel-imagenes" href="/carrousel-imagenes" startContent={<Images />}>
-                  Carrousel de imágenes
-                </DropdownItem>
-                <DropdownItem key="usuarios" href="/usuarios" startContent={<Users />}>
-                  Usuarios
-                </DropdownItem>
-                <DropdownItem key="analytics" href="/analytics" startContent={<ChartBar />}>
-                  Analytics
-                </DropdownItem>
+
+              <DropdownMenu aria-label={group.label}>
+                {group.items.map((item) => {
+                  const itemActive =
+                    pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                  return (
+                    <DropdownItem
+                      key={item.href}
+                      href={item.href}
+                      startContent={item.icon}
+                      className={itemActive ? 'text-danger font-semibold' : ''}
+                    >
+                      {item.label}
+                    </DropdownItem>
+                  );
+                })}
               </DropdownMenu>
             </Dropdown>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+          );
+        })}
+      </nav>
+
+      <div className="xl:hidden">
+        <Button className="bg-white" isIconOnly onPress={onOpen} variant="flat">
+          <MenuIcon />
+        </Button>
+
+        <Drawer isOpen={isOpen} onClose={onClose} placement="left">
+          <DrawerContent className="max-w-xs">
+            <DrawerHeader>
+              <p className="text-xl font-bold">Menú SIMLaR</p>
+            </DrawerHeader>
+
+            <DrawerBody className="flex flex-col gap-4">
+              <Listbox aria-label="Inicio">
+                <ListboxItem
+                  key="/"
+                  href="/"
+                  color="danger"
+                  startContent={<House size={18} />}
+                  className={pathname === '/' ? 'text-danger font-semibold' : ''}
+                >
+                  Inicio
+                </ListboxItem>
+              </Listbox>
+
+              {menuGroups.map((group) => (
+                <div key={group.label} className="space-y-1">
+                  <p
+                    className={
+                      isGroupActive(group.items)
+                        ? 'px-2 text-xs font-bold uppercase text-danger'
+                        : 'px-2 text-xs font-bold uppercase text-default-400'
+                    }
+                  >
+                    {group.label}
+                  </p>
+
+                  <Listbox aria-label={group.label}>
+                    {group.items.map((item) => {
+                      const itemActive =
+                        pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                      return (
+                        <ListboxItem
+                          key={item.href}
+                          href={item.href}
+                          color="danger"
+                          startContent={item.icon}
+                          className={itemActive ? 'text-danger font-semibold' : ''}
+                        >
+                          {item.label}
+                        </ListboxItem>
+                      );
+                    })}
+                  </Listbox>
+                </div>
+              ))}
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      </div>
     </>
   );
 };

@@ -18,8 +18,6 @@ export const AppBar = () => {
       }}
     >
       <NavbarContent>
-        <PanelLateral />
-
         <NavbarBrand>
           <div className="flex items-center gap-4">
             <a
@@ -59,6 +57,8 @@ export const AppBar = () => {
             </Link>
           </div>
         </NavbarBrand>
+
+        <PanelLateral />
       </NavbarContent>
 
       <NavbarContent justify="end">

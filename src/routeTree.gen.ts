@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
 import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
+import { Route as ObjetivosIndexRouteImport } from './routes/objetivos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
@@ -53,6 +54,11 @@ const ServiciosIndexRoute = ServiciosIndexRouteImport.update({
 const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
   id: '/proyectos-mineros/',
   path: '/proyectos-mineros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObjetivosIndexRoute = ObjetivosIndexRouteImport.update({
+  id: '/objetivos/',
+  path: '/objetivos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
+  '/objetivos/': typeof ObjetivosIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/institucional': typeof InstitucionalIndexRoute
   '/mapas-geologicos': typeof MapasGeologicosIndexRoute
   '/noticias': typeof NoticiasIndexRoute
+  '/objetivos': typeof ObjetivosIndexRoute
   '/proyectos-mineros': typeof ProyectosMinerosIndexRoute
   '/servicios': typeof ServiciosIndexRoute
   '/transparencia': typeof TransparenciaIndexRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
+  '/objetivos/': typeof ObjetivosIndexRoute
   '/proyectos-mineros/': typeof ProyectosMinerosIndexRoute
   '/servicios/': typeof ServiciosIndexRoute
   '/transparencia/': typeof TransparenciaIndexRoute
@@ -222,6 +231,7 @@ export interface FileRouteTypes {
     | '/institucional/'
     | '/mapas-geologicos/'
     | '/noticias/'
+    | '/objetivos/'
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
     | '/institucional'
     | '/mapas-geologicos'
     | '/noticias'
+    | '/objetivos'
     | '/proyectos-mineros'
     | '/servicios'
     | '/transparencia'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/institucional/'
     | '/mapas-geologicos/'
     | '/noticias/'
+    | '/objetivos/'
     | '/proyectos-mineros/'
     | '/servicios/'
     | '/transparencia/'
@@ -290,6 +302,7 @@ export interface RootRouteChildren {
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
   MapasGeologicosIndexRoute: typeof MapasGeologicosIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
+  ObjetivosIndexRoute: typeof ObjetivosIndexRoute
   ProyectosMinerosIndexRoute: typeof ProyectosMinerosIndexRoute
   ServiciosIndexRoute: typeof ServiciosIndexRoute
   TransparenciaIndexRoute: typeof TransparenciaIndexRoute
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       path: '/proyectos-mineros'
       fullPath: '/proyectos-mineros/'
       preLoaderRoute: typeof ProyectosMinerosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/objetivos/': {
+      id: '/objetivos/'
+      path: '/objetivos'
+      fullPath: '/objetivos/'
+      preLoaderRoute: typeof ObjetivosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/noticias/': {
@@ -484,6 +504,7 @@ const rootRouteChildren: RootRouteChildren = {
   InstitucionalIndexRoute: InstitucionalIndexRoute,
   MapasGeologicosIndexRoute: MapasGeologicosIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
+  ObjetivosIndexRoute: ObjetivosIndexRoute,
   ProyectosMinerosIndexRoute: ProyectosMinerosIndexRoute,
   ServiciosIndexRoute: ServiciosIndexRoute,
   TransparenciaIndexRoute: TransparenciaIndexRoute,
