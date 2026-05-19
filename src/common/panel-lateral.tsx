@@ -30,22 +30,47 @@ import {
   Target,
   Users,
 } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 const rootRoute = getRouteApi('__root__');
 
-const institucionalItems = [
+type RutaInterna =
+  | '/'
+  | '/institucional'
+  | '/objetivos'
+  | '/transparencia'
+  | '/contacto'
+  | '/proyectos-mineros'
+  | '/mapas-geologicos'
+  | '/datos-abiertos'
+  | '/servicios'
+  | '/educacion'
+  | '/carrousel-imagenes'
+  | '/usuarios'
+  | '/analytics';
+
+type MenuItem = {
+  label: string;
+  href: RutaInterna;
+  icon: ReactNode;
+};
+
+type MenuGroup = {
+  label: string;
+  items: Array<MenuItem>;
+};
+
+const institucionalItems: Array<MenuItem> = [
   {
     label: 'Autoridades',
     href: '/institucional',
     icon: <Building size={18} />,
   },
-
   {
-  label: 'Objetivos',
-  href: '/objetivos',
-  icon: <Target size={18} />,
-},
-
+    label: 'Objetivos',
+    href: '/objetivos',
+    icon: <Target size={18} />,
+  },
   {
     label: 'Transparencia',
     href: '/transparencia',
@@ -58,7 +83,7 @@ const institucionalItems = [
   },
 ];
 
-const informacionMineraItems = [
+const informacionMineraItems: Array<MenuItem> = [
   {
     label: 'Proyectos mineros',
     href: '/proyectos-mineros',
@@ -76,7 +101,7 @@ const informacionMineraItems = [
   },
 ];
 
-const serviciosFormacionItems = [
+const serviciosFormacionItems: Array<MenuItem> = [
   {
     label: 'Servicios',
     href: '/servicios',
@@ -89,7 +114,7 @@ const serviciosFormacionItems = [
   },
 ];
 
-const administracionItems = [
+const administracionItems: Array<MenuItem> = [
   {
     label: 'Carrousel de imágenes',
     href: '/carrousel-imagenes',
@@ -107,7 +132,7 @@ const administracionItems = [
   },
 ];
 
-const publicMenuGroups = [
+const publicMenuGroups: Array<MenuGroup> = [
   {
     label: 'Institucional',
     items: institucionalItems,
@@ -122,7 +147,7 @@ const publicMenuGroups = [
   },
 ];
 
-const adminMenuGroup = {
+const adminMenuGroup: MenuGroup = {
   label: 'Administración',
   items: administracionItems,
 };
@@ -139,8 +164,10 @@ export const PanelLateral = () => {
     ? [...publicMenuGroups, adminMenuGroup]
     : publicMenuGroups;
 
-  const isGroupActive = (items: { href: string }[]) =>
-    items.some((item) => pathname === item.href || pathname.startsWith(`${item.href}/`));
+  const isGroupActive = (items: Array<MenuItem>) =>
+    items.some(
+      (item) => pathname === item.href || pathname.startsWith(`${item.href}/`),
+    );
 
   return (
     <>
@@ -178,12 +205,13 @@ export const PanelLateral = () => {
               <DropdownMenu aria-label={group.label}>
                 {group.items.map((item) => {
                   const itemActive =
-                    pathname === item.href || pathname.startsWith(`${item.href}/`);
+                    pathname === item.href ||
+                    pathname.startsWith(`${item.href}/`);
 
                   return (
                     <DropdownItem
                       key={item.href}
-                      href={item.href}
+                      href={item.href as never}
                       startContent={item.icon}
                       className={itemActive ? 'text-danger font-semibold' : ''}
                     >
@@ -236,15 +264,18 @@ export const PanelLateral = () => {
                   <Listbox aria-label={group.label}>
                     {group.items.map((item) => {
                       const itemActive =
-                        pathname === item.href || pathname.startsWith(`${item.href}/`);
+                        pathname === item.href ||
+                        pathname.startsWith(`${item.href}/`);
 
                       return (
                         <ListboxItem
                           key={item.href}
-                          href={item.href}
+                          href={item.href as never}
                           color="danger"
                           startContent={item.icon}
-                          className={itemActive ? 'text-danger font-semibold' : ''}
+                          className={
+                            itemActive ? 'text-danger font-semibold' : ''
+                          }
                         >
                           {item.label}
                         </ListboxItem>

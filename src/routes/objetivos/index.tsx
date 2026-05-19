@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import type { ComponentType, ReactNode } from 'react';
 import { Database, Eye, Layers, Map, Network } from 'lucide-react';
+import type { ComponentType } from 'react';
 import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/objetivos/')({
@@ -57,25 +57,6 @@ const OBJETIVOS: Array<Objetivo> = [
   },
 ];
 
-function SectionHeader({
-  title,
-  subtitle,
-  right,
-}: {
-  title: string;
-  subtitle?: string;
-  right?: ReactNode;
-}) {
-  return (
-    <div className="mb-4 flex items-start justify-between gap-6 border-b border-primary/50 pb-2">
-      <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        {subtitle ? <p className="text-sm text-black/60">{subtitle}</p> : null}
-      </div>
-      {right ? <div className="shrink-0">{right}</div> : null}
-    </div>
-  );
-}
 
 function RouteComponent() {
   return (

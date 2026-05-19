@@ -31,13 +31,13 @@ export const AppBar = () => {
                 <Image
                   src="/branding/la-rioja-gobierno.png"
                   alt="La Rioja Gobierno"
-                  className="hidden h-9 min-w-[142px] max-w-[142px] shrink-0 object-contain md:block"
+                  className="hidden h-9 min-w-35.5 max-w-35.5 shrink-0 object-contain md:block"
                   radius="none"
                 />
                 <Image
                   src="/branding/la-rioja-gobierno-small.png"
                   alt="La Rioja Gobierno"
-                  className="block h-9 min-w-[39px] max-w-[39px] shrink-0 object-contain md:hidden"
+                  className="block h-9 min-w-9.75 max-w-9.75 shrink-0 object-contain md:hidden"
                   radius="none"
                 />
               </>
