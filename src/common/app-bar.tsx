@@ -1,5 +1,5 @@
 import { Image, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react';
-import { getRouteApi } from '@tanstack/react-router';
+import { Link, getRouteApi } from '@tanstack/react-router';
 import { PanelLateral } from './panel-lateral';
 import { UserMenu } from '@/auth/user-menu';
 import { UserLogin } from '@/auth/user-login';
@@ -47,10 +47,16 @@ export const AppBar = () => {
 
             <div className="h-10 w-1.5 rounded-sm bg-success" />
 
-            <div className="flex flex-col leading-tight">
+            <Link
+              to="/"
+              className="flex flex-col leading-tight transition-opacity hover:opacity-80"
+              aria-label="Volver al inicio de SIMLaR"
+            >
               <p className="text-2xl font-bold text-default-800">SIMLaR</p>
-              <p className="text-sm text-default-500">Sistema de Información Minera La Rioja</p>
-            </div>
+              <p className="text-sm text-default-500">
+                Sistema de Información Minera La Rioja
+              </p>
+            </Link>
           </div>
         </NavbarBrand>
       </NavbarContent>
