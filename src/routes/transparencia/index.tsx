@@ -1,6 +1,6 @@
-import { Alert, Card, CardBody, CardHeader } from '@heroui/react';
+import { Card, CardBody, CardHeader } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Construction, ExternalLink, FileText } from 'lucide-react';
+import { ExternalLink, FileText } from 'lucide-react';
 import SectionTitle from '@/common/sectionTitle';
 
 export const Route = createFileRoute('/transparencia/')({
