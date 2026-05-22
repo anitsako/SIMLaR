@@ -15,7 +15,6 @@ import {
 import { Link, getRouteApi, useRouterState } from '@tanstack/react-router';
 import {
   Blend,
-  Braces,
   Briefcase,
   Building,
   ChartBar,
@@ -42,7 +41,6 @@ type RutaInterna =
   | '/contacto'
   | '/proyectos-mineros'
   | '/mapas-geologicos'
-  | '/datos-abiertos'
   | '/servicios'
   | '/educacion'
   | '/carrousel-imagenes'
@@ -72,11 +70,6 @@ const institucionalItems: Array<MenuItem> = [
     icon: <Target size={18} />,
   },
   {
-    label: 'Transparencia',
-    href: '/transparencia',
-    icon: <Blend size={18} />,
-  },
-  {
     label: 'Contacto',
     href: '/contacto',
     icon: <ContactRound size={18} />,
@@ -95,9 +88,9 @@ const informacionMineraItems: Array<MenuItem> = [
     icon: <Map size={18} />,
   },
   {
-    label: 'Datos abiertos',
-    href: '/datos-abiertos',
-    icon: <Braces size={18} />,
+    label: 'Transparencia',
+    href: '/transparencia',
+    icon: <Blend size={18} />,
   },
 ];
 

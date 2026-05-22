@@ -19,7 +19,6 @@ import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
 import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
-import { Route as DatosAbiertosIndexRouteImport } from './routes/datos-abiertos/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as AuthedAnalyticsRouteImport } from './routes/_authed/analytics'
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
@@ -79,11 +78,6 @@ const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
 const EducacionIndexRoute = EducacionIndexRouteImport.update({
   id: '/educacion/',
   path: '/educacion/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DatosAbiertosIndexRoute = DatosAbiertosIndexRouteImport.update({
-  id: '/datos-abiertos/',
-  path: '/datos-abiertos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoIndexRoute = ContactoIndexRouteImport.update({
@@ -153,7 +147,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/contacto/': typeof ContactoIndexRoute
-  '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
@@ -176,7 +169,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/contacto': typeof ContactoIndexRoute
-  '/datos-abiertos': typeof DatosAbiertosIndexRoute
   '/educacion': typeof EducacionIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
   '/mapas-geologicos': typeof MapasGeologicosIndexRoute
@@ -201,7 +193,6 @@ export interface FileRoutesById {
   '/_authed': typeof AuthedRouteWithChildren
   '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/contacto/': typeof ContactoIndexRoute
-  '/datos-abiertos/': typeof DatosAbiertosIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
@@ -226,7 +217,6 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/contacto/'
-    | '/datos-abiertos/'
     | '/educacion/'
     | '/institucional/'
     | '/mapas-geologicos/'
@@ -249,7 +239,6 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/contacto'
-    | '/datos-abiertos'
     | '/educacion'
     | '/institucional'
     | '/mapas-geologicos'
@@ -273,7 +262,6 @@ export interface FileRouteTypes {
     | '/_authed'
     | '/_authed/analytics'
     | '/contacto/'
-    | '/datos-abiertos/'
     | '/educacion/'
     | '/institucional/'
     | '/mapas-geologicos/'
@@ -297,7 +285,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthedRoute: typeof AuthedRouteWithChildren
   ContactoIndexRoute: typeof ContactoIndexRoute
-  DatosAbiertosIndexRoute: typeof DatosAbiertosIndexRoute
   EducacionIndexRoute: typeof EducacionIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
   MapasGeologicosIndexRoute: typeof MapasGeologicosIndexRoute
@@ -380,13 +367,6 @@ declare module '@tanstack/react-router' {
       path: '/educacion'
       fullPath: '/educacion/'
       preLoaderRoute: typeof EducacionIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/datos-abiertos/': {
-      id: '/datos-abiertos/'
-      path: '/datos-abiertos'
-      fullPath: '/datos-abiertos/'
-      preLoaderRoute: typeof DatosAbiertosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto/': {
@@ -499,7 +479,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthedRoute: AuthedRouteWithChildren,
   ContactoIndexRoute: ContactoIndexRoute,
-  DatosAbiertosIndexRoute: DatosAbiertosIndexRoute,
   EducacionIndexRoute: EducacionIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
   MapasGeologicosIndexRoute: MapasGeologicosIndexRoute,
