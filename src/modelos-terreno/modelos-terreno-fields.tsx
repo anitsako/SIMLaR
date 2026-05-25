@@ -1,0 +1,177 @@
+import { ArchivoField } from '@/common/archivo.field';
+import { leerMetadataCog, type CogMetadata } from '@/common/extractMetaDataCog';
+import { useState } from 'react';
+
+// Lo que el componente reporta al padre
+export interface ModeloTerrenoData {
+  dtmCog: File | undefined;
+  ortofotoCog: File | undefined;
+  mdtColoreadoCog: File | undefined;
+  dtmMeta: CogMetadata | null;
+  ortofotoMeta: CogMetadata | null;
+  coloreadoMeta: CogMetadata | null;
+  error: string | null;
+}
+
+interface ModeloTerrenoFieldsProps {
+  onChange: (data: ModeloTerrenoData) => void;
+  modeloActual?: {
+    tieneMdt?: boolean;
+    tieneOrtofoto?: boolean;
+    tieneColoreado?: boolean;
+  };
+}
+
+export const ModeloTerrenoFields = ({ onChange, modeloActual }: ModeloTerrenoFieldsProps) => {
+  const [dtmCog, setDtmCog] = useState<File | undefined>(undefined);
+  const [ortofotoCog, setOrtofotoCog] = useState<File | undefined>(undefined);
+  const [mdtColoreadoCog, setMdtColoreadoCog] = useState<File | undefined>(undefined);
+  const [dtmMeta, setDtmMeta] = useState<CogMetadata | null>(null);
+  const [ortofotoMeta, setOrtofotoMeta] = useState<CogMetadata | null>(null);
+  const [coloreadoMeta, setColoreadoMeta] = useState<CogMetadata | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
+
+  // Helper: notificar al padre con el estado actualizado
+  const notificar = (overrides: Partial<ModeloTerrenoData>) => {
+    onChange({
+      dtmCog,
+      ortofotoCog,
+      mdtColoreadoCog,
+      dtmMeta,
+      ortofotoMeta,
+      coloreadoMeta,
+      error: validationError,
+      ...overrides,
+    });
+  };
+
+  const handleDtmChange = async (file: File | undefined) => {
+    setDtmCog(file);
+    if (!file) {
+      setDtmMeta(null);
+      notificar({ dtmCog: undefined, dtmMeta: null });
+      return;
+    }
+    try {
+      const meta = await leerMetadataCog(file);
+      setDtmMeta(meta);
+      const error = meta.numBandas !== 1
+        ? 'El MDT debería tener 1 banda de elevación. ¿Subiste la ortofoto por error?'
+        : null;
+      setValidationError(error);
+      notificar({ dtmCog: file, dtmMeta: meta, error });
+    } catch {
+      setDtmMeta(null);
+      const error = 'No se pudo leer el MDT. ¿Es un GeoTIFF válido?';
+      setValidationError(error);
+      notificar({ dtmCog: file, dtmMeta: null, error });
+    }
+  };
+
+  const handleOrtofotoChange = async (file: File | undefined) => {
+    setOrtofotoCog(file);
+    if (!file) {
+      setOrtofotoMeta(null);
+      notificar({ ortofotoCog: undefined, ortofotoMeta: null });
+      return;
+    }
+    try {
+      const meta = await leerMetadataCog(file);
+      setOrtofotoMeta(meta);
+      setValidationError(null);
+      notificar({ ortofotoCog: file, ortofotoMeta: meta, error: null });
+    } catch {
+      setOrtofotoMeta(null);
+      const error = 'No se pudo leer la ortofoto. ¿Es un GeoTIFF válido?';
+      setValidationError(error);
+      notificar({ ortofotoCog: file, ortofotoMeta: null, error });
+    }
+  };
+
+  const handleColoreadoChange = async (file: File | undefined) => {
+    setMdtColoreadoCog(file);
+    if (!file) {
+      setColoreadoMeta(null);
+      notificar({ mdtColoreadoCog: undefined, coloreadoMeta: null });
+      return;
+    }
+    try {
+      const meta = await leerMetadataCog(file);
+      setColoreadoMeta(meta);
+      setValidationError(null);
+      notificar({ mdtColoreadoCog: file, coloreadoMeta: meta, error: null });
+    } catch {
+      setColoreadoMeta(null);
+      const error = 'No se pudo leer el COG coloreado. ¿Es un GeoTIFF válido?';
+      setValidationError(error);
+      notificar({ mdtColoreadoCog: file, coloreadoMeta: null, error });
+    }
+  };
+
+  return (
+    <div className="border-t pt-4 mt-4 space-y-4">
+      <h2 className="text-lg font-semibold">Modelo de terreno (opcional)</h2>
+      <p className="text-sm text-default-500">
+        Subí los archivos COG generados desde WebODM. El MDT y la ortofoto deben estar en
+        formato GeoTIFF (.tif) reproyectados a Web Mercator (EPSG:3857).
+      </p>
+
+      <div className="flex flex-row justify-center gap-4">
+        <div className="space-y-1 flex-1">
+          <ArchivoField
+            label="MDT (COG GeoTIFF)"
+            accept=".tif,.tiff,image/tiff"
+            onChange={handleDtmChange}
+          />
+          {modeloActual?.tieneMdt && !dtmCog && (
+            <p className="text-xs text-success">✓ Ya hay un MDT cargado (subí uno nuevo para reemplazar)</p>
+          )}
+          {dtmMeta && (
+            <p className="text-xs text-default-400">
+              Elevación: {dtmMeta.elevationMin}m – {dtmMeta.elevationMax}m · {dtmMeta.anchoPx}×
+              {dtmMeta.altoPx}px · {dtmMeta.numBandas} banda · {dtmMeta.crs}
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-1 flex-1">
+          <ArchivoField
+            label="Ortofoto (COG GeoTIFF)"
+            accept=".tif,.tiff,image/tiff"
+            onChange={handleOrtofotoChange}
+          />
+          {modeloActual?.tieneOrtofoto && !ortofotoCog && (
+            <p className="text-xs text-success">✓ Ya hay una ortofoto cargada (subí una nueva para reemplazar)</p>
+          )}
+          {ortofotoMeta && (
+            <p className="text-xs text-default-400">
+              {ortofotoMeta.numBandas} bandas · {ortofotoMeta.anchoPx}×{ortofotoMeta.altoPx}px ·{' '}
+              {ortofotoMeta.crs}
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-1 flex-1">
+          <ArchivoField
+            label="MDT Coloreado (COG GeoTIFF)"
+            accept=".tif,.tiff,image/tiff"
+            onChange={handleColoreadoChange}
+          />
+          {modeloActual?.tieneColoreado && !mdtColoreadoCog && (
+            <p className="text-xs text-success">✓ Ya hay un MDT coloreado cargado (subí uno nuevo para reemplazar)</p>
+          )}
+          {coloreadoMeta && (
+            <p className="text-xs text-default-400">
+              {coloreadoMeta.numBandas} bandas · {coloreadoMeta.anchoPx}×{coloreadoMeta.altoPx}px ·{' '}
+              {coloreadoMeta.crs}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {validationError && (
+        <p className="text-sm text-danger">{validationError}</p>
+      )}
+    </div>
+  );
+};
