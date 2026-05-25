@@ -2,20 +2,20 @@ import { createServerFn } from '@tanstack/react-start';
 import { and, eq, inArray } from 'drizzle-orm';
 import { z } from 'zod';
 import { db } from '@/db';
-import { modelosTerrenoTable } from '@/db/schemas/modelos-terreno.schema';
+import { proyectosMinerosModelosTerrenoTable } from '@/db/schemas/proyectos-mineros-modelos-terreno.schema';
 import { archivosTable } from '@/db/schemas/archivos.schema';
 
 export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
-  .inputValidator(z.object({ proyectoId: z.number().int().positive() }))
+  .inputValidator(z.object({ proyectoMineroId: z.number().int().positive() }))
   .handler(async ({ data }) => {
 
     const modelos = await db
       .select()
-      .from(modelosTerrenoTable)
+      .from(proyectosMinerosModelosTerrenoTable)
       .where(
         and(
-          eq(modelosTerrenoTable.proyectoId, data.proyectoId),
-          eq(modelosTerrenoTable.esPrincipal, true),
+          eq(proyectosMinerosModelosTerrenoTable.proyectoMineroId, data.proyectoMineroId),
+          eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true),
         ),
       )
       .limit(1);

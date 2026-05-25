@@ -3,11 +3,11 @@ import { and, eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
-import { modelosTerrenoTable } from '@/db/schemas/modelos-terreno.schema';
+import { proyectosMinerosModelosTerrenoTable } from '@/db/schemas/proyectos-mineros-modelos-terreno.schema';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 
 const crearModeloTerrenoSchema = z.object({
-  proyectoId: z.number().int().positive(),
+  proyectoMineroId: z.number().int().positive(),
 
   // Identificación del levantamiento
   nombre: z.string().min(1).max(200),
@@ -61,7 +61,7 @@ export const crearModeloTerrenoFn = createServerFn({ method: 'POST' })
     const proyectos = await db
       .select({ id: proyectosMinerosTable.id })
       .from(proyectosMinerosTable)
-      .where(eq(proyectosMinerosTable.id, data.proyectoId));
+      .where(eq(proyectosMinerosTable.id, data.proyectoMineroId));
 
     if (proyectos.length === 0) {
       throw new Error('Proyecto minero no encontrado');
@@ -76,20 +76,20 @@ export const crearModeloTerrenoFn = createServerFn({ method: 'POST' })
       // Si este modelo va a ser el principal, desmarcar cualquier otro principal del proyecto
       if (data.esPrincipal) {
         await tx
-          .update(modelosTerrenoTable)
+          .update(proyectosMinerosModelosTerrenoTable)
           .set({ esPrincipal: false })
           .where(
             and(
-              eq(modelosTerrenoTable.proyectoId, data.proyectoId),
-              eq(modelosTerrenoTable.esPrincipal, true),
+              eq(proyectosMinerosModelosTerrenoTable.proyectoMineroId, data.proyectoMineroId),
+              eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true),
             ),
           );
       }
 
       const [modelo] = await tx
-        .insert(modelosTerrenoTable)
+        .insert(proyectosMinerosModelosTerrenoTable)
         .values({
-          proyectoId: data.proyectoId,
+          proyectoMineroId: data.proyectoMineroId,
           nombre: data.nombre,
           descripcion: data.descripcion,
           fechaLevantamiento: data.fechaLevantamiento,

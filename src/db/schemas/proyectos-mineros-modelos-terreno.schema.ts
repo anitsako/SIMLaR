@@ -3,10 +3,10 @@ import { proyectosMinerosTable } from "./proyectos-mineros.schema";
 import { archivosTable } from "./archivos.schema";
 import { usuariosTable } from "./usuarios.schema";
 
-export const modelosTerrenoTable = pgTable('modelos_terreno', {
+export const proyectosMinerosModelosTerrenoTable = pgTable('modelos_terreno', {
   id: serial('id').primaryKey(),
 
-  proyectoId: integer('proyecto_id')
+  proyectoMineroId: integer('proyecto_id')
     .notNull()
     .references(() => proyectosMinerosTable.id, { onDelete: 'cascade' }),
   // Identificación del levantamiento

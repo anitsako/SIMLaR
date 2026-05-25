@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { useAppSession } from '@/auth/use-app-session';
 import { db } from '@/db';
 import { archivosTable } from '@/db/schemas/archivos.schema';
-import { modelosTerrenoTable } from '@/db/schemas/modelos-terreno.schema';
+import { proyectosMinerosModelosTerrenoTable } from '@/db/schemas/proyectos-mineros-modelos-terreno.schema';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 
 // Schema de un COG en el payload
@@ -18,7 +18,7 @@ const cogArchivoSchema = z.object({
 });
 
 const upsertModeloTerrenoSchema = z.object({
-  proyectoId: z.number().int().positive(),
+  proyectoMineroId: z.number().int().positive(),
   nombre: z.string().min(1).max(200).default('Levantamiento inicial'),
 
   // Los tres COG, todos opcionales
@@ -60,7 +60,7 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
     }
     await mkdir(filesPath, { recursive: true });
 
-    const { proyectoId, mdtCog, ortofotoCog, mdtColoreadoCog, nombre, ...metadata } = data;
+    const { proyectoMineroId, mdtCog, ortofotoCog, mdtColoreadoCog, nombre, ...metadata } = data;
 
     // Validar tamaños y preparar buffers
     const prepararBuffer = (cog: typeof mdtCog) => {
@@ -84,7 +84,7 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
         const proyectos = await tx
           .select({ id: proyectosMinerosTable.id })
           .from(proyectosMinerosTable)
-          .where(eq(proyectosMinerosTable.id, proyectoId));
+          .where(eq(proyectosMinerosTable.id, proyectoMineroId));
 
         if (proyectos.length === 0) {
           throw new Error('Proyecto minero no encontrado');
@@ -93,11 +93,11 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
         // Buscar si ya hay modelo principal
         const modelosExistentes = await tx
           .select()
-          .from(modelosTerrenoTable)
+          .from(proyectosMinerosModelosTerrenoTable)
           .where(
             and(
-              eq(modelosTerrenoTable.proyectoId, proyectoId),
-              eq(modelosTerrenoTable.esPrincipal, true),
+              eq(proyectosMinerosModelosTerrenoTable.proyectoMineroId, proyectoMineroId),
+              eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true),
             ),
           )
           .limit(1);
@@ -167,7 +167,7 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
         if (modeloExistente) {
           // ACTUALIZAR el modelo existente
           const [actualizado] = await tx
-            .update(modelosTerrenoTable)
+            .update(proyectosMinerosModelosTerrenoTable)
             .set({
               nombre,
               mdtCogArchivoId,
@@ -176,15 +176,15 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
               ...metadata,
               usuarioModificadorId: usuarioId,
             })
-            .where(eq(modelosTerrenoTable.id, modeloExistente.id))
+            .where(eq(proyectosMinerosModelosTerrenoTable.id, modeloExistente.id))
             .returning();
           return actualizado;
         } else {
           // CREAR modelo nuevo
           const [creado] = await tx
-            .insert(modelosTerrenoTable)
+            .insert(proyectosMinerosModelosTerrenoTable)
             .values({
-              proyectoId,
+              proyectoMineroId,
               nombre,
               mdtCogArchivoId,
               ortofotoCogArchivoId,
