@@ -11,6 +11,9 @@ import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { proyectoMineroQuery } from '@/proyectos-mineros/use-proyecto-minero';
 import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
+import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn'
+import { ModeloTerrenoFields, type ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields.tsx'
+import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno'
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/$id/modificar')({
   loader: ({ context: { queryClient }, params: { id } }) => {
@@ -47,15 +50,30 @@ function RouteComponent() {
     visible: proyecto.visible,
     archivoMapa: undefined as File | undefined,
   });
+
+  const [modeloData, setModeloData] = useState<ModeloTerrenoData | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const updateProyectoMinero = useServerFn(updateProyectoMineroFn);
+  const upsertModeloTerreno = useServerFn(upsertModeloTerrenoFn);
+
+  const { data: modeloActual } = useModeloTerrenoFn(Number(id));
+
   const {
-    mutate: modificarProyectoMinero,
+    mutateAsync: modificarProyectoMinero,
     isPending,
     error,
   } = useMutation({
-    mutationFn: updateProyectoMinero,
+    mutationFn: async (payload: { proyecto: any; modelo: any | null }) => {
+      const proyectoActualizado = await updateProyectoMinero({ data: payload.proyecto })
+
+      if (payload.modelo) {
+        await upsertModeloTerreno({
+          data: { ...payload.modelo, proyectoId: proyecto.id },
+        });
+      }
+      return proyectoActualizado;
+    },
     onSuccess: () => {
       addToast({
         title: 'Proyecto actualizado',
@@ -64,6 +82,7 @@ function RouteComponent() {
         variant: 'solid',
       });
       queryClient.invalidateQueries({ queryKey: ['proyectos-mineros'] });
+      queryClient.invalidateQueries({ queryKey: ['modelo-terreno', proyecto.id] });
       navigate({ to: '/proyectos-mineros' });
     },
   });
@@ -75,46 +94,79 @@ function RouteComponent() {
       setValidationError('Debe ingresar la altitud (msnm).');
       return;
     }
+    if (modeloData?.error) {
+      setValidationError(modeloData.error);
+      return;
+    }
 
     setValidationError(null);
 
-    let archivoMapa:
-      | {
-          nombre: string;
-          tamaño: number;
-          mimeType: string;
-          base64: string;
-        }
-      | undefined;
-
-    if (data.archivoMapa) {
-      const base64 = await new Promise<string>((resolve, reject) => {
+    const base64 = (file: File): Promise<string> =>
+      new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve((reader.result as string).split(',')[1]);
         reader.onerror = reject;
-        reader.readAsDataURL(data.archivoMapa!);
+        reader.readAsDataURL(file);
       });
 
+    // Archivo de mapa (opcional en modificar)
+    let archivoMapa;
+    if (data.archivoMapa) {
       archivoMapa = {
         nombre: data.archivoMapa.name,
         tamaño: data.archivoMapa.size,
         mimeType: data.archivoMapa.type,
-        base64,
+        base64: await base64(data.archivoMapa),
       };
     }
 
-    modificarProyectoMinero({
-      data: {
-        id: proyecto.id,
-        ...data,
-        tipoId: data.tipoId,
-        etapaId: data.etapaId,
-        msnm: data.msnm,
-        archivoMapa,
-      },
-    });
-  };
+    // Payload del proyecto
+    const proyectoPayload = {
+      id: proyecto.id,
+      ...data,
+      tipoId: data.tipoId,
+      etapaId: data.etapaId,
+      msnm: data.msnm,
+      archivoMapa,
+    };
 
+    // Payload del modelo (si hay COGs nuevos)
+    const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
+    let modeloPayload = null;
+
+    if (hayCog && modeloData) {
+      const meta = modeloData.dtmMeta ?? modeloData.ortofotoMeta ?? modeloData.coloreadoMeta;
+      if (meta) {
+        modeloPayload = {
+          nombre: 'Levantamiento inicial',
+          mdtCog: modeloData.dtmCog
+            ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
+            : null,
+          ortofotoCog: modeloData.ortofotoCog
+            ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
+            : null,
+          mdtColoreadoCog: modeloData.mdtColoreadoCog
+            ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
+            : null,
+          crs: meta.crs,
+          boundsWest: meta.boundsWest,
+          boundsSouth: meta.boundsSouth,
+          boundsEast: meta.boundsEast,
+          boundsNorth: meta.boundsNorth,
+          centerLat: meta.centerLat,
+          centerLon: meta.centerLon,
+          defaultZoom: 15,
+          elevationMin: modeloData.dtmMeta?.elevationMin ?? null,
+          elevationMax: modeloData.dtmMeta?.elevationMax ?? null,
+          resolucionMetros: meta.resolucionMetros,
+          anchoPx: meta.anchoPx,
+          altoPx: meta.altoPx,
+        };
+      }
+    }
+
+    await modificarProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
+  };
   return (
     <div className="mt-4 space-y-6">
       <h1 className="text-2xl font-bold">Modificar proyecto minero</h1>
@@ -256,9 +308,17 @@ function RouteComponent() {
           </p>
           <ArchivoField
             label="Archivo de mapa"
+            accept="image/png, image/jpeg, image/webp"
             onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}
           />
         </div>
+
+        <ModeloTerrenoFields onChange={setModeloData} modeloActual={{
+          tieneMdt: !!modeloActual?.mdt,
+          tieneOrtofoto: !!modeloActual?.ortofoto,
+          tieneColoreado: !!modeloActual?.mdtColoreado,
+        }} />
+
 
         {(validationError || error) && (
           <Alert color="danger">
