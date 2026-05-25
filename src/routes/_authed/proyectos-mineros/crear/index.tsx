@@ -6,10 +6,12 @@ import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
 import type { SubmitEvent } from 'react';
 import { createProyectoMineroFn } from '@/proyectos-mineros/create-proyecto-minero.fn';
+import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn'
 import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-minero-tipo.field';
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
+import { ModeloTerrenoFields, type ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields'
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/crear/')({
   component: RouteComponent,
@@ -37,15 +39,36 @@ function RouteComponent() {
     visible: true,
     archivoMapa: undefined as File | undefined,
   });
+
+
+  const [modeloData, setModeloData] = useState<ModeloTerrenoData | null>(null);
+
+
   const [validationError, setValidationError] = useState<string | null>(null);
 
-  const createProyectoMinero = useServerFn(createProyectoMineroFn);
+  const crearProyectoMinero = useServerFn(createProyectoMineroFn);
+  const upsertModeloTerreno = useServerFn(upsertModeloTerrenoFn)
   const {
-    mutate: crearProyectoMinero,
+    mutateAsync: createProyectoMinero,
     isPending,
     error,
   } = useMutation({
-    mutationFn: createProyectoMinero,
+    mutationFn: async (payload: {
+      proyecto: any;
+      modelo: any | null;
+    }) => {
+      // 1. Crear el proyecto
+      const proyecto = await crearProyectoMinero({ data: payload.proyecto });
+
+      // 2. Si hay modelo, crearlo
+      if (payload.modelo) {
+        await upsertModeloTerreno({
+          data: { ...payload.modelo, proyectoId: proyecto.id },
+        });
+      }
+
+      return proyecto;
+    },
     onSuccess: () => {
       addToast({
         title: 'Proyecto creado',
@@ -56,6 +79,15 @@ function RouteComponent() {
       navigate({ to: '/proyectos-mineros' });
     },
   });
+
+
+  const base64 = (file: File): Promise<string> =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve((reader.result as string).split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
@@ -70,32 +102,68 @@ function RouteComponent() {
       return;
     }
 
+    if (modeloData?.error) {
+      setValidationError(modeloData.error);
+      return;
+    }
+
     setValidationError(null);
 
-    const base64 = await new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve((reader.result as string).split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(data.archivoMapa!);
-    });
+    const archivoMapaBase64 = await base64(data.archivoMapa)
 
-    crearProyectoMinero({
-      data: {
-        ...data,
-        tipoId: data.tipoId!,
-        etapaId: data.etapaId!,
-        msnm: data.msnm,
-        archivoMapa: {
-          nombre: data.archivoMapa.name,
-          tamaño: data.archivoMapa.size,
-          mimeType: data.archivoMapa.type,
-          base64,
-        },
+
+    // Armar payload del proyecto
+    const proyectoPayload = {
+      ...data,
+      tipoId: data.tipoId!,
+      etapaId: data.etapaId!,
+      msnm: data.msnm,
+      archivoMapa: {
+        nombre: data.archivoMapa.name,
+        tamaño: data.archivoMapa.size,
+        mimeType: data.archivoMapa.type,
+        base64: archivoMapaBase64,
       },
-    });
-  };
+    };
 
-  return (
+    console.log('payload del modelo al hacer submit: ', modeloData)
+    // Armar payload del modelo (si hay COGs)
+    const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
+    let modeloPayload = null;
+
+    if (hayCog && modeloData) {
+      const meta = modeloData.dtmMeta ?? modeloData.ortofotoMeta ?? modeloData.coloreadoMeta;
+      if (meta) {
+        modeloPayload = {
+          nombre: 'Levantamiento inicial',
+          mdtCog: modeloData.dtmCog
+            ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
+            : null,
+          ortofotoCog: modeloData.ortofotoCog
+            ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
+            : null,
+          mdtColoreadoCog: modeloData.mdtColoreadoCog
+            ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
+            : null,
+          crs: meta.crs,
+          boundsWest: meta.boundsWest,
+          boundsSouth: meta.boundsSouth,
+          boundsEast: meta.boundsEast,
+          boundsNorth: meta.boundsNorth,
+          centerLat: meta.centerLat,
+          centerLon: meta.centerLon,
+          defaultZoom: 15,
+          elevationMin: modeloData.dtmMeta?.elevationMin ?? null,
+          elevationMax: modeloData.dtmMeta?.elevationMax ?? null,
+          resolucionMetros: meta.resolucionMetros,
+          anchoPx: meta.anchoPx,
+          altoPx: meta.altoPx,
+        };
+      }
+    }
+
+    await createProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
+  }; return (
     <div className="my-4 space-y-6">
       <h1 className="text-2xl font-bold">Crear proyecto minero</h1>
 
@@ -231,9 +299,12 @@ function RouteComponent() {
 
         <ArchivoField
           required
+          accept="image/png, image/jpeg, image/webp"
           label="Archivo de mapa"
           onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}
         />
+        {/* NUEVO: sección de modelo de terreno */}
+        <ModeloTerrenoFields onChange={setModeloData} />
 
         {(validationError || error) && (
           <Alert color="danger">
