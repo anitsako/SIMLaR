@@ -1,0 +1,1755 @@
+{
+  "id": "ab0a7ffd-e0dc-4036-8708-be199b0127a4",
+  "prevId": "1fc927ec-96f3-40a5-ac94-63251b5df1fd",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.aeropuertos": {
+      "name": "aeropuertos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "geom": {
+          "name": "geom",
+          "type": "geometry(point)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(40)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.analytics_sesiones": {
+      "name": "analytics_sesiones",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "visitor_id": {
+          "name": "visitor_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "started_at": {
+          "name": "started_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "last_seen_at": {
+          "name": "last_seen_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "ended_at": {
+          "name": "ended_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_agent": {
+          "name": "user_agent",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "browser": {
+          "name": "browser",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "os": {
+          "name": "os",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "device": {
+          "name": "device",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "language": {
+          "name": "language",
+          "type": "varchar(35)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "screen_resolution": {
+          "name": "screen_resolution",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "country": {
+          "name": "country",
+          "type": "varchar(2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "region": {
+          "name": "region",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "referrer": {
+          "name": "referrer",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "utm_source": {
+          "name": "utm_source",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "utm_medium": {
+          "name": "utm_medium",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "utm_campaign": {
+          "name": "utm_campaign",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "utm_term": {
+          "name": "utm_term",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "utm_content": {
+          "name": "utm_content",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "idx_sesiones_visitor": {
+          "name": "idx_sesiones_visitor",
+          "columns": [
+            {
+              "expression": "visitor_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_sesiones_started": {
+          "name": "idx_sesiones_started",
+          "columns": [
+            {
+              "expression": "started_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_sesiones_visitor_started": {
+          "name": "idx_sesiones_visitor_started",
+          "columns": [
+            {
+              "expression": "visitor_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "started_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.analytics_visitas": {
+      "name": "analytics_visitas",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "session_id": {
+          "name": "session_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pathname": {
+          "name": "pathname",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(1024)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "duration_ms": {
+          "name": "duration_ms",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "scroll_depth_pct": {
+          "name": "scroll_depth_pct",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "viewed_at": {
+          "name": "viewed_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_visitas_session": {
+          "name": "idx_visitas_session",
+          "columns": [
+            {
+              "expression": "session_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_visitas_pathname": {
+          "name": "idx_visitas_pathname",
+          "columns": [
+            {
+              "expression": "pathname",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_visitas_viewed": {
+          "name": "idx_visitas_viewed",
+          "columns": [
+            {
+              "expression": "viewed_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "idx_visitas_session_viewed": {
+          "name": "idx_visitas_session_viewed",
+          "columns": [
+            {
+              "expression": "session_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "viewed_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "analytics_visitas_session_id_analytics_sesiones_id_fk": {
+          "name": "analytics_visitas_session_id_analytics_sesiones_id_fk",
+          "tableFrom": "analytics_visitas",
+          "tableTo": "analytics_sesiones",
+          "columnsFrom": [
+            "session_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.archivos_contenidos": {
+      "name": "archivos_contenidos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "archivo_id": {
+          "name": "archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "contenido": {
+          "name": "contenido",
+          "type": "bytea",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "archivos_contenidos_archivo_id_archivos_id_fk": {
+          "name": "archivos_contenidos_archivo_id_archivos_id_fk",
+          "tableFrom": "archivos_contenidos",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.archivos": {
+      "name": "archivos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tamaño": {
+          "name": "tamaño",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mime_type": {
+          "name": "mime_type",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "fecha_modificacion": {
+          "name": "fecha_modificacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "archivos_usuario_creador_id_usuarios_id_fk": {
+          "name": "archivos_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "archivos",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "archivos_usuario_modificador_id_usuarios_id_fk": {
+          "name": "archivos_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "archivos",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.carrousel_imagenes": {
+      "name": "carrousel_imagenes",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "archivo_id": {
+          "name": "archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position_y": {
+          "name": "position_y",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "orden": {
+          "name": "orden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "carrousel_imagenes_archivo_id_archivos_id_fk": {
+          "name": "carrousel_imagenes_archivo_id_archivos_id_fk",
+          "tableFrom": "carrousel_imagenes",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "carrousel_imagenes_usuario_creador_id_usuarios_id_fk": {
+          "name": "carrousel_imagenes_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "carrousel_imagenes",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "carrousel_imagenes_usuario_modificador_id_usuarios_id_fk": {
+          "name": "carrousel_imagenes_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "carrousel_imagenes",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.departamentos": {
+      "name": "departamentos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "geom": {
+          "name": "geom",
+          "type": "geometry(MultiPolygon,4326)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.diques": {
+      "name": "diques",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "geom": {
+          "name": "geom",
+          "type": "geometry(MultiPolygon,4326)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "superficie": {
+          "name": "superficie",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.proyectos_mineros_archivos": {
+      "name": "proyectos_mineros_archivos",
+      "schema": "",
+      "columns": {
+        "proyecto_minero_id": {
+          "name": "proyecto_minero_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "archivo_id": {
+          "name": "archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "proyectos_mineros_archivos_proyecto_minero_id_proyectos_mineros_id_fk": {
+          "name": "proyectos_mineros_archivos_proyecto_minero_id_proyectos_mineros_id_fk",
+          "tableFrom": "proyectos_mineros_archivos",
+          "tableTo": "proyectos_mineros",
+          "columnsFrom": [
+            "proyecto_minero_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_archivos_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_archivos_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_archivos",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_archivos_usuario_creador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_archivos_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_archivos",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "proyectos_mineros_archivos_proyecto_minero_id_archivo_id_pk": {
+          "name": "proyectos_mineros_archivos_proyecto_minero_id_archivo_id_pk",
+          "columns": [
+            "proyecto_minero_id",
+            "archivo_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.proyectos_mineros_etapas": {
+      "name": "proyectos_mineros_etapas",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "color": {
+          "name": "color",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "fecha_modificacion": {
+          "name": "fecha_modificacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "proyectos_mineros_etapas_usuario_creador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_etapas_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_etapas",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_etapas_usuario_modificador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_etapas_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_etapas",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "proyectos_mineros_etapas_nombre_unique": {
+          "name": "proyectos_mineros_etapas_nombre_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nombre"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.proyectos_mineros_modelos_terreno": {
+      "name": "proyectos_mineros_modelos_terreno",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "proyecto_minero_id": {
+          "name": "proyecto_minero_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(200)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_levantamiento": {
+          "name": "fecha_levantamiento",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mdt_cog_archivo_id": {
+          "name": "mdt_cog_archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mdt_raw_archivo_id": {
+          "name": "mdt_raw_archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ortofoto_cog_archivo_id": {
+          "name": "ortofoto_cog_archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ortofoto_png_archivo_id": {
+          "name": "ortofoto_png_archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mdt_coloreado_archivo_id": {
+          "name": "mdt_coloreado_archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "thumbnail_archivo_id": {
+          "name": "thumbnail_archivo_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "crs": {
+          "name": "crs",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'EPSG:3857'"
+        },
+        "crs_original": {
+          "name": "crs_original",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bounds_west": {
+          "name": "bounds_west",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bounds_south": {
+          "name": "bounds_south",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bounds_east": {
+          "name": "bounds_east",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "bounds_north": {
+          "name": "bounds_north",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "center_lat": {
+          "name": "center_lat",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "center_lon": {
+          "name": "center_lon",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "default_zoom": {
+          "name": "default_zoom",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 15
+        },
+        "elevation_min": {
+          "name": "elevation_min",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "elevation_max": {
+          "name": "elevation_max",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "resolucion_metros": {
+          "name": "resolucion_metros",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ancho_px": {
+          "name": "ancho_px",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "alto_px": {
+          "name": "alto_px",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "software_procesamiento": {
+          "name": "software_procesamiento",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_software": {
+          "name": "version_software",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notas_procesamiento": {
+          "name": "notas_procesamiento",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visible": {
+          "name": "visible",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
+        },
+        "es_principal": {
+          "name": "es_principal",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "estado_procesamiento": {
+          "name": "estado_procesamiento",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'pendiente'"
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "fecha_modificacion": {
+          "name": "fecha_modificacion",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "proyectos_mineros_modelos_terreno_proyecto_minero_id_proyectos_mineros_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_proyecto_minero_id_proyectos_mineros_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "proyectos_mineros",
+          "columnsFrom": [
+            "proyecto_minero_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_mdt_cog_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_mdt_cog_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "mdt_cog_archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_mdt_raw_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_mdt_raw_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "mdt_raw_archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_ortofoto_cog_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_ortofoto_cog_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "ortofoto_cog_archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_ortofoto_png_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_ortofoto_png_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "ortofoto_png_archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_mdt_coloreado_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_mdt_coloreado_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "mdt_coloreado_archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_thumbnail_archivo_id_archivos_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_thumbnail_archivo_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "thumbnail_archivo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_usuario_creador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_modelos_terreno_usuario_modificador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_modelos_terreno_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_modelos_terreno",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.proyectos_mineros_tipos": {
+      "name": "proyectos_mineros_tipos",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "forma": {
+          "name": "forma",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "fecha_modificacion": {
+          "name": "fecha_modificacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "proyectos_mineros_tipos_usuario_creador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_tipos_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_tipos",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_tipos_usuario_modificador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_tipos_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros_tipos",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "proyectos_mineros_tipos_nombre_unique": {
+          "name": "proyectos_mineros_tipos_nombre_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nombre"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.proyectos_mineros": {
+      "name": "proyectos_mineros",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tipo_id": {
+          "name": "tipo_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ubicacion": {
+          "name": "ubicacion",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "provincia_geologica": {
+          "name": "provincia_geologica",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "area": {
+          "name": "area",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "litologia": {
+          "name": "litologia",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mineralizacion": {
+          "name": "mineralizacion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mineral_interes": {
+          "name": "mineral_interes",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modelo_genetico": {
+          "name": "modelo_genetico",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "accesos": {
+          "name": "accesos",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "etapa_id": {
+          "name": "etapa_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "propietario": {
+          "name": "propietario",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "localidades_cercanas": {
+          "name": "localidades_cercanas",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "coordenadas_geograficas": {
+          "name": "coordenadas_geograficas",
+          "type": "geometry(point)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "msnm": {
+          "name": "msnm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "convenio_emse": {
+          "name": "convenio_emse",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "archivo_mapa_id": {
+          "name": "archivo_mapa_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "visible": {
+          "name": "visible",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "fecha_modificacion": {
+          "name": "fecha_modificacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "proyectos_mineros_tipo_id_proyectos_mineros_tipos_id_fk": {
+          "name": "proyectos_mineros_tipo_id_proyectos_mineros_tipos_id_fk",
+          "tableFrom": "proyectos_mineros",
+          "tableTo": "proyectos_mineros_tipos",
+          "columnsFrom": [
+            "tipo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_etapa_id_proyectos_mineros_etapas_id_fk": {
+          "name": "proyectos_mineros_etapa_id_proyectos_mineros_etapas_id_fk",
+          "tableFrom": "proyectos_mineros",
+          "tableTo": "proyectos_mineros_etapas",
+          "columnsFrom": [
+            "etapa_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_archivo_mapa_id_archivos_id_fk": {
+          "name": "proyectos_mineros_archivo_mapa_id_archivos_id_fk",
+          "tableFrom": "proyectos_mineros",
+          "tableTo": "archivos",
+          "columnsFrom": [
+            "archivo_mapa_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_usuario_creador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "proyectos_mineros_usuario_modificador_id_usuarios_id_fk": {
+          "name": "proyectos_mineros_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "proyectos_mineros",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "proyectos_mineros_nombre_unique": {
+          "name": "proyectos_mineros_nombre_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "nombre"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rios": {
+      "name": "rios",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "geom": {
+          "name": "geom",
+          "type": "geometry(MultiLineString,4326)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(254)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "distancia": {
+          "name": "distancia",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rutas_nacionales": {
+      "name": "rutas_nacionales",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "geom": {
+          "name": "geom",
+          "type": "geometry(MultiLineString,4326)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jurisdiccion": {
+          "name": "jurisdiccion",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "clase": {
+          "name": "clase",
+          "type": "varchar(22)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.rutas_provinciales": {
+      "name": "rutas_provinciales",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "geom": {
+          "name": "geom",
+          "type": "geometry(MultiLineString,4326)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "jurisdiccion": {
+          "name": "jurisdiccion",
+          "type": "varchar(25)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "clase": {
+          "name": "clase",
+          "type": "varchar(22)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.usuarios": {
+      "name": "usuarios",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(20)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hash_password": {
+          "name": "hash_password",
+          "type": "varchar(80)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "apellido": {
+          "name": "apellido",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(250)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "activo": {
+          "name": "activo",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "usuario_creador_id": {
+          "name": "usuario_creador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usuario_modificador_id": {
+          "name": "usuario_modificador_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "fecha_modificacion": {
+          "name": "fecha_modificacion",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "usuarios_usuario_creador_id_usuarios_id_fk": {
+          "name": "usuarios_usuario_creador_id_usuarios_id_fk",
+          "tableFrom": "usuarios",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_creador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "usuarios_usuario_modificador_id_usuarios_id_fk": {
+          "name": "usuarios_usuario_modificador_id_usuarios_id_fk",
+          "tableFrom": "usuarios",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "usuario_modificador_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "usuarios_username_unique": {
+          "name": "usuarios_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
