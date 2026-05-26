@@ -1,12 +1,23 @@
-import { pgTable, serial, integer, varchar, text, doublePrecision, boolean, date, timestamp, uuid } from "drizzle-orm/pg-core";
-import { proyectosMinerosTable } from "./proyectos-mineros.schema";
-import { archivosTable } from "./archivos.schema";
-import { usuariosTable } from "./usuarios.schema";
+import {
+  boolean,
+  date,
+  doublePrecision,
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  uuid,
+  varchar,
+} from 'drizzle-orm/pg-core';
+import { proyectosMinerosTable } from './proyectos-mineros.schema';
+import { archivosTable } from './archivos.schema';
+import { usuariosTable } from './usuarios.schema';
 
-export const proyectosMinerosModelosTerrenoTable = pgTable('modelos_terreno', {
+export const proyectosMinerosModelosTerrenoTable = pgTable('proyectos_mineros_modelos_terreno', {
   id: serial('id').primaryKey(),
 
-  proyectoMineroId: integer('proyecto_id')
+  proyectoMineroId: integer('proyecto_minero_id')
     .notNull()
     .references(() => proyectosMinerosTable.id, { onDelete: 'cascade' }),
   // Identificación del levantamiento
@@ -59,6 +70,4 @@ export const proyectosMinerosModelosTerrenoTable = pgTable('modelos_terreno', {
   usuarioModificadorId: integer('usuario_modificador_id').references(() => usuariosTable.id),
   fechaCreacion: timestamp('fecha_creacion').defaultNow(),
   fechaModificacion: timestamp('fecha_modificacion').defaultNow(),
-})
-
-
+});
