@@ -1,35 +1,39 @@
-type sizeTitle = 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
-type sizeSubtitle = 'sm' | 'md' | 'lg';
+
 
 export default function SectionTitle({
   title,
   subtitle,
-  sizeTitle,
-  sizeSubtitle,
+  rightSlot,
   textCenter,
   fontSemiBold,
-  responsiveMd,
 }: {
   title: string;
   subtitle?: string;
-  sizeTitle?: sizeTitle;
-  sizeSubtitle?: sizeSubtitle;
+  rightSlot?: React.ReactNode;
   textCenter?: boolean;
   fontSemiBold?: boolean;
-  responsiveMd?: boolean;
 }) {
   return (
-    <section>
-      <h2
-        className={`text-${sizeTitle || '3xl'} ${fontSemiBold ? 'font-semibold' : 'font-bold'} ${textCenter ? 'text-center' : ''} ${responsiveMd ? 'md:text-4xl' : ''}`}
-      >
-        {title}
-      </h2>
-      {subtitle && (
-        <p className={`text-${sizeSubtitle || 'lg'} text-muted-foreground ${textCenter ? 'text-center' : ''}`}>
-          {subtitle}
-        </p>
+    <div className={`flex items-center ${textCenter ? 'justify-center' : 'justify-between'} gap-4 w-full border-b border-primary/50 pb-2`} >
+      <div className="flex flex-col">
+
+        <h1
+          className={`text-3xl ${fontSemiBold ? 'font-semibold' : 'font-bold'} ${textCenter ? 'text-center' : ''}  md:text-4xl`}
+        >
+          {title}
+        </h1>
+        {subtitle && (
+          <p className={`text-lg text-muted-foreground ${textCenter ? 'text-center' : ''}`}>
+            {subtitle}
+          </p>
+        )}
+      </div>
+      {rightSlot && (
+        <div>
+          {rightSlot}
+        </div>
       )}
-    </section>
+
+    </div>
   );
 }
