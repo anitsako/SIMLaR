@@ -62,19 +62,16 @@ function RouteComponent() {
   return (
     <div className="mt-4 space-y-6">
       <section>
-        <div className="mb-4 border-b border-primary/50 pb-3">
+        <div className="mb-4">
           <SectionTitle
             title="Objetivos"
             subtitle="Objetivos y alcance del Sistema de Información Minera de La Rioja"
-            sizeTitle="3xl"
-            sizeSubtitle="md"
-            responsiveMd
           />
         </div>
       </section>
 
       <section>
-        
+
 
         <div className="mt-6 space-y-6">
           <p className="leading-relaxed text-black/70">
@@ -109,7 +106,6 @@ function RouteComponent() {
 
           <SectionTitle
             title="Objetivos del sistema"
-            sizeTitle="lg"
             fontSemiBold={true}
           />
 

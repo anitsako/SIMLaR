@@ -25,10 +25,7 @@ function RouteComponent() {
       <section>
         <SectionTitle
           title="Servicios"
-          sizeTitle="3xl"
           subtitle="Accesos y herramientas digitales para el sector"
-          sizeSubtitle="sm"
-          responsiveMd
         />
       </section>
 
@@ -58,9 +55,7 @@ function RouteComponent() {
                 <div>
                   <SectionTitle
                     title="Portal de Proveedores Mineros"
-                    sizeTitle="lg"
                     subtitle="Realizá el registro y gestioná la información vinculada a proveedores del sector minero en la provincia."
-                    sizeSubtitle="sm"
                     fontSemiBold={true}
                   />
                 </div>

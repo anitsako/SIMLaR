@@ -34,7 +34,7 @@ function RouteComponent() {
 
   return (
     <>
-      <SectionTitle title="Mapas geológicos" sizeTitle="5xl" textCenter />
+      <SectionTitle title="Mapas geológicos" textCenter />
       {mapas.map((mapa: Mapa, index: number) => (
         <div key={index} className="max-w-6xl mb-4">
           <div className="flex flex-col gap-6 mt-6">

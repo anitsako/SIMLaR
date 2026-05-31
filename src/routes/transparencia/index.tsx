@@ -25,11 +25,11 @@ const documentosNormativos = [
 function RouteComponent() {
   return (
     <div className="mt-4 w-full max-w-6xl space-y-8">
-      <SectionTitle title="Transparencia" sizeTitle="5xl" textCenter />
+      <SectionTitle title="Transparencia" textCenter />
 
 
       <section className="space-y-4">
-        <SectionTitle title="Marco normativo" sizeTitle="3xl" />
+        <SectionTitle title="Marco normativo" />
 
         <p className="text-default-600">
           En esta sección se ponen a disposición documentos normativos vinculados

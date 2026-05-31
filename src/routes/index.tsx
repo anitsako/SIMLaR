@@ -19,18 +19,17 @@ function Home() {
 
       {/* Visor */}
       <section>
-        <div className="mb-4 flex items-center justify-between border-b border-primary/50 pb-2">
+        <div className="mb-4 flex items-center justify-between">
           <SectionTitle
             title="Visor de proyectos"
             subtitle="Explorá nuestros proyectos en un entorno interactivo"
-            sizeTitle="lg"
-            sizeSubtitle="sm"
             fontSemiBold={true}
+            rightSlot={<Link to="/proyectos-mineros" className="text-sm font-medium text-primary hover:underline">
+              Abrir proyectos mineros
+            </Link>}
+
           />
 
-          <Link to="/proyectos-mineros" className="text-sm font-medium text-primary hover:underline">
-            Abrir proyectos mineros
-          </Link>
         </div>
 
         <ClientOnly>
@@ -52,12 +51,10 @@ function Home() {
 
       {/* Accesos rápidos */}
       <section>
-        <div className="mb-4 border-b border-primary/50 pb-2">
+        <div className="mb-4 ">
           <SectionTitle
             title="Accesos rápidos"
             subtitle="Organismos y sitios vinculados"
-            sizeTitle="lg"
-            sizeSubtitle="sm"
             fontSemiBold={true}
           />
         </div>

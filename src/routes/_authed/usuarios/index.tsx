@@ -10,7 +10,7 @@ export const Route = createFileRoute('/_authed/usuarios/')({
 function RouteComponent() {
   return (
     <div className="flex flex-col gap-4 mt-4">
-      <SectionTitle title="Configuración de usuarios" sizeTitle="5xl" textCenter />
+      <SectionTitle title="Configuración de usuarios" textCenter />
       <div className="flex flex-row justify-end">
         <Button as={Link} to="/usuarios/crear" color="primary">
           Crear Usuario

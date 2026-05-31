@@ -24,7 +24,7 @@ function RouteComponent() {
             ← Volver
           </Button>
         </Link>
-        <SectionTitle title="Sección Informativa" sizeTitle="3xl" textCenter />
+        <SectionTitle title="Sección Informativa" textCenter />
       </div>
       <Swiper cssMode={true} navigation={true} spaceBetween={50} slidesPerView={1} modules={[Navigation]}>
         {datosMinerales.map((mineral, idx) => (

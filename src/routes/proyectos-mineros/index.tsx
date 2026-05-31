@@ -19,7 +19,7 @@ function RouteComponent() {
   return (
     <div className="mt-4">
       <div className="flex items-center justify-center mb-4 relative">
-        <SectionTitle title="Proyectos Mineros" sizeTitle="3xl" textCenter responsiveMd />
+        <SectionTitle title="Proyectos Mineros" textCenter />
         <div className="absolute right-0 flex items-center gap-2">
           <ProyectosMinerosFilters />
           <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">

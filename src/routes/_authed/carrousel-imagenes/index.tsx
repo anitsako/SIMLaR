@@ -135,7 +135,7 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col mt-4 space-y-6">
-      <SectionTitle title="Configuración del carrousel de imágenes" sizeTitle="5xl" textCenter />
+      <SectionTitle title="Configuración del carrousel de imágenes" textCenter />
 
       {addMutation.error && <Alert color="danger">Error al agregar imagen: {addMutation.error.message}</Alert>}
       {updateMutation.error && <Alert color="danger">Error al actualizar imagen: {updateMutation.error.message}</Alert>}
@@ -253,9 +253,8 @@ function RouteComponent() {
       <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleAddImage} />
 
       <div
-        className={`rounded-xl border-2 border-dashed p-6 text-center transition ${
-          isDragOver ? 'border-primary bg-primary/10' : 'border-default-300 bg-default-50'
-        }`}
+        className={`rounded-xl border-2 border-dashed p-6 text-center transition ${isDragOver ? 'border-primary bg-primary/10' : 'border-default-300 bg-default-50'
+          }`}
         onDragOver={(event) => {
           event.preventDefault();
           setIsDragOver(true);

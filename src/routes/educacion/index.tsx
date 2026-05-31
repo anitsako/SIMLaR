@@ -107,7 +107,7 @@ const ofertaAcademica: Array<OfertaAcademica> = [
 function RouteComponent() {
   return (
     <div className="mt-4 space-y-10">
-      <SectionTitle title="Educación minera" sizeTitle="5xl" textCenter />
+      <SectionTitle title="Educación minera" textCenter />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Link to="/educacion/informativa">

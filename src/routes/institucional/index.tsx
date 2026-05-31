@@ -227,13 +227,11 @@ function RouteComponent() {
   return (
     <div className="mt-4 space-y-6">
       <section>
-        <div className="mb-4 border-b border-primary/50 pb-3">
+        <div className="mb-4">
           <SectionTitle
             title="Autoridades"
             subtitle="Información de autoridades y organismos vinculados"
-            sizeTitle="3xl"
-            sizeSubtitle="md"
-            responsiveMd
+
           />
         </div>
       </section>
@@ -248,9 +246,8 @@ function RouteComponent() {
           {SECCIONES_AUTORIDADES.map((seccion) => (
             <div key={seccion.titulo}>
               <p
-                className={`mb-4 text-sm font-medium text-black/60 ${
-                  seccion.centered ? 'text-center' : ''
-                }`}
+                className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''
+                  }`}
               >
                 {seccion.titulo}
               </p>

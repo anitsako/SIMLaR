@@ -31,7 +31,7 @@ export const Route = createFileRoute('/_authed/analytics')({
 function RouteComponent() {
   return (
     <div className="flex flex-col gap-6 mt-4">
-      <SectionTitle title="Analytics" subtitle="Últimos 30 días" sizeTitle="5xl" textCenter />
+      <SectionTitle title="Analytics" subtitle="Últimos 30 días" textCenter />
       <Suspense fallback={<div className="flex justify-center py-10"><Spinner /></div>}>
         <AnalyticsDashboard />
       </Suspense>

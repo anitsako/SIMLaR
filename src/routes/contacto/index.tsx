@@ -32,7 +32,6 @@ function RouteComponent() {
             <SectionTitle
               title="Contacto"
               subtitle="Información institucional y canales de comunicación"
-              sizeSubtitle="md"
             />
             <span className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium">
               Atención online
