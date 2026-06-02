@@ -7,6 +7,16 @@ type CapasExtrasSelectProps = {
 };
 
 export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSelectProps) => {
+  const capasExtrasItems = [
+    { key: 'aeropuertos', textValue: 'Aeropuertos', href: '/capas-extras/aeropuertos.zip' },
+    { key: 'diques', textValue: 'Diques', href: '/capas-extras/diques.zip' },
+    { key: 'puntos-extras', textValue: 'Puntos extras', href: '/capas-extras/puntos-extras.zip' },
+    { key: 'refugios', textValue: 'Refugios', href: '/capas-extras/refugios.zip' },
+    { key: 'rios', textValue: 'Ríos', href: '/capas-extras/rios.zip' },
+    { key: 'rutas-nacionales', textValue: 'Rutas nacionales', href: '/capas-extras/rutas-nacionales.zip' },
+    { key: 'rutas-provinciales', textValue: 'Rutas provinciales', href: '/capas-extras/rutas-provinciales.zip' },
+  ];
+
   const DownloadButton = ({ href }: { href: string }) => (
     <Button as="a" isIconOnly title="Descargar capa" size="sm" variant="light" color="primary" href={href}>
       <Download size={16} />
@@ -17,51 +27,18 @@ export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSe
     <Select
       label="Capas extras"
       selectionMode="multiple"
+      isVirtualized
       selectedKeys={capasExtras.map(String)}
       onSelectionChange={(keys) => setCapasExtras(Array.from(keys as Set<string>).map(String))}
     >
-      <SelectItem key="aeropuertos" textValue="Aeropuertos">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Aeropuertos</span>
-          <DownloadButton href="/capas-extras/aeropuertos.zip" />
-        </div>
-      </SelectItem>
-      <SelectItem key="diques" textValue="Diques">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Diques</span>
-          <DownloadButton href="/capas-extras/diques.zip" />
-        </div>
-      </SelectItem>
-      <SelectItem key="puntos-extras" textValue="Puntos extras">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Puntos extras</span>
-          <DownloadButton href="/capas-extras/puntos-extras.zip" />
-        </div>
-      </SelectItem>
-      <SelectItem key="refugios" textValue="Refugios">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Refugios</span>
-          <DownloadButton href="/capas-extras/refugios.zip" />
-        </div>
-      </SelectItem>
-      <SelectItem key="rios" textValue="Ríos">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Ríos</span>
-          <DownloadButton href="/capas-extras/rios.zip" />
-        </div>
-      </SelectItem>
-      <SelectItem key="rutas-nacionales" textValue="Rutas nacionales">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Rutas nacionales</span>
-          <DownloadButton href="/capas-extras/rutas-nacionales.zip" />
-        </div>
-      </SelectItem>
-      <SelectItem key="rutas-provinciales" textValue="Rutas provinciales">
-        <div className="flex w-full items-center justify-between gap-2">
-          <span>Rutas provinciales</span>
-          <DownloadButton href="/capas-extras/rutas-provinciales.zip" />
-        </div>
-      </SelectItem>
+      {capasExtrasItems.map((item) => (
+        <SelectItem key={item.key} textValue={item.textValue}>
+          <div className="flex w-full items-center justify-between gap-2">
+            <span>{item.textValue}</span>
+            <DownloadButton href={item.href} />
+          </div>
+        </SelectItem>
+      ))}
     </Select>
   );
 };
