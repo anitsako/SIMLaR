@@ -11,6 +11,7 @@ import { CapaRios } from '@/rios/capa-rios';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
 import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provinciales';
 import { CapasExtrasSelect } from '@/capas-extras/capas-extras.select';
+import { CapaRefugios } from '@/refugios/capa-refugios';
 
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
@@ -42,6 +43,7 @@ export const MapaPrincipal = () => {
           <CapaDepartamentos />
           {capasExtras.includes('aeropuertos') && <CapaAeropuertos />}
           {capasExtras.includes('diques') && <CapaDiques />}
+          {capasExtras.includes('refugios') && <CapaRefugios />}
           {capasExtras.includes('rios') && <CapaRios />}
           {capasExtras.includes('rutas-nacionales') && <CapaRutasNacionales />}
           {capasExtras.includes('rutas-provinciales') && <CapaRutasProvinciales />}
