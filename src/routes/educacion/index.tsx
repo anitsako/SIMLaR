@@ -1,13 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
-import {
-  BookOpen,
-  Construction,
-  ExternalLink,
-  GraduationCap,
-  Mail,
-} from 'lucide-react';
+import { BookOpen, Construction, ExternalLink, GraduationCap, Mail } from 'lucide-react';
 import { Alert, Card, CardBody, CardFooter, CardHeader } from '@heroui/react';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/educacion/')({
   component: RouteComponent,
@@ -107,7 +101,7 @@ const ofertaAcademica: Array<OfertaAcademica> = [
 function RouteComponent() {
   return (
     <div className="mt-4 space-y-10">
-      <SectionTitle title="Educación minera" textCenter />
+      <SectionTitle title="Educación minera" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Link to="/educacion/informativa">
@@ -115,9 +109,7 @@ function RouteComponent() {
             <CardHeader>
               <p className="text-2xl font-bold">Sección Informativa</p>
             </CardHeader>
-            <CardBody>
-              Aquí se encuentra el contenido informativo sobre minería.
-            </CardBody>
+            <CardBody>Aquí se encuentra el contenido informativo sobre minería.</CardBody>
           </Card>
         </Link>
 
@@ -126,10 +118,7 @@ function RouteComponent() {
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-2xl font-bold">Sección Dinámica</p>
           </CardHeader>
-          <CardBody>
-            Aquí se encuentra el contenido dinámico sobre minería, con actividades
-            interactivas.
-          </CardBody>
+          <CardBody>Aquí se encuentra el contenido dinámico sobre minería, con actividades interactivas.</CardBody>
           <CardFooter>
             <Alert icon={<Construction />} color="warning">
               En construcción
@@ -141,30 +130,22 @@ function RouteComponent() {
 
       <section className="space-y-4">
         <div className="text-center space-y-2">
-          <h2 className="text-3xl font-bold">
-            Oferta académica minera en La Rioja
-          </h2>
+          <h2 className="text-3xl font-bold">Oferta académica minera en La Rioja</h2>
           <p className="text-default-600 max-w-3xl mx-auto">
-            La provincia cuenta con propuestas de formación universitaria y técnica
-            vinculadas al desarrollo minero, fortaleciendo la capacitación de
-            profesionales y recursos humanos especializados para el sector.
+            La provincia cuenta con propuestas de formación universitaria y técnica vinculadas al desarrollo minero,
+            fortaleciendo la capacitación de profesionales y recursos humanos especializados para el sector.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {ofertaAcademica.map((carrera) => (
-            <Card
-              key={carrera.titulo}
-              className="py-4 h-full transition duration-200 ease-in-out hover:scale-102"
-            >
+            <Card key={carrera.titulo} className="py-4 h-full transition duration-200 ease-in-out hover:scale-102">
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start gap-2">
                 <div className="flex items-center gap-2">
                   <GraduationCap className="text-primary" size={24} />
                   <p className="text-2xl font-bold">{carrera.titulo}</p>
                 </div>
-                <p className="text-sm text-default-500">
-                  {carrera.institucion}
-                </p>
+                <p className="text-sm text-default-500">{carrera.institucion}</p>
               </CardHeader>
 
               <CardBody className="space-y-4">

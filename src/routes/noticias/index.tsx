@@ -6,7 +6,7 @@ import { ExternalLink, RefreshCcw } from 'lucide-react';
 import { NUEVAS_FUENTES } from '../../noticias/rss/nuevas-fuentes';
 import { getLatestFromSources } from '../../noticias/rss/noticias-rss';
 import type { LatestNewsItem } from '../../noticias/rss/noticias-rss';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/noticias/')({
   component: RouteComponent,

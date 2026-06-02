@@ -21,7 +21,7 @@ import { addImagenCarrouselFn } from '@/carrousel-imagenes/add-imagen-carrousel.
 import { removeImagenCarrouselFn } from '@/carrousel-imagenes/remove-imagen-carrousel.fn';
 import { updateImagenCarrouselFn } from '@/carrousel-imagenes/update-imagen-carrousel.fn';
 import { useImagenesCarrousel } from '@/carrousel-imagenes/use-imagenes-carrousel';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
 
 // @ts-ignore: Se ignora css
 import 'swiper/css';
@@ -135,7 +135,7 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col mt-4 space-y-6">
-      <SectionTitle title="Configuración del carrousel de imágenes" textCenter />
+      <SectionTitle title="Configuración del carrousel de imágenes" />
 
       {addMutation.error && <Alert color="danger">Error al agregar imagen: {addMutation.error.message}</Alert>}
       {updateMutation.error && <Alert color="danger">Error al actualizar imagen: {updateMutation.error.message}</Alert>}
@@ -253,8 +253,9 @@ function RouteComponent() {
       <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleAddImage} />
 
       <div
-        className={`rounded-xl border-2 border-dashed p-6 text-center transition ${isDragOver ? 'border-primary bg-primary/10' : 'border-default-300 bg-default-50'
-          }`}
+        className={`rounded-xl border-2 border-dashed p-6 text-center transition ${
+          isDragOver ? 'border-primary bg-primary/10' : 'border-default-300 bg-default-50'
+        }`}
         onDragOver={(event) => {
           event.preventDefault();
           setIsDragOver(true);

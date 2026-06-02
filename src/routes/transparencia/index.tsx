@@ -1,7 +1,8 @@
 import { Card, CardBody, CardHeader } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { ExternalLink, FileText } from 'lucide-react';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
+import { SectionHeader } from '@/common/section-header';
 
 export const Route = createFileRoute('/transparencia/')({
   component: RouteComponent,
@@ -25,24 +26,19 @@ const documentosNormativos = [
 function RouteComponent() {
   return (
     <div className="mt-4 w-full max-w-6xl space-y-8">
-      <SectionTitle title="Transparencia" textCenter />
-
+      <SectionTitle title="Transparencia" />
 
       <section className="space-y-4">
-        <SectionTitle title="Marco normativo" />
+        <SectionHeader title="Marco normativo" />
 
         <p className="text-default-600">
-          En esta sección se ponen a disposición documentos normativos vinculados
-          a la actividad minera, el procedimiento administrativo minero y el marco
-          legal aplicable.
+          En esta sección se ponen a disposición documentos normativos vinculados a la actividad minera, el
+          procedimiento administrativo minero y el marco legal aplicable.
         </p>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {documentosNormativos.map((documento) => (
-            <Card
-              key={documento.titulo}
-              className="h-full transition duration-200 ease-in-out hover:scale-102"
-            >
+            <Card key={documento.titulo} className="h-full transition duration-200 ease-in-out hover:scale-102">
               <CardHeader className="flex items-start gap-3">
                 <div className="rounded-lg bg-danger/10 p-3 text-danger">
                   <FileText size={26} />
@@ -50,9 +46,7 @@ function RouteComponent() {
 
                 <div>
                   <p className="text-xl font-bold">{documento.titulo}</p>
-                  <p className="text-sm text-default-500">
-                    Documento disponible en formato PDF
-                  </p>
+                  <p className="text-sm text-default-500">Documento disponible en formato PDF</p>
                 </div>
               </CardHeader>
 
@@ -73,7 +67,6 @@ function RouteComponent() {
           ))}
         </div>
       </section>
-
     </div>
   );
 }

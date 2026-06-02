@@ -2,16 +2,14 @@ import { lazy, Suspense } from 'react';
 import { ClientOnly, createFileRoute, useParams, Link } from '@tanstack/react-router';
 import { Button, Spinner } from '@heroui/react';
 import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/proyectos-mineros/$id/mapa')({
   component: RouteComponent,
 });
 
 // Carga diferida: el archivo del mapa (con maplibre) solo se importa en el navegador
-const MapaTerreno = lazy(() =>
-  import('@/modelos-terreno/mapa-terreno').then((m) => ({ default: m.MapaTerreno })),
-);
+const MapaTerreno = lazy(() => import('@/modelos-terreno/mapa-terreno').then((m) => ({ default: m.MapaTerreno })));
 
 function RouteComponent() {
   const { id } = useParams({ from: '/proyectos-mineros/$id/mapa' });
