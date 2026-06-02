@@ -32,6 +32,12 @@ export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSe
           <DownloadButton href="/capas-extras/diques.zip" />
         </div>
       </SelectItem>
+      <SelectItem key="puntos-extras" textValue="Puntos extras">
+        <div className="flex w-full items-center justify-between gap-2">
+          <span>Puntos extras</span>
+          <DownloadButton href="/capas-extras/puntos-extras.zip" />
+        </div>
+      </SelectItem>
       <SelectItem key="refugios" textValue="Refugios">
         <div className="flex w-full items-center justify-between gap-2">
           <span>Refugios</span>
