@@ -5,13 +5,14 @@ import { Alert, Button, Input, NumberInput, Switch, Textarea, addToast } from '@
 import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
 import type { SubmitEvent } from 'react';
+import type { ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields';
 import { createProyectoMineroFn } from '@/proyectos-mineros/create-proyecto-minero.fn';
-import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn'
+import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn';
 import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-minero-tipo.field';
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
-import { ModeloTerrenoFields, type ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields'
+import { ModeloTerrenoFields } from '@/modelos-terreno/modelos-terreno-fields';
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/crear/')({
   component: RouteComponent,
@@ -40,23 +41,18 @@ function RouteComponent() {
     archivoMapa: undefined as File | undefined,
   });
 
-
   const [modeloData, setModeloData] = useState<ModeloTerrenoData | null>(null);
-
 
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const crearProyectoMinero = useServerFn(createProyectoMineroFn);
-  const upsertModeloTerreno = useServerFn(upsertModeloTerrenoFn)
+  const upsertModeloTerreno = useServerFn(upsertModeloTerrenoFn);
   const {
     mutateAsync: createProyectoMinero,
     isPending,
     error,
   } = useMutation({
-    mutationFn: async (payload: {
-      proyecto: any;
-      modelo: any | null;
-    }) => {
+    mutationFn: async (payload: { proyecto: any; modelo: any | null }) => {
       // 1. Crear el proyecto
       const proyecto = await crearProyectoMinero({ data: payload.proyecto });
 
@@ -79,7 +75,6 @@ function RouteComponent() {
       navigate({ to: '/proyectos-mineros' });
     },
   });
-
 
   const base64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -109,8 +104,7 @@ function RouteComponent() {
 
     setValidationError(null);
 
-    const archivoMapaBase64 = await base64(data.archivoMapa)
-
+    const archivoMapaBase64 = await base64(data.archivoMapa);
 
     // Armar payload del proyecto
     const proyectoPayload = {
@@ -126,24 +120,39 @@ function RouteComponent() {
       },
     };
 
-    console.log('payload del modelo al hacer submit: ', modeloData)
+    console.log('payload del modelo al hacer submit: ', modeloData);
     // Armar payload del modelo (si hay COGs)
     const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
     let modeloPayload = null;
 
-    if (hayCog && modeloData) {
+    if (hayCog) {
       const meta = modeloData.dtmMeta ?? modeloData.ortofotoMeta ?? modeloData.coloreadoMeta;
       if (meta) {
         modeloPayload = {
           nombre: 'Levantamiento inicial',
           mdtCog: modeloData.dtmCog
-            ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
+            ? {
+                nombre: modeloData.dtmCog.name,
+                tamaño: modeloData.dtmCog.size,
+                mimeType: modeloData.dtmCog.type || 'image/tiff',
+                base64: await base64(modeloData.dtmCog),
+              }
             : null,
           ortofotoCog: modeloData.ortofotoCog
-            ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
+            ? {
+                nombre: modeloData.ortofotoCog.name,
+                tamaño: modeloData.ortofotoCog.size,
+                mimeType: modeloData.ortofotoCog.type || 'image/tiff',
+                base64: await base64(modeloData.ortofotoCog),
+              }
             : null,
           mdtColoreadoCog: modeloData.mdtColoreadoCog
-            ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
+            ? {
+                nombre: modeloData.mdtColoreadoCog.name,
+                tamaño: modeloData.mdtColoreadoCog.size,
+                mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff',
+                base64: await base64(modeloData.mdtColoreadoCog),
+              }
             : null,
           crs: meta.crs,
           boundsWest: meta.boundsWest,
@@ -163,7 +172,8 @@ function RouteComponent() {
     }
 
     await createProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
-  }; return (
+  };
+  return (
     <div className="my-4 space-y-6">
       <h1 className="text-2xl font-bold">Crear proyecto minero</h1>
 
@@ -236,7 +246,6 @@ function RouteComponent() {
           label="Modelo genético"
           value={data.modeloGenetico}
           onValueChange={(v) => setData((prev) => ({ ...prev, modeloGenetico: v }))}
-          isRequired
           minRows={3}
         />
 

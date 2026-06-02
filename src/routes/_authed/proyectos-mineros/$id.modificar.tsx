@@ -5,15 +5,16 @@ import { Alert, Button, Input, NumberInput, Switch, Textarea, addToast } from '@
 import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
 import type { SubmitEvent } from 'react';
+import type { ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields.tsx';
 import { updateProyectoMineroFn } from '@/proyectos-mineros/update-proyecto-minero.fn';
 import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-minero-tipo.field';
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { proyectoMineroQuery } from '@/proyectos-mineros/use-proyecto-minero';
 import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
-import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn'
-import { ModeloTerrenoFields, type ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields.tsx'
-import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno'
+import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn';
+import { ModeloTerrenoFields } from '@/modelos-terreno/modelos-terreno-fields.tsx';
+import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno';
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/$id/modificar')({
   loader: ({ context: { queryClient }, params: { id } }) => {
@@ -65,7 +66,7 @@ function RouteComponent() {
     error,
   } = useMutation({
     mutationFn: async (payload: { proyecto: any; modelo: any | null }) => {
-      const proyectoActualizado = await updateProyectoMinero({ data: payload.proyecto })
+      const proyectoActualizado = await updateProyectoMinero({ data: payload.proyecto });
 
       if (payload.modelo) {
         await upsertModeloTerreno({
@@ -134,19 +135,34 @@ function RouteComponent() {
     const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
     let modeloPayload = null;
 
-    if (hayCog && modeloData) {
+    if (hayCog) {
       const meta = modeloData.dtmMeta ?? modeloData.ortofotoMeta ?? modeloData.coloreadoMeta;
       if (meta) {
         modeloPayload = {
           nombre: 'Levantamiento inicial',
           mdtCog: modeloData.dtmCog
-            ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
+            ? {
+                nombre: modeloData.dtmCog.name,
+                tamaño: modeloData.dtmCog.size,
+                mimeType: modeloData.dtmCog.type || 'image/tiff',
+                base64: await base64(modeloData.dtmCog),
+              }
             : null,
           ortofotoCog: modeloData.ortofotoCog
-            ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
+            ? {
+                nombre: modeloData.ortofotoCog.name,
+                tamaño: modeloData.ortofotoCog.size,
+                mimeType: modeloData.ortofotoCog.type || 'image/tiff',
+                base64: await base64(modeloData.ortofotoCog),
+              }
             : null,
           mdtColoreadoCog: modeloData.mdtColoreadoCog
-            ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
+            ? {
+                nombre: modeloData.mdtColoreadoCog.name,
+                tamaño: modeloData.mdtColoreadoCog.size,
+                mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff',
+                base64: await base64(modeloData.mdtColoreadoCog),
+              }
             : null,
           crs: meta.crs,
           boundsWest: meta.boundsWest,
@@ -240,7 +256,6 @@ function RouteComponent() {
           label="Modelo genético"
           value={data.modeloGenetico}
           onValueChange={(v) => setData((prev) => ({ ...prev, modeloGenetico: v }))}
-          isRequired
           minRows={3}
         />
 
@@ -313,12 +328,14 @@ function RouteComponent() {
           />
         </div>
 
-        <ModeloTerrenoFields onChange={setModeloData} modeloActual={{
-          tieneMdt: !!modeloActual?.mdt,
-          tieneOrtofoto: !!modeloActual?.ortofoto,
-          tieneColoreado: !!modeloActual?.mdtColoreado,
-        }} />
-
+        <ModeloTerrenoFields
+          onChange={setModeloData}
+          modeloActual={{
+            tieneMdt: !!modeloActual?.mdt,
+            tieneOrtofoto: !!modeloActual?.ortofoto,
+            tieneColoreado: !!modeloActual?.mdtColoreado,
+          }}
+        />
 
         {(validationError || error) && (
           <Alert color="danger">
