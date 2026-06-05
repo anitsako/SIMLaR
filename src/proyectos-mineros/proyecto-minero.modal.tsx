@@ -66,6 +66,8 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
             </div>
             <div className="flex flex-col">
               <Button variant='faded' as={Link} to={`/proyectos-mineros/${id}/mapa`}>Modelo de Terreno</Button>
+              <Divider className="my-2" />
+              <Button variant='faded' as={Link} to={`/proyectos-mineros/${id}/modelo-3d`}>Modelo 3D</Button>
               <FieldRow label="Ubicación" value={data.ubicacion} />
               <Divider className="my-2" />
               <FieldRow label="Provincia geológica" value={data.provinciaGeologica} />
