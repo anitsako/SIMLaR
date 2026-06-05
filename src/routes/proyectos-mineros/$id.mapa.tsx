@@ -26,11 +26,10 @@ function RouteComponent() {
       </div>
     );
   }
-
   if (!modelo) {
     return (
       <div className="flex flex-col items-center justify-center h-screen gap-4">
-        <SectionTitle title="Este proyecto no tiene modelo de terreno" />
+        <SectionTitle title="Este proyecto no tiene modelo de terreno" textCenter />
         <Button as={Link} to="/" color="primary">
           Volver a Inicio
         </Button>

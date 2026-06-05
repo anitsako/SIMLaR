@@ -27,7 +27,7 @@ function RouteComponent() {
       {/* smooth scroll para anclas */}
       {/* Título */}
       <section>
-        <div className="border-b border-primary/50 pb-3 mb-4">
+        <div className="pb-3 mb-4">
           <div className="flex items-center gap-3 flex-wrap">
             <SectionTitle
               title="Contacto"
