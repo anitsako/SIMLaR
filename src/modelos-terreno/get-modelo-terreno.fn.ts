@@ -31,6 +31,8 @@ export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
       modelo.mdtCogArchivoId,
       modelo.ortofotoCogArchivoId,
       modelo.mdtColoreadoArchivoId,
+      modelo.mdtRawArchivoId,
+      modelo.ortofotoPngArchivoId,
     ].filter((id): id is string => id !== null);
 
     const archivos =
@@ -48,6 +50,12 @@ export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
       id: modelo.id,
       nombre: modelo.nombre,
       // Archivos con su nombre para construir la URL
+      mdtRaw: modelo.mdtRawArchivoId
+        ? { archivoId: modelo.mdtRawArchivoId, nombre: nombrePorId.get(modelo.mdtRawArchivoId)! }
+        : null,
+      ortofotoPng: modelo.ortofotoPngArchivoId
+        ? { archivoId: modelo.ortofotoPngArchivoId, nombre: nombrePorId.get(modelo.ortofotoPngArchivoId)! }
+        : null,
       ortofoto:
         modelo.ortofotoCogArchivoId && nombrePorId.has(modelo.ortofotoCogArchivoId)
           ? {
