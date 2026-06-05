@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, unlink } from 'node:fs/promises';
 import path from 'node:path';
 import { createServerFn } from '@tanstack/react-start';
 import { and, eq } from 'drizzle-orm';
@@ -26,6 +26,10 @@ const upsertModeloTerrenoSchema = z.object({
   ortofotoCog: cogArchivoSchema.nullable().optional(),
   mdtColoreadoCog: cogArchivoSchema.nullable().optional(),
 
+  // Archivos nuevos para 3D
+  mdtRaw: cogArchivoSchema.nullable().optional(),         // GeoTIFF Float32 sin convertir a COG
+  ortofotoPng: cogArchivoSchema.nullable().optional(),    // PNG/JPG para textura
+
   // Metadata espacial (extraída en el front con geotiff.js)
   crs: z.string().default('EPSG:3857'),
   boundsWest: z.number(),
@@ -42,11 +46,12 @@ const upsertModeloTerrenoSchema = z.object({
   altoPx: z.number().int().positive().nullable(),
 });
 
-const MAX_COG = 50 * 1024 * 1024; // 50MB
+const MAX_COG = 60 * 1024 * 1024; // 60MB
 
 export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
   .inputValidator(upsertModeloTerrenoSchema)
   .handler(async ({ data }) => {
+
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;
 
@@ -60,7 +65,7 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
     }
     await mkdir(filesPath, { recursive: true });
 
-    const { proyectoMineroId, mdtCog, ortofotoCog, mdtColoreadoCog, nombre, ...metadata } = data;
+    const { proyectoMineroId, mdtCog, ortofotoCog, mdtColoreadoCog, mdtRaw, ortofotoPng, nombre, ...metadata } = data;
 
     // Validar tamaños y preparar buffers
     const prepararBuffer = (cog: typeof mdtCog) => {
@@ -74,6 +79,9 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
     const mdtData = prepararBuffer(mdtCog);
     const ortofotoData = prepararBuffer(ortofotoCog);
     const mdtColoreadoData = prepararBuffer(mdtColoreadoCog);
+    const mdtRawData = prepararBuffer(mdtRaw);
+    const ortofotoPngData = prepararBuffer(ortofotoPng);
+
 
     // Trackear archivos escritos para limpieza si falla
     const archivosEscritos: string[] = [];
@@ -163,6 +171,15 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
           modeloExistente?.mdtColoreadoArchivoId ?? null,
           mdtColoreadoData,
         );
+        // Dentro de la transacción, junto a los otros upserts de archivo:
+        const mdtRawArchivoId = await upsertArchivo(
+          modeloExistente?.mdtRawArchivoId ?? null,
+          mdtRawData,
+        );
+        const ortofotoPngArchivoId = await upsertArchivo(
+          modeloExistente?.ortofotoPngArchivoId ?? null,
+          ortofotoPngData,
+        );
 
         if (modeloExistente) {
           // ACTUALIZAR el modelo existente
@@ -173,6 +190,8 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
               mdtCogArchivoId,
               ortofotoCogArchivoId,
               mdtColoreadoArchivoId,
+              mdtRawArchivoId,
+              ortofotoPngArchivoId,
               ...metadata,
               usuarioModificadorId: usuarioId,
             })
@@ -189,6 +208,8 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
               mdtCogArchivoId,
               ortofotoCogArchivoId,
               mdtColoreadoArchivoId,
+              mdtRawArchivoId,
+              ortofotoPngArchivoId,
               ...metadata,
               esPrincipal: true,
               estadoProcesamiento: 'listo',
@@ -203,7 +224,13 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
       return resultado;
     } catch (error) {
       // Limpiar archivos escritos si la transacción falló
-      // OJO: en reemplazo, esto sobrescribió contenido viejo. Ver nota abajo.
+      for (const ruta of archivosEscritos) {
+        try {
+          await unlink(ruta);
+        } catch {
+
+        }
+      }
       throw error;
     }
   });
