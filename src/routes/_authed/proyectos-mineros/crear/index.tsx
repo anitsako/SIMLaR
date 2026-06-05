@@ -63,7 +63,7 @@ function RouteComponent() {
       // 2. Si hay modelo, crearlo
       if (payload.modelo) {
         await upsertModeloTerreno({
-          data: { ...payload.modelo, proyectoId: proyecto.id },
+          data: { ...payload.modelo, proyectoMineroId: proyecto.id },
         });
       }
 
@@ -126,40 +126,46 @@ function RouteComponent() {
       },
     };
 
-    console.log('payload del modelo al hacer submit: ', modeloData)
-    // Armar payload del modelo (si hay COGs)
+    // Payload del modelo (si hay COGs nuevos)
     const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
+
+    const hayArchivos3D = modeloData && (modeloData.mdtRaw || modeloData.ortofotoPng);
+    const hayAlgunArchivo = hayCog || hayArchivos3D;
     let modeloPayload = null;
 
-    if (hayCog && modeloData) {
-      const meta = modeloData.dtmMeta ?? modeloData.ortofotoMeta ?? modeloData.coloreadoMeta;
-      if (meta) {
-        modeloPayload = {
-          nombre: 'Levantamiento inicial',
-          mdtCog: modeloData.dtmCog
-            ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
-            : null,
-          ortofotoCog: modeloData.ortofotoCog
-            ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
-            : null,
-          mdtColoreadoCog: modeloData.mdtColoreadoCog
-            ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
-            : null,
-          crs: meta.crs,
-          boundsWest: meta.boundsWest,
-          boundsSouth: meta.boundsSouth,
-          boundsEast: meta.boundsEast,
-          boundsNorth: meta.boundsNorth,
-          centerLat: meta.centerLat,
-          centerLon: meta.centerLon,
-          defaultZoom: 15,
-          elevationMin: modeloData.dtmMeta?.elevationMin ?? null,
-          elevationMax: modeloData.dtmMeta?.elevationMax ?? null,
-          resolucionMetros: meta.resolucionMetros,
-          anchoPx: meta.anchoPx,
-          altoPx: meta.altoPx,
-        };
-      }
+    if (hayAlgunArchivo && modeloData) {
+      const meta = modeloData.dtmMeta ?? modeloData.ortofotoMeta ?? modeloData.coloreadoMeta ?? modeloData.mdtRawMeta;
+      modeloPayload = {
+        nombre: 'Levantamiento inicial',
+        mdtCog: modeloData.dtmCog
+          ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
+          : null,
+        ortofotoCog: modeloData.ortofotoCog
+          ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
+          : null,
+        mdtColoreadoCog: modeloData.mdtColoreadoCog
+          ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
+          : null,
+        mdtRaw: modeloData.mdtRaw
+          ? { nombre: modeloData.mdtRaw.name, tamaño: modeloData.mdtRaw.size, mimeType: modeloData.mdtRaw.type || 'image/tiff', base64: await base64(modeloData.mdtRaw) }
+          : null,
+        ortofotoPng: modeloData.ortofotoPng
+          ? { nombre: modeloData.ortofotoPng.name, tamaño: modeloData.ortofotoPng.size, mimeType: modeloData.ortofotoPng.type || 'image/png', base64: await base64(modeloData.ortofotoPng) }
+          : null,
+        crs: meta?.crs ?? 'EPSG:3857',
+        boundsWest: meta?.boundsWest ?? 0,
+        boundsSouth: meta?.boundsSouth ?? 0,
+        boundsEast: meta?.boundsEast ?? 0,
+        boundsNorth: meta?.boundsNorth ?? 0,
+        centerLat: meta?.centerLat ?? 0,
+        centerLon: meta?.centerLon ?? 0,
+        defaultZoom: 15,
+        elevationMin: modeloData.dtmMeta?.elevationMin ?? modeloData.mdtRawMeta?.elevationMin ?? null,
+        elevationMax: modeloData.dtmMeta?.elevationMax ?? modeloData.mdtRawMeta?.elevationMax ?? null,
+        resolucionMetros: meta?.resolucionMetros ?? null,
+        anchoPx: meta?.anchoPx ?? null,
+        altoPx: meta?.altoPx ?? null,
+      };
     }
 
     await createProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
