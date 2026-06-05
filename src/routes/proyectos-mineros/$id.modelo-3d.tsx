@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { ClientOnly, createFileRoute, useParams, Link } from '@tanstack/react-router';
 import { Button, Spinner } from '@heroui/react';
 import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/proyectos-mineros/$id/modelo-3d')({
   component: RouteComponent,
@@ -33,7 +33,7 @@ function RouteComponent() {
   if (!modelo || !tieneArchivos3D) {
     return (
       <div className="flex flex-col items-center justify-center h-screen gap-4">
-        <SectionTitle title="Este proyecto no tiene modelo 3D disponible" textCenter />
+        <SectionTitle title="Este proyecto no tiene modelo 3D disponible" />
         <p className="text-sm text-default-500 max-w-md text-center">
           Para visualizar en 3D, el proyecto debe tener cargado el MDT raw y la ortofoto PNG.
         </p>
