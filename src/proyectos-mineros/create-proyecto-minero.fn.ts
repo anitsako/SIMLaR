@@ -18,7 +18,7 @@ const createProyectoMineroSchema = z.object({
   litologia: z.string().min(1),
   mineralizacion: z.string().min(1),
   mineralInteres: z.string().min(1).max(100),
-  modeloGenetico: z.string().min(1),
+  modeloGenetico: z.string(),
   accesos: z.string().min(1),
   etapaId: z.number().int().positive(),
   propietario: z.string().min(1).max(100),

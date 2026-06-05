@@ -1,7 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Card, CardBody } from '@heroui/react';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
+import { SectionHeader } from '@/common/section-header';
 
 export const Route = createFileRoute('/institucional/')({
   component: RouteComponent,
@@ -145,11 +146,7 @@ function AutoridadCard({ item }: { item: Autoridad }) {
   return (
     <Card className="overflow-hidden rounded-none shadow-md">
       <div className="w-full bg-default-200">
-        <img
-          src={item.foto}
-          alt={item.nombre}
-          className="w-full h-85 object-cover"
-        />
+        <img src={item.foto} alt={item.nombre} className="w-full h-85 object-cover" />
       </div>
 
       <CardBody className="p-0">
@@ -203,52 +200,22 @@ function AutoridadCard({ item }: { item: Autoridad }) {
   );
 }
 
-function SectionHeader({
-  title,
-  subtitle,
-  right,
-}: {
-  title: string;
-  subtitle?: string;
-  right?: React.ReactNode;
-}) {
-  return (
-    <div className="mb-4 flex items-start justify-between gap-6 border-b border-primary/50 pb-2">
-      <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        {subtitle ? <p className="text-sm text-black/60">{subtitle}</p> : null}
-      </div>
-      {right ? <div className="shrink-0">{right}</div> : null}
-    </div>
-  );
-}
-
 function RouteComponent() {
   return (
     <div className="mt-4 space-y-6">
       <section>
         <div className="mb-4">
-          <SectionTitle
-            title="Autoridades"
-            subtitle="Información de autoridades y organismos vinculados"
-
-          />
+          <SectionTitle title="Autoridades" subtitle="Información de autoridades y organismos vinculados" />
         </div>
       </section>
 
       <section>
-        <SectionHeader
-          title="Autoridades"
-          subtitle="Gobierno provincial, áreas vinculadas y empresas estatales"
-        />
+        <SectionHeader title="Autoridades" subtitle="Gobierno provincial, áreas vinculadas y empresas estatales" />
 
         <div className="space-y-14">
           {SECCIONES_AUTORIDADES.map((seccion) => (
             <div key={seccion.titulo}>
-              <p
-                className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''
-                  }`}
-              >
+              <p className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''}`}>
                 {seccion.titulo}
               </p>
 
@@ -260,7 +227,7 @@ function RouteComponent() {
                     </div>
                   ) : (
                     <AutoridadCard key={item.nombre} item={item} />
-                  ),
+                  )
                 )}
               </div>
             </div>
@@ -269,10 +236,7 @@ function RouteComponent() {
       </section>
 
       <section>
-        <SectionHeader
-          title="Accesos rápidos"
-          subtitle="Organismos y sitios vinculados"
-        />
+        <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {ACCESOS_RAPIDOS.map((acceso) => (
@@ -283,11 +247,7 @@ function RouteComponent() {
               rel="noopener noreferrer"
               className="flex h-24 items-center justify-center transition hover:opacity-80"
             >
-              <img
-                src={acceso.src}
-                alt={acceso.alt}
-                className="max-h-14 w-auto object-contain"
-              />
+              <img src={acceso.src} alt={acceso.alt} className="max-h-14 w-auto object-contain" />
             </a>
           ))}
         </div>

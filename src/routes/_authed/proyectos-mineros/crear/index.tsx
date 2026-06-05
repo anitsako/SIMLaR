@@ -5,13 +5,14 @@ import { Alert, Button, Input, NumberInput, Switch, Textarea, addToast } from '@
 import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
 import type { SubmitEvent } from 'react';
+import type { ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields';
 import { createProyectoMineroFn } from '@/proyectos-mineros/create-proyecto-minero.fn';
-import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn'
+import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn';
 import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-minero-tipo.field';
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
-import { ModeloTerrenoFields, type ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields'
+import { ModeloTerrenoFields } from '@/modelos-terreno/modelos-terreno-fields';
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/crear/')({
   component: RouteComponent,
@@ -40,23 +41,18 @@ function RouteComponent() {
     archivoMapa: undefined as File | undefined,
   });
 
-
   const [modeloData, setModeloData] = useState<ModeloTerrenoData | null>(null);
-
 
   const [validationError, setValidationError] = useState<string | null>(null);
 
   const crearProyectoMinero = useServerFn(createProyectoMineroFn);
-  const upsertModeloTerreno = useServerFn(upsertModeloTerrenoFn)
+  const upsertModeloTerreno = useServerFn(upsertModeloTerrenoFn);
   const {
     mutateAsync: createProyectoMinero,
     isPending,
     error,
   } = useMutation({
-    mutationFn: async (payload: {
-      proyecto: any;
-      modelo: any | null;
-    }) => {
+    mutationFn: async (payload: { proyecto: any; modelo: any | null }) => {
       // 1. Crear el proyecto
       const proyecto = await crearProyectoMinero({ data: payload.proyecto });
 
@@ -79,7 +75,6 @@ function RouteComponent() {
       navigate({ to: '/proyectos-mineros' });
     },
   });
-
 
   const base64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -109,8 +104,7 @@ function RouteComponent() {
 
     setValidationError(null);
 
-    const archivoMapaBase64 = await base64(data.archivoMapa)
-
+    const archivoMapaBase64 = await base64(data.archivoMapa);
 
     // Armar payload del proyecto
     const proyectoPayload = {
@@ -126,7 +120,7 @@ function RouteComponent() {
       },
     };
 
-    // Payload del modelo (si hay COGs nuevos)
+
     const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
 
     const hayArchivos3D = modeloData && (modeloData.mdtRaw || modeloData.ortofotoPng);
@@ -169,7 +163,8 @@ function RouteComponent() {
     }
 
     await createProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
-  }; return (
+  };
+  return (
     <div className="my-4 space-y-6">
       <h1 className="text-2xl font-bold">Crear proyecto minero</h1>
 
@@ -242,7 +237,6 @@ function RouteComponent() {
           label="Modelo genético"
           value={data.modeloGenetico}
           onValueChange={(v) => setData((prev) => ({ ...prev, modeloGenetico: v }))}
-          isRequired
           minRows={3}
         />
 

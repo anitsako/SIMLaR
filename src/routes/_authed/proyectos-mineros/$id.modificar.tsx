@@ -5,15 +5,16 @@ import { Alert, Button, Input, NumberInput, Switch, Textarea, addToast } from '@
 import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
 import type { SubmitEvent } from 'react';
+import type { ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields.tsx';
 import { updateProyectoMineroFn } from '@/proyectos-mineros/update-proyecto-minero.fn';
 import { ProyectoMineroTipoField } from '@/proyectos-mineros-tipos/proyecto-minero-tipo.field';
 import { CoordsField } from '@/mapa-principal/coords.field';
 import { ArchivoField } from '@/common/archivo.field';
 import { proyectoMineroQuery } from '@/proyectos-mineros/use-proyecto-minero';
 import { ProyectoMineroEtapaField } from '@/proyectos-mineros-etapas/proyecto-minero-etapa.field';
-import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn'
-import { ModeloTerrenoFields, type ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields.tsx'
-import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno'
+import { upsertModeloTerrenoFn } from '@/modelos-terreno/upsert-modelo-terreno.fn';
+import { ModeloTerrenoFields } from '@/modelos-terreno/modelos-terreno-fields.tsx';
+import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno';
 
 export const Route = createFileRoute('/_authed/proyectos-mineros/$id/modificar')({
   loader: ({ context: { queryClient }, params: { id } }) => {
@@ -65,7 +66,7 @@ function RouteComponent() {
     error,
   } = useMutation({
     mutationFn: async (payload: { proyecto: any; modelo: any | null }) => {
-      const proyectoActualizado = await updateProyectoMinero({ data: payload.proyecto })
+      const proyectoActualizado = await updateProyectoMinero({ data: payload.proyecto });
 
       if (payload.modelo) {
         await upsertModeloTerreno({
@@ -172,176 +173,177 @@ function RouteComponent() {
         anchoPx: meta?.anchoPx ?? null,
         altoPx: meta?.altoPx ?? null,
       };
-    }
 
 
-    await modificarProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
-  };
-  return (
-    <div className="mt-4 space-y-6">
-      <h1 className="text-2xl font-bold">Modificar proyecto minero</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <Input
-          label="Nombre"
-          value={data.nombre}
-          onValueChange={(v) => setData((prev) => ({ ...prev, nombre: v }))}
-          maxLength={100}
-          isRequired
-        />
+      await modificarProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
+    };
+    return (
+      <div className="mt-4 space-y-6">
+        <h1 className="text-2xl font-bold">Modificar proyecto minero</h1>
 
-        <ProyectoMineroTipoField
-          required
-          id={data.tipoId}
-          onChange={(v) => setData((prev) => ({ ...prev, tipoId: v! }))}
-        />
-
-        <Textarea
-          label="Ubicación"
-          value={data.ubicacion}
-          onValueChange={(v) => setData((prev) => ({ ...prev, ubicacion: v }))}
-          maxLength={100}
-          isRequired
-          minRows={2}
-        />
-
-        <Textarea
-          label="Provincia geológica"
-          value={data.provinciaGeologica}
-          onValueChange={(v) => setData((prev) => ({ ...prev, provinciaGeologica: v }))}
-          maxLength={100}
-          isRequired
-          minRows={2}
-        />
-
-        <Input
-          label="Área"
-          value={data.area}
-          onValueChange={(v) => setData((prev) => ({ ...prev, area: v }))}
-          maxLength={10}
-          isRequired
-        />
-
-        <Textarea
-          label="Litología"
-          value={data.litologia}
-          onValueChange={(v) => setData((prev) => ({ ...prev, litologia: v }))}
-          isRequired
-          minRows={3}
-        />
-
-        <Textarea
-          label="Mineralización"
-          value={data.mineralizacion}
-          onValueChange={(v) => setData((prev) => ({ ...prev, mineralizacion: v }))}
-          isRequired
-          minRows={3}
-        />
-
-        <Input
-          label="Mineral de interés"
-          value={data.mineralInteres}
-          onValueChange={(v) => setData((prev) => ({ ...prev, mineralInteres: v }))}
-          maxLength={100}
-          isRequired
-        />
-
-        <Textarea
-          label="Modelo genético"
-          value={data.modeloGenetico}
-          onValueChange={(v) => setData((prev) => ({ ...prev, modeloGenetico: v }))}
-          isRequired
-          minRows={3}
-        />
-
-        <Textarea
-          label="Accesos"
-          value={data.accesos}
-          onValueChange={(v) => setData((prev) => ({ ...prev, accesos: v }))}
-          isRequired
-          minRows={3}
-        />
-
-        <ProyectoMineroEtapaField
-          required
-          id={data.etapaId}
-          onChange={(v) => setData((prev) => ({ ...prev, etapaId: v! }))}
-        />
-
-        <Input
-          label="Propietario"
-          value={data.propietario}
-          onValueChange={(v) => setData((prev) => ({ ...prev, propietario: v }))}
-          maxLength={100}
-          isRequired
-        />
-
-        <Textarea
-          label="Localidades cercanas"
-          value={data.localidadesCercanas}
-          onValueChange={(v) => setData((prev) => ({ ...prev, localidadesCercanas: v }))}
-          maxLength={100}
-          isRequired
-          minRows={2}
-        />
-
-        <ClientOnly>
-          <CoordsField
-            value={data.coordenadasGeograficas}
-            onValueChange={(v) => setData((prev) => ({ ...prev, coordenadasGeograficas: v }))}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            label="Nombre"
+            value={data.nombre}
+            onValueChange={(v) => setData((prev) => ({ ...prev, nombre: v }))}
+            maxLength={100}
+            isRequired
           />
-        </ClientOnly>
 
-        <NumberInput
-          label="Altitud (msnm)"
-          value={data.msnm}
-          onValueChange={(v) => setData((prev) => ({ ...prev, msnm: v }))}
-          isRequired
-        />
-
-        <div className="flex items-center gap-4">
-          <Switch
-            isSelected={data.convenioEmse}
-            onValueChange={(v) => setData((prev) => ({ ...prev, convenioEmse: v }))}
-          >
-            Convenio EMSE
-          </Switch>
-          <Switch isSelected={data.visible} onValueChange={(v) => setData((prev) => ({ ...prev, visible: v }))}>
-            Visible
-          </Switch>
-        </div>
-
-        <div className="space-y-1">
-          <p className="text-sm text-default-500">
-            Archivo actual: <span className="font-medium">{proyecto.archivoMapa.nombre}</span>. Seleccioná un nuevo
-            archivo solo si querés reemplazarlo.
-          </p>
-          <ArchivoField
-            label="Archivo de mapa"
-            accept="image/png, image/jpeg, image/webp"
-            onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}
+          <ProyectoMineroTipoField
+            required
+            id={data.tipoId}
+            onChange={(v) => setData((prev) => ({ ...prev, tipoId: v! }))}
           />
-        </div>
 
-        <ModeloTerrenoFields onChange={setModeloData} modeloActual={{
-          tieneMdt: !!modeloActual?.mdt,
-          tieneOrtofoto: !!modeloActual?.ortofoto,
-          tieneColoreado: !!modeloActual?.mdtColoreado,
-          tieneMdtRaw: !!modeloActual?.mdtRaw,
-          tieneOrtofotoPng: !!modeloActual?.ortofotoPng,
-        }} />
+          <Textarea
+            label="Ubicación"
+            value={data.ubicacion}
+            onValueChange={(v) => setData((prev) => ({ ...prev, ubicacion: v }))}
+            maxLength={100}
+            isRequired
+            minRows={2}
+          />
+
+          <Textarea
+            label="Provincia geológica"
+            value={data.provinciaGeologica}
+            onValueChange={(v) => setData((prev) => ({ ...prev, provinciaGeologica: v }))}
+            maxLength={100}
+            isRequired
+            minRows={2}
+          />
+
+          <Input
+            label="Área"
+            value={data.area}
+            onValueChange={(v) => setData((prev) => ({ ...prev, area: v }))}
+            maxLength={10}
+            isRequired
+          />
+
+          <Textarea
+            label="Litología"
+            value={data.litologia}
+            onValueChange={(v) => setData((prev) => ({ ...prev, litologia: v }))}
+            isRequired
+            minRows={3}
+          />
+
+          <Textarea
+            label="Mineralización"
+            value={data.mineralizacion}
+            onValueChange={(v) => setData((prev) => ({ ...prev, mineralizacion: v }))}
+            isRequired
+            minRows={3}
+          />
+
+          <Input
+            label="Mineral de interés"
+            value={data.mineralInteres}
+            onValueChange={(v) => setData((prev) => ({ ...prev, mineralInteres: v }))}
+            maxLength={100}
+            isRequired
+          />
+
+          <Textarea
+            label="Modelo genético"
+            value={data.modeloGenetico}
+            onValueChange={(v) => setData((prev) => ({ ...prev, modeloGenetico: v }))}
+            minRows={3}
+          />
+
+          <Textarea
+            label="Accesos"
+            value={data.accesos}
+            onValueChange={(v) => setData((prev) => ({ ...prev, accesos: v }))}
+            isRequired
+            minRows={3}
+          />
+
+          <ProyectoMineroEtapaField
+            required
+            id={data.etapaId}
+            onChange={(v) => setData((prev) => ({ ...prev, etapaId: v! }))}
+          />
+
+          <Input
+            label="Propietario"
+            value={data.propietario}
+            onValueChange={(v) => setData((prev) => ({ ...prev, propietario: v }))}
+            maxLength={100}
+            isRequired
+          />
+
+          <Textarea
+            label="Localidades cercanas"
+            value={data.localidadesCercanas}
+            onValueChange={(v) => setData((prev) => ({ ...prev, localidadesCercanas: v }))}
+            maxLength={100}
+            isRequired
+            minRows={2}
+          />
+
+          <ClientOnly>
+            <CoordsField
+              value={data.coordenadasGeograficas}
+              onValueChange={(v) => setData((prev) => ({ ...prev, coordenadasGeograficas: v }))}
+            />
+          </ClientOnly>
+
+          <NumberInput
+            label="Altitud (msnm)"
+            value={data.msnm}
+            onValueChange={(v) => setData((prev) => ({ ...prev, msnm: v }))}
+            isRequired
+          />
+
+          <div className="flex items-center gap-4">
+            <Switch
+              isSelected={data.convenioEmse}
+              onValueChange={(v) => setData((prev) => ({ ...prev, convenioEmse: v }))}
+            >
+              Convenio EMSE
+            </Switch>
+            <Switch isSelected={data.visible} onValueChange={(v) => setData((prev) => ({ ...prev, visible: v }))}>
+              Visible
+            </Switch>
+          </div>
+
+          <div className="space-y-1">
+            <p className="text-sm text-default-500">
+              Archivo actual: <span className="font-medium">{proyecto.archivoMapa.nombre}</span>. Seleccioná un nuevo
+              archivo solo si querés reemplazarlo.
+            </p>
+            <ArchivoField
+              label="Archivo de mapa"
+              accept="image/png, image/jpeg, image/webp"
+              onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}
+            />
+          </div>
+
+          <ModeloTerrenoFields onChange={setModeloData} modeloActual={{
+            tieneMdt: !!modeloActual?.mdt,
+            tieneOrtofoto: !!modeloActual?.ortofoto,
+            tieneColoreado: !!modeloActual?.mdtColoreado,
+            tieneMdtRaw: !!modeloActual?.mdtRaw,
+            tieneOrtofotoPng: !!modeloActual?.ortofotoPng,
+          }} />
 
 
-        {(validationError || error) && (
-          <Alert color="danger">
-            {validationError ?? (error as any)?.message ?? 'Error al modificar el proyecto minero.'}
-          </Alert>
-        )}
 
-        <Button type="submit" color="primary" isLoading={isPending} className="w-full">
-          Guardar cambios
-        </Button>
-      </form>
-    </div>
-  );
+          {(validationError || error) && (
+            <Alert color="danger">
+              {validationError ?? (error as any)?.message ?? 'Error al modificar el proyecto minero.'}
+            </Alert>
+          )}
+
+          <Button type="submit" color="primary" isLoading={isPending} className="w-full">
+            Guardar cambios
+          </Button>
+        </form>
+      </div>
+    );
+  }
 }

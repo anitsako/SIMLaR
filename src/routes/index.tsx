@@ -3,7 +3,7 @@ import { ClientOnly, Link, createFileRoute } from '@tanstack/react-router';
 // import { FeaturedNews } from '../noticias/noticias-destacadas';
 import { Carrousel } from '@/carrousel-imagenes/carrousel';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
-import SectionTitle from '@/common/sectionTitle';
+import { SectionHeader } from '@/common/section-header';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -20,16 +20,15 @@ function Home() {
       {/* Visor */}
       <section>
         <div className="mb-4 flex items-center justify-between">
-          <SectionTitle
+          <SectionHeader
             title="Visor de proyectos"
             subtitle="Explorá nuestros proyectos en un entorno interactivo"
-            fontSemiBold={true}
-            rightSlot={<Link to="/proyectos-mineros" className="text-sm font-medium text-primary hover:underline">
-              Abrir proyectos mineros
-            </Link>}
-
+            rightSlot={
+              <Link to="/proyectos-mineros" className="text-sm font-medium text-primary hover:underline">
+                Abrir proyectos mineros
+              </Link>
+            }
           />
-
         </div>
 
         <ClientOnly>
@@ -52,11 +51,7 @@ function Home() {
       {/* Accesos rápidos */}
       <section>
         <div className="mb-4 ">
-          <SectionTitle
-            title="Accesos rápidos"
-            subtitle="Organismos y sitios vinculados"
-            fontSemiBold={true}
-          />
+          <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">

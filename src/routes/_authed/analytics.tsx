@@ -13,7 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from '@heroui/react';
-import SectionTitle from '@/common/sectionTitle';
+import SectionTitle from '@/common/section-title';
 import { getAnalyticsStatsFn } from '@/analytics/get-analytics-stats.fn';
 
 const analyticsStatsQuery = () =>
@@ -31,8 +31,14 @@ export const Route = createFileRoute('/_authed/analytics')({
 function RouteComponent() {
   return (
     <div className="flex flex-col gap-6 mt-4">
-      <SectionTitle title="Analytics" subtitle="Últimos 30 días" textCenter />
-      <Suspense fallback={<div className="flex justify-center py-10"><Spinner /></div>}>
+      <SectionTitle title="Analytics" subtitle="Últimos 30 días" />
+      <Suspense
+        fallback={
+          <div className="flex justify-center py-10">
+            <Spinner />
+          </div>
+        }
+      >
         <AnalyticsDashboard />
       </Suspense>
     </div>
