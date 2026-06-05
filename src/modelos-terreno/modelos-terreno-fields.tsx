@@ -1,6 +1,7 @@
 import { ArchivoField } from '@/common/archivo.field';
 import { leerMetadataCog, type CogMetadata } from '@/common/extractMetaDataCog';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { Divider } from '@heroui/react';
 
 // Lo que el componente reporta al padre
 export interface ModeloTerrenoData {
@@ -10,6 +11,9 @@ export interface ModeloTerrenoData {
   dtmMeta: CogMetadata | null;
   ortofotoMeta: CogMetadata | null;
   coloreadoMeta: CogMetadata | null;
+  mdtRaw: File | undefined;
+  ortofotoPng: File | undefined;
+  mdtRawMeta: CogMetadata | null;
   error: string | null;
 }
 
@@ -19,6 +23,8 @@ interface ModeloTerrenoFieldsProps {
     tieneMdt?: boolean;
     tieneOrtofoto?: boolean;
     tieneColoreado?: boolean;
+    tieneMdtRaw?: boolean;
+    tieneOrtofotoPng?: boolean;
   };
 }
 
@@ -30,19 +36,31 @@ export const ModeloTerrenoFields = ({ onChange, modeloActual }: ModeloTerrenoFie
   const [ortofotoMeta, setOrtofotoMeta] = useState<CogMetadata | null>(null);
   const [coloreadoMeta, setColoreadoMeta] = useState<CogMetadata | null>(null);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [mdtRaw, setMdtRawFile] = useState<File | undefined>(undefined);
+  const [ortofotoPng, setOrtofotoPngFile] = useState<File | undefined>(undefined);
+  const [mdtRawMeta, setMdtRawMeta] = useState<CogMetadata | null>(null)
+
+
+  // Ref que mantiene el último snapshot reportado al padre
+  const ultimoEstadoRef = useRef<ModeloTerrenoData>({
+    dtmCog: undefined,
+    ortofotoCog: undefined,
+    mdtColoreadoCog: undefined,
+    mdtRaw: undefined,
+    ortofotoPng: undefined,
+    dtmMeta: null,
+    ortofotoMeta: null,
+    coloreadoMeta: null,
+    mdtRawMeta: null,
+    error: null,
+  });
 
   // Helper: notificar al padre con el estado actualizado
   const notificar = (overrides: Partial<ModeloTerrenoData>) => {
-    onChange({
-      dtmCog,
-      ortofotoCog,
-      mdtColoreadoCog,
-      dtmMeta,
-      ortofotoMeta,
-      coloreadoMeta,
-      error: validationError,
-      ...overrides,
-    });
+    // Mergeá el último estado con los overrides
+    const nuevo = { ...ultimoEstadoRef.current, ...overrides };
+    ultimoEstadoRef.current = nuevo;
+    onChange(nuevo);
   };
 
   const handleDtmChange = async (file: File | undefined) => {
@@ -108,9 +126,41 @@ export const ModeloTerrenoFields = ({ onChange, modeloActual }: ModeloTerrenoFie
     }
   };
 
+  const handleMdtRawChange = async (file: File | undefined) => {
+    setMdtRawFile(file);
+    if (!file) {
+      setMdtRawMeta(null);
+      notificar({ mdtRaw: undefined, mdtRawMeta: null });
+      return;
+    }
+    try {
+      const meta = await leerMetadataCog(file);
+      setMdtRawMeta(meta);
+      if (meta.numBandas !== 1) {
+        const error = 'El MDT raw debería tener 1 banda de elevación.';
+        setValidationError(error);
+        notificar({ mdtRaw: file, mdtRawMeta: meta, error });
+      } else {
+        setValidationError(null);
+        notificar({ mdtRaw: file, mdtRawMeta: meta, error: null });
+      }
+    } catch {
+      setMdtRawMeta(null);
+      const error = 'No se pudo leer el MDT raw. ¿Es un GeoTIFF válido?';
+      setValidationError(error);
+      notificar({ mdtRaw: file, mdtRawMeta: null, error });
+    }
+  };
+
+  const handleOrtofotoPngChange = (file: File | undefined) => {
+    setOrtofotoPngFile(file);
+    notificar({ ortofotoPng: file });
+  };
+
   return (
-    <div className="border-t pt-4 mt-4 space-y-4">
-      <h2 className="text-lg font-semibold">Modelo de terreno (opcional)</h2>
+    <div className=" pt-4 mt-4 space-y-4">
+      <Divider className='my-4' />
+      <h2 className="text-lg font-semibold">Modelo de terreno y Modelo 3D (opcional)</h2>
       <p className="text-sm text-default-500">
         Subí los archivos COG generados desde WebODM. El MDT y la ortofoto deben estar en
         formato GeoTIFF (.tif) reproyectados a Web Mercator (EPSG:3857).
@@ -167,7 +217,39 @@ export const ModeloTerrenoFields = ({ onChange, modeloActual }: ModeloTerrenoFie
             </p>
           )}
         </div>
+
       </div>
+      <Divider className='my-4' />
+      <div className='flex flex-row items-center justify-center'>
+        <div className="space-y-1">
+          <ArchivoField
+            label="MDT raw (GeoTIFF Float32 — para vista 3D)"
+            accept=".tif,.tiff,image/tiff"
+            onChange={handleMdtRawChange}
+          />
+          {modeloActual?.tieneMdtRaw && !mdtRaw && (
+            <p className="text-xs text-success">✓ Ya hay un MDT Raw cargado (subí uno nuevo para reemplazar)</p>
+          )}
+          {mdtRawMeta && (
+            <p className="text-xs text-default-400">
+              Elevación: {mdtRawMeta.elevationMin}m – {mdtRawMeta.elevationMax}m · {mdtRawMeta.anchoPx}×
+              {mdtRawMeta.altoPx}px · {mdtRawMeta.numBandas} banda · {mdtRawMeta.crs}
+            </p>
+          )}
+        </div>
+        <div className="space-y-1">
+          <ArchivoField
+            label="Ortofoto PNG/JPG (textura — para vista 3D)"
+            accept="image/png,image/jpeg"
+            onChange={handleOrtofotoPngChange}
+          />
+          {modeloActual?.tieneOrtofotoPng && !ortofotoPng && (
+            <p className="text-xs text-success">✓ Ya hay una ortofoto PNG cargada (subí una nueva para reemplazar)</p>
+          )}
+
+        </div>
+      </div>
+
 
       {validationError && (
         <p className="text-sm text-danger">{validationError}</p>
