@@ -64,7 +64,8 @@ export const UsuariosTable = () => {
         <TableColumn key="nombreCompleto">Nombre completo</TableColumn>
         <TableColumn key="username">Nombre de usuario</TableColumn>
         <TableColumn key="email">Email</TableColumn>
-        <TableColumn key="detalle">Detalles</TableColumn>
+        <TableColumn key="esAdmin">Es administrador</TableColumn>
+        <TableColumn key="acciones">Acciones</TableColumn>
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
@@ -72,7 +73,8 @@ export const UsuariosTable = () => {
             {(columnKey) => (
               <TableCell>
                 {columnKey === 'nombreCompleto' ? `${item.apellido}, ${item.nombre}` : getKeyValue(item, columnKey)}
-                {columnKey === 'detalle' && (
+                {columnKey === 'esAdmin' && (item.esAdmin ? 'Sí' : 'No')}
+                {columnKey === 'acciones' && (
                   <Button
                     isIconOnly
                     size="sm"

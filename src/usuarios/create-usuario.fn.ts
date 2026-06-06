@@ -10,7 +10,8 @@ const createUsuarioSchema = z.object({
   password: z.string().min(8),
   apellido: z.string().min(1).max(50),
   nombre: z.string().min(1).max(50),
-  email: z.string().email().min(1).max(250),
+  email: z.email().min(1).max(250),
+  esAdmin: z.boolean(),
   activo: z.boolean().default(true),
 });
 
@@ -19,10 +20,14 @@ export const createUsuarioFn = createServerFn({ method: 'POST' })
   .handler(async ({ data }) => {
     const { password, ...dataNoPassword } = data;
     const session = await useAppSession();
-    const usuarioId = session.data.usuarioId;
+    const { usuarioId, esAdmin } = session.data;
 
     if (!usuarioId) {
       throw new Error('Usuario no autenticado');
+    }
+
+    if (!esAdmin) {
+      throw new Error('Usuario no autorizado');
     }
 
     const hashPassword = await bcrypt.hash(password, 12);

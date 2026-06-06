@@ -8,6 +8,7 @@ export const usuariosTable = pgTable('usuarios', {
   apellido: varchar('apellido', { length: 50 }).notNull(),
   nombre: varchar('nombre', { length: 50 }).notNull(),
   email: varchar('email', { length: 250 }),
+  esAdmin: boolean('es_admin').default(false).notNull(),
   activo: boolean('activo').default(true).notNull(),
   usuarioCreadorId: integer('usuario_creador_id').references((): AnyPgColumn => usuariosTable.id),
   usuarioModificadorId: integer('usuario_modificador_id').references((): AnyPgColumn => usuariosTable.id),

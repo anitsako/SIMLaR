@@ -2,12 +2,28 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useServerFn } from '@tanstack/react-start';
-import { Button, Input, addToast } from '@heroui/react';
+import { Alert, Button, Checkbox, Input, addToast } from '@heroui/react';
 import type { SubmitEvent } from 'react';
 import { updateUsuarioFn } from '@/usuarios/update-usuario.fn';
 import { usuarioQuery } from '@/usuarios/use-usuario';
 
 export const Route = createFileRoute('/_authed/usuarios/$id/modificar')({
+  beforeLoad: ({ context }) => {
+    if (!context.usuario?.esAdmin) {
+      throw new Error('Not authorized');
+    }
+  },
+  errorComponent: ({ error }) => {
+    if (error.message === 'Not authorized') {
+      return (
+        <div className="max-w-6xl w-full">
+          <Alert color="danger" title="No estás autorizado. No tienes permisos para acceder a esta página." />
+        </div>
+      );
+    }
+
+    throw error;
+  },
   loader: ({ context: { queryClient }, params: { id } }) => {
     return queryClient.ensureQueryData(usuarioQuery(Number(id)));
   },
@@ -26,6 +42,7 @@ function RouteComponent() {
     apellido: usuario.apellido,
     nombre: usuario.nombre,
     email: usuario.email || '',
+    esAdmin: usuario.esAdmin,
     activo: usuario.activo,
   });
 
@@ -100,8 +117,16 @@ function RouteComponent() {
           maxLength={250}
           isRequired
         />
-
-        {/* TODO: Usuario activo */}
+        <div>
+          <Checkbox isSelected={data.esAdmin} onValueChange={(v) => setData((prev) => ({ ...prev, esAdmin: v }))}>
+            Es administrador
+          </Checkbox>
+        </div>
+        <div>
+          <Checkbox isSelected={data.activo} onValueChange={(v) => setData((prev) => ({ ...prev, activo: v }))}>
+            Activo
+          </Checkbox>
+        </div>
 
         <Button type="submit" isLoading={isPending} color="primary">
           Modificar Usuario

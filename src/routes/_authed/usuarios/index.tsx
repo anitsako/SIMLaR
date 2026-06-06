@@ -1,9 +1,25 @@
-import { Button } from '@heroui/react';
+import { Alert, Button } from '@heroui/react';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { UsuariosTable } from '@/usuarios/usuarios.table';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/_authed/usuarios/')({
+  beforeLoad: ({ context }) => {
+    if (!context.usuario?.esAdmin) {
+      throw new Error('Not authorized');
+    }
+  },
+  errorComponent: ({ error }) => {
+    if (error.message === 'Not authorized') {
+      return (
+        <div className="max-w-6xl w-full">
+          <Alert color="danger" title="No estás autorizado. No tienes permisos para acceder a esta página." />
+        </div>
+      );
+    }
+
+    throw error;
+  },
   component: RouteComponent,
 });
 

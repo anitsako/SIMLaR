@@ -22,6 +22,7 @@ export const getCurrentUserFn = createServerFn({ method: 'GET' }).handler(async 
       username: usuariosTable.username,
       apellido: usuariosTable.apellido,
       nombre: usuariosTable.nombre,
+      esAdmin: usuariosTable.esAdmin,
     })
     .from(usuariosTable)
     .where(and(eq(usuariosTable.id, usuarioId), eq(usuariosTable.activo, true)));

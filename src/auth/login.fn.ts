@@ -34,7 +34,7 @@ export const loginFn = createServerFn({ method: 'POST' })
     // Crear sesion
     const session = await useAppSession();
 
-    await session.update({ usuarioId: usuario.id });
+    await session.update({ usuarioId: usuario.id, esAdmin: usuario.esAdmin });
 
     // Redirigir a la página principal
     throw redirect({ to: '/' });

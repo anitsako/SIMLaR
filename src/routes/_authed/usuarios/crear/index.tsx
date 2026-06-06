@@ -1,12 +1,28 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useServerFn } from '@tanstack/react-start';
 import { useMutation } from '@tanstack/react-query';
-import { Alert, Button, Input, addToast } from '@heroui/react';
+import { Alert, Button, Checkbox, Input, addToast } from '@heroui/react';
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import { createUsuarioFn } from '@/usuarios/create-usuario.fn';
 
 export const Route = createFileRoute('/_authed/usuarios/crear/')({
+  beforeLoad: ({ context }) => {
+    if (!context.usuario?.esAdmin) {
+      throw new Error('Not authorized');
+    }
+  },
+  errorComponent: ({ error }) => {
+    if (error.message === 'Not authorized') {
+      return (
+        <div className="max-w-6xl w-full">
+          <Alert color="danger" title="No estás autorizado. No tienes permisos para acceder a esta página." />
+        </div>
+      );
+    }
+
+    throw error;
+  },
   component: RouteComponent,
 });
 
@@ -18,6 +34,7 @@ function RouteComponent() {
     nombre: '',
     apellido: '',
     email: '',
+    esAdmin: false,
     activo: true,
   });
 
@@ -96,8 +113,11 @@ function RouteComponent() {
           maxLength={250}
           isRequired
         />
-
-        {/* TODO: Usuario activo */}
+        <div>
+          <Checkbox isSelected={data.esAdmin} onValueChange={(v) => setData((prev) => ({ ...prev, esAdmin: v }))}>
+            Es administrador
+          </Checkbox>
+        </div>
 
         {(validationError || error) && (
           <Alert color="danger">{validationError ?? (error as any)?.message ?? 'Error al crear el usuario.'}</Alert>

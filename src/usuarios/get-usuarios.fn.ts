@@ -12,6 +12,7 @@ export const getUsuariosFn = createServerFn({
       apellido: usuariosTable.apellido,
       nombre: usuariosTable.nombre,
       email: usuariosTable.email,
+      esAdmin: usuariosTable.esAdmin,
     })
     .from(usuariosTable)
     .orderBy(usuariosTable.apellido, usuariosTable.nombre);

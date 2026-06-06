@@ -2,6 +2,7 @@ import { useSession } from '@tanstack/react-start/server';
 
 type SessionData = {
   usuarioId?: number;
+  esAdmin?: boolean;
 };
 
 export function useAppSession() {

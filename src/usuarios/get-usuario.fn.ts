@@ -14,6 +14,7 @@ export const getUsuarioFn = createServerFn({ method: 'GET' })
         apellido: usuariosTable.apellido,
         nombre: usuariosTable.nombre,
         email: usuariosTable.email,
+        esAdmin: usuariosTable.esAdmin,
         activo: usuariosTable.activo,
       })
       .from(usuariosTable)
