@@ -15,6 +15,7 @@ export const ProyectosMinerosLayer = ({
   const { data: proyectosMineros } = useProyectosMineros({ etapasIds, tiposIds, visible: true });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [activeTooltipId, setActiveTooltipId] = useState<number | null>(null);
 
   return (
     <>
@@ -26,9 +27,16 @@ export const ProyectosMinerosLayer = ({
           title={`Proyecto: ${proyectoMinero.nombre}`}
           color={proyectoMinero.etapa.color as MarkerColor}
           shape={proyectoMinero.tipo.forma as MarkerShape}
+          isTooltipActive={activeTooltipId === proyectoMinero.id}
           onClick={() => {
             setSelectedId(proyectoMinero.id);
             onOpen();
+          }}
+          onMouseOver={() => {
+            setActiveTooltipId(proyectoMinero.id);
+          }}
+          onMouseOut={() => {
+            setActiveTooltipId((currentId) => (currentId === proyectoMinero.id ? null : currentId));
           }}
         />
       ))}

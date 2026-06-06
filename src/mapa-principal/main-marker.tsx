@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Marker, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 
@@ -14,6 +14,7 @@ interface Props {
   onClick?: () => void;
   onMouseOver?: () => void;
   onMouseOut?: () => void;
+  isTooltipActive?: boolean;
 }
 
 export const colorValues: Record<
@@ -49,8 +50,10 @@ export const MainMarker = ({
   onClick,
   onMouseOver,
   onMouseOut,
+  isTooltipActive,
 }: Props) => {
   const [hovered, setHovered] = useState(false);
+  const markerRef = useRef<L.Marker | null>(null);
 
   const { normal, hover } = colorValues[color];
   const { fill, text: textColor } = hovered ? hover : normal;
@@ -67,8 +70,22 @@ export const MainMarker = ({
     iconAnchor: [16, 16],
   });
 
+  useEffect(() => {
+    if (!title || !markerRef.current || isTooltipActive === undefined) {
+      return;
+    }
+
+    if (isTooltipActive) {
+      markerRef.current.openTooltip();
+      return;
+    }
+
+    markerRef.current.closeTooltip();
+  }, [isTooltipActive, title]);
+
   return (
     <Marker
+      ref={markerRef}
       position={position}
       icon={icon}
       eventHandlers={{
