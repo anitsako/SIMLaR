@@ -1,0 +1,2 @@
+ALTER TABLE "departamentos" ADD COLUMN "archivo_imagen_id" uuid;--> statement-breakpoint
+ALTER TABLE "departamentos" ADD CONSTRAINT "departamentos_archivo_imagen_id_archivos_id_fk" FOREIGN KEY ("archivo_imagen_id") REFERENCES "public"."archivos"("id") ON DELETE no action ON UPDATE no action;

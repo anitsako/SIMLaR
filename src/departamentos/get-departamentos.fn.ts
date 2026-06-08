@@ -10,6 +10,7 @@ export const getDepartamentosFn = createServerFn({ method: 'GET' }).handler(asyn
       id: departamentosTable.id,
       nombre: departamentosTable.nombre,
       geom: sql<MultiPolygon>`ST_AsGeoJSON(${departamentosTable.geom})::json`,
+      archivoImagenId: departamentosTable.archivoImagenId,
     })
     .from(departamentosTable);
 });

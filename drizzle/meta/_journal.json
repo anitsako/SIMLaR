@@ -225,6 +225,13 @@
       "when": 1780783622805,
       "tag": "0031_outgoing_marvel_zombies",
       "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "7",
+      "when": 1780882424818,
+      "tag": "0032_jazzy_gunslinger",
+      "breakpoints": true
     }
   ]
 }

@@ -13,7 +13,7 @@ export const useCapaDepartamentos = (options?: { enabled?: boolean }) => {
         features: departamentos.map((d) => ({
           type: 'Feature',
           geometry: d.geom,
-          properties: { id: d.id, nombre: d.nombre },
+          properties: { id: d.id, nombre: d.nombre, tieneImagen: d.archivoImagenId !== null },
         })),
       } as FeatureCollection<MultiPolygon>;
     },
