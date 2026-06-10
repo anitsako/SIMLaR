@@ -44,6 +44,7 @@ type RutaInterna =
   | '/servicios'
   | '/educacion'
   | '/carrousel-imagenes'
+  | '/departamentos-imagenes'
   | '/usuarios'
   | '/analytics';
 
@@ -111,6 +112,11 @@ const administracionItems: Array<MenuItem> = [
   {
     label: 'Carrousel de imágenes',
     href: '/carrousel-imagenes',
+    icon: <Images size={18} />,
+  },
+  {
+    label: 'Imágenes de departamentos',
+    href: '/departamentos-imagenes',
     icon: <Images size={18} />,
   },
   {

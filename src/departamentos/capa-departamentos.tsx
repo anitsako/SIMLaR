@@ -13,9 +13,14 @@ export const CapaDepartamentos = () => {
     return null;
   }
 
+  const capaKey = data.features
+    .map((feature) => `${feature.properties?.id}:${feature.properties?.tieneImagen ? 1 : 0}`)
+    .join('|');
+
   return (
     <>
       <GeoJSON
+        key={capaKey}
         data={data}
         onEachFeature={(feature, layer) => {
           const id = feature.properties?.id?.toString();

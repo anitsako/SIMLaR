@@ -23,6 +23,7 @@ import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as AuthedAnalyticsRouteImport } from './routes/_authed/analytics'
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
 import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
+import { Route as AuthedDepartamentosImagenesIndexRouteImport } from './routes/_authed/departamentos-imagenes/index'
 import { Route as AuthedCarrouselImagenesIndexRouteImport } from './routes/_authed/carrousel-imagenes/index'
 import { Route as ProyectosMinerosIdModelo3dRouteImport } from './routes/proyectos-mineros/$id.modelo-3d'
 import { Route as ProyectosMinerosIdMapaRouteImport } from './routes/proyectos-mineros/$id.mapa'
@@ -103,6 +104,12 @@ const AuthedUsuariosIndexRoute = AuthedUsuariosIndexRouteImport.update({
   path: '/usuarios/',
   getParentRoute: () => AuthedRoute,
 } as any)
+const AuthedDepartamentosImagenesIndexRoute =
+  AuthedDepartamentosImagenesIndexRouteImport.update({
+    id: '/departamentos-imagenes/',
+    path: '/departamentos-imagenes/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedCarrouselImagenesIndexRoute =
   AuthedCarrouselImagenesIndexRouteImport.update({
     id: '/carrousel-imagenes/',
@@ -172,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/proyectos-mineros/$id/mapa': typeof ProyectosMinerosIdMapaRoute
   '/proyectos-mineros/$id/modelo-3d': typeof ProyectosMinerosIdModelo3dRoute
   '/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
+  '/departamentos-imagenes/': typeof AuthedDepartamentosImagenesIndexRoute
   '/usuarios/': typeof AuthedUsuariosIndexRoute
   '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
@@ -196,6 +204,7 @@ export interface FileRoutesByTo {
   '/proyectos-mineros/$id/mapa': typeof ProyectosMinerosIdMapaRoute
   '/proyectos-mineros/$id/modelo-3d': typeof ProyectosMinerosIdModelo3dRoute
   '/carrousel-imagenes': typeof AuthedCarrouselImagenesIndexRoute
+  '/departamentos-imagenes': typeof AuthedDepartamentosImagenesIndexRoute
   '/usuarios': typeof AuthedUsuariosIndexRoute
   '/educacion/informativa': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
@@ -222,6 +231,7 @@ export interface FileRoutesById {
   '/proyectos-mineros/$id/mapa': typeof ProyectosMinerosIdMapaRoute
   '/proyectos-mineros/$id/modelo-3d': typeof ProyectosMinerosIdModelo3dRoute
   '/_authed/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
+  '/_authed/departamentos-imagenes/': typeof AuthedDepartamentosImagenesIndexRoute
   '/_authed/usuarios/': typeof AuthedUsuariosIndexRoute
   '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/_authed/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
@@ -248,6 +258,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/mapa'
     | '/proyectos-mineros/$id/modelo-3d'
     | '/carrousel-imagenes/'
+    | '/departamentos-imagenes/'
     | '/usuarios/'
     | '/educacion/informativa/'
     | '/proyectos-mineros/$id/archivos'
@@ -272,6 +283,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/mapa'
     | '/proyectos-mineros/$id/modelo-3d'
     | '/carrousel-imagenes'
+    | '/departamentos-imagenes'
     | '/usuarios'
     | '/educacion/informativa'
     | '/proyectos-mineros/$id/archivos'
@@ -297,6 +309,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/mapa'
     | '/proyectos-mineros/$id/modelo-3d'
     | '/_authed/carrousel-imagenes/'
+    | '/_authed/departamentos-imagenes/'
     | '/_authed/usuarios/'
     | '/educacion/informativa/'
     | '/_authed/proyectos-mineros/$id/archivos'
@@ -424,6 +437,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedUsuariosIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/departamentos-imagenes/': {
+      id: '/_authed/departamentos-imagenes/'
+      path: '/departamentos-imagenes'
+      fullPath: '/departamentos-imagenes/'
+      preLoaderRoute: typeof AuthedDepartamentosImagenesIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/carrousel-imagenes/': {
       id: '/_authed/carrousel-imagenes/'
       path: '/carrousel-imagenes'
@@ -493,6 +513,7 @@ declare module '@tanstack/react-router' {
 interface AuthedRouteChildren {
   AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
   AuthedCarrouselImagenesIndexRoute: typeof AuthedCarrouselImagenesIndexRoute
+  AuthedDepartamentosImagenesIndexRoute: typeof AuthedDepartamentosImagenesIndexRoute
   AuthedUsuariosIndexRoute: typeof AuthedUsuariosIndexRoute
   AuthedProyectosMinerosIdArchivosRoute: typeof AuthedProyectosMinerosIdArchivosRoute
   AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
@@ -504,6 +525,7 @@ interface AuthedRouteChildren {
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedAnalyticsRoute: AuthedAnalyticsRoute,
   AuthedCarrouselImagenesIndexRoute: AuthedCarrouselImagenesIndexRoute,
+  AuthedDepartamentosImagenesIndexRoute: AuthedDepartamentosImagenesIndexRoute,
   AuthedUsuariosIndexRoute: AuthedUsuariosIndexRoute,
   AuthedProyectosMinerosIdArchivosRoute: AuthedProyectosMinerosIdArchivosRoute,
   AuthedProyectosMinerosIdModificarRoute:
