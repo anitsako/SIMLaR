@@ -110,6 +110,11 @@ const serviciosFormacionItems: Array<MenuItem> = [
 
 const administracionItems: Array<MenuItem> = [
   {
+    label: 'Analytics',
+    href: '/analytics',
+    icon: <ChartBar size={18} />,
+  },
+  {
     label: 'Carrousel de imágenes',
     href: '/carrousel-imagenes',
     icon: <Images size={18} />,
@@ -123,11 +128,6 @@ const administracionItems: Array<MenuItem> = [
     label: 'Usuarios',
     href: '/usuarios',
     icon: <Users size={18} />,
-  },
-  {
-    label: 'Analytics',
-    href: '/analytics',
-    icon: <ChartBar size={18} />,
   },
 ];
 
@@ -159,14 +159,10 @@ export const PanelLateral = () => {
     select: (state) => state.location.pathname,
   });
 
-  const menuGroups = usuario
-    ? [...publicMenuGroups, adminMenuGroup]
-    : publicMenuGroups;
+  const menuGroups = usuario ? [...publicMenuGroups, adminMenuGroup] : publicMenuGroups;
 
   const isGroupActive = (items: Array<MenuItem>) =>
-    items.some(
-      (item) => pathname === item.href || pathname.startsWith(`${item.href}/`),
-    );
+    items.some((item) => pathname === item.href || pathname.startsWith(`${item.href}/`));
 
   return (
     <>
@@ -175,8 +171,7 @@ export const PanelLateral = () => {
           to="/"
           className="px-3 py-2 text-sm font-bold uppercase text-default-700 transition-colors hover:text-danger"
           activeProps={{
-            className:
-              'px-3 py-2 text-sm font-bold uppercase text-danger border-b-2 border-danger',
+            className: 'px-3 py-2 text-sm font-bold uppercase text-danger border-b-2 border-danger',
           }}
         >
           Inicio
@@ -203,9 +198,7 @@ export const PanelLateral = () => {
 
               <DropdownMenu aria-label={group.label}>
                 {group.items.map((item) => {
-                  const itemActive =
-                    pathname === item.href ||
-                    pathname.startsWith(`${item.href}/`);
+                  const itemActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
                   return (
                     <DropdownItem
@@ -262,9 +255,7 @@ export const PanelLateral = () => {
 
                   <Listbox aria-label={group.label}>
                     {group.items.map((item) => {
-                      const itemActive =
-                        pathname === item.href ||
-                        pathname.startsWith(`${item.href}/`);
+                      const itemActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
                       return (
                         <ListboxItem
@@ -272,9 +263,7 @@ export const PanelLateral = () => {
                           href={item.href as never}
                           color="danger"
                           startContent={item.icon}
-                          className={
-                            itemActive ? 'text-danger font-semibold' : ''
-                          }
+                          className={itemActive ? 'text-danger font-semibold' : ''}
                         >
                           {item.label}
                         </ListboxItem>
@@ -290,3 +279,4 @@ export const PanelLateral = () => {
     </>
   );
 };
+
