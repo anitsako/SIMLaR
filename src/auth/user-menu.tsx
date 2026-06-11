@@ -2,7 +2,7 @@ import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@
 import { useMutation } from '@tanstack/react-query';
 import { useServerFn } from '@tanstack/react-start';
 import { getRouteApi } from '@tanstack/react-router';
-import { CircleUserRound, LogOut } from 'lucide-react';
+import { CircleUserRound, Key, LogOut } from 'lucide-react';
 import { logoutFn } from './logout.fn';
 
 const rootRoute = getRouteApi('__root__');
@@ -11,7 +11,7 @@ export const UserMenu = () => {
   const { usuario } = rootRoute.useRouteContext();
 
   const logout = useServerFn(logoutFn);
-  const { mutate, isPending } = useMutation({ mutationFn: logout });
+  const { mutate: salir, isPending } = useMutation({ mutationFn: logout });
 
   return (
     <Dropdown>
@@ -21,7 +21,10 @@ export const UserMenu = () => {
         </Button>
       </DropdownTrigger>
       <DropdownMenu>
-        <DropdownItem key="logout" startContent={<LogOut />} onPress={() => mutate({})}>
+        <DropdownItem key="update-password" href="/usuarios/modificar-contraseña" startContent={<Key />}>
+          Modificar contraseña
+        </DropdownItem>
+        <DropdownItem key="logout" startContent={<LogOut />} onPress={() => salir({})}>
           Salir
         </DropdownItem>
       </DropdownMenu>
