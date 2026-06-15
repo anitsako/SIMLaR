@@ -10,7 +10,7 @@ import {
   getKeyValue,
 } from '@heroui/react';
 import { useMemo, useState } from 'react';
-import { SquarePen } from 'lucide-react';
+import { KeyRound, SquarePen } from 'lucide-react';
 import { useNavigate } from '@tanstack/react-router';
 import { useUsuarios } from './use-usuarios';
 
@@ -75,20 +75,36 @@ export const UsuariosTable = () => {
                 {columnKey === 'nombreCompleto' ? `${item.apellido}, ${item.nombre}` : getKeyValue(item, columnKey)}
                 {columnKey === 'esAdmin' && (item.esAdmin ? 'Sí' : 'No')}
                 {columnKey === 'acciones' && (
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    variant="light"
-                    color="primary"
-                    onPress={() =>
-                      navigate({
-                        to: '/usuarios/$id/modificar',
-                        params: { id: item.id.toString() },
-                      })
-                    }
-                  >
-                    <SquarePen />
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      isIconOnly
+                      size="sm"
+                      variant="light"
+                      color="primary"
+                      onPress={() =>
+                        navigate({
+                          to: '/usuarios/$id/modificar',
+                          params: { id: item.id.toString() },
+                        })
+                      }
+                    >
+                      <SquarePen />
+                    </Button>
+                    <Button
+                      isIconOnly
+                      size="sm"
+                      variant="light"
+                      color="secondary"
+                      onPress={() =>
+                        navigate({
+                          to: '/usuarios/$id/cambiar-contraseña',
+                          params: { id: item.id.toString() },
+                        })
+                      }
+                    >
+                      <KeyRound />
+                    </Button>
+                  </div>
                 )}
               </TableCell>
             )}

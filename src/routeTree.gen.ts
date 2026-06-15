@@ -32,6 +32,7 @@ import { Route as AuthedUsuariosModificarContraseChar241aIndexRouteImport } from
 import { Route as AuthedUsuariosCrearIndexRouteImport } from './routes/_authed/usuarios/crear/index'
 import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
 import { Route as AuthedUsuariosIdModificarRouteImport } from './routes/_authed/usuarios/$id.modificar'
+import { Route as AuthedUsuariosIdCambiarContraseChar241aRouteImport } from './routes/_authed/usuarios/$id.cambiar-contraseña'
 import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
 import { Route as AuthedProyectosMinerosIdArchivosRouteImport } from './routes/_authed/proyectos-mineros/$id.archivos'
 
@@ -157,6 +158,12 @@ const AuthedUsuariosIdModificarRoute =
     path: '/usuarios/$id/modificar',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedUsuariosIdCambiarContraseChar241aRoute =
+  AuthedUsuariosIdCambiarContraseChar241aRouteImport.update({
+    id: '/usuarios/$id/cambiar-contraseña',
+    path: '/usuarios/$id/cambiar-contraseña',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedProyectosMinerosIdModificarRoute =
   AuthedProyectosMinerosIdModificarRouteImport.update({
     id: '/proyectos-mineros/$id/modificar',
@@ -191,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
+  '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
@@ -217,6 +225,7 @@ export interface FileRoutesByTo {
   '/educacion/informativa': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
+  '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear': typeof AuthedUsuariosCrearIndexRoute
@@ -245,6 +254,7 @@ export interface FileRoutesById {
   '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/_authed/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
   '/_authed/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
+  '/_authed/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/_authed/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/_authed/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
@@ -273,6 +283,7 @@ export interface FileRouteTypes {
     | '/educacion/informativa/'
     | '/proyectos-mineros/$id/archivos'
     | '/proyectos-mineros/$id/modificar'
+    | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
     | '/proyectos-mineros/crear/'
     | '/usuarios/crear/'
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/educacion/informativa'
     | '/proyectos-mineros/$id/archivos'
     | '/proyectos-mineros/$id/modificar'
+    | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
     | '/proyectos-mineros/crear'
     | '/usuarios/crear'
@@ -326,6 +338,7 @@ export interface FileRouteTypes {
     | '/educacion/informativa/'
     | '/_authed/proyectos-mineros/$id/archivos'
     | '/_authed/proyectos-mineros/$id/modificar'
+    | '/_authed/usuarios/$id/cambiar-contraseña'
     | '/_authed/usuarios/$id/modificar'
     | '/_authed/proyectos-mineros/crear/'
     | '/_authed/usuarios/crear/'
@@ -513,6 +526,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedUsuariosIdModificarRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/usuarios/$id/cambiar-contraseña': {
+      id: '/_authed/usuarios/$id/cambiar-contraseña'
+      path: '/usuarios/$id/cambiar-contraseña'
+      fullPath: '/usuarios/$id/cambiar-contraseña'
+      preLoaderRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/proyectos-mineros/$id/modificar': {
       id: '/_authed/proyectos-mineros/$id/modificar'
       path: '/proyectos-mineros/$id/modificar'
@@ -537,6 +557,7 @@ interface AuthedRouteChildren {
   AuthedUsuariosIndexRoute: typeof AuthedUsuariosIndexRoute
   AuthedProyectosMinerosIdArchivosRoute: typeof AuthedProyectosMinerosIdArchivosRoute
   AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
+  AuthedUsuariosIdCambiarContraseChar241aRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   AuthedUsuariosIdModificarRoute: typeof AuthedUsuariosIdModificarRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
   AuthedUsuariosCrearIndexRoute: typeof AuthedUsuariosCrearIndexRoute
@@ -551,6 +572,8 @@ const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedProyectosMinerosIdArchivosRoute: AuthedProyectosMinerosIdArchivosRoute,
   AuthedProyectosMinerosIdModificarRoute:
     AuthedProyectosMinerosIdModificarRoute,
+  AuthedUsuariosIdCambiarContraseChar241aRoute:
+    AuthedUsuariosIdCambiarContraseChar241aRoute,
   AuthedUsuariosIdModificarRoute: AuthedUsuariosIdModificarRoute,
   AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
   AuthedUsuariosCrearIndexRoute: AuthedUsuariosCrearIndexRoute,
