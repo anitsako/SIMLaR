@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { Button, Slider, Spinner } from '@heroui/react';
+import { Button, Spinner } from '@heroui/react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { fromArrayBuffer } from 'geotiff';
@@ -50,6 +50,10 @@ export function VisorTerreno3D({ modelo }: Props) {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.1;
+    controls.maxPolarAngle = Math.PI / 2 - 0.05;
+    controls.minDistance = 200;    // no se puede acercar más de 50 unidades
+    controls.maxDistance = 4500;  // no se puede alejar más de 4000 unidades
+    controls.screenSpacePanning = false;
 
     // Luces
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
@@ -101,27 +105,44 @@ export function VisorTerreno3D({ modelo }: Props) {
           width - 1,
           height - 1,
         );
+        const nodataValue = -9999;
         geometry.rotateX(-Math.PI / 2); // acostarlo horizontal
+        // Detectar nodata: valores muy negativos, NaN, o el valor explícito
+        const esNodata = (altura: number) =>
+          altura === nodataValue ||
+          isNaN(altura) ||
+          altura < -1000;  // valores muy negativos también suelen ser nodata
 
-        // Aplicar alturas a los vértices
-        const positions = geometry.attributes.position.array as Float32Array;
-        const nodataValue = -9999; // ajustar al valor real de tu MDT
-
+        // Primero: calcular la altura mínima real (ignorando nodata)
+        let alturaMinReal = Infinity;
         for (let i = 0; i < elevaciones.length; i++) {
           const altura = elevaciones[i];
-          if (altura !== nodataValue && !isNaN(altura)) {
-            positions[i * 3 + 1] = altura * exageracion;
-          } else {
-            positions[i * 3 + 1] = 0;
+          if (!esNodata(altura) && altura < alturaMinReal) {
+            alturaMinReal = altura;
           }
         }
 
-        geometry.computeVertexNormals(); // para que la iluminación funcione
+        // Segundo: aplicar alturas, reemplazando nodata por la altura mínima real
+        const positions = geometry.attributes.position.array as Float32Array;
+
+
+        for (let i = 0; i < elevaciones.length; i++) {
+          const altura = elevaciones[i];
+          if (esNodata(altura)) {
+            // En vez de 0, usar la altura mínima real del terreno
+            positions[i * 3 + 1] = alturaMinReal * exageracion;
+          } else {
+            positions[i * 3 + 1] = altura * exageracion;
+          }
+        }
+
+        geometry.computeVertexNormals();
 
         // Material con la textura
         const material = new THREE.MeshStandardMaterial({
           map: texture,
           side: THREE.DoubleSide,
+          alphaTest: 0.01,
         });
 
         terrain = new THREE.Mesh(geometry, material);
