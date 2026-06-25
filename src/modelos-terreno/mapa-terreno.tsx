@@ -44,7 +44,7 @@ export function MapaTerreno({ modelo }: { modelo: NonNullable<ModeloTerreno> }) 
       },
       center: [modelo.center.lon, modelo.center.lat],
       zoom: modelo.defaultZoom ?? 14,
-      maxZoom: 18,
+      maxZoom: 16.3,
     });
 
     mapRef.current = map;

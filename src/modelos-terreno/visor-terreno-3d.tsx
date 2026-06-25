@@ -25,7 +25,7 @@ export function VisorTerreno3D({ modelo }: Props) {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [exageracion, setExageracion] = useState(1.5);
+  const [exageracion, setExageracion] = useState(3);
 
   useEffect(() => {
     if (!containerRef.current) return;
