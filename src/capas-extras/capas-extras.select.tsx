@@ -12,7 +12,6 @@ export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSe
     { key: 'diques', textValue: 'Diques', href: '/capas-extras/diques.zip' },
     { key: 'puntos-extras', textValue: 'Puntos extras', href: '/capas-extras/puntos-extras.zip' },
     { key: 'refugios', textValue: 'Refugios', href: '/capas-extras/refugios.zip' },
-    { key: 'rios', textValue: 'Ríos', href: '/capas-extras/rios.zip' },
     { key: 'rios-intermitentes', textValue: 'Ríos intermitentes', href: '/capas-extras/rios-intermitentes.zip' },
     { key: 'rios-perennes', textValue: 'Ríos perennes', href: '/capas-extras/rios-perennes.zip' },
     { key: 'rutas-nacionales', textValue: 'Rutas nacionales', href: '/capas-extras/rutas-nacionales.zip' },
@@ -30,6 +29,7 @@ export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSe
       label="Capas extras"
       selectionMode="multiple"
       isVirtualized
+      maxListboxHeight={300}
       selectedKeys={capasExtras.map(String)}
       onSelectionChange={(keys) => setCapasExtras(Array.from(keys as Set<string>).map(String))}
     >

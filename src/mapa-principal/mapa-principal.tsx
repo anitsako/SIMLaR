@@ -7,7 +7,6 @@ import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-min
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
 import { CapaAeropuertos } from '@/aeropuertos/capa-aeropuertos';
 import { CapaDiques } from '@/diques/capa-diques';
-import { CapaRios } from '@/rios/capa-rios';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
 import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provinciales';
 import { CapasExtrasSelect } from '@/capas-extras/capas-extras.select';
@@ -48,7 +47,6 @@ export const MapaPrincipal = () => {
           {capasExtras.includes('diques') && <CapaDiques />}
           {capasExtras.includes('puntos-extras') && <CapaPuntosExtras />}
           {capasExtras.includes('refugios') && <CapaRefugios />}
-          {capasExtras.includes('rios') && <CapaRios />}
           {capasExtras.includes('rios-intermitentes') && <CapaRiosIntermitentes />}
           {capasExtras.includes('rios-perennes') && <CapaRiosPerennes />}
           {capasExtras.includes('rutas-nacionales') && <CapaRutasNacionales />}
