@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { commonColors } from '@heroui/react';
 import L from 'leaflet';
 import { GeoJSON, useMapEvents } from 'react-leaflet';
-import { useCapaDiques } from './use-capa-aeropuertos';
+import { useCapaAeropuertos } from './use-capa-aeropuertos';
 
 const customIcon = L.icon({
   iconUrl: '/markers/marker-icon.png',
@@ -15,7 +15,7 @@ const customIcon = L.icon({
 });
 
 export const CapaAeropuertos = () => {
-  const { data } = useCapaDiques();
+  const { data } = useCapaAeropuertos();
   const [zoom, setZoom] = useState<number | null>(null);
   const map = useMapEvents({
     zoomend: () => setZoom(map.getZoom()),
