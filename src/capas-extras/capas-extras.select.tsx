@@ -13,6 +13,7 @@ export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSe
     { key: 'puntos-extras', textValue: 'Puntos extras', href: '/capas-extras/puntos-extras.zip' },
     { key: 'refugios', textValue: 'Refugios', href: '/capas-extras/refugios.zip' },
     { key: 'rios', textValue: 'Ríos', href: '/capas-extras/rios.zip' },
+    { key: 'rios-intermitentes', textValue: 'Ríos intermitentes', href: '/capas-extras/rios-intermitentes.zip' },
     { key: 'rios-perennes', textValue: 'Ríos perennes', href: '/capas-extras/rios-perennes.zip' },
     { key: 'rutas-nacionales', textValue: 'Rutas nacionales', href: '/capas-extras/rutas-nacionales.zip' },
     { key: 'rutas-provinciales', textValue: 'Rutas provinciales', href: '/capas-extras/rutas-provinciales.zip' },
