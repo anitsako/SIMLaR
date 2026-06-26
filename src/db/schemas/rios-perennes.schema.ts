@@ -1,0 +1,8 @@
+import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';
+import { multilinestring } from '../custom-types';
+
+export const riosPerennesTable = pgTable('rios_perennes', {
+  id: serial('id').primaryKey(),
+  geom: multilinestring('geom', { srid: 4326 }).notNull(),
+  nombre: varchar('nombre', { length: 254 }),
+});

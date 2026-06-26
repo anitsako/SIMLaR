@@ -232,6 +232,13 @@
       "when": 1780882424818,
       "tag": "0032_jazzy_gunslinger",
       "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "7",
+      "when": 1782510911849,
+      "tag": "0033_spooky_vulcan",
+      "breakpoints": true
     }
   ]
 }
