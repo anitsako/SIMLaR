@@ -176,8 +176,9 @@ function RouteComponent() {
 
 
 
-      await modificarProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
     };
+    await modificarProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
+
   }
   return (
     <div className="mt-4 space-y-6">
