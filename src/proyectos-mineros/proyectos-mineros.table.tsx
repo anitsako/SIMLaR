@@ -18,16 +18,17 @@ import { useProyectosMinerosCount } from './use-proyectos-mineros-count';
 import { useProyectosMineros } from '@/proyectos-mineros/use-proyectos-mineros';
 import { decimalToDms } from '@/common/decimal-to-dms';
 
-export const ProyectosMinerosTable = () => {
+export const ProyectosMinerosTable = ({ visible }: { visible?: boolean }) => {
   const { nombreLike, page, pageSize } = useSearch({ from: '/proyectos-mineros/' });
   const navigate = useNavigate({ from: '/proyectos-mineros/' });
   const {
     data: proyectosMineros,
     isFetching: isProyectosMinerosFetching,
     error,
-  } = useProyectosMineros({ nombreLike, limit: pageSize, offset: (page - 1) * pageSize });
+  } = useProyectosMineros({ nombreLike, limit: pageSize, offset: (page - 1) * pageSize, visible });
   const { data: proyectosMinerosCount, isFetching: isProyectosMinerosCountFetching } = useProyectosMinerosCount({
     nombreLike,
+    visible,
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);

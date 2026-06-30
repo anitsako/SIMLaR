@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from '@tanstack/react-router';
+import { Link, createFileRoute, getRouteApi } from '@tanstack/react-router';
 import { Button } from '@heroui/react';
 import { z } from 'zod';
 import { ProyectosMinerosTable } from '@/proyectos-mineros/proyectos-mineros.table';
@@ -15,7 +15,14 @@ export const Route = createFileRoute('/proyectos-mineros/')({
   component: RouteComponent,
 });
 
+const rootRoute = getRouteApi('__root__');
+
 function RouteComponent() {
+  const { usuario } = rootRoute.useRouteContext();
+
+  // Si el usuario esta autenticado mostrar todos los proyectos, sino solo los visibles
+  const visible = usuario === null ? true : undefined;
+
   return (
     <div className="mt-4">
       <div className="flex items-center justify-center mb-4 relative">
@@ -28,7 +35,7 @@ function RouteComponent() {
         </div>
       </div>
       <ProyectosMinerosActiveFilters />
-      <ProyectosMinerosTable />
+      <ProyectosMinerosTable visible={visible} />
     </div>
   );
 }

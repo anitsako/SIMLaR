@@ -203,7 +203,7 @@ export const PanelLateral = () => {
                   return (
                     <DropdownItem
                       key={item.href}
-                      href={item.href as never}
+                      href={item.href}
                       startContent={item.icon}
                       className={itemActive ? 'text-danger font-semibold' : ''}
                     >
@@ -260,7 +260,7 @@ export const PanelLateral = () => {
                       return (
                         <ListboxItem
                           key={item.href}
-                          href={item.href as never}
+                          href={item.href}
                           color="danger"
                           startContent={item.icon}
                           className={itemActive ? 'text-danger font-semibold' : ''}
@@ -279,4 +279,3 @@ export const PanelLateral = () => {
     </>
   );
 };
-
