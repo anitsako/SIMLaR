@@ -1,4 +1,4 @@
-import { mkdir, writeFile, unlink } from 'node:fs/promises';
+import { mkdir, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createServerFn } from '@tanstack/react-start';
 import { and, eq } from 'drizzle-orm';
@@ -27,8 +27,8 @@ const upsertModeloTerrenoSchema = z.object({
   mdtColoreadoCog: cogArchivoSchema.nullable().optional(),
 
   // Archivos nuevos para 3D
-  mdtRaw: cogArchivoSchema.nullable().optional(),         // GeoTIFF Float32 sin convertir a COG
-  ortofotoPng: cogArchivoSchema.nullable().optional(),    // PNG/JPG para textura
+  mdtRaw: cogArchivoSchema.nullable().optional(), // GeoTIFF Float32 sin convertir a COG
+  ortofotoPng: cogArchivoSchema.nullable().optional(), // PNG/JPG para textura
 
   // Metadata espacial (extraída en el front con geotiff.js)
   crs: z.string().default('EPSG:3857'),
@@ -51,7 +51,6 @@ const MAX_COG = 60 * 1024 * 1024; // 60MB
 export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
   .inputValidator(upsertModeloTerrenoSchema)
   .handler(async ({ data }) => {
-
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;
 
@@ -82,9 +81,8 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
     const mdtRawData = prepararBuffer(mdtRaw);
     const ortofotoPngData = prepararBuffer(ortofotoPng);
 
-
     // Trackear archivos escritos para limpieza si falla
-    const archivosEscritos: string[] = [];
+    const archivosEscritos: Array<string> = [];
 
     try {
       const resultado = await db.transaction(async (tx) => {
@@ -105,17 +103,17 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
           .where(
             and(
               eq(proyectosMinerosModelosTerrenoTable.proyectoMineroId, proyectoMineroId),
-              eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true),
-            ),
+              eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true)
+            )
           )
           .limit(1);
 
-        const modeloExistente = modelosExistentes[0] ?? null;
+        const modeloExistente = modelosExistentes.length > 0 ? modelosExistentes[0] : null;
 
         // Helper: reemplazar (sobrescribir mismo UUID) o crear archivo nuevo
         const upsertArchivo = async (
           archivoIdActual: string | null,
-          cogData: { buffer: Buffer; meta: { nombre: string; mimeType: string } } | null,
+          cogData: { buffer: Buffer; meta: { nombre: string; mimeType: string } } | null
         ): Promise<string | null> => {
           if (!cogData) {
             // No viene archivo nuevo: dejar el que estaba
@@ -159,26 +157,17 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
         };
 
         // Procesar cada archivo (reemplaza o crea según corresponda)
-        const mdtCogArchivoId = await upsertArchivo(
-          modeloExistente?.mdtCogArchivoId ?? null,
-          mdtData,
-        );
-        const ortofotoCogArchivoId = await upsertArchivo(
-          modeloExistente?.ortofotoCogArchivoId ?? null,
-          ortofotoData,
-        );
+        const mdtCogArchivoId = await upsertArchivo(modeloExistente?.mdtCogArchivoId ?? null, mdtData);
+        const ortofotoCogArchivoId = await upsertArchivo(modeloExistente?.ortofotoCogArchivoId ?? null, ortofotoData);
         const mdtColoreadoArchivoId = await upsertArchivo(
           modeloExistente?.mdtColoreadoArchivoId ?? null,
-          mdtColoreadoData,
+          mdtColoreadoData
         );
         // Dentro de la transacción, junto a los otros upserts de archivo:
-        const mdtRawArchivoId = await upsertArchivo(
-          modeloExistente?.mdtRawArchivoId ?? null,
-          mdtRawData,
-        );
+        const mdtRawArchivoId = await upsertArchivo(modeloExistente?.mdtRawArchivoId ?? null, mdtRawData);
         const ortofotoPngArchivoId = await upsertArchivo(
           modeloExistente?.ortofotoPngArchivoId ?? null,
-          ortofotoPngData,
+          ortofotoPngData
         );
 
         if (modeloExistente) {
@@ -227,9 +216,7 @@ export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
       for (const ruta of archivosEscritos) {
         try {
           await unlink(ruta);
-        } catch {
-
-        }
+        } catch {}
       }
       throw error;
     }
