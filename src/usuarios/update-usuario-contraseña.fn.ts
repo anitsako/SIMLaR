@@ -12,7 +12,7 @@ const updateUsuarioContraseñaSchema = z.object({
 });
 
 export const updateUsuarioContraseñaFn = createServerFn({ method: 'POST' })
-  .inputValidator(updateUsuarioContraseñaSchema)
+  .validator(updateUsuarioContraseñaSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const { usuarioId } = session.data;

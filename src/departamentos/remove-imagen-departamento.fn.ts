@@ -13,7 +13,7 @@ const removeImagenDepartamentoSchema = z.object({
 });
 
 export const removeImagenDepartamentoFn = createServerFn({ method: 'POST' })
-  .inputValidator(removeImagenDepartamentoSchema)
+  .validator(removeImagenDepartamentoSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

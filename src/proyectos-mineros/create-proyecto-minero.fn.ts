@@ -36,7 +36,7 @@ const createProyectoMineroSchema = z.object({
 });
 
 export const createProyectoMineroFn = createServerFn({ method: 'POST' })
-  .inputValidator(createProyectoMineroSchema)
+  .validator(createProyectoMineroSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

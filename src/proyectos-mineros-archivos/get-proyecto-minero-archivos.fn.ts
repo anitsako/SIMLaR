@@ -6,7 +6,7 @@ import { archivosTable } from '@/db/schemas/archivos.schema';
 import { proyectosMinerosArchivosTable } from '@/db/schemas/proyectos-mineros-archivos.schema';
 
 export const getProyectoMineroArchivosFn = createServerFn({ method: 'GET' })
-  .inputValidator(z.object({ proyectoMineroId: z.number().int().positive() }))
+  .validator(z.object({ proyectoMineroId: z.number().int().positive() }))
   .handler(async ({ data }) => {
     return db
       .select({

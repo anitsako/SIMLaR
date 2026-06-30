@@ -49,7 +49,7 @@ const upsertModeloTerrenoSchema = z.object({
 const MAX_COG = 60 * 1024 * 1024; // 60MB
 
 export const upsertModeloTerrenoFn = createServerFn({ method: 'POST' })
-  .inputValidator(upsertModeloTerrenoSchema)
+  .validator(upsertModeloTerrenoSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

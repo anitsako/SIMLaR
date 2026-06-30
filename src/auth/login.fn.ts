@@ -8,7 +8,7 @@ import { db } from '@/db';
 import { usuariosTable } from '@/db/schemas/usuarios.schema';
 
 export const loginFn = createServerFn({ method: 'POST' })
-  .inputValidator(z.object({ username: z.string(), password: z.string() }))
+  .validator(z.object({ username: z.string(), password: z.string() }))
   .handler(async ({ data }) => {
     const { username, password } = data;
 

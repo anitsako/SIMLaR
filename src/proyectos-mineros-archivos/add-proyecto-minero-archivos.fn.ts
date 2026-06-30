@@ -20,7 +20,7 @@ const addProyectoMineroArchivosSchema = z.object({
 });
 
 export const addProyectoMineroArchivosFn = createServerFn({ method: 'POST' })
-  .inputValidator(addProyectoMineroArchivosSchema)
+  .validator(addProyectoMineroArchivosSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

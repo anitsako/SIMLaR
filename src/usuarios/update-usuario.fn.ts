@@ -16,7 +16,7 @@ const updateUsuarioSchema = z.object({
 });
 
 export const updateUsuarioFn = createServerFn({ method: 'POST' })
-  .inputValidator(updateUsuarioSchema)
+  .validator(updateUsuarioSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const { usuarioId, esAdmin } = session.data;

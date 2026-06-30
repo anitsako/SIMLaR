@@ -13,7 +13,7 @@ const removeImagenCarrouselSchema = z.object({
 });
 
 export const removeImagenCarrouselFn = createServerFn({ method: 'POST' })
-  .inputValidator(removeImagenCarrouselSchema)
+  .validator(removeImagenCarrouselSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

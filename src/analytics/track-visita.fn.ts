@@ -4,7 +4,7 @@ import { db } from '@/db';
 import { analyticsVisitas } from '@/db/schemas/analytics-visitas.schema';
 
 export const trackVisitaFn = createServerFn({ method: 'POST' })
-  .inputValidator(
+  .validator(
     z.object({
       sessionId: z.uuid(),
       pathname: z.string().max(1024),

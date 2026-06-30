@@ -5,7 +5,7 @@ import { db } from '@/db';
 import { analyticsVisitas } from '@/db/schemas/analytics-visitas.schema';
 
 export const updateVisitaDuracionFn = createServerFn({ method: 'POST' })
-  .inputValidator(
+  .validator(
     z.object({
       visitaId: z.uuid(),
       durationMs: z.number().int().nonnegative(),

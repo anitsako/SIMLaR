@@ -20,7 +20,7 @@ const addImagenDepartamentoSchema = z.object({
 });
 
 export const addImagenDepartamentoFn = createServerFn({ method: 'POST' })
-  .inputValidator(addImagenDepartamentoSchema)
+  .validator(addImagenDepartamentoSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

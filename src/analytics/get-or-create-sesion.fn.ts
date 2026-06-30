@@ -7,7 +7,7 @@ import { db } from '@/db';
 import { analyticsSesiones } from '@/db/schemas/analytics-sesiones.schema';
 
 export const getOrCreateSesionFn = createServerFn({ method: 'POST' })
-  .inputValidator(
+  .validator(
     z.object({
       language: z.string().nullable(),
       screenResolution: z.string().nullable(),

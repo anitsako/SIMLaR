@@ -5,7 +5,7 @@ import { db } from '@/db';
 import { proyectosMinerosTable } from '@/db/schemas/proyectos-mineros.schema';
 
 export const getProyectosMinerosCountFn = createServerFn({ method: 'GET' })
-  .inputValidator(
+  .validator(
     z.object({
       nombreLike: z.string().optional(),
       visible: z.boolean().optional(),

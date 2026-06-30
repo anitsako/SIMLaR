@@ -5,7 +5,7 @@ import { db } from '@/db';
 import { usuariosTable } from '@/db/schemas/usuarios.schema';
 
 export const getUsuarioFn = createServerFn({ method: 'GET' })
-  .inputValidator(z.object({ id: z.number().int().positive() }))
+  .validator(z.object({ id: z.number().int().positive() }))
   .handler(async ({ data }) => {
     return db
       .select({

@@ -7,7 +7,7 @@ import type { MultiPolygon } from 'geojson';
 import { departamentosTable } from '@/db/schemas/departamentos.schema';
 
 export const getDepartamentoFn = createServerFn({ method: 'GET' })
-  .inputValidator(z.object({ id: z.number().int().positive() }))
+  .validator(z.object({ id: z.number().int().positive() }))
   .handler(async ({ data }) => {
     return db
       .select({

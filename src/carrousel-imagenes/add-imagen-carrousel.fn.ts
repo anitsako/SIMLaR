@@ -19,7 +19,7 @@ const addImagenCarrouselSchema = z.object({
 });
 
 export const addImagenCarrouselFn = createServerFn({ method: 'POST' })
-  .inputValidator(addImagenCarrouselSchema)
+  .validator(addImagenCarrouselSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

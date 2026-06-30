@@ -16,7 +16,7 @@ const createUsuarioSchema = z.object({
 });
 
 export const createUsuarioFn = createServerFn({ method: 'POST' })
-  .inputValidator(createUsuarioSchema)
+  .validator(createUsuarioSchema)
   .handler(async ({ data }) => {
     const { password, ...dataNoPassword } = data;
     const session = await useAppSession();

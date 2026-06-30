@@ -12,7 +12,7 @@ const changeUsuarioContraseñaSchema = z.object({
 });
 
 export const changeUsuarioContraseñaFn = createServerFn({ method: 'POST' })
-  .inputValidator(changeUsuarioContraseñaSchema)
+  .validator(changeUsuarioContraseñaSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const { usuarioId, esAdmin } = session.data;

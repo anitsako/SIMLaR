@@ -14,7 +14,7 @@ const removeProyectoMineroArchivoSchema = z.object({
 });
 
 export const removeProyectoMineroArchivoFn = createServerFn({ method: 'POST' })
-  .inputValidator(removeProyectoMineroArchivoSchema)
+  .validator(removeProyectoMineroArchivoSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

@@ -8,7 +8,7 @@ const sendEmailSchema = z.object({
 });
 
 export const sendEmailFn = createServerFn({ method: 'POST' })
-  .inputValidator(sendEmailSchema)
+  .validator(sendEmailSchema)
   .handler(async ({ data }) => {
     const { email, consulta } = data;
 

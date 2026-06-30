@@ -49,7 +49,7 @@ const crearModeloTerrenoSchema = z.object({
 });
 
 export const crearModeloTerrenoFn = createServerFn({ method: 'POST' })
-  .inputValidator(crearModeloTerrenoSchema)
+  .validator(crearModeloTerrenoSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;
@@ -81,8 +81,8 @@ export const crearModeloTerrenoFn = createServerFn({ method: 'POST' })
           .where(
             and(
               eq(proyectosMinerosModelosTerrenoTable.proyectoMineroId, data.proyectoMineroId),
-              eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true),
-            ),
+              eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true)
+            )
           );
       }
 

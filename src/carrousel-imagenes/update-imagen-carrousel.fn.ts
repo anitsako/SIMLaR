@@ -16,7 +16,7 @@ const updateImagenCarrouselSchema = z
   });
 
 export const updateImagenCarrouselFn = createServerFn({ method: 'POST' })
-  .inputValidator(updateImagenCarrouselSchema)
+  .validator(updateImagenCarrouselSchema)
   .handler(async ({ data }) => {
     const session = await useAppSession();
     const usuarioId = session.data.usuarioId;

@@ -6,17 +6,16 @@ import { proyectosMinerosModelosTerrenoTable } from '@/db/schemas/proyectos-mine
 import { archivosTable } from '@/db/schemas/archivos.schema';
 
 export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
-  .inputValidator(z.object({ proyectoMineroId: z.number().int().positive() }))
+  .validator(z.object({ proyectoMineroId: z.number().int().positive() }))
   .handler(async ({ data }) => {
-
     const modelos = await db
       .select()
       .from(proyectosMinerosModelosTerrenoTable)
       .where(
         and(
           eq(proyectosMinerosModelosTerrenoTable.proyectoMineroId, data.proyectoMineroId),
-          eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true),
-        ),
+          eq(proyectosMinerosModelosTerrenoTable.esPrincipal, true)
+        )
       )
       .limit(1);
 
@@ -38,9 +37,9 @@ export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
     const archivos =
       archivoIds.length > 0
         ? await db
-          .select({ id: archivosTable.id, nombre: archivosTable.nombre })
-          .from(archivosTable)
-          .where(inArray(archivosTable.id, archivoIds))
+            .select({ id: archivosTable.id, nombre: archivosTable.nombre })
+            .from(archivosTable)
+            .where(inArray(archivosTable.id, archivoIds))
         : [];
 
     // Mapear id → nombre
@@ -59,23 +58,23 @@ export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
       ortofoto:
         modelo.ortofotoCogArchivoId && nombrePorId.has(modelo.ortofotoCogArchivoId)
           ? {
-            archivoId: modelo.ortofotoCogArchivoId,
-            nombre: nombrePorId.get(modelo.ortofotoCogArchivoId)!,
-          }
+              archivoId: modelo.ortofotoCogArchivoId,
+              nombre: nombrePorId.get(modelo.ortofotoCogArchivoId)!,
+            }
           : null,
       mdt:
         modelo.mdtCogArchivoId && nombrePorId.has(modelo.mdtCogArchivoId)
           ? {
-            archivoId: modelo.mdtCogArchivoId,
-            nombre: nombrePorId.get(modelo.mdtCogArchivoId)!,
-          }
+              archivoId: modelo.mdtCogArchivoId,
+              nombre: nombrePorId.get(modelo.mdtCogArchivoId)!,
+            }
           : null,
       mdtColoreado:
         modelo.mdtColoreadoArchivoId && nombrePorId.has(modelo.mdtColoreadoArchivoId)
           ? {
-            archivoId: modelo.mdtColoreadoArchivoId,
-            nombre: nombrePorId.get(modelo.mdtColoreadoArchivoId)!,
-          }
+              archivoId: modelo.mdtColoreadoArchivoId,
+              nombre: nombrePorId.get(modelo.mdtColoreadoArchivoId)!,
+            }
           : null,
       // Metadata espacial
       crs: modelo.crs,
@@ -89,4 +88,4 @@ export const getModeloTerrenoFn = createServerFn({ method: 'GET' })
       defaultZoom: modelo.defaultZoom,
       elevation: { min: modelo.elevationMin, max: modelo.elevationMax },
     };
-  })
+  });

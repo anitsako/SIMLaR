@@ -7,7 +7,7 @@ import { proyectosMinerosTiposTable } from '@/db/schemas/proyectos-mineros-tipos
 import { proyectosMinerosEtapasTable } from '@/db/schemas/proyectos-mineros-etapas.schema';
 
 export const getProyectosMinerosFn = createServerFn({ method: 'GET' })
-  .inputValidator(
+  .validator(
     z.object({
       nombreLike: z.string().optional(),
       etapasIds: z.array(z.number().int().positive()).optional(),
