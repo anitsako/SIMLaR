@@ -9,6 +9,7 @@ import { AppBar } from '@/common/app-bar';
 import { Footer } from '@/common/footer';
 import { getCurrentUserFn } from '@/auth/get-current-user.fn';
 import { AnalyticsTracker } from '@/analytics/analytics-tracker';
+import { GoogleAnalytics } from '@/analytics/google-analytics';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: async () => {
@@ -48,6 +49,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     <html lang="es">
       <head>
         <HeadContent />
+        <GoogleAnalytics />
       </head>
       <body>
         <HeroUIProvider
