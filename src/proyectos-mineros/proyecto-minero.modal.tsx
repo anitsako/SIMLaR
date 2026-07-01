@@ -11,11 +11,11 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { Expand, File as FileIcon } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 import { useProyectoMinero } from './use-proyecto-minero';
 import { decimalToDms } from '@/common/decimal-to-dms';
 import { formatBytes } from '@/common/format-bytes';
 import { useProyectoMineroArchivos } from '@/proyectos-mineros-archivos/use-proyecto-minero-archivos';
-import { Link } from '@tanstack/react-router';
 
 function FieldRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
@@ -65,9 +65,13 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
               </Button>
             </div>
             <div className="flex flex-col">
-              <Button variant='faded' as={Link} to={`/proyectos-mineros/${id}/mapa`}>Modelo de Terreno</Button>
+              <Button variant="faded" as={Link} to={`/proyectos-mineros/${id}/mapa`}>
+                Modelo de Terreno
+              </Button>
               <Divider className="my-2" />
-              <Button variant='faded' as={Link} to={`/proyectos-mineros/${id}/modelo-3d`}>Modelo 3D</Button>
+              <Button variant="faded" as={Link} to={`/proyectos-mineros/${id}/modelo-3d`}>
+                Modelo 3D
+              </Button>
               <FieldRow label="Ubicación" value={data.ubicacion} />
               <Divider className="my-2" />
               <FieldRow label="Provincia geológica" value={data.provinciaGeologica} />
@@ -148,6 +152,6 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
           </Modal>
         </ModalBody>
       </ModalContent>
-    </Modal >
+    </Modal>
   );
 };

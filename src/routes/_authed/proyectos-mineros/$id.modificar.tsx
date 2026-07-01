@@ -29,7 +29,7 @@ function RouteComponent() {
   const { data: proyecto } = useSuspenseQuery(proyectoMineroQuery(Number(id)));
   const { queryClient } = Route.useRouteContext();
 
-  const coords = proyecto.coordenadasGeograficas as unknown as [number, number];
+  const coords = proyecto.coordenadasGeograficas;
 
   const [data, setData] = useState({
     nombre: proyecto.nombre,
@@ -46,7 +46,7 @@ function RouteComponent() {
     propietario: proyecto.propietario,
     localidadesCercanas: proyecto.localidadesCercanas,
     coordenadasGeograficas: { lat: coords[1], lng: coords[0] },
-    msnm: proyecto.msnm as number | undefined,
+    msnm: proyecto.msnm,
     convenioEmse: proyecto.convenioEmse,
     visible: proyecto.visible,
     archivoMapa: undefined as File | undefined,
@@ -131,7 +131,6 @@ function RouteComponent() {
       archivoMapa,
     };
 
-
     // Payload del modelo (si hay COGs nuevos)
 
     const hayCog = modeloData && (modeloData.dtmCog || modeloData.ortofotoCog || modeloData.mdtColoreadoCog);
@@ -145,41 +144,62 @@ function RouteComponent() {
       modeloPayload = {
         nombre: 'Levantamiento inicial',
         mdtCog: modeloData.dtmCog
-          ? { nombre: modeloData.dtmCog.name, tamaño: modeloData.dtmCog.size, mimeType: modeloData.dtmCog.type || 'image/tiff', base64: await base64(modeloData.dtmCog) }
+          ? {
+              nombre: modeloData.dtmCog.name,
+              tamaño: modeloData.dtmCog.size,
+              mimeType: modeloData.dtmCog.type || 'image/tiff',
+              base64: await base64(modeloData.dtmCog),
+            }
           : null,
         ortofotoCog: modeloData.ortofotoCog
-          ? { nombre: modeloData.ortofotoCog.name, tamaño: modeloData.ortofotoCog.size, mimeType: modeloData.ortofotoCog.type || 'image/tiff', base64: await base64(modeloData.ortofotoCog) }
+          ? {
+              nombre: modeloData.ortofotoCog.name,
+              tamaño: modeloData.ortofotoCog.size,
+              mimeType: modeloData.ortofotoCog.type || 'image/tiff',
+              base64: await base64(modeloData.ortofotoCog),
+            }
           : null,
         mdtColoreadoCog: modeloData.mdtColoreadoCog
-          ? { nombre: modeloData.mdtColoreadoCog.name, tamaño: modeloData.mdtColoreadoCog.size, mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff', base64: await base64(modeloData.mdtColoreadoCog) }
+          ? {
+              nombre: modeloData.mdtColoreadoCog.name,
+              tamaño: modeloData.mdtColoreadoCog.size,
+              mimeType: modeloData.mdtColoreadoCog.type || 'image/tiff',
+              base64: await base64(modeloData.mdtColoreadoCog),
+            }
           : null,
         mdtRaw: modeloData.mdtRaw
-          ? { nombre: modeloData.mdtRaw.name, tamaño: modeloData.mdtRaw.size, mimeType: modeloData.mdtRaw.type || 'image/tiff', base64: await base64(modeloData.mdtRaw) }
+          ? {
+              nombre: modeloData.mdtRaw.name,
+              tamaño: modeloData.mdtRaw.size,
+              mimeType: modeloData.mdtRaw.type || 'image/tiff',
+              base64: await base64(modeloData.mdtRaw),
+            }
           : null,
         ortofotoPng: modeloData.ortofotoPng
-          ? { nombre: modeloData.ortofotoPng.name, tamaño: modeloData.ortofotoPng.size, mimeType: modeloData.ortofotoPng.type || 'image/png', base64: await base64(modeloData.ortofotoPng) }
+          ? {
+              nombre: modeloData.ortofotoPng.name,
+              tamaño: modeloData.ortofotoPng.size,
+              mimeType: modeloData.ortofotoPng.type || 'image/png',
+              base64: await base64(modeloData.ortofotoPng),
+            }
           : null,
         crs: meta?.crs ?? modeloActual?.crs ?? 'EPSG:3857',
-        boundsWest: meta?.boundsWest ?? modeloActual?.bounds?.west ?? 0,
-        boundsSouth: meta?.boundsSouth ?? modeloActual?.bounds?.south ?? 0,
-        boundsEast: meta?.boundsEast ?? modeloActual?.bounds?.east ?? 0,
-        boundsNorth: meta?.boundsNorth ?? modeloActual?.bounds?.north ?? 0,
-        centerLat: meta?.centerLat ?? modeloActual?.center?.lat ?? 0,
-        centerLon: meta?.centerLon ?? modeloActual?.center?.lon ?? 0,
+        boundsWest: meta?.boundsWest ?? modeloActual?.bounds.west ?? 0,
+        boundsSouth: meta?.boundsSouth ?? modeloActual?.bounds.south ?? 0,
+        boundsEast: meta?.boundsEast ?? modeloActual?.bounds.east ?? 0,
+        boundsNorth: meta?.boundsNorth ?? modeloActual?.bounds.north ?? 0,
+        centerLat: meta?.centerLat ?? modeloActual?.center.lat ?? 0,
+        centerLon: meta?.centerLon ?? modeloActual?.center.lon ?? 0,
         defaultZoom: 15,
-        elevationMin: modeloData.dtmMeta?.elevationMin ?? modeloActual?.elevation?.min ?? null,
-        elevationMax: modeloData.dtmMeta?.elevationMax ?? modeloActual?.elevation?.max ?? null,
+        elevationMin: modeloData.dtmMeta?.elevationMin ?? modeloActual?.elevation.min ?? null,
+        elevationMax: modeloData.dtmMeta?.elevationMax ?? modeloActual?.elevation.max ?? null,
         resolucionMetros: meta?.resolucionMetros ?? null,
         anchoPx: meta?.anchoPx ?? null,
         altoPx: meta?.altoPx ?? null,
       };
-
-
-
-    };
+    }
     await modificarProyectoMinero({ proyecto: proyectoPayload, modelo: modeloPayload });
-
-  }
+  };
   return (
     <div className="mt-4 space-y-6">
       <h1 className="text-2xl font-bold">Modificar proyecto minero</h1>
@@ -325,15 +345,16 @@ function RouteComponent() {
           />
         </div>
 
-        <ModeloTerrenoFields onChange={setModeloData} modeloActual={{
-          tieneMdt: !!modeloActual?.mdt,
-          tieneOrtofoto: !!modeloActual?.ortofoto,
-          tieneColoreado: !!modeloActual?.mdtColoreado,
-          tieneMdtRaw: !!modeloActual?.mdtRaw,
-          tieneOrtofotoPng: !!modeloActual?.ortofotoPng,
-        }} />
-
-
+        <ModeloTerrenoFields
+          onChange={setModeloData}
+          modeloActual={{
+            tieneMdt: !!modeloActual?.mdt,
+            tieneOrtofoto: !!modeloActual?.ortofoto,
+            tieneColoreado: !!modeloActual?.mdtColoreado,
+            tieneMdtRaw: !!modeloActual?.mdtRaw,
+            tieneOrtofotoPng: !!modeloActual?.ortofotoPng,
+          }}
+        />
 
         {(validationError || error) && (
           <Alert color="danger">

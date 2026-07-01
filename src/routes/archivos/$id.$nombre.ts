@@ -1,4 +1,4 @@
-import { readFile, stat, open } from 'node:fs/promises';
+import { open, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { createFileRoute } from '@tanstack/react-router';
 import { eq } from 'drizzle-orm';
