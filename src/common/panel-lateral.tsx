@@ -111,11 +111,6 @@ const serviciosFormacionItems: Array<MenuItem> = [
 
 const administracionItems: Array<MenuItem> = [
   {
-    label: 'Analytics',
-    href: '/analytics',
-    icon: <ChartBar size={18} />,
-  },
-  {
     label: 'Carrousel de imágenes',
     href: '/carrousel-imagenes',
     icon: <Images size={18} />,
