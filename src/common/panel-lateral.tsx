@@ -46,7 +46,8 @@ type RutaInterna =
   | '/carrousel-imagenes'
   | '/departamentos-imagenes'
   | '/usuarios'
-  | '/analytics';
+  | '/analytics'
+  | '/google-analytics';
 
 type MenuItem = {
   label: string;
@@ -118,6 +119,11 @@ const administracionItems: Array<MenuItem> = [
     label: 'Carrousel de imágenes',
     href: '/carrousel-imagenes',
     icon: <Images size={18} />,
+  },
+  {
+    label: 'Google Analytics',
+    href: '/google-analytics',
+    icon: <ChartBar size={18} />,
   },
   {
     label: 'Imágenes de departamentos',

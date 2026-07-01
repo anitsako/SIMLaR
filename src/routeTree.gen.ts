@@ -20,6 +20,7 @@ import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologi
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
+import { Route as AuthedGoogleAnalyticsRouteImport } from './routes/_authed/google-analytics'
 import { Route as AuthedAnalyticsRouteImport } from './routes/_authed/analytics'
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
 import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
@@ -89,6 +90,11 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
   id: '/contacto/',
   path: '/contacto/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthedGoogleAnalyticsRoute = AuthedGoogleAnalyticsRouteImport.update({
+  id: '/google-analytics',
+  path: '/google-analytics',
+  getParentRoute: () => AuthedRoute,
 } as any)
 const AuthedAnalyticsRoute = AuthedAnalyticsRouteImport.update({
   id: '/analytics',
@@ -180,6 +186,7 @@ const AuthedProyectosMinerosIdArchivosRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AuthedAnalyticsRoute
+  '/google-analytics': typeof AuthedGoogleAnalyticsRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AuthedAnalyticsRoute
+  '/google-analytics': typeof AuthedGoogleAnalyticsRoute
   '/contacto': typeof ContactoIndexRoute
   '/educacion': typeof EducacionIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/_authed/analytics': typeof AuthedAnalyticsRoute
+  '/_authed/google-analytics': typeof AuthedGoogleAnalyticsRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
@@ -265,6 +274,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/analytics'
+    | '/google-analytics'
     | '/contacto/'
     | '/educacion/'
     | '/institucional/'
@@ -292,6 +302,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/analytics'
+    | '/google-analytics'
     | '/contacto'
     | '/educacion'
     | '/institucional'
@@ -320,6 +331,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authed'
     | '/_authed/analytics'
+    | '/_authed/google-analytics'
     | '/contacto/'
     | '/educacion/'
     | '/institucional/'
@@ -442,6 +454,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authed/google-analytics': {
+      id: '/_authed/google-analytics'
+      path: '/google-analytics'
+      fullPath: '/google-analytics'
+      preLoaderRoute: typeof AuthedGoogleAnalyticsRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/analytics': {
       id: '/_authed/analytics'
       path: '/analytics'
@@ -552,6 +571,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthedRouteChildren {
   AuthedAnalyticsRoute: typeof AuthedAnalyticsRoute
+  AuthedGoogleAnalyticsRoute: typeof AuthedGoogleAnalyticsRoute
   AuthedCarrouselImagenesIndexRoute: typeof AuthedCarrouselImagenesIndexRoute
   AuthedDepartamentosImagenesIndexRoute: typeof AuthedDepartamentosImagenesIndexRoute
   AuthedUsuariosIndexRoute: typeof AuthedUsuariosIndexRoute
@@ -566,6 +586,7 @@ interface AuthedRouteChildren {
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedAnalyticsRoute: AuthedAnalyticsRoute,
+  AuthedGoogleAnalyticsRoute: AuthedGoogleAnalyticsRoute,
   AuthedCarrouselImagenesIndexRoute: AuthedCarrouselImagenesIndexRoute,
   AuthedDepartamentosImagenesIndexRoute: AuthedDepartamentosImagenesIndexRoute,
   AuthedUsuariosIndexRoute: AuthedUsuariosIndexRoute,
