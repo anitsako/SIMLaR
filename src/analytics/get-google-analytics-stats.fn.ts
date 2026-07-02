@@ -10,6 +10,10 @@ export const getGoogleAnalyticsStatsFn = createServerFn({ method: 'GET' }).handl
   const client = await getGoogleAnalyticsClient();
   const property = getGoogleAnalyticsProperty();
 
+  if (!client || !property) {
+    return null;
+  }
+
   const [overview, topPages, countries, devices] = await Promise.all([
     client.runReport({
       property,
@@ -68,7 +72,8 @@ function getGoogleAnalyticsProperty() {
   const propertyId = process.env.GA_PROPERTY_ID;
 
   if (!propertyId) {
-    throw new Error('Missing GA_PROPERTY_ID');
+    console.error('Missing GA_PROPERTY_ID');
+    return null;
   }
 
   return `properties/${propertyId}`;

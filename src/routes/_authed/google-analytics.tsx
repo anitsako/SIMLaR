@@ -66,6 +66,14 @@ function RouteComponent() {
 function GoogleAnalyticsDashboard() {
   const { data } = useSuspenseQuery(googleAnalyticsStatsQuery());
 
+  if (data === null) {
+    return (
+      <div className="max-w-6xl w-full mt-4">
+        <Alert color="danger" title="Falta configurar Google Analytics." />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">

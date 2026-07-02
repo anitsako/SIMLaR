@@ -22,11 +22,13 @@ export async function getGoogleAnalyticsClient() {
   const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
   if (!clientEmail) {
-    throw new Error('Missing GA_CLIENT_EMAIL');
+    console.error('Missing GA_CLIENT_EMAIL');
+    return null;
   }
 
   if (!privateKey) {
-    throw new Error('Missing GA_PRIVATE_KEY');
+    console.error('Missing GA_PRIVATE_KEY');
+    return null;
   }
 
   return new BetaAnalyticsDataClient({ credentials: { client_email: clientEmail, private_key: privateKey } });
