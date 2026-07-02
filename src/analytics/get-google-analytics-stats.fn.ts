@@ -1,5 +1,5 @@
-import { BetaAnalyticsDataClient } from '@google-analytics/data';
 import { createServerFn } from '@tanstack/react-start';
+import { getGoogleAnalyticsClient } from './get-google-analytics-client';
 
 type ReportRow = {
   dimensionValues?: Array<{ value?: string | null }>;
@@ -7,7 +7,7 @@ type ReportRow = {
 };
 
 export const getGoogleAnalyticsStatsFn = createServerFn({ method: 'GET' }).handler(async () => {
-  const client = createGoogleAnalyticsClient();
+  const client = await getGoogleAnalyticsClient();
   const property = getGoogleAnalyticsProperty();
 
   const [overview, topPages, countries, devices] = await Promise.all([
@@ -72,21 +72,6 @@ function getGoogleAnalyticsProperty() {
   }
 
   return `properties/${propertyId}`;
-}
-
-function createGoogleAnalyticsClient() {
-  const clientEmail = process.env.GA_CLIENT_EMAIL;
-  const privateKey = process.env.GA_PRIVATE_KEY?.replace(/\\n/g, '\n');
-
-  if (!clientEmail) {
-    throw new Error('Missing GA_CLIENT_EMAIL');
-  }
-
-  if (!privateKey) {
-    throw new Error('Missing GA_PRIVATE_KEY');
-  }
-
-  return new BetaAnalyticsDataClient({ credentials: { client_email: clientEmail, private_key: privateKey } });
 }
 
 function getMetricValue(row: ReportRow | undefined, index: number) {
