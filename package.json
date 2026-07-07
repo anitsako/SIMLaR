@@ -27,7 +27,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@geomatico/maplibre-cog-protocol": "^0.8.0",
+    "@geomatico/maplibre-cog-protocol": "^0.9.0",
     "@google-analytics/data": "^6.1.0",
     "@heroui/react": "^2.8.10",
     "@react-three/drei": "^10.7.7",
@@ -48,15 +48,15 @@
     "lucide-react": "^0.575.0",
     "maplibre-gl": "^5.24.0",
     "nitro": "^3.0.260610-beta",
-    "nodemailer": "^8.0.11",
+    "nodemailer": "^9.0.3",
     "pg": "^8.22.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-leaflet": "^5.0.0",
     "rss-parser": "^3.13.0",
-    "swiper": "^12.2.0",
+    "swiper": "^14.0.1",
     "tailwindcss": "^4.3.2",
-    "three": "^0.184.0",
+    "three": "^0.185.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
