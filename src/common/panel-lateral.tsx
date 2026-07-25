@@ -17,6 +17,8 @@ import {
   Blend,
   Briefcase,
   Building,
+  CalendarCog,
+  CalendarDays,
   ChartBar,
   ChevronDown,
   ContactRound,
@@ -41,6 +43,7 @@ type RutaInterna =
   | '/contacto'
   | '/proyectos-mineros'
   | '/mapas-geologicos'
+  | '/catastro-historico'
   | '/servicios'
   | '/educacion'
   | '/carrousel-imagenes'
@@ -94,6 +97,11 @@ const informacionMineraItems: Array<MenuItem> = [
     href: '/transparencia',
     icon: <Blend size={18} />,
   },
+  {
+    label: 'Catastro histórico',
+    href: '/catastro-historico',
+    icon: <CalendarDays size={18} />,
+  }
 ];
 
 const serviciosFormacionItems: Array<MenuItem> = [
