@@ -5,7 +5,7 @@ import type { ChangeEvent } from 'react';
 export const ArchivoField = ({
   label,
   required,
-  accept = "image/png, image/jpeg, image/webp, .tif, .tiff, image/tiff",
+  accept = "image/png, image/jpeg, image/webp, .tif, .tiff, image/tiff, image/vnd.dwg",
   onChange,
 }: {
   label: string;

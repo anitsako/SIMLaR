@@ -20,6 +20,7 @@ import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologi
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
+import { Route as CatastroHistoricoIndexRouteImport } from './routes/catastro-historico/index'
 import { Route as AuthedGoogleAnalyticsRouteImport } from './routes/_authed/google-analytics'
 import { Route as AuthedAnalyticsRouteImport } from './routes/_authed/analytics'
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
@@ -32,6 +33,7 @@ import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nom
 import { Route as AuthedUsuariosModificarContraseChar241aIndexRouteImport } from './routes/_authed/usuarios/modificar-contraseña/index'
 import { Route as AuthedUsuariosCrearIndexRouteImport } from './routes/_authed/usuarios/crear/index'
 import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
+import { Route as AuthedCatastroHistoricoCrearIndexRouteImport } from './routes/_authed/catastro-historico/crear/index'
 import { Route as AuthedUsuariosIdModificarRouteImport } from './routes/_authed/usuarios/$id.modificar'
 import { Route as AuthedUsuariosIdCambiarContraseChar241aRouteImport } from './routes/_authed/usuarios/$id.cambiar-contraseña'
 import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
@@ -89,6 +91,11 @@ const EducacionIndexRoute = EducacionIndexRouteImport.update({
 const ContactoIndexRoute = ContactoIndexRouteImport.update({
   id: '/contacto/',
   path: '/contacto/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatastroHistoricoIndexRoute = CatastroHistoricoIndexRouteImport.update({
+  id: '/catastro-historico/',
+  path: '/catastro-historico/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthedGoogleAnalyticsRoute = AuthedGoogleAnalyticsRouteImport.update({
@@ -158,6 +165,12 @@ const AuthedProyectosMinerosCrearIndexRoute =
     path: '/proyectos-mineros/crear/',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedCatastroHistoricoCrearIndexRoute =
+  AuthedCatastroHistoricoCrearIndexRouteImport.update({
+    id: '/catastro-historico/crear/',
+    path: '/catastro-historico/crear/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedUsuariosIdModificarRoute =
   AuthedUsuariosIdModificarRouteImport.update({
     id: '/usuarios/$id/modificar',
@@ -187,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/google-analytics': typeof AuthedGoogleAnalyticsRoute
+  '/catastro-historico/': typeof CatastroHistoricoIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
@@ -207,6 +221,7 @@ export interface FileRoutesByFullPath {
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
+  '/catastro-historico/crear/': typeof AuthedCatastroHistoricoCrearIndexRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
   '/usuarios/modificar-contraseña/': typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -215,6 +230,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analytics': typeof AuthedAnalyticsRoute
   '/google-analytics': typeof AuthedGoogleAnalyticsRoute
+  '/catastro-historico': typeof CatastroHistoricoIndexRoute
   '/contacto': typeof ContactoIndexRoute
   '/educacion': typeof EducacionIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
@@ -235,6 +251,7 @@ export interface FileRoutesByTo {
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
+  '/catastro-historico/crear': typeof AuthedCatastroHistoricoCrearIndexRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear': typeof AuthedUsuariosCrearIndexRoute
   '/usuarios/modificar-contraseña': typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -245,6 +262,7 @@ export interface FileRoutesById {
   '/_authed': typeof AuthedRouteWithChildren
   '/_authed/analytics': typeof AuthedAnalyticsRoute
   '/_authed/google-analytics': typeof AuthedGoogleAnalyticsRoute
+  '/catastro-historico/': typeof CatastroHistoricoIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
@@ -265,6 +283,7 @@ export interface FileRoutesById {
   '/_authed/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/_authed/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/_authed/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
+  '/_authed/catastro-historico/crear/': typeof AuthedCatastroHistoricoCrearIndexRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/_authed/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
   '/_authed/usuarios/modificar-contraseña/': typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -275,6 +294,7 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/google-analytics'
+    | '/catastro-historico/'
     | '/contacto/'
     | '/educacion/'
     | '/institucional/'
@@ -295,6 +315,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
+    | '/catastro-historico/crear/'
     | '/proyectos-mineros/crear/'
     | '/usuarios/crear/'
     | '/usuarios/modificar-contraseña/'
@@ -303,6 +324,7 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/google-analytics'
+    | '/catastro-historico'
     | '/contacto'
     | '/educacion'
     | '/institucional'
@@ -323,6 +345,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
+    | '/catastro-historico/crear'
     | '/proyectos-mineros/crear'
     | '/usuarios/crear'
     | '/usuarios/modificar-contraseña'
@@ -332,6 +355,7 @@ export interface FileRouteTypes {
     | '/_authed'
     | '/_authed/analytics'
     | '/_authed/google-analytics'
+    | '/catastro-historico/'
     | '/contacto/'
     | '/educacion/'
     | '/institucional/'
@@ -352,6 +376,7 @@ export interface FileRouteTypes {
     | '/_authed/proyectos-mineros/$id/modificar'
     | '/_authed/usuarios/$id/cambiar-contraseña'
     | '/_authed/usuarios/$id/modificar'
+    | '/_authed/catastro-historico/crear/'
     | '/_authed/proyectos-mineros/crear/'
     | '/_authed/usuarios/crear/'
     | '/_authed/usuarios/modificar-contraseña/'
@@ -360,6 +385,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthedRoute: typeof AuthedRouteWithChildren
+  CatastroHistoricoIndexRoute: typeof CatastroHistoricoIndexRoute
   ContactoIndexRoute: typeof ContactoIndexRoute
   EducacionIndexRoute: typeof EducacionIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
@@ -454,6 +480,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catastro-historico/': {
+      id: '/catastro-historico/'
+      path: '/catastro-historico'
+      fullPath: '/catastro-historico/'
+      preLoaderRoute: typeof CatastroHistoricoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authed/google-analytics': {
       id: '/_authed/google-analytics'
       path: '/google-analytics'
@@ -538,6 +571,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedProyectosMinerosCrearIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/catastro-historico/crear/': {
+      id: '/_authed/catastro-historico/crear/'
+      path: '/catastro-historico/crear'
+      fullPath: '/catastro-historico/crear/'
+      preLoaderRoute: typeof AuthedCatastroHistoricoCrearIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/usuarios/$id/modificar': {
       id: '/_authed/usuarios/$id/modificar'
       path: '/usuarios/$id/modificar'
@@ -579,6 +619,7 @@ interface AuthedRouteChildren {
   AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
   AuthedUsuariosIdCambiarContraseChar241aRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   AuthedUsuariosIdModificarRoute: typeof AuthedUsuariosIdModificarRoute
+  AuthedCatastroHistoricoCrearIndexRoute: typeof AuthedCatastroHistoricoCrearIndexRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
   AuthedUsuariosCrearIndexRoute: typeof AuthedUsuariosCrearIndexRoute
   AuthedUsuariosModificarContraseChar241aIndexRoute: typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -596,6 +637,8 @@ const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedUsuariosIdCambiarContraseChar241aRoute:
     AuthedUsuariosIdCambiarContraseChar241aRoute,
   AuthedUsuariosIdModificarRoute: AuthedUsuariosIdModificarRoute,
+  AuthedCatastroHistoricoCrearIndexRoute:
+    AuthedCatastroHistoricoCrearIndexRoute,
   AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
   AuthedUsuariosCrearIndexRoute: AuthedUsuariosCrearIndexRoute,
   AuthedUsuariosModificarContraseChar241aIndexRoute:
@@ -608,6 +651,7 @@ const AuthedRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthedRoute: AuthedRouteWithChildren,
+  CatastroHistoricoIndexRoute: CatastroHistoricoIndexRoute,
   ContactoIndexRoute: ContactoIndexRoute,
   EducacionIndexRoute: EducacionIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
