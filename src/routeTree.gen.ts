@@ -9,83 +9,58 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
-import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
-import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
-import { Route as ObjetivosIndexRouteImport } from './routes/objetivos/index'
-import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
-import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
-import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
-import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
-import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
-import { Route as CatastroHistoricoIndexRouteImport } from './routes/catastro-historico/index'
-import { Route as AuthedGoogleAnalyticsRouteImport } from './routes/_authed/google-analytics'
+import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as AuthedAnalyticsRouteImport } from './routes/_authed/analytics'
-import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
-import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
-import { Route as AuthedDepartamentosImagenesIndexRouteImport } from './routes/_authed/departamentos-imagenes/index'
+import { Route as AuthedGoogleAnalyticsRouteImport } from './routes/_authed/google-analytics'
+import { Route as CatastroHistoricoIndexRouteImport } from './routes/catastro-historico/index'
+import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
+import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
+import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
+import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
+import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
+import { Route as ObjetivosIndexRouteImport } from './routes/objetivos/index'
+import { Route as ProyectosMinerosIndexRouteImport } from './routes/proyectos-mineros/index'
+import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
+import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as AuthedCarrouselImagenesIndexRouteImport } from './routes/_authed/carrousel-imagenes/index'
-import { Route as ProyectosMinerosIdModelo3dRouteImport } from './routes/proyectos-mineros/$id.modelo-3d'
-import { Route as ProyectosMinerosIdMapaRouteImport } from './routes/proyectos-mineros/$id.mapa'
+import { Route as AuthedDepartamentosImagenesIndexRouteImport } from './routes/_authed/departamentos-imagenes/index'
+import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
-import { Route as AuthedUsuariosModificarContraseChar241aIndexRouteImport } from './routes/_authed/usuarios/modificar-contraseña/index'
-import { Route as AuthedUsuariosCrearIndexRouteImport } from './routes/_authed/usuarios/crear/index'
-import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
+import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
+import { Route as ProyectosMinerosIdMapaRouteImport } from './routes/proyectos-mineros/$id.mapa'
+import { Route as ProyectosMinerosIdModelo3dRouteImport } from './routes/proyectos-mineros/$id.modelo-3d'
 import { Route as AuthedCatastroHistoricoCrearIndexRouteImport } from './routes/_authed/catastro-historico/crear/index'
-import { Route as AuthedUsuariosIdModificarRouteImport } from './routes/_authed/usuarios/$id.modificar'
-import { Route as AuthedUsuariosIdCambiarContraseChar241aRouteImport } from './routes/_authed/usuarios/$id.cambiar-contraseña'
-import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
 import { Route as AuthedProyectosMinerosIdArchivosRouteImport } from './routes/_authed/proyectos-mineros/$id.archivos'
+import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
+import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
+import { Route as AuthedUsuariosIdCambiarContraseChar241aRouteImport } from './routes/_authed/usuarios/$id.cambiar-contraseña'
+import { Route as AuthedUsuariosIdModificarRouteImport } from './routes/_authed/usuarios/$id.modificar'
+import { Route as AuthedUsuariosCrearIndexRouteImport } from './routes/_authed/usuarios/crear/index'
+import { Route as AuthedUsuariosModificarContraseChar241aIndexRouteImport } from './routes/_authed/usuarios/modificar-contraseña/index'
 
-const AuthedRoute = AuthedRouteImport.update({
-  id: '/_authed',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TransparenciaIndexRoute = TransparenciaIndexRouteImport.update({
-  id: '/transparencia/',
-  path: '/transparencia/',
+const AuthedRoute = AuthedRouteImport.update({
+  id: '/_authed',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServiciosIndexRoute = ServiciosIndexRouteImport.update({
-  id: '/servicios/',
-  path: '/servicios/',
-  getParentRoute: () => rootRouteImport,
+const AuthedAnalyticsRoute = AuthedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthedRoute,
 } as any)
-const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
-  id: '/proyectos-mineros/',
-  path: '/proyectos-mineros/',
-  getParentRoute: () => rootRouteImport,
+const AuthedGoogleAnalyticsRoute = AuthedGoogleAnalyticsRouteImport.update({
+  id: '/google-analytics',
+  path: '/google-analytics',
+  getParentRoute: () => AuthedRoute,
 } as any)
-const ObjetivosIndexRoute = ObjetivosIndexRouteImport.update({
-  id: '/objetivos/',
-  path: '/objetivos/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
-  id: '/noticias/',
-  path: '/noticias/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MapasGeologicosIndexRoute = MapasGeologicosIndexRouteImport.update({
-  id: '/mapas-geologicos/',
-  path: '/mapas-geologicos/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
-  id: '/institucional/',
-  path: '/institucional/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EducacionIndexRoute = EducacionIndexRouteImport.update({
-  id: '/educacion/',
-  path: '/educacion/',
+const CatastroHistoricoIndexRoute = CatastroHistoricoIndexRouteImport.update({
+  id: '/catastro-historico/',
+  path: '/catastro-historico/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoIndexRoute = ContactoIndexRouteImport.update({
@@ -93,20 +68,67 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
   path: '/contacto/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CatastroHistoricoIndexRoute = CatastroHistoricoIndexRouteImport.update({
-  id: '/catastro-historico/',
-  path: '/catastro-historico/',
+const EducacionIndexRoute = EducacionIndexRouteImport.update({
+  id: '/educacion/',
+  path: '/educacion/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthedGoogleAnalyticsRoute = AuthedGoogleAnalyticsRouteImport.update({
-  id: '/google-analytics',
-  path: '/google-analytics',
+const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
+  id: '/institucional/',
+  path: '/institucional/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapasGeologicosIndexRoute = MapasGeologicosIndexRouteImport.update({
+  id: '/mapas-geologicos/',
+  path: '/mapas-geologicos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoticiasIndexRoute = NoticiasIndexRouteImport.update({
+  id: '/noticias/',
+  path: '/noticias/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObjetivosIndexRoute = ObjetivosIndexRouteImport.update({
+  id: '/objetivos/',
+  path: '/objetivos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProyectosMinerosIndexRoute = ProyectosMinerosIndexRouteImport.update({
+  id: '/proyectos-mineros/',
+  path: '/proyectos-mineros/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosIndexRoute = ServiciosIndexRouteImport.update({
+  id: '/servicios/',
+  path: '/servicios/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransparenciaIndexRoute = TransparenciaIndexRouteImport.update({
+  id: '/transparencia/',
+  path: '/transparencia/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthedCarrouselImagenesIndexRoute =
+  AuthedCarrouselImagenesIndexRouteImport.update({
+    id: '/carrousel-imagenes/',
+    path: '/carrousel-imagenes/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDepartamentosImagenesIndexRoute =
+  AuthedDepartamentosImagenesIndexRouteImport.update({
+    id: '/departamentos-imagenes/',
+    path: '/departamentos-imagenes/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedUsuariosIndexRoute = AuthedUsuariosIndexRouteImport.update({
+  id: '/usuarios/',
+  path: '/usuarios/',
   getParentRoute: () => AuthedRoute,
 } as any)
-const AuthedAnalyticsRoute = AuthedAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
-  getParentRoute: () => AuthedRoute,
+const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
+  id: '/archivos/$id/$nombre',
+  path: '/archivos/$id/$nombre',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const EducacionInformativaIndexRoute =
   EducacionInformativaIndexRouteImport.update({
@@ -114,56 +136,16 @@ const EducacionInformativaIndexRoute =
     path: '/educacion/informativa/',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AuthedUsuariosIndexRoute = AuthedUsuariosIndexRouteImport.update({
-  id: '/usuarios/',
-  path: '/usuarios/',
-  getParentRoute: () => AuthedRoute,
-} as any)
-const AuthedDepartamentosImagenesIndexRoute =
-  AuthedDepartamentosImagenesIndexRouteImport.update({
-    id: '/departamentos-imagenes/',
-    path: '/departamentos-imagenes/',
-    getParentRoute: () => AuthedRoute,
-  } as any)
-const AuthedCarrouselImagenesIndexRoute =
-  AuthedCarrouselImagenesIndexRouteImport.update({
-    id: '/carrousel-imagenes/',
-    path: '/carrousel-imagenes/',
-    getParentRoute: () => AuthedRoute,
-  } as any)
-const ProyectosMinerosIdModelo3dRoute =
-  ProyectosMinerosIdModelo3dRouteImport.update({
-    id: '/proyectos-mineros/$id/modelo-3d',
-    path: '/proyectos-mineros/$id/modelo-3d',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const ProyectosMinerosIdMapaRoute = ProyectosMinerosIdMapaRouteImport.update({
   id: '/proyectos-mineros/$id/mapa',
   path: '/proyectos-mineros/$id/mapa',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ArchivosIdNombreRoute = ArchivosIdNombreRouteImport.update({
-  id: '/archivos/$id/$nombre',
-  path: '/archivos/$id/$nombre',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthedUsuariosModificarContraseChar241aIndexRoute =
-  AuthedUsuariosModificarContraseChar241aIndexRouteImport.update({
-    id: '/usuarios/modificar-contraseña/',
-    path: '/usuarios/modificar-contraseña/',
-    getParentRoute: () => AuthedRoute,
-  } as any)
-const AuthedUsuariosCrearIndexRoute =
-  AuthedUsuariosCrearIndexRouteImport.update({
-    id: '/usuarios/crear/',
-    path: '/usuarios/crear/',
-    getParentRoute: () => AuthedRoute,
-  } as any)
-const AuthedProyectosMinerosCrearIndexRoute =
-  AuthedProyectosMinerosCrearIndexRouteImport.update({
-    id: '/proyectos-mineros/crear/',
-    path: '/proyectos-mineros/crear/',
-    getParentRoute: () => AuthedRoute,
+const ProyectosMinerosIdModelo3dRoute =
+  ProyectosMinerosIdModelo3dRouteImport.update({
+    id: '/proyectos-mineros/$id/modelo-3d',
+    path: '/proyectos-mineros/$id/modelo-3d',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const AuthedCatastroHistoricoCrearIndexRoute =
   AuthedCatastroHistoricoCrearIndexRouteImport.update({
@@ -171,16 +153,10 @@ const AuthedCatastroHistoricoCrearIndexRoute =
     path: '/catastro-historico/crear/',
     getParentRoute: () => AuthedRoute,
   } as any)
-const AuthedUsuariosIdModificarRoute =
-  AuthedUsuariosIdModificarRouteImport.update({
-    id: '/usuarios/$id/modificar',
-    path: '/usuarios/$id/modificar',
-    getParentRoute: () => AuthedRoute,
-  } as any)
-const AuthedUsuariosIdCambiarContraseChar241aRoute =
-  AuthedUsuariosIdCambiarContraseChar241aRouteImport.update({
-    id: '/usuarios/$id/cambiar-contraseña',
-    path: '/usuarios/$id/cambiar-contraseña',
+const AuthedProyectosMinerosIdArchivosRoute =
+  AuthedProyectosMinerosIdArchivosRouteImport.update({
+    id: '/proyectos-mineros/$id/archivos',
+    path: '/proyectos-mineros/$id/archivos',
     getParentRoute: () => AuthedRoute,
   } as any)
 const AuthedProyectosMinerosIdModificarRoute =
@@ -189,10 +165,34 @@ const AuthedProyectosMinerosIdModificarRoute =
     path: '/proyectos-mineros/$id/modificar',
     getParentRoute: () => AuthedRoute,
   } as any)
-const AuthedProyectosMinerosIdArchivosRoute =
-  AuthedProyectosMinerosIdArchivosRouteImport.update({
-    id: '/proyectos-mineros/$id/archivos',
-    path: '/proyectos-mineros/$id/archivos',
+const AuthedProyectosMinerosCrearIndexRoute =
+  AuthedProyectosMinerosCrearIndexRouteImport.update({
+    id: '/proyectos-mineros/crear/',
+    path: '/proyectos-mineros/crear/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedUsuariosIdCambiarContraseChar241aRoute =
+  AuthedUsuariosIdCambiarContraseChar241aRouteImport.update({
+    id: '/usuarios/$id/cambiar-contraseña',
+    path: '/usuarios/$id/cambiar-contraseña',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedUsuariosIdModificarRoute =
+  AuthedUsuariosIdModificarRouteImport.update({
+    id: '/usuarios/$id/modificar',
+    path: '/usuarios/$id/modificar',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedUsuariosCrearIndexRoute =
+  AuthedUsuariosCrearIndexRouteImport.update({
+    id: '/usuarios/crear/',
+    path: '/usuarios/crear/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedUsuariosModificarContraseChar241aIndexRoute =
+  AuthedUsuariosModificarContraseChar241aIndexRouteImport.update({
+    id: '/usuarios/modificar-contraseña/',
+    path: '/usuarios/modificar-contraseña/',
     getParentRoute: () => AuthedRoute,
   } as any)
 
@@ -403,13 +403,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_authed': {
-      id: '/_authed'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -417,60 +410,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/transparencia/': {
-      id: '/transparencia/'
-      path: '/transparencia'
-      fullPath: '/transparencia/'
-      preLoaderRoute: typeof TransparenciaIndexRouteImport
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthedRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/servicios/': {
-      id: '/servicios/'
-      path: '/servicios'
-      fullPath: '/servicios/'
-      preLoaderRoute: typeof ServiciosIndexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authed/analytics': {
+      id: '/_authed/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthedAnalyticsRouteImport
+      parentRoute: typeof AuthedRoute
     }
-    '/proyectos-mineros/': {
-      id: '/proyectos-mineros/'
-      path: '/proyectos-mineros'
-      fullPath: '/proyectos-mineros/'
-      preLoaderRoute: typeof ProyectosMinerosIndexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authed/google-analytics': {
+      id: '/_authed/google-analytics'
+      path: '/google-analytics'
+      fullPath: '/google-analytics'
+      preLoaderRoute: typeof AuthedGoogleAnalyticsRouteImport
+      parentRoute: typeof AuthedRoute
     }
-    '/objetivos/': {
-      id: '/objetivos/'
-      path: '/objetivos'
-      fullPath: '/objetivos/'
-      preLoaderRoute: typeof ObjetivosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/noticias/': {
-      id: '/noticias/'
-      path: '/noticias'
-      fullPath: '/noticias/'
-      preLoaderRoute: typeof NoticiasIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mapas-geologicos/': {
-      id: '/mapas-geologicos/'
-      path: '/mapas-geologicos'
-      fullPath: '/mapas-geologicos/'
-      preLoaderRoute: typeof MapasGeologicosIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/institucional/': {
-      id: '/institucional/'
-      path: '/institucional'
-      fullPath: '/institucional/'
-      preLoaderRoute: typeof InstitucionalIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/educacion/': {
-      id: '/educacion/'
-      path: '/educacion'
-      fullPath: '/educacion/'
-      preLoaderRoute: typeof EducacionIndexRouteImport
+    '/catastro-historico/': {
+      id: '/catastro-historico/'
+      path: '/catastro-historico'
+      fullPath: '/catastro-historico/'
+      preLoaderRoute: typeof CatastroHistoricoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto/': {
@@ -480,39 +445,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/catastro-historico/': {
-      id: '/catastro-historico/'
-      path: '/catastro-historico'
-      fullPath: '/catastro-historico/'
-      preLoaderRoute: typeof CatastroHistoricoIndexRouteImport
+    '/educacion/': {
+      id: '/educacion/'
+      path: '/educacion'
+      fullPath: '/educacion/'
+      preLoaderRoute: typeof EducacionIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authed/google-analytics': {
-      id: '/_authed/google-analytics'
-      path: '/google-analytics'
-      fullPath: '/google-analytics'
-      preLoaderRoute: typeof AuthedGoogleAnalyticsRouteImport
-      parentRoute: typeof AuthedRoute
-    }
-    '/_authed/analytics': {
-      id: '/_authed/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof AuthedAnalyticsRouteImport
-      parentRoute: typeof AuthedRoute
-    }
-    '/educacion/informativa/': {
-      id: '/educacion/informativa/'
-      path: '/educacion/informativa'
-      fullPath: '/educacion/informativa/'
-      preLoaderRoute: typeof EducacionInformativaIndexRouteImport
+    '/institucional/': {
+      id: '/institucional/'
+      path: '/institucional'
+      fullPath: '/institucional/'
+      preLoaderRoute: typeof InstitucionalIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authed/usuarios/': {
-      id: '/_authed/usuarios/'
-      path: '/usuarios'
-      fullPath: '/usuarios/'
-      preLoaderRoute: typeof AuthedUsuariosIndexRouteImport
+    '/mapas-geologicos/': {
+      id: '/mapas-geologicos/'
+      path: '/mapas-geologicos'
+      fullPath: '/mapas-geologicos/'
+      preLoaderRoute: typeof MapasGeologicosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/noticias/': {
+      id: '/noticias/'
+      path: '/noticias'
+      fullPath: '/noticias/'
+      preLoaderRoute: typeof NoticiasIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/objetivos/': {
+      id: '/objetivos/'
+      path: '/objetivos'
+      fullPath: '/objetivos/'
+      preLoaderRoute: typeof ObjetivosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proyectos-mineros/': {
+      id: '/proyectos-mineros/'
+      path: '/proyectos-mineros'
+      fullPath: '/proyectos-mineros/'
+      preLoaderRoute: typeof ProyectosMinerosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios/': {
+      id: '/servicios/'
+      path: '/servicios'
+      fullPath: '/servicios/'
+      preLoaderRoute: typeof ServiciosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transparencia/': {
+      id: '/transparencia/'
+      path: '/transparencia'
+      fullPath: '/transparencia/'
+      preLoaderRoute: typeof TransparenciaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authed/carrousel-imagenes/': {
+      id: '/_authed/carrousel-imagenes/'
+      path: '/carrousel-imagenes'
+      fullPath: '/carrousel-imagenes/'
+      preLoaderRoute: typeof AuthedCarrouselImagenesIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
     '/_authed/departamentos-imagenes/': {
@@ -522,18 +515,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDepartamentosImagenesIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
-    '/_authed/carrousel-imagenes/': {
-      id: '/_authed/carrousel-imagenes/'
-      path: '/carrousel-imagenes'
-      fullPath: '/carrousel-imagenes/'
-      preLoaderRoute: typeof AuthedCarrouselImagenesIndexRouteImport
+    '/_authed/usuarios/': {
+      id: '/_authed/usuarios/'
+      path: '/usuarios'
+      fullPath: '/usuarios/'
+      preLoaderRoute: typeof AuthedUsuariosIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
-    '/proyectos-mineros/$id/modelo-3d': {
-      id: '/proyectos-mineros/$id/modelo-3d'
-      path: '/proyectos-mineros/$id/modelo-3d'
-      fullPath: '/proyectos-mineros/$id/modelo-3d'
-      preLoaderRoute: typeof ProyectosMinerosIdModelo3dRouteImport
+    '/archivos/$id/$nombre': {
+      id: '/archivos/$id/$nombre'
+      path: '/archivos/$id/$nombre'
+      fullPath: '/archivos/$id/$nombre'
+      preLoaderRoute: typeof ArchivosIdNombreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/educacion/informativa/': {
+      id: '/educacion/informativa/'
+      path: '/educacion/informativa'
+      fullPath: '/educacion/informativa/'
+      preLoaderRoute: typeof EducacionInformativaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/proyectos-mineros/$id/mapa': {
@@ -543,33 +543,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProyectosMinerosIdMapaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/archivos/$id/$nombre': {
-      id: '/archivos/$id/$nombre'
-      path: '/archivos/$id/$nombre'
-      fullPath: '/archivos/$id/$nombre'
-      preLoaderRoute: typeof ArchivosIdNombreRouteImport
+    '/proyectos-mineros/$id/modelo-3d': {
+      id: '/proyectos-mineros/$id/modelo-3d'
+      path: '/proyectos-mineros/$id/modelo-3d'
+      fullPath: '/proyectos-mineros/$id/modelo-3d'
+      preLoaderRoute: typeof ProyectosMinerosIdModelo3dRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_authed/usuarios/modificar-contraseña/': {
-      id: '/_authed/usuarios/modificar-contraseña/'
-      path: '/usuarios/modificar-contraseña'
-      fullPath: '/usuarios/modificar-contraseña/'
-      preLoaderRoute: typeof AuthedUsuariosModificarContraseChar241aIndexRouteImport
-      parentRoute: typeof AuthedRoute
-    }
-    '/_authed/usuarios/crear/': {
-      id: '/_authed/usuarios/crear/'
-      path: '/usuarios/crear'
-      fullPath: '/usuarios/crear/'
-      preLoaderRoute: typeof AuthedUsuariosCrearIndexRouteImport
-      parentRoute: typeof AuthedRoute
-    }
-    '/_authed/proyectos-mineros/crear/': {
-      id: '/_authed/proyectos-mineros/crear/'
-      path: '/proyectos-mineros/crear'
-      fullPath: '/proyectos-mineros/crear/'
-      preLoaderRoute: typeof AuthedProyectosMinerosCrearIndexRouteImport
-      parentRoute: typeof AuthedRoute
     }
     '/_authed/catastro-historico/crear/': {
       id: '/_authed/catastro-historico/crear/'
@@ -578,18 +557,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedCatastroHistoricoCrearIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
-    '/_authed/usuarios/$id/modificar': {
-      id: '/_authed/usuarios/$id/modificar'
-      path: '/usuarios/$id/modificar'
-      fullPath: '/usuarios/$id/modificar'
-      preLoaderRoute: typeof AuthedUsuariosIdModificarRouteImport
-      parentRoute: typeof AuthedRoute
-    }
-    '/_authed/usuarios/$id/cambiar-contraseña': {
-      id: '/_authed/usuarios/$id/cambiar-contraseña'
-      path: '/usuarios/$id/cambiar-contraseña'
-      fullPath: '/usuarios/$id/cambiar-contraseña'
-      preLoaderRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRouteImport
+    '/_authed/proyectos-mineros/$id/archivos': {
+      id: '/_authed/proyectos-mineros/$id/archivos'
+      path: '/proyectos-mineros/$id/archivos'
+      fullPath: '/proyectos-mineros/$id/archivos'
+      preLoaderRoute: typeof AuthedProyectosMinerosIdArchivosRouteImport
       parentRoute: typeof AuthedRoute
     }
     '/_authed/proyectos-mineros/$id/modificar': {
@@ -599,11 +571,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedProyectosMinerosIdModificarRouteImport
       parentRoute: typeof AuthedRoute
     }
-    '/_authed/proyectos-mineros/$id/archivos': {
-      id: '/_authed/proyectos-mineros/$id/archivos'
-      path: '/proyectos-mineros/$id/archivos'
-      fullPath: '/proyectos-mineros/$id/archivos'
-      preLoaderRoute: typeof AuthedProyectosMinerosIdArchivosRouteImport
+    '/_authed/proyectos-mineros/crear/': {
+      id: '/_authed/proyectos-mineros/crear/'
+      path: '/proyectos-mineros/crear'
+      fullPath: '/proyectos-mineros/crear/'
+      preLoaderRoute: typeof AuthedProyectosMinerosCrearIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/usuarios/$id/cambiar-contraseña': {
+      id: '/_authed/usuarios/$id/cambiar-contraseña'
+      path: '/usuarios/$id/cambiar-contraseña'
+      fullPath: '/usuarios/$id/cambiar-contraseña'
+      preLoaderRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/usuarios/$id/modificar': {
+      id: '/_authed/usuarios/$id/modificar'
+      path: '/usuarios/$id/modificar'
+      fullPath: '/usuarios/$id/modificar'
+      preLoaderRoute: typeof AuthedUsuariosIdModificarRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/usuarios/crear/': {
+      id: '/_authed/usuarios/crear/'
+      path: '/usuarios/crear'
+      fullPath: '/usuarios/crear/'
+      preLoaderRoute: typeof AuthedUsuariosCrearIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/usuarios/modificar-contraseña/': {
+      id: '/_authed/usuarios/modificar-contraseña/'
+      path: '/usuarios/modificar-contraseña'
+      fullPath: '/usuarios/modificar-contraseña/'
+      preLoaderRoute: typeof AuthedUsuariosModificarContraseChar241aIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
   }
