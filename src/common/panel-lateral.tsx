@@ -48,6 +48,7 @@ type RutaInterna =
   | '/educacion'
   | '/carrousel-imagenes'
   | '/departamentos-imagenes'
+  | '/indicadores-sociales'
   | '/usuarios'
   | '/analytics'
   | '/google-analytics';
@@ -132,6 +133,11 @@ const administracionItems: Array<MenuItem> = [
     label: 'Imágenes de departamentos',
     href: '/departamentos-imagenes',
     icon: <Images size={18} />,
+  },
+  {
+    label: 'Indicadores sociales',
+    href: '/indicadores-sociales',
+    icon: <ChartBar size={18} />,
   },
   {
     label: 'Usuarios',

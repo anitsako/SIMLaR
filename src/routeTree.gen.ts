@@ -25,6 +25,7 @@ import { Route as ServiciosIndexRouteImport } from './routes/servicios/index'
 import { Route as TransparenciaIndexRouteImport } from './routes/transparencia/index'
 import { Route as AuthedCarrouselImagenesIndexRouteImport } from './routes/_authed/carrousel-imagenes/index'
 import { Route as AuthedDepartamentosImagenesIndexRouteImport } from './routes/_authed/departamentos-imagenes/index'
+import { Route as AuthedIndicadoresSocialesIndexRouteImport } from './routes/_authed/indicadores-sociales/index'
 import { Route as AuthedUsuariosIndexRouteImport } from './routes/_authed/usuarios/index'
 import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nombre'
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
@@ -118,6 +119,12 @@ const AuthedDepartamentosImagenesIndexRoute =
   AuthedDepartamentosImagenesIndexRouteImport.update({
     id: '/departamentos-imagenes/',
     path: '/departamentos-imagenes/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedIndicadoresSocialesIndexRoute =
+  AuthedIndicadoresSocialesIndexRouteImport.update({
+    id: '/indicadores-sociales/',
+    path: '/indicadores-sociales/',
     getParentRoute: () => AuthedRoute,
   } as any)
 const AuthedUsuariosIndexRoute = AuthedUsuariosIndexRouteImport.update({
@@ -215,6 +222,7 @@ export interface FileRoutesByFullPath {
   '/proyectos-mineros/$id/modelo-3d': typeof ProyectosMinerosIdModelo3dRoute
   '/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
   '/departamentos-imagenes/': typeof AuthedDepartamentosImagenesIndexRoute
+  '/indicadores-sociales/': typeof AuthedIndicadoresSocialesIndexRoute
   '/usuarios/': typeof AuthedUsuariosIndexRoute
   '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
@@ -245,6 +253,7 @@ export interface FileRoutesByTo {
   '/proyectos-mineros/$id/modelo-3d': typeof ProyectosMinerosIdModelo3dRoute
   '/carrousel-imagenes': typeof AuthedCarrouselImagenesIndexRoute
   '/departamentos-imagenes': typeof AuthedDepartamentosImagenesIndexRoute
+  '/indicadores-sociales': typeof AuthedIndicadoresSocialesIndexRoute
   '/usuarios': typeof AuthedUsuariosIndexRoute
   '/educacion/informativa': typeof EducacionInformativaIndexRoute
   '/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
@@ -277,6 +286,7 @@ export interface FileRoutesById {
   '/proyectos-mineros/$id/modelo-3d': typeof ProyectosMinerosIdModelo3dRoute
   '/_authed/carrousel-imagenes/': typeof AuthedCarrouselImagenesIndexRoute
   '/_authed/departamentos-imagenes/': typeof AuthedDepartamentosImagenesIndexRoute
+  '/_authed/indicadores-sociales/': typeof AuthedIndicadoresSocialesIndexRoute
   '/_authed/usuarios/': typeof AuthedUsuariosIndexRoute
   '/educacion/informativa/': typeof EducacionInformativaIndexRoute
   '/_authed/proyectos-mineros/$id/archivos': typeof AuthedProyectosMinerosIdArchivosRoute
@@ -309,6 +319,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modelo-3d'
     | '/carrousel-imagenes/'
     | '/departamentos-imagenes/'
+    | '/indicadores-sociales/'
     | '/usuarios/'
     | '/educacion/informativa/'
     | '/proyectos-mineros/$id/archivos'
@@ -339,6 +350,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modelo-3d'
     | '/carrousel-imagenes'
     | '/departamentos-imagenes'
+    | '/indicadores-sociales'
     | '/usuarios'
     | '/educacion/informativa'
     | '/proyectos-mineros/$id/archivos'
@@ -370,6 +382,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modelo-3d'
     | '/_authed/carrousel-imagenes/'
     | '/_authed/departamentos-imagenes/'
+    | '/_authed/indicadores-sociales/'
     | '/_authed/usuarios/'
     | '/educacion/informativa/'
     | '/_authed/proyectos-mineros/$id/archivos'
@@ -515,6 +528,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDepartamentosImagenesIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/indicadores-sociales/': {
+      id: '/_authed/indicadores-sociales/'
+      path: '/indicadores-sociales'
+      fullPath: '/indicadores-sociales/'
+      preLoaderRoute: typeof AuthedIndicadoresSocialesIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/usuarios/': {
       id: '/_authed/usuarios/'
       path: '/usuarios'
@@ -614,6 +634,7 @@ interface AuthedRouteChildren {
   AuthedGoogleAnalyticsRoute: typeof AuthedGoogleAnalyticsRoute
   AuthedCarrouselImagenesIndexRoute: typeof AuthedCarrouselImagenesIndexRoute
   AuthedDepartamentosImagenesIndexRoute: typeof AuthedDepartamentosImagenesIndexRoute
+  AuthedIndicadoresSocialesIndexRoute: typeof AuthedIndicadoresSocialesIndexRoute
   AuthedUsuariosIndexRoute: typeof AuthedUsuariosIndexRoute
   AuthedProyectosMinerosIdArchivosRoute: typeof AuthedProyectosMinerosIdArchivosRoute
   AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
@@ -630,6 +651,7 @@ const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedGoogleAnalyticsRoute: AuthedGoogleAnalyticsRoute,
   AuthedCarrouselImagenesIndexRoute: AuthedCarrouselImagenesIndexRoute,
   AuthedDepartamentosImagenesIndexRoute: AuthedDepartamentosImagenesIndexRoute,
+  AuthedIndicadoresSocialesIndexRoute: AuthedIndicadoresSocialesIndexRoute,
   AuthedUsuariosIndexRoute: AuthedUsuariosIndexRoute,
   AuthedProyectosMinerosIdArchivosRoute: AuthedProyectosMinerosIdArchivosRoute,
   AuthedProyectosMinerosIdModificarRoute:
