@@ -267,6 +267,13 @@
       "when": 1785111004344,
       "tag": "0037_nice_edwin_jarvis",
       "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1785279659449,
+      "tag": "0038_far_firebird",
+      "breakpoints": true
     }
   ]
 }
