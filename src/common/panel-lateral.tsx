@@ -91,7 +91,7 @@ const informacionMineraItems: Array<MenuItem> = [
     icon: <Map size={18} />,
   },
   {
-    label: 'Transparencia',
+    label: 'Marco normativo',
     href: '/transparencia',
     icon: <Blend size={18} />,
   },
