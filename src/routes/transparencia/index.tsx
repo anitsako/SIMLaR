@@ -2,7 +2,6 @@ import { Card, CardBody, CardHeader } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { ExternalLink, FileText } from 'lucide-react';
 import SectionTitle from '@/common/section-title';
-import { SectionHeader } from '@/common/section-header';
 
 export const Route = createFileRoute('/transparencia/')({
   component: RouteComponent,
@@ -38,12 +37,9 @@ const documentosNormativos = [
 function RouteComponent() {
   return (
     <div className="mt-4 w-full max-w-6xl space-y-8">
-      <SectionTitle title="Transparencia" />
+      <SectionTitle title="Marco normativo" />
 
-      <section className="space-y-4">
-        <SectionHeader title="Marco normativo" />
-
-        <p className="text-default-600">
+      <p className="text-default-600">
           En esta sección se ponen a disposición enlaces oficiales a normativa vinculada a la actividad minera,
           el procedimiento administrativo minero, la protección ambiental y el marco legal aplicable.
         </p>
@@ -83,7 +79,6 @@ function RouteComponent() {
             </Card>
           ))}
         </div>
-      </section>
     </div>
   );
 }
