@@ -4,6 +4,7 @@ import { ClientOnly, Link, createFileRoute } from '@tanstack/react-router';
 import { Carrousel } from '@/carrousel-imagenes/carrousel';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 import { SectionHeader } from '@/common/section-header';
+import { AccesosRapidos } from '@/common/accesos-rapidos';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -50,38 +51,7 @@ function Home() {
 
       {/* Accesos rápidos */}
       <section>
-        <div className="mb-4 ">
-          <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-          <a
-            href="https://emse.ar/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-24 items-center justify-center transition hover:opacity-80"
-          >
-            <img src="/accesos/emse.png" alt="EMSE" className="max-h-14 w-auto object-contain" />
-          </a>
-
-          <a
-            href="https://kallpaenergia.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-24 items-center justify-center transition hover:opacity-80"
-          >
-            <img src="/accesos/kallpa.png" alt="Kallpa" className="max-h-14 w-auto object-contain" />
-          </a>
-
-          <a
-            href="https://www.facebook.com/minerialr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-24 items-center justify-center transition hover:opacity-80"
-          >
-            <img src="/accesos/mineria.jpg" alt="Secretaría de Minería" className="max-h-14 w-auto object-contain" />
-          </a>
-        </div>
+        <AccesosRapidos />
       </section>
     </div>
   );
