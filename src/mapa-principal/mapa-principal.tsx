@@ -7,6 +7,7 @@ import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-min
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
 import { CapaAeropuertos } from '@/aeropuertos/capa-aeropuertos';
 import { CapaDiques } from '@/diques/capa-diques';
+import { CapaCerros } from '@/cerros/capa-cerros';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
 import { CapaRutasProvinciales } from '@/rutas-provinciales/capa-rutas-provinciales';
 import { CapasExtrasSelect } from '@/capas-extras/capas-extras.select';
@@ -14,6 +15,7 @@ import { CapaRefugios } from '@/refugios/capa-refugios';
 import { CapaPuntosExtras } from '@/puntos-extras/capa-puntos-extras';
 import { CapaRiosPerennes } from '@/rios-perennes/capa-rios-perennes';
 import { CapaRiosIntermitentes } from '@/rios-intermitentes/capa-rios-intermitentes';
+
 
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
@@ -45,6 +47,7 @@ export const MapaPrincipal = () => {
           <CapaDepartamentos />
           {capasExtras.includes('aeropuertos') && <CapaAeropuertos />}
           {capasExtras.includes('diques') && <CapaDiques />}
+          {capasExtras.includes('cerros') && <CapaCerros />}
           {capasExtras.includes('puntos-extras') && <CapaPuntosExtras />}
           {capasExtras.includes('refugios') && <CapaRefugios />}
           {capasExtras.includes('rios-intermitentes') && <CapaRiosIntermitentes />}
