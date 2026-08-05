@@ -1,14 +1,24 @@
 import { Link, createFileRoute, getRouteApi } from '@tanstack/react-router';
 import { Button } from '@heroui/react';
 import { z } from 'zod';
+
 import { ProyectosMinerosTable } from '@/proyectos-mineros/proyectos-mineros.table';
 import { ProyectosMinerosFilters } from '@/proyectos-mineros/proyectos-mineros.filters';
-import { ProyectosMinerosActiveFilters } from '@/proyectos-mineros/proyectos-mineros.active-filters';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/proyectos-mineros/')({
   validateSearch: z.object({
     nombreLike: z.string().optional(),
+    tiposIds: z.array(z.number().int().positive()).optional(),
+    etapasIds: z.array(z.number().int().positive()).optional(),
+    minerales: z.array(z.string()).optional(),
+    ubicaciones: z.array(z.string()).optional(),
+    propietarios: z.array(z.string()).optional(),
+    provinciasGeologicas: z.array(z.string()).optional(),
+    convenioEmse: z.boolean().optional(),
+    estadoVisible: z.boolean().optional(),
+    msnmDesde: z.number().int().optional(),
+    msnmHasta: z.number().int().optional(),
     page: z.number().int().positive().default(1),
     pageSize: z.number().int().positive().default(8),
   }),
@@ -20,22 +30,29 @@ const rootRoute = getRouteApi('__root__');
 function RouteComponent() {
   const { usuario } = rootRoute.useRouteContext();
 
-  // Si el usuario esta autenticado mostrar todos los proyectos, sino solo los visibles
-  const visible = usuario === null ? true : undefined;
+  // Visitantes: solamente proyectos visibles.
+  // Usuarios autenticados: todos, con opción de filtrar por visibilidad.
+  const visibleBase = usuario === null ? true : undefined;
+  const mostrarFiltroVisibilidad = usuario !== null;
 
   return (
     <div className="mt-4">
-      <div className="flex items-center justify-center mb-4 relative">
+      <div className="mb-4 flex items-center justify-between">
         <SectionTitle title="Proyectos Mineros" />
-        <div className="absolute right-0 flex items-center gap-2">
-          <ProyectosMinerosFilters />
-          <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">
-            Crear proyecto
-          </Button>
-        </div>
+
+        <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">
+          Crear proyecto
+        </Button>
       </div>
-      <ProyectosMinerosActiveFilters />
-      <ProyectosMinerosTable visible={visible} />
+
+      <div className="mb-4 rounded-xl border border-default-200 bg-white p-3 shadow-sm">
+        <ProyectosMinerosFilters
+          visibleBase={visibleBase}
+          mostrarFiltroVisibilidad={mostrarFiltroVisibilidad}
+        />
+      </div>
+
+      <ProyectosMinerosTable visibleBase={visibleBase} />
     </div>
   );
 }
