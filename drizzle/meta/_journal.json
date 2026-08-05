@@ -274,6 +274,13 @@
       "when": 1785279659449,
       "tag": "0038_far_firebird",
       "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1785908466714,
+      "tag": "0039_superb_beast",
+      "breakpoints": true
     }
   ]
 }
