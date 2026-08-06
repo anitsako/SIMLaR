@@ -32,7 +32,7 @@ import { Route as ArchivosIdNombreRouteImport } from './routes/archivos/$id.$nom
 import { Route as EducacionInformativaIndexRouteImport } from './routes/educacion/informativa/index'
 import { Route as ProyectosMinerosIdMapaRouteImport } from './routes/proyectos-mineros/$id.mapa'
 import { Route as ProyectosMinerosIdModelo3dRouteImport } from './routes/proyectos-mineros/$id.modelo-3d'
-import { Route as AuthedCatastroHistoricoCrearIndexRouteImport } from './routes/_authed/catastro-historico/crear/index'
+import { Route as AuthedCatastroHistoricoAdministrarIndexRouteImport } from './routes/_authed/catastro-historico/administrar/index'
 import { Route as AuthedGaleriaFotosAdministrarIndexRouteImport } from './routes/_authed/galeria-fotos/administrar/index'
 import { Route as AuthedProyectosMinerosIdArchivosRouteImport } from './routes/_authed/proyectos-mineros/$id.archivos'
 import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
@@ -161,10 +161,10 @@ const ProyectosMinerosIdModelo3dRoute =
     path: '/proyectos-mineros/$id/modelo-3d',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AuthedCatastroHistoricoCrearIndexRoute =
-  AuthedCatastroHistoricoCrearIndexRouteImport.update({
-    id: '/catastro-historico/crear/',
-    path: '/catastro-historico/crear/',
+const AuthedCatastroHistoricoAdministrarIndexRoute =
+  AuthedCatastroHistoricoAdministrarIndexRouteImport.update({
+    id: '/catastro-historico/administrar/',
+    path: '/catastro-historico/administrar/',
     getParentRoute: () => AuthedRoute,
   } as any)
 const AuthedGaleriaFotosAdministrarIndexRoute =
@@ -243,7 +243,7 @@ export interface FileRoutesByFullPath {
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
-  '/catastro-historico/crear/': typeof AuthedCatastroHistoricoCrearIndexRoute
+  '/catastro-historico/administrar/': typeof AuthedCatastroHistoricoAdministrarIndexRoute
   '/galeria-fotos/administrar/': typeof AuthedGaleriaFotosAdministrarIndexRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
@@ -276,7 +276,7 @@ export interface FileRoutesByTo {
   '/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
-  '/catastro-historico/crear': typeof AuthedCatastroHistoricoCrearIndexRoute
+  '/catastro-historico/administrar': typeof AuthedCatastroHistoricoAdministrarIndexRoute
   '/galeria-fotos/administrar': typeof AuthedGaleriaFotosAdministrarIndexRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear': typeof AuthedUsuariosCrearIndexRoute
@@ -311,7 +311,7 @@ export interface FileRoutesById {
   '/_authed/proyectos-mineros/$id/modificar': typeof AuthedProyectosMinerosIdModificarRoute
   '/_authed/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/_authed/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
-  '/_authed/catastro-historico/crear/': typeof AuthedCatastroHistoricoCrearIndexRoute
+  '/_authed/catastro-historico/administrar/': typeof AuthedCatastroHistoricoAdministrarIndexRoute
   '/_authed/galeria-fotos/administrar/': typeof AuthedGaleriaFotosAdministrarIndexRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/_authed/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
@@ -346,7 +346,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
-    | '/catastro-historico/crear/'
+    | '/catastro-historico/administrar/'
     | '/galeria-fotos/administrar/'
     | '/proyectos-mineros/crear/'
     | '/usuarios/crear/'
@@ -379,7 +379,7 @@ export interface FileRouteTypes {
     | '/proyectos-mineros/$id/modificar'
     | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
-    | '/catastro-historico/crear'
+    | '/catastro-historico/administrar'
     | '/galeria-fotos/administrar'
     | '/proyectos-mineros/crear'
     | '/usuarios/crear'
@@ -413,7 +413,7 @@ export interface FileRouteTypes {
     | '/_authed/proyectos-mineros/$id/modificar'
     | '/_authed/usuarios/$id/cambiar-contraseña'
     | '/_authed/usuarios/$id/modificar'
-    | '/_authed/catastro-historico/crear/'
+    | '/_authed/catastro-historico/administrar/'
     | '/_authed/galeria-fotos/administrar/'
     | '/_authed/proyectos-mineros/crear/'
     | '/_authed/usuarios/crear/'
@@ -603,11 +603,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProyectosMinerosIdModelo3dRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authed/catastro-historico/crear/': {
-      id: '/_authed/catastro-historico/crear/'
-      path: '/catastro-historico/crear'
-      fullPath: '/catastro-historico/crear/'
-      preLoaderRoute: typeof AuthedCatastroHistoricoCrearIndexRouteImport
+    '/_authed/catastro-historico/administrar/': {
+      id: '/_authed/catastro-historico/administrar/'
+      path: '/catastro-historico/administrar'
+      fullPath: '/catastro-historico/administrar/'
+      preLoaderRoute: typeof AuthedCatastroHistoricoAdministrarIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
     '/_authed/galeria-fotos/administrar/': {
@@ -680,7 +680,7 @@ interface AuthedRouteChildren {
   AuthedProyectosMinerosIdModificarRoute: typeof AuthedProyectosMinerosIdModificarRoute
   AuthedUsuariosIdCambiarContraseChar241aRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   AuthedUsuariosIdModificarRoute: typeof AuthedUsuariosIdModificarRoute
-  AuthedCatastroHistoricoCrearIndexRoute: typeof AuthedCatastroHistoricoCrearIndexRoute
+  AuthedCatastroHistoricoAdministrarIndexRoute: typeof AuthedCatastroHistoricoAdministrarIndexRoute
   AuthedGaleriaFotosAdministrarIndexRoute: typeof AuthedGaleriaFotosAdministrarIndexRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
   AuthedUsuariosCrearIndexRoute: typeof AuthedUsuariosCrearIndexRoute
@@ -700,8 +700,8 @@ const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedUsuariosIdCambiarContraseChar241aRoute:
     AuthedUsuariosIdCambiarContraseChar241aRoute,
   AuthedUsuariosIdModificarRoute: AuthedUsuariosIdModificarRoute,
-  AuthedCatastroHistoricoCrearIndexRoute:
-    AuthedCatastroHistoricoCrearIndexRoute,
+  AuthedCatastroHistoricoAdministrarIndexRoute:
+    AuthedCatastroHistoricoAdministrarIndexRoute,
   AuthedGaleriaFotosAdministrarIndexRoute:
     AuthedGaleriaFotosAdministrarIndexRoute,
   AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
