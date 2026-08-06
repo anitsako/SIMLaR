@@ -14,7 +14,7 @@ const createProyectoMineroSchema = z.object({
   tipoId: z.number().int().positive(),
   ubicacion: z.string().min(1).max(100),
   provinciaGeologica: z.string().min(1).max(100),
-  area: z.string().min(1).max(10),
+  areaHectareas: z.number().positive().max(99_999_999.99),
   litologia: z.string().min(1),
   mineralizacion: z.string().min(1),
   mineralInteres: z.string().min(1).max(100),
@@ -52,7 +52,7 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
     await mkdir(filesPath, { recursive: true });
 
     const maxTamañoArchivo = 5 * 1024 * 1024; // 5MB de tamaño maximo
-    const { archivoMapa } = data;
+    const { archivoMapa, areaHectareas, ...fields } = data;
     const buffer = Buffer.from(archivoMapa.base64, 'base64');
 
     if (buffer.length > maxTamañoArchivo) {
@@ -82,8 +82,10 @@ export const createProyectoMineroFn = createServerFn({ method: 'POST' })
       const [nuevoProyectoMinero] = await tx
         .insert(proyectosMinerosTable)
         .values({
-          ...data,
-          coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${data.coordenadasGeograficas.lng}, ${data.coordenadasGeograficas.lat}), 4326)`,
+          ...fields,
+          area: String(Math.round(areaHectareas)),
+          areaHectareas: Math.round(areaHectareas * 100) / 100,
+          coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${fields.coordenadasGeograficas.lng}, ${fields.coordenadasGeograficas.lat}), 4326)`,
           archivoMapaId: nuevoArchivoMapa.id,
           usuarioCreadorId: usuarioId,
           usuarioModificadorId: usuarioId,

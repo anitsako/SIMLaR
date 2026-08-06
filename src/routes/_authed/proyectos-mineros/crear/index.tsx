@@ -25,7 +25,7 @@ function RouteComponent() {
     tipoId: undefined as number | undefined,
     ubicacion: '',
     provinciaGeologica: '',
-    area: '',
+    areaHectareas: undefined as number | undefined,
     litologia: '',
     mineralizacion: '',
     mineralInteres: '',
@@ -86,6 +86,15 @@ function RouteComponent() {
 
   const handleSubmit = async (e: SubmitEvent) => {
     e.preventDefault();
+
+    if (
+      data.areaHectareas === undefined ||
+      !Number.isFinite(data.areaHectareas) ||
+      data.areaHectareas <= 0
+    ) {
+      setValidationError('Debe ingresar una superficie válida en hectáreas.');
+      return;
+    }
 
     if (!data.msnm) {
       setValidationError('Debe ingresar la altitud (msnm).');
@@ -201,11 +210,18 @@ function RouteComponent() {
           minRows={2}
         />
 
-        <Input
-          label="Área"
-          value={data.area}
-          onValueChange={(v) => setData((prev) => ({ ...prev, area: v }))}
-          maxLength={10}
+        <NumberInput
+          label="Superficie (hectáreas)"
+          description="Ingresá únicamente el número, sin escribir ha ni Hs."
+          value={data.areaHectareas}
+          onValueChange={(v) =>
+            setData((prev) => ({
+              ...prev,
+              areaHectareas: Number.isNaN(v) ? undefined : v,
+            }))
+          }
+          minValue={0.01}
+          step={0.01}
           isRequired
         />
 

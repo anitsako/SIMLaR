@@ -70,7 +70,8 @@ beforeAll(async () => {
       tipoId: tempTipoId,
       ubicacion: 'Ubicación temporal',
       provinciaGeologica: 'Provincia temporal',
-      area: '100ha',
+      area: '100',
+      areaHectareas: 100,
       litologia: 'Litología temporal',
       mineralizacion: 'Mineralización temporal',
       mineralInteres: 'Oro',
@@ -109,6 +110,7 @@ test('Obtención de proyecto minero con ID válido devuelve el proyecto', async 
   expect(result.id).toBe(tempProyectoId);
   expect(result.nombre).toBe(TEMP_NOMBRE);
   expect(result).toHaveProperty('provinciaGeologica');
+  expect(result.areaHectareas).toBe(100);
   expect(result).toHaveProperty('archivoMapa');
   expect(result.archivoMapa.id).toBe(tempArchivoMapaId);
 });

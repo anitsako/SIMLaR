@@ -80,7 +80,8 @@ beforeAll(async () => {
       tipoId: tempTipoId,
       ubicacion: 'Ubicación inicial',
       provinciaGeologica: 'Provincia inicial',
-      area: '100ha',
+      area: '100',
+      areaHectareas: 100,
       litologia: 'Litología inicial',
       mineralizacion: 'Mineralización inicial',
       mineralInteres: 'Oro',
@@ -124,7 +125,7 @@ const getUpdateData = (overrides: Record<string, unknown> = {}) => ({
   tipoId: tempTipoId,
   ubicacion: 'Ubicación actualizada',
   provinciaGeologica: 'Provincia actualizada',
-  area: '100ha',
+  areaHectareas: 100,
   litologia: 'Litología actualizada',
   mineralizacion: 'Mineralización actualizada',
   mineralInteres: 'Plata',
@@ -156,6 +157,7 @@ test('Actualizar proyecto minero autenticado modifica campos sin cambiar el arch
   expect(result).toBeDefined();
   expect(result.id).toBe(tempProyectoId);
   expect(result.ubicacion).toBe('Ubicación actualizada');
+  expect(result.areaHectareas).toBe(100);
 });
 
 test('Actualizar proyecto minero con nuevo archivo de mapa mantiene el mismo ID', async () => {

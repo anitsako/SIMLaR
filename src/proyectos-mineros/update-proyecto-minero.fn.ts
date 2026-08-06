@@ -15,7 +15,7 @@ const updateProyectoMineroSchema = z.object({
   tipoId: z.number().int().positive(),
   ubicacion: z.string().min(1).max(100),
   provinciaGeologica: z.string().min(1).max(100),
-  area: z.string().min(1).max(10),
+  areaHectareas: z.number().positive().max(99_999_999.99),
   litologia: z.string().min(1),
   mineralizacion: z.string().min(1),
   mineralInteres: z.string().min(1).max(100),
@@ -54,7 +54,7 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
     }
     await mkdir(filesPath, { recursive: true });
 
-    const { id, archivoMapa, ...fields } = data;
+    const { id, archivoMapa, areaHectareas, ...fields } = data;
 
     const proyectoMinero = await db.transaction(async (tx) => {
       if (archivoMapa) {
@@ -99,6 +99,8 @@ export const updateProyectoMineroFn = createServerFn({ method: 'POST' })
         .update(proyectosMinerosTable)
         .set({
           ...fields,
+          area: String(Math.round(areaHectareas)),
+          areaHectareas: Math.round(areaHectareas * 100) / 100,
           coordenadasGeograficas: sql`ST_SetSRID(ST_MakePoint(${fields.coordenadasGeograficas.lng}, ${fields.coordenadasGeograficas.lat}), 4326)`,
           usuarioModificadorId: usuarioId,
         })

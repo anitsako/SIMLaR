@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import { ProyectosMinerosTable } from '@/proyectos-mineros/proyectos-mineros.table';
 import { ProyectosMinerosFilters } from '@/proyectos-mineros/proyectos-mineros.filters';
+import { ProyectosMinerosStats } from '@/proyectos-mineros/proyectos-mineros.stats';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/proyectos-mineros/')({
@@ -53,6 +54,8 @@ function RouteComponent() {
       </div>
 
       <ProyectosMinerosTable visibleBase={visibleBase} />
+
+      <ProyectosMinerosStats visibleBase={visibleBase} />
     </div>
   );
 }

@@ -88,7 +88,7 @@ const getProyectoData = (overrides: Record<string, unknown> = {}) => ({
   tipoId: tempTipoId,
   ubicacion: 'Test Ubicación',
   provinciaGeologica: 'Test Provincia',
-  area: '100ha',
+  areaHectareas: 100,
   litologia: 'Test litología',
   mineralizacion: 'Test mineralización',
   mineralInteres: 'Oro',
@@ -129,6 +129,7 @@ test('Crear proyecto minero autenticado inserta el proyecto en la base de datos'
   expect(result).toBeDefined();
   expect(result.id).toBeDefined();
   expect(result.nombre).toBe(TEMP_NOMBRE);
+  expect(result.areaHectareas).toBe(100);
 });
 
 test('Crear proyecto minero con imagen inválida lanza error', async () => {

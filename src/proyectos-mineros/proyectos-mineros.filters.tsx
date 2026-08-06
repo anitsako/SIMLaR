@@ -13,21 +13,29 @@ import {
 } from 'lucide-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { useProyectosMinerosFilterOptions } from './use-proyectos-mineros-filter-options';
-import type { FormEvent } from 'react';
+import type { FormEvent, Key } from 'react';
 
 import { useProyectosMinerosTipos } from '@/proyectos-mineros-tipos/use-proyectos-mineros-tipos';
 import { useProyectosMinerosEtapas } from '@/proyectos-mineros-etapas/use-proyectos-mineros-etapas';
+import { useProyectosMinerosFilterOptions } from './use-proyectos-mineros-filter-options';
 
 interface Props {
   visibleBase?: boolean;
-  mostrarFiltroVisibilidad: boolean;
+  mostrarFiltroVisibilidad?: boolean;
 }
 
-export function ProyectosMinerosFilters({
-  visibleBase,
-  mostrarFiltroVisibilidad,
-}: Props) {
+const keysToStringSet = (
+  keys: 'all' | Set<Key>,
+  allValues: Array<string>,
+) => {
+  if (keys === 'all') {
+    return new Set(allValues);
+  }
+
+  return new Set(Array.from(keys).map(String));
+};
+
+export function ProyectosMinerosFilters({ visibleBase }: Props) {
   const {
     nombreLike,
     tiposIds,
@@ -50,265 +58,143 @@ export function ProyectosMinerosFilters({
 
   const { data: tipos } = useProyectosMinerosTipos();
   const { data: etapas } = useProyectosMinerosEtapas();
-
   const { data: opciones } = useProyectosMinerosFilterOptions({
     visible: visibleBase,
   });
 
   const [nombre, setNombre] = useState(nombreLike ?? '');
-
-  const [tiposSeleccionados, setTiposSeleccionados] =
-    useState<Set<string>>(
-      new Set((tiposIds ?? []).map(String))
-    );
-
-  const [etapasSeleccionadas, setEtapasSeleccionadas] =
-    useState<Set<string>>(
-      new Set((etapasIds ?? []).map(String))
-    );
-
-  const [mineralesSeleccionados, setMineralesSeleccionados] =
-    useState<Set<string>>(
-      new Set(minerales ?? [])
-    );
-
-  const [ubicacionesSeleccionadas, setUbicacionesSeleccionadas] =
-    useState<Set<string>>(
-      new Set(ubicaciones ?? [])
-    );
-
-  const [propietariosSeleccionados, setPropietariosSeleccionados] =
-    useState<Set<string>>(
-      new Set(propietarios ?? [])
-    );
-
-  const [provinciasSeleccionadas, setProvinciasSeleccionadas] =
-    useState<Set<string>>(
-      new Set(provinciasGeologicas ?? [])
-    );
-
+  const [tiposSeleccionados, setTiposSeleccionados] = useState<Set<string>>(
+    new Set((tiposIds ?? []).map(String)),
+  );
+  const [etapasSeleccionadas, setEtapasSeleccionadas] = useState<Set<string>>(
+    new Set((etapasIds ?? []).map(String)),
+  );
+  const [mineralesSeleccionados, setMineralesSeleccionados] = useState<Set<string>>(
+    new Set(minerales ?? []),
+  );
+  const [ubicacionesSeleccionadas, setUbicacionesSeleccionadas] = useState<Set<string>>(
+    new Set(ubicaciones ?? []),
+  );
+  const [propietariosSeleccionados, setPropietariosSeleccionados] = useState<Set<string>>(
+    new Set(propietarios ?? []),
+  );
+  const [provinciasSeleccionadas, setProvinciasSeleccionadas] = useState<Set<string>>(
+    new Set(provinciasGeologicas ?? []),
+  );
   const [convenio, setConvenio] = useState(
-    convenioEmse === undefined
-      ? 'todos'
-      : convenioEmse
-        ? 'si'
-        : 'no'
-  );
-
-  const [visibilidad, setVisibilidad] = useState(
-    estadoVisible === undefined
-      ? 'todos'
-      : estadoVisible
-        ? 'visible'
-        : 'oculto'
-  );
-
-  const [altitudDesde, setAltitudDesde] = useState(
-    msnmDesde?.toString() ?? ''
-  );
-
-  const [altitudHasta, setAltitudHasta] = useState(
-    msnmHasta?.toString() ?? ''
+    convenioEmse === undefined ? 'todos' : convenioEmse ? 'si' : 'no',
   );
 
   const cantidadFiltrosAvanzados =
     (ubicaciones?.length ? 1 : 0) +
     (propietarios?.length ? 1 : 0) +
     (provinciasGeologicas?.length ? 1 : 0) +
-    (convenioEmse !== undefined ? 1 : 0) +
-    (estadoVisible !== undefined ? 1 : 0) +
-    (msnmDesde !== undefined ? 1 : 0) +
-    (msnmHasta !== undefined ? 1 : 0);
+    (convenioEmse !== undefined ? 1 : 0);
 
   const [mostrarAvanzados, setMostrarAvanzados] = useState(
-    cantidadFiltrosAvanzados > 0
+    cantidadFiltrosAvanzados > 0,
   );
 
-  /*
-   * Sincroniza el formulario con los valores de la URL.
-   */
   useEffect(() => {
     setNombre(nombreLike ?? '');
   }, [nombreLike]);
 
   useEffect(() => {
-    setTiposSeleccionados(
-      new Set((tiposIds ?? []).map(String))
-    );
+    setTiposSeleccionados(new Set((tiposIds ?? []).map(String)));
   }, [tiposIds]);
 
   useEffect(() => {
-    setEtapasSeleccionadas(
-      new Set((etapasIds ?? []).map(String))
-    );
+    setEtapasSeleccionadas(new Set((etapasIds ?? []).map(String)));
   }, [etapasIds]);
 
   useEffect(() => {
-    setMineralesSeleccionados(
-      new Set(minerales ?? [])
-    );
+    setMineralesSeleccionados(new Set(minerales ?? []));
   }, [minerales]);
 
   useEffect(() => {
-    setUbicacionesSeleccionadas(
-      new Set(ubicaciones ?? [])
-    );
+    setUbicacionesSeleccionadas(new Set(ubicaciones ?? []));
   }, [ubicaciones]);
 
   useEffect(() => {
-    setPropietariosSeleccionados(
-      new Set(propietarios ?? [])
-    );
+    setPropietariosSeleccionados(new Set(propietarios ?? []));
   }, [propietarios]);
 
   useEffect(() => {
-    setProvinciasSeleccionadas(
-      new Set(provinciasGeologicas ?? [])
-    );
+    setProvinciasSeleccionadas(new Set(provinciasGeologicas ?? []));
   }, [provinciasGeologicas]);
 
   useEffect(() => {
     setConvenio(
-      convenioEmse === undefined
-        ? 'todos'
-        : convenioEmse
-          ? 'si'
-          : 'no'
+      convenioEmse === undefined ? 'todos' : convenioEmse ? 'si' : 'no',
     );
   }, [convenioEmse]);
 
-  useEffect(() => {
-    setVisibilidad(
-      estadoVisible === undefined
-        ? 'todos'
-        : estadoVisible
-          ? 'visible'
-          : 'oculto'
-    );
-  }, [estadoVisible]);
-
-  useEffect(() => {
-    setAltitudDesde(
-      msnmDesde?.toString() ?? ''
-    );
-  }, [msnmDesde]);
-
-  useEffect(() => {
-    setAltitudHasta(
-      msnmHasta?.toString() ?? ''
-    );
-  }, [msnmHasta]);
-
-  /*
-   * Si existe algún filtro avanzado aplicado,
-   * mantiene abierta esa sección.
-   */
   useEffect(() => {
     if (cantidadFiltrosAvanzados > 0) {
       setMostrarAvanzados(true);
     }
   }, [cantidadFiltrosAvanzados]);
 
-  const convertirEnteroOpcional = (
-    valor: string
-  ): number | undefined => {
-    if (valor.trim() === '') {
-      return undefined;
-    }
-
-    const numero = Number(valor);
-
-    if (!Number.isFinite(numero)) {
-      return undefined;
-    }
-
-    return Math.trunc(numero);
-  };
-
-  const aplicarFiltros = (
-    event?: FormEvent<HTMLFormElement>
-  ) => {
-    event?.preventDefault();
-
-    const nuevosTiposIds = Array
-      .from(tiposSeleccionados)
-      .map(Number)
-      .filter(Number.isFinite);
-
-    const nuevasEtapasIds = Array
-      .from(etapasSeleccionadas)
-      .map(Number)
-      .filter(Number.isFinite);
-
-    const nuevoMsnmDesde =
-      convertirEnteroOpcional(altitudDesde);
-
-    const nuevoMsnmHasta =
-      convertirEnteroOpcional(altitudHasta);
-
+  // Elimina de la URL filtros antiguos que ya no forman parte de la interfaz.
+  useEffect(() => {
     if (
-      nuevoMsnmDesde !== undefined &&
-      nuevoMsnmHasta !== undefined &&
-      nuevoMsnmDesde > nuevoMsnmHasta
+      estadoVisible === undefined &&
+      msnmDesde === undefined &&
+      msnmHasta === undefined
     ) {
-      window.alert(
-        'La altitud mínima no puede ser mayor que la altitud máxima.'
-      );
-
       return;
     }
 
     navigate({
+      replace: true,
       search: (prev) => ({
         ...prev,
+        estadoVisible: undefined,
+        msnmDesde: undefined,
+        msnmHasta: undefined,
+        page: 1,
+      }),
+    });
+  }, [estadoVisible, msnmDesde, msnmHasta, navigate]);
 
-        nombreLike:
-          nombre.trim() || undefined,
+  const aplicarFiltros = (event?: FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
 
-        tiposIds:
-          nuevosTiposIds.length > 0
-            ? nuevosTiposIds
-            : undefined,
+    const nuevosTiposIds = Array.from(tiposSeleccionados)
+      .map(Number)
+      .filter(Number.isFinite);
 
-        etapasIds:
-          nuevasEtapasIds.length > 0
-            ? nuevasEtapasIds
-            : undefined,
+    const nuevasEtapasIds = Array.from(etapasSeleccionadas)
+      .map(Number)
+      .filter(Number.isFinite);
 
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        nombreLike: nombre.trim() || undefined,
+        tiposIds: nuevosTiposIds.length > 0 ? nuevosTiposIds : undefined,
+        etapasIds: nuevasEtapasIds.length > 0 ? nuevasEtapasIds : undefined,
         minerales:
           mineralesSeleccionados.size > 0
             ? Array.from(mineralesSeleccionados)
             : undefined,
-
         ubicaciones:
           ubicacionesSeleccionadas.size > 0
             ? Array.from(ubicacionesSeleccionadas)
             : undefined,
-
         propietarios:
           propietariosSeleccionados.size > 0
             ? Array.from(propietariosSeleccionados)
             : undefined,
-
         provinciasGeologicas:
           provinciasSeleccionadas.size > 0
             ? Array.from(provinciasSeleccionadas)
             : undefined,
-
         convenioEmse:
-          convenio === 'todos'
-            ? undefined
-            : convenio === 'si',
-
-        estadoVisible:
-          !mostrarFiltroVisibilidad ||
-          visibilidad === 'todos'
-            ? undefined
-            : visibilidad === 'visible',
-
-        msnmDesde: nuevoMsnmDesde,
-        msnmHasta: nuevoMsnmHasta,
-
+          convenio === 'todos' ? undefined : convenio === 'si',
+        estadoVisible: undefined,
+        msnmDesde: undefined,
+        msnmHasta: undefined,
         page: 1,
       }),
     });
@@ -323,15 +209,11 @@ export function ProyectosMinerosFilters({
     setPropietariosSeleccionados(new Set());
     setProvinciasSeleccionadas(new Set());
     setConvenio('todos');
-    setVisibilidad('todos');
-    setAltitudDesde('');
-    setAltitudHasta('');
     setMostrarAvanzados(false);
 
     navigate({
       search: (prev) => ({
         ...prev,
-
         nombreLike: undefined,
         tiposIds: undefined,
         etapasIds: undefined,
@@ -343,18 +225,13 @@ export function ProyectosMinerosFilters({
         estadoVisible: undefined,
         msnmDesde: undefined,
         msnmHasta: undefined,
-
         page: 1,
       }),
     });
   };
 
   return (
-    <form
-      onSubmit={aplicarFiltros}
-      className="flex flex-col gap-3"
-    >
-      {/* Filtros principales */}
+    <form onSubmit={aplicarFiltros} className="flex flex-col gap-3">
       <div
         className="
           grid grid-cols-1 gap-3
@@ -381,30 +258,17 @@ export function ProyectosMinerosFilters({
           selectedKeys={tiposSeleccionados}
           variant="bordered"
           size="sm"
-          onSelectionChange={(keys) => {
-            if (keys === 'all') {
-              setTiposSeleccionados(
-                new Set(
-                  tipos.map((tipo) =>
-                    String(tipo.id)
-                  )
-                )
-              );
-
-              return;
-            }
-
+          onSelectionChange={(keys) =>
             setTiposSeleccionados(
-              new Set(
-                Array.from(keys).map(String)
-              )
-            );
-          }}
+              keysToStringSet(
+                keys as 'all' | Set<Key>,
+                tipos.map((tipo) => String(tipo.id)),
+              ),
+            )
+          }
         >
           {tipos.map((tipo) => (
-            <SelectItem key={String(tipo.id)}>
-              {tipo.nombre}
-            </SelectItem>
+            <SelectItem key={String(tipo.id)}>{tipo.nombre}</SelectItem>
           ))}
         </Select>
 
@@ -415,30 +279,17 @@ export function ProyectosMinerosFilters({
           selectedKeys={etapasSeleccionadas}
           variant="bordered"
           size="sm"
-          onSelectionChange={(keys) => {
-            if (keys === 'all') {
-              setEtapasSeleccionadas(
-                new Set(
-                  etapas.map((etapa) =>
-                    String(etapa.id)
-                  )
-                )
-              );
-
-              return;
-            }
-
+          onSelectionChange={(keys) =>
             setEtapasSeleccionadas(
-              new Set(
-                Array.from(keys).map(String)
-              )
-            );
-          }}
+              keysToStringSet(
+                keys as 'all' | Set<Key>,
+                etapas.map((etapa) => String(etapa.id)),
+              ),
+            )
+          }
         >
           {etapas.map((etapa) => (
-            <SelectItem key={String(etapa.id)}>
-              {etapa.nombre}
-            </SelectItem>
+            <SelectItem key={String(etapa.id)}>{etapa.nombre}</SelectItem>
           ))}
         </Select>
 
@@ -449,26 +300,17 @@ export function ProyectosMinerosFilters({
           selectedKeys={mineralesSeleccionados}
           variant="bordered"
           size="sm"
-          onSelectionChange={(keys) => {
-            if (keys === 'all') {
-              setMineralesSeleccionados(
-                new Set(opciones.minerales)
-              );
-
-              return;
-            }
-
+          onSelectionChange={(keys) =>
             setMineralesSeleccionados(
-              new Set(
-                Array.from(keys).map(String)
-              )
-            );
-          }}
+              keysToStringSet(
+                keys as 'all' | Set<Key>,
+                opciones.minerales,
+              ),
+            )
+          }
         >
           {opciones.minerales.map((mineral) => (
-            <SelectItem key={mineral}>
-              {mineral}
-            </SelectItem>
+            <SelectItem key={mineral}>{mineral}</SelectItem>
           ))}
         </Select>
 
@@ -482,22 +324,17 @@ export function ProyectosMinerosFilters({
         </Button>
       </div>
 
-      {/* Controles secundarios */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <Button
           type="button"
           variant="light"
-          startContent={
-            <SlidersHorizontal size={17} />
-          }
+          startContent={<SlidersHorizontal size={17} />}
           endContent={
             mostrarAvanzados
               ? <ChevronUp size={16} />
               : <ChevronDown size={16} />
           }
-          onPress={() =>
-            setMostrarAvanzados((actual) => !actual)
-          }
+          onPress={() => setMostrarAvanzados((actual) => !actual)}
         >
           {cantidadFiltrosAvanzados > 0
             ? `Más filtros (${cantidadFiltrosAvanzados})`
@@ -514,37 +351,16 @@ export function ProyectosMinerosFilters({
         </Button>
       </div>
 
-      {/* Filtros avanzados */}
       {mostrarAvanzados && (
-        <div
-          className="
-            rounded-xl border border-default-200
-            bg-default-50/50 p-3
-          "
-        >
-          <div
-            className="
-              mb-3 flex items-center justify-between
-            "
-          >
-            <div>
-              <h3 className="text-sm font-semibold">
-                Filtros avanzados
-              </h3>
-
-              <p className="text-xs text-default-500">
-                Podés combinar estos criterios con los filtros principales.
-              </p>
-            </div>
+        <div className="rounded-xl border border-default-200 bg-default-50/50 p-3">
+          <div className="mb-3">
+            <h3 className="text-sm font-semibold">Filtros avanzados</h3>
+            <p className="text-xs text-default-500">
+              Podés combinar estos criterios con los filtros principales.
+            </p>
           </div>
 
-          <div
-            className="
-              grid grid-cols-1 gap-3
-              md:grid-cols-2
-              xl:grid-cols-4
-            "
-          >
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
             <Select
               label="Ubicación"
               placeholder="Todas las ubicaciones"
@@ -552,26 +368,17 @@ export function ProyectosMinerosFilters({
               selectedKeys={ubicacionesSeleccionadas}
               variant="bordered"
               size="sm"
-              onSelectionChange={(keys) => {
-                if (keys === 'all') {
-                  setUbicacionesSeleccionadas(
-                    new Set(opciones.ubicaciones)
-                  );
-
-                  return;
-                }
-
+              onSelectionChange={(keys) =>
                 setUbicacionesSeleccionadas(
-                  new Set(
-                    Array.from(keys).map(String)
-                  )
-                );
-              }}
+                  keysToStringSet(
+                    keys as 'all' | Set<Key>,
+                    opciones.ubicaciones,
+                  ),
+                )
+              }
             >
               {opciones.ubicaciones.map((ubicacion) => (
-                <SelectItem key={ubicacion}>
-                  {ubicacion}
-                </SelectItem>
+                <SelectItem key={ubicacion}>{ubicacion}</SelectItem>
               ))}
             </Select>
 
@@ -582,26 +389,17 @@ export function ProyectosMinerosFilters({
               selectedKeys={propietariosSeleccionados}
               variant="bordered"
               size="sm"
-              onSelectionChange={(keys) => {
-                if (keys === 'all') {
-                  setPropietariosSeleccionados(
-                    new Set(opciones.propietarios)
-                  );
-
-                  return;
-                }
-
+              onSelectionChange={(keys) =>
                 setPropietariosSeleccionados(
-                  new Set(
-                    Array.from(keys).map(String)
-                  )
-                );
-              }}
+                  keysToStringSet(
+                    keys as 'all' | Set<Key>,
+                    opciones.propietarios,
+                  ),
+                )
+              }
             >
               {opciones.propietarios.map((propietario) => (
-                <SelectItem key={propietario}>
-                  {propietario}
-                </SelectItem>
+                <SelectItem key={propietario}>{propietario}</SelectItem>
               ))}
             </Select>
 
@@ -612,31 +410,18 @@ export function ProyectosMinerosFilters({
               selectedKeys={provinciasSeleccionadas}
               variant="bordered"
               size="sm"
-              onSelectionChange={(keys) => {
-                if (keys === 'all') {
-                  setProvinciasSeleccionadas(
-                    new Set(
-                      opciones.provinciasGeologicas
-                    )
-                  );
-
-                  return;
-                }
-
+              onSelectionChange={(keys) =>
                 setProvinciasSeleccionadas(
-                  new Set(
-                    Array.from(keys).map(String)
-                  )
-                );
-              }}
-            >
-              {opciones.provinciasGeologicas.map(
-                (provincia) => (
-                  <SelectItem key={provincia}>
-                    {provincia}
-                  </SelectItem>
+                  keysToStringSet(
+                    keys as 'all' | Set<Key>,
+                    opciones.provinciasGeologicas,
+                  ),
                 )
-              )}
+              }
+            >
+              {opciones.provinciasGeologicas.map((provincia) => (
+                <SelectItem key={provincia}>{provincia}</SelectItem>
+              ))}
             </Select>
 
             <Select
@@ -649,78 +434,13 @@ export function ProyectosMinerosFilters({
                   return;
                 }
 
-                setConvenio(
-                  String(
-                    Array.from(keys)[0] ?? 'todos'
-                  )
-                );
+                setConvenio(String(Array.from(keys)[0] ?? 'todos'));
               }}
             >
-              <SelectItem key="todos">
-                Con o sin convenio
-              </SelectItem>
-
-              <SelectItem key="si">
-                Con convenio EMSE
-              </SelectItem>
-
-              <SelectItem key="no">
-                Sin convenio EMSE
-              </SelectItem>
+              <SelectItem key="todos">Con o sin convenio</SelectItem>
+              <SelectItem key="si">Con convenio EMSE</SelectItem>
+              <SelectItem key="no">Sin convenio EMSE</SelectItem>
             </Select>
-
-            {mostrarFiltroVisibilidad && (
-              <Select
-                label="Visibilidad"
-                selectedKeys={new Set([visibilidad])}
-                variant="bordered"
-                size="sm"
-                onSelectionChange={(keys) => {
-                  if (keys === 'all') {
-                    return;
-                  }
-
-                  setVisibilidad(
-                    String(
-                      Array.from(keys)[0] ??
-                        'todos'
-                    )
-                  );
-                }}
-              >
-                <SelectItem key="todos">
-                  Cualquier visibilidad
-                </SelectItem>
-
-                <SelectItem key="visible">
-                  Visible
-                </SelectItem>
-
-                <SelectItem key="oculto">
-                  No visible
-                </SelectItem>
-              </Select>
-            )}
-
-            <Input
-              type="number"
-              label="Altitud mínima"
-              placeholder="Metros sobre el nivel del mar"
-              value={altitudDesde}
-              onValueChange={setAltitudDesde}
-              variant="bordered"
-              size="sm"
-            />
-
-            <Input
-              type="number"
-              label="Altitud máxima"
-              placeholder="Metros sobre el nivel del mar"
-              value={altitudHasta}
-              onValueChange={setAltitudHasta}
-              variant="bordered"
-              size="sm"
-            />
           </div>
         </div>
       )}

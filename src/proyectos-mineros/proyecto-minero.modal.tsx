@@ -17,6 +17,11 @@ import { decimalToDms } from '@/common/decimal-to-dms';
 import { formatBytes } from '@/common/format-bytes';
 import { useProyectoMineroArchivos } from '@/proyectos-mineros-archivos/use-proyecto-minero-archivos';
 
+const hectareasFormatter = new Intl.NumberFormat('es-AR', {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
+});
+
 function FieldRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex gap-2">
@@ -76,7 +81,14 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
               <Divider className="my-2" />
               <FieldRow label="Provincia geológica" value={data.provinciaGeologica} />
               <Divider className="my-2" />
-              <FieldRow label="Área" value={data.area} />
+              <FieldRow
+                label="Superficie"
+                value={
+                  data.areaHectareas !== null
+                    ? `${hectareasFormatter.format(data.areaHectareas)} ha`
+                    : data.area
+                }
+              />
               <Divider className="my-2" />
               <FieldRow label="Etapa" value={data.etapa.nombre} />
               <Divider className="my-2" />
