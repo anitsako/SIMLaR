@@ -15,7 +15,7 @@ import { CapaRefugios } from '@/refugios/capa-refugios';
 import { CapaPuntosExtras } from '@/puntos-extras/capa-puntos-extras';
 import { CapaRiosPerennes } from '@/rios-perennes/capa-rios-perennes';
 import { CapaRiosIntermitentes } from '@/rios-intermitentes/capa-rios-intermitentes';
-
+import { CapaServidumbres } from '@/servidumbres/capa-servidumbres';
 
 export const MapaPrincipal = () => {
   const [etapasIds, setEtapasIds] = useState<Array<number>>([]);
@@ -54,6 +54,7 @@ export const MapaPrincipal = () => {
           {capasExtras.includes('rios-perennes') && <CapaRiosPerennes />}
           {capasExtras.includes('rutas-nacionales') && <CapaRutasNacionales />}
           {capasExtras.includes('rutas-provinciales') && <CapaRutasProvinciales />}
+          {capasExtras.includes('servidumbres') && <CapaServidumbres />}
           <ProyectosMinerosLayer etapasIds={etapasIds} tiposIds={tiposIds} />
         </MapContainer>
       </div>

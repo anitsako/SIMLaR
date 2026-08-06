@@ -17,6 +17,7 @@ export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSe
     { key: 'rios-perennes', textValue: 'Ríos perennes', href: '/capas-extras/rios-perennes.zip' },
     { key: 'rutas-nacionales', textValue: 'Rutas nacionales', href: '/capas-extras/rutas-nacionales.zip' },
     { key: 'rutas-provinciales', textValue: 'Rutas provinciales', href: '/capas-extras/rutas-provinciales.zip' },
+    { key: 'servidumbres', textValue: 'Servidumbres', href: '/capas-extras/servidumbres.zip' },
   ];
 
   const DownloadButton = ({ href }: { href: string }) => (
