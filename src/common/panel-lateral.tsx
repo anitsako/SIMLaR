@@ -17,7 +17,6 @@ import {
   Blend,
   Briefcase,
   Building,
-  CalendarCog,
   CalendarDays,
   ChartBar,
   ChevronDown,
@@ -51,7 +50,9 @@ type RutaInterna =
   | '/indicadores-sociales'
   | '/usuarios'
   | '/analytics'
-  | '/google-analytics';
+  | '/google-analytics'
+  | '/galeria-fotos'
+  | '/galeria-fotos/administrar';
 
 type MenuItem = {
   label: string;
@@ -102,7 +103,12 @@ const informacionMineraItems: Array<MenuItem> = [
     label: 'Catastro histórico',
     href: '/catastro-historico',
     icon: <CalendarDays size={18} />,
-  }
+  },
+  {
+    label: 'Galería de fotos',
+    href: '/galeria-fotos',
+    icon: <Images size={18} />,
+  },
 ];
 
 const serviciosFormacionItems: Array<MenuItem> = [
@@ -122,6 +128,11 @@ const administracionItems: Array<MenuItem> = [
   {
     label: 'Carrousel de imágenes',
     href: '/carrousel-imagenes',
+    icon: <Images size={18} />,
+  },
+  {
+    label: 'Galería de fotos',
+    href: '/galeria-fotos/administrar',
     icon: <Images size={18} />,
   },
   {

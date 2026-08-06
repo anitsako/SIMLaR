@@ -16,6 +16,7 @@ import { Route as AuthedGoogleAnalyticsRouteImport } from './routes/_authed/goog
 import { Route as CatastroHistoricoIndexRouteImport } from './routes/catastro-historico/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
+import { Route as GaleriaFotosIndexRouteImport } from './routes/galeria-fotos/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
@@ -32,6 +33,7 @@ import { Route as EducacionInformativaIndexRouteImport } from './routes/educacio
 import { Route as ProyectosMinerosIdMapaRouteImport } from './routes/proyectos-mineros/$id.mapa'
 import { Route as ProyectosMinerosIdModelo3dRouteImport } from './routes/proyectos-mineros/$id.modelo-3d'
 import { Route as AuthedCatastroHistoricoCrearIndexRouteImport } from './routes/_authed/catastro-historico/crear/index'
+import { Route as AuthedGaleriaFotosAdministrarIndexRouteImport } from './routes/_authed/galeria-fotos/administrar/index'
 import { Route as AuthedProyectosMinerosIdArchivosRouteImport } from './routes/_authed/proyectos-mineros/$id.archivos'
 import { Route as AuthedProyectosMinerosIdModificarRouteImport } from './routes/_authed/proyectos-mineros/$id.modificar'
 import { Route as AuthedProyectosMinerosCrearIndexRouteImport } from './routes/_authed/proyectos-mineros/crear/index'
@@ -72,6 +74,11 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
 const EducacionIndexRoute = EducacionIndexRouteImport.update({
   id: '/educacion/',
   path: '/educacion/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaFotosIndexRoute = GaleriaFotosIndexRouteImport.update({
+  id: '/galeria-fotos/',
+  path: '/galeria-fotos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
@@ -160,6 +167,12 @@ const AuthedCatastroHistoricoCrearIndexRoute =
     path: '/catastro-historico/crear/',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedGaleriaFotosAdministrarIndexRoute =
+  AuthedGaleriaFotosAdministrarIndexRouteImport.update({
+    id: '/galeria-fotos/administrar/',
+    path: '/galeria-fotos/administrar/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedProyectosMinerosIdArchivosRoute =
   AuthedProyectosMinerosIdArchivosRouteImport.update({
     id: '/proyectos-mineros/$id/archivos',
@@ -210,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/catastro-historico/': typeof CatastroHistoricoIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
+  '/galeria-fotos/': typeof GaleriaFotosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -230,6 +244,7 @@ export interface FileRoutesByFullPath {
   '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/catastro-historico/crear/': typeof AuthedCatastroHistoricoCrearIndexRoute
+  '/galeria-fotos/administrar/': typeof AuthedGaleriaFotosAdministrarIndexRoute
   '/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
   '/usuarios/modificar-contraseña/': typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -241,6 +256,7 @@ export interface FileRoutesByTo {
   '/catastro-historico': typeof CatastroHistoricoIndexRoute
   '/contacto': typeof ContactoIndexRoute
   '/educacion': typeof EducacionIndexRoute
+  '/galeria-fotos': typeof GaleriaFotosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
   '/mapas-geologicos': typeof MapasGeologicosIndexRoute
   '/noticias': typeof NoticiasIndexRoute
@@ -261,6 +277,7 @@ export interface FileRoutesByTo {
   '/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/catastro-historico/crear': typeof AuthedCatastroHistoricoCrearIndexRoute
+  '/galeria-fotos/administrar': typeof AuthedGaleriaFotosAdministrarIndexRoute
   '/proyectos-mineros/crear': typeof AuthedProyectosMinerosCrearIndexRoute
   '/usuarios/crear': typeof AuthedUsuariosCrearIndexRoute
   '/usuarios/modificar-contraseña': typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -274,6 +291,7 @@ export interface FileRoutesById {
   '/catastro-historico/': typeof CatastroHistoricoIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
+  '/galeria-fotos/': typeof GaleriaFotosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -294,6 +312,7 @@ export interface FileRoutesById {
   '/_authed/usuarios/$id/cambiar-contraseña': typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   '/_authed/usuarios/$id/modificar': typeof AuthedUsuariosIdModificarRoute
   '/_authed/catastro-historico/crear/': typeof AuthedCatastroHistoricoCrearIndexRoute
+  '/_authed/galeria-fotos/administrar/': typeof AuthedGaleriaFotosAdministrarIndexRoute
   '/_authed/proyectos-mineros/crear/': typeof AuthedProyectosMinerosCrearIndexRoute
   '/_authed/usuarios/crear/': typeof AuthedUsuariosCrearIndexRoute
   '/_authed/usuarios/modificar-contraseña/': typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -307,6 +326,7 @@ export interface FileRouteTypes {
     | '/catastro-historico/'
     | '/contacto/'
     | '/educacion/'
+    | '/galeria-fotos/'
     | '/institucional/'
     | '/mapas-geologicos/'
     | '/noticias/'
@@ -327,6 +347,7 @@ export interface FileRouteTypes {
     | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
     | '/catastro-historico/crear/'
+    | '/galeria-fotos/administrar/'
     | '/proyectos-mineros/crear/'
     | '/usuarios/crear/'
     | '/usuarios/modificar-contraseña/'
@@ -338,6 +359,7 @@ export interface FileRouteTypes {
     | '/catastro-historico'
     | '/contacto'
     | '/educacion'
+    | '/galeria-fotos'
     | '/institucional'
     | '/mapas-geologicos'
     | '/noticias'
@@ -358,6 +380,7 @@ export interface FileRouteTypes {
     | '/usuarios/$id/cambiar-contraseña'
     | '/usuarios/$id/modificar'
     | '/catastro-historico/crear'
+    | '/galeria-fotos/administrar'
     | '/proyectos-mineros/crear'
     | '/usuarios/crear'
     | '/usuarios/modificar-contraseña'
@@ -370,6 +393,7 @@ export interface FileRouteTypes {
     | '/catastro-historico/'
     | '/contacto/'
     | '/educacion/'
+    | '/galeria-fotos/'
     | '/institucional/'
     | '/mapas-geologicos/'
     | '/noticias/'
@@ -390,6 +414,7 @@ export interface FileRouteTypes {
     | '/_authed/usuarios/$id/cambiar-contraseña'
     | '/_authed/usuarios/$id/modificar'
     | '/_authed/catastro-historico/crear/'
+    | '/_authed/galeria-fotos/administrar/'
     | '/_authed/proyectos-mineros/crear/'
     | '/_authed/usuarios/crear/'
     | '/_authed/usuarios/modificar-contraseña/'
@@ -401,6 +426,7 @@ export interface RootRouteChildren {
   CatastroHistoricoIndexRoute: typeof CatastroHistoricoIndexRoute
   ContactoIndexRoute: typeof ContactoIndexRoute
   EducacionIndexRoute: typeof EducacionIndexRoute
+  GaleriaFotosIndexRoute: typeof GaleriaFotosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
   MapasGeologicosIndexRoute: typeof MapasGeologicosIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
@@ -463,6 +489,13 @@ declare module '@tanstack/react-router' {
       path: '/educacion'
       fullPath: '/educacion/'
       preLoaderRoute: typeof EducacionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria-fotos/': {
+      id: '/galeria-fotos/'
+      path: '/galeria-fotos'
+      fullPath: '/galeria-fotos/'
+      preLoaderRoute: typeof GaleriaFotosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/institucional/': {
@@ -577,6 +610,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedCatastroHistoricoCrearIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/galeria-fotos/administrar/': {
+      id: '/_authed/galeria-fotos/administrar/'
+      path: '/galeria-fotos/administrar'
+      fullPath: '/galeria-fotos/administrar/'
+      preLoaderRoute: typeof AuthedGaleriaFotosAdministrarIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/proyectos-mineros/$id/archivos': {
       id: '/_authed/proyectos-mineros/$id/archivos'
       path: '/proyectos-mineros/$id/archivos'
@@ -641,6 +681,7 @@ interface AuthedRouteChildren {
   AuthedUsuariosIdCambiarContraseChar241aRoute: typeof AuthedUsuariosIdCambiarContraseChar241aRoute
   AuthedUsuariosIdModificarRoute: typeof AuthedUsuariosIdModificarRoute
   AuthedCatastroHistoricoCrearIndexRoute: typeof AuthedCatastroHistoricoCrearIndexRoute
+  AuthedGaleriaFotosAdministrarIndexRoute: typeof AuthedGaleriaFotosAdministrarIndexRoute
   AuthedProyectosMinerosCrearIndexRoute: typeof AuthedProyectosMinerosCrearIndexRoute
   AuthedUsuariosCrearIndexRoute: typeof AuthedUsuariosCrearIndexRoute
   AuthedUsuariosModificarContraseChar241aIndexRoute: typeof AuthedUsuariosModificarContraseChar241aIndexRoute
@@ -661,6 +702,8 @@ const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedUsuariosIdModificarRoute: AuthedUsuariosIdModificarRoute,
   AuthedCatastroHistoricoCrearIndexRoute:
     AuthedCatastroHistoricoCrearIndexRoute,
+  AuthedGaleriaFotosAdministrarIndexRoute:
+    AuthedGaleriaFotosAdministrarIndexRoute,
   AuthedProyectosMinerosCrearIndexRoute: AuthedProyectosMinerosCrearIndexRoute,
   AuthedUsuariosCrearIndexRoute: AuthedUsuariosCrearIndexRoute,
   AuthedUsuariosModificarContraseChar241aIndexRoute:
@@ -676,6 +719,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatastroHistoricoIndexRoute: CatastroHistoricoIndexRoute,
   ContactoIndexRoute: ContactoIndexRoute,
   EducacionIndexRoute: EducacionIndexRoute,
+  GaleriaFotosIndexRoute: GaleriaFotosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
   MapasGeologicosIndexRoute: MapasGeologicosIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
