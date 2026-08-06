@@ -20,7 +20,7 @@ function Home() {
 
       {/* Visor */}
       <section>
-        <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <SectionHeader
             title="Visor de proyectos"
             subtitle="Explorá nuestros proyectos en un entorno interactivo"
