@@ -11,7 +11,7 @@ export const CapaRiosIntermitentes = () => {
   });
 
   const zoomActual = zoom ?? map.getZoom();
-  const mostrarTooltip = zoomActual > 10;
+  const mostrarTooltip = zoomActual > 8;
 
   if (!data) {
     return null;
