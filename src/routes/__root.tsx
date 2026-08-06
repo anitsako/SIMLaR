@@ -67,7 +67,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           <ToastProvider placement="top-center" />
           <main className="relative z-10 min-h-screen flex flex-col items-center">
             <AppBar />
-            <div className="flex-1 bg-white md:w-full lg:max-w-4xl xl:max-w-6xl px-6 my-3">{children}</div>
+            <div className="flex-1 bg-white md:w-full lg:max-w-4xl xl:max-w-6xl p-4 my-2">{children}</div>
             <Footer />
           </main>
         </HeroUIProvider>
