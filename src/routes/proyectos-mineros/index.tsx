@@ -38,18 +38,18 @@ function RouteComponent() {
   return (
     <div className="mt-4">
       <div className="mb-4 flex items-center justify-between">
-        <SectionTitle title="Proyectos Mineros" />
-
-        <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">
-          Crear proyecto
-        </Button>
+        <SectionTitle
+          title="Proyectos Mineros"
+          rightSlot={
+            <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">
+              Crear proyecto
+            </Button>
+          }
+        />
       </div>
 
       <div className="mb-4 rounded-xl border border-default-200 bg-white p-3 shadow-sm">
-        <ProyectosMinerosFilters
-          visibleBase={visibleBase}
-          mostrarFiltroVisibilidad={mostrarFiltroVisibilidad}
-        />
+        <ProyectosMinerosFilters visibleBase={visibleBase} mostrarFiltroVisibilidad={mostrarFiltroVisibilidad} />
       </div>
 
       <ProyectosMinerosTable visibleBase={visibleBase} />
