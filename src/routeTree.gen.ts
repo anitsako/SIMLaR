@@ -16,6 +16,7 @@ import { Route as AuthedGoogleAnalyticsRouteImport } from './routes/_authed/goog
 import { Route as CatastroHistoricoIndexRouteImport } from './routes/catastro-historico/index'
 import { Route as ContactoIndexRouteImport } from './routes/contacto/index'
 import { Route as EducacionIndexRouteImport } from './routes/educacion/index'
+import { Route as GaleriaFotosIndexRouteImport } from './routes/galeria-fotos/index'
 import { Route as InstitucionalIndexRouteImport } from './routes/institucional/index'
 import { Route as MapasGeologicosIndexRouteImport } from './routes/mapas-geologicos/index'
 import { Route as NoticiasIndexRouteImport } from './routes/noticias/index'
@@ -72,6 +73,11 @@ const ContactoIndexRoute = ContactoIndexRouteImport.update({
 const EducacionIndexRoute = EducacionIndexRouteImport.update({
   id: '/educacion/',
   path: '/educacion/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaFotosIndexRoute = GaleriaFotosIndexRouteImport.update({
+  id: '/galeria-fotos/',
+  path: '/galeria-fotos/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstitucionalIndexRoute = InstitucionalIndexRouteImport.update({
@@ -210,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/catastro-historico/': typeof CatastroHistoricoIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
+  '/galeria-fotos/': typeof GaleriaFotosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -241,6 +248,7 @@ export interface FileRoutesByTo {
   '/catastro-historico': typeof CatastroHistoricoIndexRoute
   '/contacto': typeof ContactoIndexRoute
   '/educacion': typeof EducacionIndexRoute
+  '/galeria-fotos': typeof GaleriaFotosIndexRoute
   '/institucional': typeof InstitucionalIndexRoute
   '/mapas-geologicos': typeof MapasGeologicosIndexRoute
   '/noticias': typeof NoticiasIndexRoute
@@ -274,6 +282,7 @@ export interface FileRoutesById {
   '/catastro-historico/': typeof CatastroHistoricoIndexRoute
   '/contacto/': typeof ContactoIndexRoute
   '/educacion/': typeof EducacionIndexRoute
+  '/galeria-fotos/': typeof GaleriaFotosIndexRoute
   '/institucional/': typeof InstitucionalIndexRoute
   '/mapas-geologicos/': typeof MapasGeologicosIndexRoute
   '/noticias/': typeof NoticiasIndexRoute
@@ -307,6 +316,7 @@ export interface FileRouteTypes {
     | '/catastro-historico/'
     | '/contacto/'
     | '/educacion/'
+    | '/galeria-fotos/'
     | '/institucional/'
     | '/mapas-geologicos/'
     | '/noticias/'
@@ -338,6 +348,7 @@ export interface FileRouteTypes {
     | '/catastro-historico'
     | '/contacto'
     | '/educacion'
+    | '/galeria-fotos'
     | '/institucional'
     | '/mapas-geologicos'
     | '/noticias'
@@ -370,6 +381,7 @@ export interface FileRouteTypes {
     | '/catastro-historico/'
     | '/contacto/'
     | '/educacion/'
+    | '/galeria-fotos/'
     | '/institucional/'
     | '/mapas-geologicos/'
     | '/noticias/'
@@ -401,6 +413,7 @@ export interface RootRouteChildren {
   CatastroHistoricoIndexRoute: typeof CatastroHistoricoIndexRoute
   ContactoIndexRoute: typeof ContactoIndexRoute
   EducacionIndexRoute: typeof EducacionIndexRoute
+  GaleriaFotosIndexRoute: typeof GaleriaFotosIndexRoute
   InstitucionalIndexRoute: typeof InstitucionalIndexRoute
   MapasGeologicosIndexRoute: typeof MapasGeologicosIndexRoute
   NoticiasIndexRoute: typeof NoticiasIndexRoute
@@ -463,6 +476,13 @@ declare module '@tanstack/react-router' {
       path: '/educacion'
       fullPath: '/educacion/'
       preLoaderRoute: typeof EducacionIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria-fotos/': {
+      id: '/galeria-fotos/'
+      path: '/galeria-fotos'
+      fullPath: '/galeria-fotos/'
+      preLoaderRoute: typeof GaleriaFotosIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/institucional/': {
@@ -676,6 +696,7 @@ const rootRouteChildren: RootRouteChildren = {
   CatastroHistoricoIndexRoute: CatastroHistoricoIndexRoute,
   ContactoIndexRoute: ContactoIndexRoute,
   EducacionIndexRoute: EducacionIndexRoute,
+  GaleriaFotosIndexRoute: GaleriaFotosIndexRoute,
   InstitucionalIndexRoute: InstitucionalIndexRoute,
   MapasGeologicosIndexRoute: MapasGeologicosIndexRoute,
   NoticiasIndexRoute: NoticiasIndexRoute,
