@@ -281,6 +281,13 @@
       "when": 1785908466714,
       "tag": "0039_superb_beast",
       "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1785977831174,
+      "tag": "0040_square_fabian_cortez",
+      "breakpoints": true
     }
   ]
 }
