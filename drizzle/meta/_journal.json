@@ -288,6 +288,13 @@
       "when": 1785977831174,
       "tag": "0040_square_fabian_cortez",
       "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "7",
+      "when": 1786054000387,
+      "tag": "0041_keen_vermin",
+      "breakpoints": true
     }
   ]
 }
