@@ -12,6 +12,7 @@ const customIcon = L.icon({
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
+  tooltipAnchor: [1, -34],
 });
 
 export const CapaPuntosExtras = () => {

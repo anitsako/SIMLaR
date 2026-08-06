@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { commonColors } from '@heroui/react';
 import L from 'leaflet';
 import { GeoJSON, useMapEvents } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import { useCapaCerros } from './use-capa-cerros';
-import MarkerClusterGroup from 'react-leaflet-cluster'
-import 'react-leaflet-cluster/dist/assets/MarkerCluster.css'
-import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css'
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
 
 const customIcon = L.icon({
   iconUrl: '/markers/marker-icon-gold.png',
@@ -15,6 +15,7 @@ const customIcon = L.icon({
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
+  tooltipAnchor: [1, -34],
 });
 
 export const CapaCerros = () => {
@@ -46,7 +47,6 @@ export const CapaCerros = () => {
       showCoverageOnHover={true}
       animate={true}
     >
-
       <GeoJSON
         key={`cerros-${mostrarTooltip ? 'tooltip-on' : 'tooltip-off'}`}
         data={data}
@@ -62,7 +62,6 @@ export const CapaCerros = () => {
           fillColor: commonColors.zinc[500],
         }}
       />
-    </MarkerClusterGroup >
-
+    </MarkerClusterGroup>
   );
 };
