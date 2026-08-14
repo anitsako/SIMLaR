@@ -6,6 +6,7 @@ import { ProyectosMinerosLayer } from '@/proyectos-mineros/proyectos-mineros.lay
 import { ProyectoMineroTiposField } from '@/proyectos-mineros-tipos/proyecto-minero-tipos.field';
 import { ProyectoMineroEtapasField } from '@/proyectos-mineros-etapas/proyecto-minero-etapas.field';
 import { CapaAeropuertos } from '@/aeropuertos/capa-aeropuertos';
+import { CapaAreasProtegidas } from '@/areas_protegidas/capa-areas-protegidas';
 import { CapaDiques } from '@/diques/capa-diques';
 import { CapaCerros } from '@/cerros/capa-cerros';
 import { CapaRutasNacionales } from '@/rutas-nacionales/capa-rutas-nacionales';
@@ -46,6 +47,7 @@ export const MapaPrincipal = () => {
           />
           <CapaDepartamentos />
           {capasExtras.includes('aeropuertos') && <CapaAeropuertos />}
+          {capasExtras.includes('areas-protegidas') && <CapaAreasProtegidas />}
           {capasExtras.includes('diques') && <CapaDiques />}
           {capasExtras.includes('cerros') && <CapaCerros />}
           {capasExtras.includes('puntos-extras') && <CapaPuntosExtras />}

@@ -9,6 +9,7 @@ type CapasExtrasSelectProps = {
 export const CapasExtrasSelect = ({ capasExtras, setCapasExtras }: CapasExtrasSelectProps) => {
   const capasExtrasItems = [
     { key: 'aeropuertos', textValue: 'Aeropuertos', href: '/capas-extras/aeropuertos.zip' },
+    { key: 'areas-protegidas', textValue: 'Áreas protegidas', href: '/capas-extras/areas-protegidas.zip' },
     { key: 'cerros', textValue: 'Cerros', href: '/capas-extras/cerros.zip' },
     { key: 'diques', textValue: 'Diques', href: '/capas-extras/diques.zip' },
     { key: 'puntos-extras', textValue: 'Puntos extras', href: '/capas-extras/puntos-extras.zip' },
