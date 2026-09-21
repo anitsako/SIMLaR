@@ -17,8 +17,8 @@
     "tests": "vitest run",
     "files:download": "tsx scripts/download-archivos.local.ts",
     "files:download:prod": "tsx scripts/download-archivos.prod.ts",
-    "docker:build:prod": "docker build -t ghcr.io/mfpuentear/simlar:$npm_package_version .",
-    "docker:push:prod": "docker push ghcr.io/mfpuentear/simlar:$npm_package_version",
+    "docker:build:prod": "docker build -t sim.larioja.gob.ar/emse/simlar:$npm_package_version .",
+    "docker:push:prod": "docker push sim.larioja.gob.ar/emse/simlar:$npm_package_version",
     "k6:pages": "k6 run scripts/k6-carga-paginas.js",
     "k6:pages:medio": "k6 run --env NIVEL_CARGA=medio scripts/k6-carga-paginas.js",
     "k6:pages:alto": "k6 run --env NIVEL_CARGA=alto scripts/k6-carga-paginas.js"
