@@ -60,7 +60,7 @@ const AUTORIDADES: Array<Autoridad> = [
     foto: '/autoridades/sec-com.jpg',
   },
   {
-    nombre: 'IVANA GUARDIA',
+    nombre: 'IVANNA GUARDIA',
     cargo: 'Secretaria Mineria',
     foto: '/autoridades/sec-min.jpg',
   },
