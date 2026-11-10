@@ -114,11 +114,3 @@ Abrí [http://localhost:3000](http://localhost:3000/) y activá **Áreas protegi
 | `npm run build` | Compila la aplicación. |
 | `npm run start` | Ejecuta la aplicación compilada. |
 | `npm run tests` | Ejecuta las pruebas de Vitest. |
-
-## Documentación y procedencia
-
-- [Instalación y configuración inicial](docs/instalacion.md)
-- [Guía de conversión a COG](docs/guia-conversion-cog.md)
-- [Publicación de una nueva versión](docs/publicacion-nueva-version.md)
-
-Esta copia conserva el historial de desarrollo de SIMLaR. El [repositorio institucional](https://sim.larioja.gob.ar/git/emse/simlar) es la referencia para las actualizaciones del proyecto.
