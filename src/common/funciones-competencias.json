@@ -1,0 +1,285 @@
+{
+  "title": "Funciones y competencias",
+  "unidades": {
+    "secretaria": {
+      "title": "Secretaría de Minería y Recursos No Renovables",
+      "items": {
+        "asistirPoderEjecutivo": "Asistir al Poder Ejecutivo y al Ministerio de Producción y Ambiente en lo relacionado con la actividad minera sustentable en la provincia.",
+        "definirObjetivos": "Definir los objetivos, políticas y acciones estratégicas para el desarrollo minero.",
+        "ejecutarPlanes": "Ejecutar los planes, programas y proyectos de su competencia.",
+        "proponerPolitica": "Proponer y ejecutar la política minera sustentable.",
+        "representarEstado": "Representar al Estado provincial ante organismos nacionales, regionales e internacionales.",
+        "participarCredito": "Participar en políticas de acceso al crédito minero y desarrollar programas de financiamiento.",
+        "coordinarAsistencia": "Coordinar acciones de asistencia técnica con organismos públicos, privados y organizaciones de la sociedad civil.",
+        "fortalecerVinculacion": "Fortalecer la vinculación con municipios, organizaciones sociales, profesionales y académicas."
+      }
+    },
+    "dgMineria": {
+      "title": "Dirección General de Minería",
+      "items": {
+        "planificarDesarrollo": "Planificar el desarrollo del sector minero con objetivos a corto, mediano y largo plazo.",
+        "promoverAprovechamiento": "Promover el aprovechamiento racional de los recursos geológicos y mineros para el desarrollo socioeconómico provincial.",
+        "coordinarPoliticaNacional": "Coordinar la aplicación de la política minera nacional en la provincia, mediante la participación en OFEMI y COFEMIN.",
+        "proponerEjecutarControlar": "Proponer, ejecutar y controlar la política minera provincial.",
+        "articularPoliticas": "Articular las políticas provinciales con las municipales y nacionales.",
+        "promoverRiesgos": "Promover el conocimiento de los riesgos geológicos y de las condiciones ambientales de base.",
+        "coordinarCooperacion": "Coordinar programas de cooperación e impulsar buenas prácticas industriales, ambientales y sociales."
+      }
+    },
+    "escribaniaMinas": {
+      "title": "Dirección de Escribanía de Minas",
+      "dependsOn": "Depende de Dirección General de Minería.",
+      "items": {
+        "llevarRegistros": "Llevar los registros de los derechos mineros de la provincia.",
+        "llevarPadronCanon": "Llevar el registro del padrón de canon minero.",
+        "realizarNotificaciones": "Realizar las notificaciones e intimaciones correspondientes a su competencia.",
+        "asistirDireccionGeneral": "Asistir a la Dirección General en asuntos relacionados con registros mineros, padrón y notificaciones.",
+        "informarRegistros": "Informar periódicamente sobre los registros de derechos mineros.",
+        "cumplirCodigo": "Cumplir las funciones asignadas por el Código de Minería y la legislación complementaria.",
+        "dejarConstancia": "Dejar constancia de la presentación de escritos y solicitudes, indicando fecha, hora, nombre del presentante y documentación acompañada.",
+        "extenderCertificados": "Extender certificados de dominio y otras certificaciones.",
+        "informarRequisitos": "Informar sobre el cumplimiento de los requisitos legales en los expedientes y solicitudes.",
+        "certificarPlazos": "Certificar el vencimiento de los plazos legales de cada expediente.",
+        "otrasTareas": "Realizar otras tareas requeridas por la Dirección General de Minería."
+      }
+    },
+    "mesaEntradas": {
+      "title": "Promotor de Mesa de Entradas y Salidas",
+      "dependsOn": "Depende de Dirección de Escribanía de Minas.",
+      "items": {
+        "registrarPresentacion": "Registrar el cargo, la fecha y la hora de cada escrito, solicitud, formulario o nota presentada.",
+        "llevarUbicacion": "Llevar el registro de la ubicación de cada expediente, nota o solicitud."
+      }
+    },
+    "catastroMinero": {
+      "title": "Dirección de Catastro Minero",
+      "dependsOn": "Depende de Dirección General de Minería.",
+      "items": {
+        "asignarMatriculas": "Asignar matrículas catastrales y organizar su registro cronológico y ordenado.",
+        "ordenarCatastro": "Ordenar y actualizar el Catastro Minero Provincial.",
+        "registrarDerechos": "Registrar los derechos mineros solicitados y en trámite mediante el sistema de coordenadas indicado en el documento.",
+        "informarDerechos": "Informar sobre los derechos mineros registrados, su ubicación, límites, superficie y coordenadas.",
+        "participarMensuras": "Participar en mensuras, deslindes y amojonamientos de minas, permisos de exploración, canteras y otros derechos mineros, así como de servidumbres y huellas mineras.",
+        "aprobarMensuras": "Aprobar y registrar mensuras, planos, memorias descriptivas, vinculaciones y otras tareas técnicas de su competencia."
+      }
+    },
+    "topografia": {
+      "title": "Promotor de Topografía",
+      "dependsOn": "Depende de Dirección de Catastro Minero.",
+      "items": {
+        "controlarTareas": "Controlar y ejecutar las tareas topogeodésicas de los pedimentos mineros de la provincia.",
+        "mantenerRed": "Mantener una red de puntos geodésicos de referencia para apoyar las mediciones de campo.",
+        "asegurarUbicacion": "Asegurar la correcta ubicación de los derechos mineros."
+      }
+    },
+    "graficoCatastral": {
+      "title": "Promotor de Trabajos Gráfico Catastral",
+      "dependsOn": "Depende de Dirección de Catastro Minero.",
+      "items": {
+        "controlarRegistro": "Controlar y actualizar sistemáticamente el registro catastral de los pedimentos mineros.",
+        "aplicarCodigo": "Aplicar las disposiciones del Código de Minería en materia catastral.",
+        "contribuirSeguridad": "Contribuir a la seguridad jurídica de los derechos mineros y favorecer las condiciones para la inversión."
+      }
+    },
+    "geologiaMinera": {
+      "title": "Dirección de Geología Minera",
+      "dependsOn": "Depende de Dirección General de Minería.",
+      "items": {
+        "asesorar": "Asesorar a las áreas correspondientes en los temas de su especialidad.",
+        "evaluarCanteras": "Evaluar proyectos de aprovechamiento de canteras.",
+        "evaluarMuestras": "Evaluar las muestras de minerales presentadas con las manifestaciones de descubrimiento.",
+        "organizarMuestras": "Organizar el almacenamiento y archivo de muestras legales.",
+        "analizarProgramas": "Analizar y evaluar programas mínimos de trabajo y los elementos y equipos destinados a la exploración.",
+        "evaluarLabores": "Evaluar y dictaminar sobre las labores legales presentadas.",
+        "realizarAnalisis": "Realizar, por sí o mediante terceros, análisis químicos, metalométricos y otros estudios necesarios.",
+        "analizarDeclaraciones": "Analizar declaraciones juradas para la liquidación de regalías.",
+        "estudiosGeologicos": "Realizar estudios geológicos para la explotación de minas y canteras.",
+        "estudiarAcceso": "Estudiar los problemas de acceso a los yacimientos y planificar las obras necesarias para construir huellas de acceso.",
+        "registroConsultores": "Llevar un registro de consultores habilitados para firmar proyectos geológicos o de aprovechamiento de yacimientos."
+      }
+    },
+    "trabajosGeologicos": {
+      "title": "Promotor de Trabajos Geológicos",
+      "dependsOn": "Depende de Dirección de Geología Minera.",
+      "items": {
+        "seleccionarPuntos": "Seleccionar puntos o zonas geográficas para determinar los recursos geológicos y mineros de la provincia.",
+        "promoverUso": "Promover el uso responsable de esos recursos, en beneficio de la población y dentro de un marco ambiental sostenible."
+      }
+    },
+    "economiaMinera": {
+      "title": "Dirección de Economía Minera",
+      "dependsOn": "Depende de Dirección General de Minería.",
+      "items": {
+        "estudiarInversiones": "Estudiar y evaluar las inversiones previstas en permisos de exploración y cateo.",
+        "analizarProyectos": "Analizar proyectos de inversión de capital y de activación o reactivación de minas.",
+        "determinarRegalias": "Determinar los importes de regalías mineras y derechos de explotación de canteras.",
+        "venderGuias": "Vender las guías de tránsito de minerales, rocas y áridos."
+      }
+    },
+    "registroProductores": {
+      "title": "Promotor de Registro de Productores y Mineros",
+      "dependsOn": "Depende de Dirección de Economía Minera.",
+      "items": {
+        "relevarProductores": "Relevar a los productores que realizan actividades relacionadas con la minería en el territorio provincial.",
+        "mantenerRegistro": "Mantener el registro de productores.",
+        "coordinarSuim": "Coordinar con Nación la administración de la información del Sistema Unificado de Información Minera —SUIM—.",
+        "articularInformacion": "Articular información estadística, geológica, catastral y de proyectos de los ámbitos nacional, provincial y municipal."
+      }
+    },
+    "policiaMinera": {
+      "title": "Dirección de Policía Minera",
+      "dependsOn": "Depende de Dirección General de Minería.",
+      "items": {
+        "controlarTrabajos": "Controlar y fiscalizar los trabajos de exploración, explotación y tratamiento o procesamiento de minerales y rocas.",
+        "protegerSeguridad": "Proteger la seguridad, la conservación de las labores y pertenencias mineras, la salud de los trabajadores y el ambiente natural y social.",
+        "inspeccionar": "Inspeccionar yacimientos, explotaciones, plantas y otras instalaciones o actividades mineras.",
+        "constatarInfracciones": "Constatar infracciones a las normas legales, de seguridad e higiene y labrar las actas correspondientes.",
+        "controlarTransito": "Controlar el tránsito de minerales, rocas y áridos en toda la provincia.",
+        "verificarGuias": "Verificar la existencia y correcta documentación de las guías de tránsito."
+      }
+    },
+    "fiscalizacion": {
+      "title": "Promotor de Fiscalización de Trabajos de Exploración, Explotación y Establecimiento",
+      "dependsOn": "Depende de Dirección de Policía Minera.",
+      "items": {
+        "evaluarSistemas": "Evaluar los sistemas y procedimientos utilizados en la actividad minera.",
+        "fiscalizarRacionalidad": "Fiscalizar su racionalidad y cumplimiento de los criterios de buena gestión.",
+        "comprobarNormas": "Comprobar el cumplimiento de las normas provinciales y nacionales.",
+        "verificarBuenasPracticas": "Verificar la aplicación de buenas prácticas industriales, ambientales y sociales."
+      }
+    },
+    "dgRecursos": {
+      "title": "Dirección General de Recursos No Renovables",
+      "items": {
+        "ejecutarPolitica": "Ejecutar la política minera, geológica y de recursos no renovables de la provincia.",
+        "velarNormas": "Velar por el cumplimiento de las normas nacionales y provinciales, actuando como autoridad de aplicación en la materia.",
+        "relevarRecursos": "Relevar los recursos no renovables de la provincia.",
+        "mantenerBud": "Mantener actualizados sus registros gráficos en el Banco Único de Datos —BUD—.",
+        "intervenirExplotacion": "Intervenir en la preparación y explotación de los recursos no renovables provinciales."
+      }
+    },
+    "gestionProyectos": {
+      "title": "Dirección de Gestión y Evaluación de Proyectos",
+      "dependsOn": "Depende de Dirección General de Recursos No Renovables.",
+      "items": {
+        "asistirSecretaria": "Asistir a la Secretaría en el diseño e implementación de políticas mineras.",
+        "intervenirInversores": "Intervenir en la vinculación con inversores y empresas del sector.",
+        "participarDesarrollo": "Participar en las acciones destinadas a promover el desarrollo de la minería provincial."
+      }
+    },
+    "dgDesarrollo": {
+      "title": "Dirección General de Desarrollo Productivo Minero",
+      "items": {
+        "promoverActividad": "Promover la actividad minera considerando sus aspectos sociales.",
+        "evaluarProyectos": "Evaluar y gestionar proyectos de desarrollo minero.",
+        "fomentarServicios": "Fomentar los servicios mineros y las unidades productivas y educativas.",
+        "impulsarLaboratorios": "Impulsar laboratorios de análisis de muestras y geoquímicos.",
+        "crearMuseo": "Crear y coordinar el Museo Minero–Petrológico Riojano.",
+        "mantenerRelaciones": "Mantener relaciones con la comunidad en los temas de su competencia.",
+        "brindarAsistencia": "Brindar asistencia técnica al productor minero.",
+        "intervenirRegimenes": "Intervenir en la elaboración de regímenes de promoción y protección de las actividades productivas.",
+        "coordinarProyectos": "Coordinar proyectos de promoción y desarrollo minero con organismos internacionales, nacionales, provinciales y municipales."
+      }
+    },
+    "valleBermejo": {
+      "title": "Coordinación Valle del Bermejo y Llanos Sur",
+      "dependsOn": "Depende de Dirección General de Desarrollo Productivo Minero.",
+      "items": {
+        "contribuirPlanificacion": "Contribuir a la planificación estratégica del desarrollo minero de la zona.",
+        "considerarRecursos": "Considerar los recursos minerales existentes y la demanda proyectada en los mercados local, provincial, nacional e internacional."
+      }
+    },
+    "servicioMinero": {
+      "title": "Dirección de Servicio Minero",
+      "dependsOn": "Depende de Dirección General de Desarrollo Productivo Minero.",
+      "items": {
+        "colaborarPoliticas": "Colaborar en el diseño e implementación de acciones y políticas de desarrollo minero a mediano y largo plazo.",
+        "promoverInversiones": "Promover inversiones en todas las etapas de la actividad minera.",
+        "interactuarInversores": "Interactuar con posibles inversores y facilitar la concreción de inversiones.",
+        "proporcionarInformacion": "Proporcionar información legal, geológica, catastral, de proyectos mineros y de los actores de la industria."
+      }
+    },
+    "dgAdministracion": {
+      "title": "Dirección General de Administración",
+      "items": {
+        "administrarRecursos": "Administrar los recursos humanos, económicos y financieros con criterios de eficacia, eficiencia y transparencia.",
+        "dirigirContabilidad": "Dirigir las actividades del sistema de información contable.",
+        "dirigirProcesos": "Dirigir los procesos de registro y control administrativo, contabilidad, presupuesto y tesorería.",
+        "supervisarCompras": "Supervisar las compras y contrataciones.",
+        "administrarPatrimonio": "Administrar y controlar el inventario y el registro patrimonial de bienes.",
+        "coordinarPersonal": "Coordinar los asuntos de personal y mantener actualizadas sus novedades.",
+        "definirIndicadores": "Definir indicadores para evaluar la ejecución presupuestaria.",
+        "registrarRecursos": "Registrar y fiscalizar los recursos económicos y financieros.",
+        "ejecutarAcciones": "Ejecutar y supervisar las acciones administrativas conforme a la normativa vigente.",
+        "supervisarRendiciones": "Supervisar o efectuar las rendiciones de cuentas de los recursos y bienes bajo su responsabilidad."
+      }
+    },
+    "rendicionCuentas": {
+      "title": "Coordinación de Rendición de Cuentas, Presupuesto y Patrimonio",
+      "dependsOn": "Depende de Dirección General de Administración.",
+      "items": {
+        "asistirPresupuesto": "Asistir en la formulación, ejecución y evaluación del presupuesto anual.",
+        "prepararAnteproyecto": "Preparar y tramitar el anteproyecto de presupuesto de gastos y cálculo de recursos.",
+        "registrarEjecucion": "Registrar mensualmente la ejecución presupuestaria.",
+        "tramitarModificaciones": "Tramitar modificaciones de créditos presupuestarios.",
+        "registrarCuotas": "Registrar las cuotas mensuales de compromisos y devengados e informar los saldos disponibles.",
+        "mantenerBienes": "Mantener un registro centralizado y actualizado de los bienes de la Secretaría.",
+        "intervenirMovimientos": "Intervenir en altas, bajas y transferencias patrimoniales.",
+        "organizarArchivo": "Organizar el archivo de las órdenes de pago aprobadas por la delegación fiscal."
+      }
+    },
+    "tesoreria": {
+      "title": "Coordinación de Tesorería",
+      "dependsOn": "Depende de Dirección General de Administración.",
+      "items": {
+        "asistirFondos": "Asistir en el manejo y custodia de los fondos y valores de la Secretaría.",
+        "registrarMovimientos": "Registrar contablemente los ingresos y egresos y mantener actualizados los libros correspondientes.",
+        "elaborarParte": "Elaborar el parte diario de tesorería, las conciliaciones bancarias y los balances financieros mensuales y acumulados.",
+        "administrarValores": "Administrar y custodiar fondos rotatorios, pólizas de seguro de caución, fondos de garantía y otros valores financieros.",
+        "efectuarPagos": "Efectuar los pagos de compras, contrataciones y haberes.",
+        "tramitesBancarios": "Realizar los trámites bancarios propios de su función."
+      }
+    },
+    "personal": {
+      "title": "Coordinación de Personal",
+      "dependsOn": "Depende de Dirección General de Administración.",
+      "items": {
+        "planificarRecursos": "Planificar y gestionar integralmente los recursos humanos.",
+        "determinarNecesidades": "Determinar las necesidades actuales y futuras de personal.",
+        "elevarPropuestas": "Elevar propuestas relacionadas con ingreso, promoción, designación, sucesión y egreso del personal.",
+        "mantenerHistorial": "Mantener el registro del historial del personal.",
+        "promoverCapacitacion": "Promover la capacitación continua y el desarrollo de competencias.",
+        "evaluarRiesgos": "Evaluar y controlar los factores de riesgo y seguridad del ambiente laboral.",
+        "procurarBienestar": "Procurar el bienestar de los agentes.",
+        "asistirRecursosHumanos": "Asistir a la Dirección General de Administración en los asuntos de recursos humanos."
+      }
+    },
+    "asuntosLegales": {
+      "title": "Dirección General de Asuntos Legales",
+      "items": {
+        "contribuirNormas": "Contribuir a la elaboración de proyectos de normas jurídicas.",
+        "asesorarDependencias": "Asesorar a las dependencias de la Secretaría.",
+        "intervenirDocumentacion": "Intervenir en la documentación relacionada con oficios y notificaciones.",
+        "supervisarProyectos": "Supervisar el estudio, análisis y redacción de proyectos normativos.",
+        "asesorarNormativa": "Asesorar sobre la normativa aplicable y emitir dictámenes jurídico-legales.",
+        "dictaminarRecursos": "Dictaminar sobre recursos administrativos contra actos de la Secretaría y sus áreas dependientes.",
+        "intervenirConvenios": "Intervenir en la elaboración, celebración, ejecución y aplicación de convenios y acuerdos relacionados con sus competencias.",
+        "intervenirContratos": "Intervenir en proyectos de contratos y otros instrumentos jurídicos vinculados con la actividad minera provincial."
+      }
+    },
+    "despacho": {
+      "title": "Dirección General de Despacho",
+      "items": {
+        "elaborarProyectos": "Elaborar y confeccionar proyectos de leyes, decretos y resoluciones de competencia de la Secretaría.",
+        "disponerNotificacion": "Disponer la notificación de los actos administrativos.",
+        "intervenirAsesoramiento": "Intervenir en el estudio y asesoramiento legal de las problemáticas de su competencia.",
+        "participarRecursos": "Participar en la tramitación de recursos administrativos.",
+        "registrarDocumentacion": "Registrar el ingreso, seguimiento y egreso de documentación y correspondencia.",
+        "ordenarTramitacion": "Ordenar su tramitación, distribución y archivo.",
+        "protocolizarActos": "Protocolizar, reproducir, autenticar y custodiar los actos administrativos.",
+        "analizarNormativa": "Analizar y ordenar la normativa vigente.",
+        "detectarVacios": "Detectar vacíos normativos o superposiciones legales y proponer las correcciones correspondientes."
+      }
+    }
+  }
+}
