@@ -3,6 +3,8 @@ import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Card, CardBody } from '@heroui/react';
 import SectionTitle from '@/common/section-title';
 import { SectionHeader } from '@/common/section-header';
+import { FuncionesCompetencias } from '@/common/funciones-competencias';
+import { FUNCIONES_TITULO } from '@/common/funciones-competencias.data';
 
 export const Route = createFileRoute('/institucional/')({
   component: RouteComponent,
@@ -236,9 +238,17 @@ function RouteComponent() {
       </section>
 
       <section>
+        <SectionHeader title={FUNCIONES_TITULO} subtitle="Unidades de la Secretaría de Minería y sus funciones" />
+        <FuncionesCompetencias />
+      </section>
+
+      {
+/*
+      <section>
         <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+
+               <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {ACCESOS_RAPIDOS.map((acceso) => (
             <a
               key={acceso.href}
@@ -251,7 +261,13 @@ function RouteComponent() {
             </a>
           ))}
         </div>
+    </section>
+           */ }
+
+      <section>
+
       </section>
-    </div>
+
+    </div >
   );
 }
