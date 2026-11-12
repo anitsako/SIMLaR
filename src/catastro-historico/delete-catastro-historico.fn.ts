@@ -1,3 +1,4 @@
+import { requireCatastroAdmin } from '@/catastro-minero/permisos.server';
 import { unlink } from 'node:fs/promises';
 import path from 'node:path';
 import { createServerFn } from "@tanstack/react-start";
@@ -11,6 +12,8 @@ import { archivosTable } from "@/db/schemas/archivos.schema";
 export const deleteCatastroHistoricoFn = createServerFn({ method: 'POST' })
   .validator(z.object({ id: z.number().int().positive() }))
   .handler(async ({ data }) => {
+
+    await requireCatastroAdmin();
 
     const filesPath = process.env.FILES_PATH
     if (!filesPath) throw new Error('FILES_PATH no está definida')

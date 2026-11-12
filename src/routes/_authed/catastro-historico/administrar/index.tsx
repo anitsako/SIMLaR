@@ -30,6 +30,7 @@ import { addCatastroHistoricoArchivoFn } from '@/catastro-historico/add-catastro
 import { deleteCatastroHistoricoFn } from '@/catastro-historico/delete-catastro-historico.fn';
 
 export const Route = createFileRoute('/_authed/catastro-historico/administrar/')({
+  beforeLoad: ({ context }) => { if (!context.usuario?.esAdmin) throw new Error('Se requiere un administrador de SIMLaR.'); },
   component: RouteComponent,
 });
 
