@@ -8,7 +8,17 @@ export const Route = createFileRoute('/transparencia/')({
 });
 
 const documentosNormativos = [
-    {
+  {
+    titulo: 'Ley Nº 24.430 - Constitución Nacional',
+    descripcion: 'Establece que el Estado adopta un sistema de gobierno representativo, republicano y federal',
+    url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/804/norma.htm',
+  },
+  {
+    titulo: 'Convocada mediante la Ley Nº 10.609 - Constitución Provincial',
+    descripcion: 'Establece que el Estado provincial adopta un sistema de gobierno representativo, republicano, democrático y social',
+    url: 'https://www.saij.gob.ar/0-local-rioja-constitucion-provincia-rioja-lpf1000000-2008-05-14/123456789-0abc-defg-000-0001fvorpyel',
+  },
+  {
     titulo: 'Ley Nº 1919 - Código de Minería',
     descripcion:
       'Código nacional que regula los derechos, obligaciones y procedimientos vinculados a la actividad minera en Argentina.',
@@ -32,6 +42,11 @@ const documentosNormativos = [
       'Normativa nacional vinculada a la protección ambiental para la actividad minera.',
     url: 'https://www.argentina.gob.ar/normativa/nacional/ley-24585-30096/texto',
   },
+  {
+    titulo: 'Ley Nº 10.799 - Proveedores Mineros',
+    descripcion: 'Regula la declaración jurada de compras a proveedores locales y el desarrollo de la cadena de valor regional.',
+    url: 'https://proveedoresmineros.larioja.gob.ar/wp-content/uploads/2025/07/Ley_10799_2025-06-27_para_el_desarrollo_de_proveedores_mineros_y_mano_de_obra_riojana.pdf',
+  }
 ];
 
 function RouteComponent() {
@@ -40,45 +55,45 @@ function RouteComponent() {
       <SectionTitle title="Marco normativo" />
 
       <p className="text-default-600">
-          En esta sección se ponen a disposición enlaces oficiales a normativa vinculada a la actividad minera,
-          el procedimiento administrativo minero, la protección ambiental y el marco legal aplicable.
-        </p>
+        En esta sección se ponen a disposición enlaces oficiales a normativa vinculada a la actividad minera,
+        el procedimiento administrativo minero, la protección ambiental y el marco legal aplicable.
+      </p>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {documentosNormativos.map((documento) => (
-            <Card
-              key={documento.titulo}
-              className="h-full transition duration-200 ease-in-out hover:scale-[1.02]"
-            >
-              <CardHeader className="flex items-start gap-3">
-                <div className="rounded-lg bg-danger/10 p-3 text-danger">
-                  <FileText size={26} />
-                </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {documentosNormativos.map((documento) => (
+          <Card
+            key={documento.titulo}
+            className="h-full transition duration-200 ease-in-out hover:scale-[1.02]"
+          >
+            <CardHeader className="flex items-start gap-3">
+              <div className="rounded-lg bg-danger/10 p-3 text-danger">
+                <FileText size={26} />
+              </div>
 
-                <div>
-                  <p className="text-xl font-bold">{documento.titulo}</p>
-                  <p className="text-sm text-default-500">
-                    Enlace oficial disponible en argentina.gob.ar
-                  </p>
-                </div>
-              </CardHeader>
+              <div>
+                <p className="text-xl font-bold">{documento.titulo}</p>
+                <p className="text-sm text-default-500">
+                  Enlace oficial disponible en argentina.gob.ar
+                </p>
+              </div>
+            </CardHeader>
 
-              <CardBody className="space-y-4">
-                <p className="text-default-600">{documento.descripcion}</p>
+            <CardBody className="space-y-4">
+              <p className="text-default-600">{documento.descripcion}</p>
 
-                <a
-                  href={documento.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex w-fit items-center gap-2 rounded-lg bg-danger px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
-                >
-                  Ver normativa
-                  <ExternalLink size={16} />
-                </a>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
+              <a
+                href={documento.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-fit items-center gap-2 rounded-lg bg-danger px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+              >
+                Ver normativa
+                <ExternalLink size={16} />
+              </a>
+            </CardBody>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

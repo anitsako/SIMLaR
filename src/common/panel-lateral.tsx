@@ -28,6 +28,7 @@ import {
   Pickaxe,
   Target,
   Users,
+  ClipboardList
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -51,7 +52,8 @@ type RutaInterna =
   | '/analytics'
   | '/google-analytics'
   | '/galeria-fotos'
-  | '/galeria-fotos/administrar';
+  | '/galeria-fotos/administrar'
+  | '/programas';
 
 type MenuItem = {
   label: string;
@@ -121,6 +123,11 @@ const serviciosFormacionItems: Array<MenuItem> = [
     href: '/educacion',
     icon: <LibraryBig size={18} />,
   },
+  {
+    label: 'Programas',
+    href: '/programas',
+    icon: <ClipboardList size={18} />,
+  }
 ];
 
 const administracionItems: Array<MenuItem> = [
