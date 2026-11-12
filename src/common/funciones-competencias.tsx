@@ -34,13 +34,14 @@ function RamaFuncion({ unidad }: { unidad: UnidadFuncion }) {
 
 export function FuncionesCompetencias() {
   return (
-    <Accordion variant="splitted" selectionMode="multiple">
+    <Accordion selectionMode="multiple">
       {UNIDADES_FUNCIONES.map((unidad) => (
         <AccordionItem
           key={unidad.id}
           aria-label={unidad.titulo}
           title={`${unidad.numero} ${unidad.titulo}`}
-          classNames={{ title: 'font-semibold' }}
+          classNames={{ title: 'font-semibold', trigger: 'cursor-pointer' }}
+
         >
           <div className="pb-4">
             <ListaFunciones funciones={unidad.funciones} />
