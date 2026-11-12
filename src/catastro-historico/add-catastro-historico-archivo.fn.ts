@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { db } from '@/db'
 import { catastroHistoricoTable } from "@/db/schemas/catastro-historico";
 import { archivosTable } from "@/db/schemas/archivos.schema";
-import { useAppSession } from "@/auth/use-app-session";
+import { requireCatastroAdmin } from '@/catastro-minero/permisos.server';
 
 const addArchivoCatastroSchema = z.object({
   anio: z.number().int().min(2020).max(new Date().getFullYear()).positive(),
@@ -22,10 +22,7 @@ export const addCatastroHistoricoArchivoFn = createServerFn({ method: 'POST' }).
   validator(addArchivoCatastroSchema).
   handler(async ({ data }) => {
 
-    const session = await useAppSession();
-    const usuarioId = session.data.usuarioId;
-
-    if (!usuarioId) throw new Error('Usuario no autenticado');
+    const usuarioId = await requireCatastroAdmin();
 
     const filesPath = process.env.FILES_PATH;
     if (!filesPath) {

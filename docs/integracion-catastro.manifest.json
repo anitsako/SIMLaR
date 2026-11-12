@@ -1,0 +1,26 @@
+{
+  "origen": {
+    "repositorio": "https://github.com/josemaldocarre/Web-Institucional-Minera-La-Rioja",
+    "commit": "40bd1abc0945b6a6044c7d36fc60be37375aecb6"
+  },
+  "base_simlar": "9f7871a",
+  "fecha_integracion": "2026-11-12",
+  "fecha_corte_catastral": null,
+  "archivos": [
+    {
+      "ruta": "public/catastro-minero/catastro-minero.dwg",
+      "bytes": 2449408,
+      "sha256": "f710be762ad1b8e8d48bf9851646bc7602962b4f373a9c260568103b04543d0a"
+    },
+    {
+      "ruta": "public/catastro-minero/catastro-minero.geojson",
+      "bytes": 1765592,
+      "sha256": "62e6f743fcd46bf89d6c53b8aa2d812713783e83f33d669095d97e1231923d06"
+    },
+    {
+      "ruta": "public/catastro-minero/catastro-minero.pdf",
+      "bytes": 3299056,
+      "sha256": "1e0a5ba74344752239773642b6b679d49c5e6642cac0e26d81241f764c4ecb3b"
+    }
+  ]
+}
