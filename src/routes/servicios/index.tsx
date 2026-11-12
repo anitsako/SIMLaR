@@ -26,6 +26,7 @@ import type {
 } from '@/servicios/servicio-contacto.types';
 import SectionTitle from '@/common/section-title';
 import { ServicioContactoCard } from '@/servicios/servicio-contacto.card';
+import { DirectorioContacto } from '@/servicios/servicio-contacto.directorio';
 import { ServicioContactoModal } from '@/servicios/servicio-contacto.modal';
 import {
   useServiciosContactos,
@@ -238,8 +239,8 @@ function RouteComponent() {
         ) : null}
 
         {!isLoading &&
-        !error &&
-        contactos.length === 0 ? (
+          !error &&
+          contactos.length === 0 ? (
           <Card className="rounded-none border border-dashed border-default-300 shadow-none">
             <CardBody className="flex min-h-48 flex-col items-center justify-center p-8 text-center">
               <Building2 className="mb-3 h-8 w-8 text-default-400" />
@@ -273,8 +274,8 @@ function RouteComponent() {
         ) : null}
 
         {!isLoading &&
-        !error &&
-        contactos.length > 0 ? (
+          !error &&
+          contactos.length > 0 ? (
           <div className="space-y-5">
             {contactos.map(
               (contacto) => (
@@ -288,6 +289,16 @@ function RouteComponent() {
             )}
           </div>
         ) : null}
+      </section>
+
+      {/* Directorio de correos y redes */}
+      <section>
+        <SectionHeader
+          title="Correos y redes oficiales"
+          subtitle="Contacto directo con cada área de la Secretaría de Minería."
+        />
+
+        <DirectorioContacto />
       </section>
 
       {autenticado ? (
