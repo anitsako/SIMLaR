@@ -123,6 +123,14 @@ function RouteComponent() {
         </div>
       </section>
 
+      <section className='space-y-6'>
+        <SectionTitle title="Misión" />
+        <p className="text-lg text-black/70 leading-relaxed text-black/60">
+          Promover, regular y controlar la actividad minera en La Rioja para que se desarrolle de manera responsable, sostenible y transparente, y que se traduzca en empleo, oportunidades y bienestar para las y los riojanos. Lo hacemos en articulación con las comunidades, los municipios, el sector productivo y el sistema educativo y científico, fortaleciendo una minería integrada al desarrollo territorial y productivo de la provincia.
+        </p>
+
+      </section>
+
       <section className="space-y-6">
         <SectionTitle title="Objetivos del sistema" />
 
