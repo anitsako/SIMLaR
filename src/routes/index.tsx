@@ -16,7 +16,7 @@ function Home() {
   return (
     <div className="flex flex-col p-1 md:p-2 gap-4">
       {/* Carrousel */}
-      <section>
+      <section className='min-w-0 h-full'>
         <Carrousel />
       </section>
 

@@ -22,13 +22,13 @@ export const Carrousel = () => {
   return (
     <Swiper
       modules={[Autoplay, Navigation, Pagination, Scrollbar]}
-      loop={true}
+      loop={imagenes.length >= 4}
       spaceBetween={50}
       slidesPerView={1}
       autoplay={{ delay: 3000 }}
       scrollbar={{ draggable: true }}
       navigation
-      className="h-[300px] w-full"
+      className="h-[300px] w-full max-w-full overflow-hidden min-w-0"
     >
       {imagenes.map((imagen, index) => (
         <SwiperSlide key={imagen.archivoId} className="h-full">
