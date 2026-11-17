@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import type { ComponentType } from 'react';
 import SectionTitle from '@/common/section-title';
+import contenidoSecretaria from './objetivos-secretaria.json';
 
 export const Route = createFileRoute('/objetivos/')({
   component: RouteComponent,
@@ -129,6 +130,54 @@ function RouteComponent() {
           Promover, regular y controlar la actividad minera en La Rioja para que se desarrolle de manera responsable, sostenible y transparente, y que se traduzca en empleo, oportunidades y bienestar para las y los riojanos. Lo hacemos en articulación con las comunidades, los municipios, el sector productivo y el sistema educativo y científico, fortaleciendo una minería integrada al desarrollo territorial y productivo de la provincia.
         </p>
 
+      </section>
+
+      <section className="space-y-6" aria-labelledby="objetivos-secretaria">
+        <header className="border-b border-primary/50 pb-2">
+          <h2 id="objetivos-secretaria" className="text-2xl font-semibold md:text-3xl">
+            Objetivos de la Secretaría de Minería
+          </h2>
+        </header>
+
+        <div className="rounded-xl border p-6 sm:p-8">
+          <h3 className="text-xl font-semibold">{contenidoSecretaria.objetivoGeneral.title}</h3>
+          <p className="mt-3 leading-relaxed text-black/70">
+            {contenidoSecretaria.objetivoGeneral.description}
+          </p>
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-xl font-semibold">Objetivos específicos</h3>
+          <ol className="list-decimal space-y-4 pl-6 marker:font-semibold marker:text-primary">
+            {contenidoSecretaria.objetivosEspecificos.map((objetivo) => (
+              <li key={objetivo.id} className="pl-2 leading-relaxed text-black/70">
+                {objetivo.texto}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="space-y-6" aria-labelledby="politicas-publicas">
+        <header className="border-b border-primary/50 pb-2">
+          <h2 id="politicas-publicas" className="text-2xl font-semibold md:text-3xl">
+            {contenidoSecretaria.politicasPublicas.title}
+          </h2>
+        </header>
+
+        <div className="space-y-3 leading-relaxed text-black/70">
+          <p>{contenidoSecretaria.politicasPublicas.intro}</p>
+          <p>{contenidoSecretaria.politicasPublicas.body}</p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {contenidoSecretaria.politicasPublicas.ejes.map((eje) => (
+            <article key={eje.id} className="rounded-xl border p-6">
+              <h3 className="text-xl font-semibold">{eje.title}</h3>
+              <p className="mt-3 leading-relaxed text-black/70">{eje.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="space-y-6">
