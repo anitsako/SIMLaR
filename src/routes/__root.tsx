@@ -9,6 +9,7 @@ import { AppBar } from '@/common/app-bar';
 import { Footer } from '@/common/footer';
 import { getCurrentUserFn } from '@/auth/get-current-user.fn';
 import { GoogleAnalytics } from '@/analytics/google-analytics';
+import '@/i18n';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: async () => {

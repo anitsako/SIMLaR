@@ -6,6 +6,7 @@ import { File as FileIcon, Trash2, Upload } from 'lucide-react';
 import { addProyectoMineroArchivosFn } from './add-proyecto-minero-archivos.fn';
 import { removeProyectoMineroArchivoFn } from './remove-proyecto-minero-archivo.fn';
 import { useProyectoMineroArchivos } from './use-proyecto-minero-archivos';
+import { Trans, useTranslation } from 'react-i18next';
 import type { ChangeEvent, DragEvent } from 'react';
 import { formatBytes } from '@/common/format-bytes';
 
@@ -22,6 +23,7 @@ type ProyectoMineroArchivosManagerProps = {
 };
 
 export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMineroArchivosManagerProps) => {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const [archivoAEliminar, setArchivoAEliminar] = useState<{ archivoId: string; nombre: string } | null>(null);
@@ -36,8 +38,8 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
     onSuccess: (resultado) => {
       queryClient.invalidateQueries({ queryKey: ['proyectos-mineros-archivos', proyectoMineroId] });
       addToast({
-        title: 'Archivo agregado',
-        description: `Se cargó "${resultado.archivo.nombre}" correctamente.`,
+        title: t('routes.admin.proyectosMineros.archivos.agregadoTitulo'),
+        description: t('routes.admin.proyectosMineros.archivos.agregadoDescripcion', { nombre: resultado.archivo.nombre }),
         color: 'success',
         variant: 'solid',
       });
@@ -49,8 +51,8 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['proyectos-mineros-archivos', proyectoMineroId] });
       addToast({
-        title: 'Archivo quitado',
-        description: 'El archivo fue desvinculado del proyecto minero.',
+        title: t('routes.admin.proyectosMineros.archivos.quitadoTitulo'),
+        description: t('routes.admin.proyectosMineros.archivos.quitadoDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -74,8 +76,8 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
       agregarArchivosMutation.mutate({ data: { proyectoMineroId, archivo } });
     } catch (error) {
       addToast({
-        title: 'Error al preparar archivos',
-        description: error instanceof Error ? error.message : 'No se pudieron procesar los archivos seleccionados.',
+        title: t('routes.admin.proyectosMineros.archivos.errorPrepararTitulo'),
+        description: error instanceof Error ? error.message : t('routes.admin.proyectosMineros.archivos.errorPrepararDescripcion'),
         color: 'danger',
         variant: 'solid',
       });
@@ -113,26 +115,26 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
         <div className="mx-auto flex max-w-xl flex-col items-center gap-3">
           <Upload className="h-8 w-8 text-default-500" />
           <p className="text-sm text-default-600">
-            Arrastrá y soltá un archivo aquí o seleccioná un archivo para agregar al proyecto minero.
+            {t('routes.admin.proyectosMineros.archivos.arrastrar')}
           </p>
           <Button onPress={() => inputRef.current?.click()} isLoading={agregarArchivosMutation.isPending}>
-            Agregar archivo
+            {t('routes.admin.proyectosMineros.archivos.agregar')}
           </Button>
         </div>
       </div>
 
       {agregarArchivosMutation.error && (
-        <Alert color="danger">Error al agregar archivo: {agregarArchivosMutation.error.message}</Alert>
+        <Alert color="danger">{t('routes.admin.proyectosMineros.archivos.errorAgregar', { mensaje: agregarArchivosMutation.error.message })}</Alert>
       )}
 
       {quitarArchivoMutation.error && (
-        <Alert color="danger">Error al quitar archivo: {quitarArchivoMutation.error.message}</Alert>
+        <Alert color="danger">{t('routes.admin.proyectosMineros.archivos.errorQuitar', { mensaje: quitarArchivoMutation.error.message })}</Alert>
       )}
 
       {isFetching ? (
-        <p>Cargando archivos...</p>
+        <p>{t('routes.admin.proyectosMineros.archivos.cargando')}</p>
       ) : archivos.length === 0 ? (
-        <p>Este proyecto no tiene archivos cargados.</p>
+        <p>{t('routes.admin.proyectosMineros.archivos.vacio')}</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {archivos.map((archivo) => (
@@ -157,7 +159,7 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
                 color="danger"
                 variant="flat"
                 className="absolute right-2 top-2 opacity-0 transition group-hover:opacity-100 group-focus-within:opacity-100"
-                aria-label={`Quitar ${archivo.nombre}`}
+                aria-label={t('routes.admin.proyectosMineros.archivos.quitarAria', { nombre: archivo.nombre })}
                 onPress={() => setArchivoAEliminar({ archivoId: archivo.archivoId, nombre: archivo.nombre })}
               >
                 <Trash2 className="h-4 w-4" />
@@ -169,17 +171,21 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
 
       <Modal isOpen={!!archivoAEliminar} onClose={() => setArchivoAEliminar(null)}>
         <ModalContent>
-          <ModalHeader>Quitar archivo</ModalHeader>
+          <ModalHeader>{t('routes.admin.proyectosMineros.archivos.quitarTitulo')}</ModalHeader>
           <ModalBody>
             {archivoAEliminar ? (
               <p>
-                ¿Querés quitar <span className="font-semibold">{archivoAEliminar.nombre}</span> del proyecto minero?
+                <Trans
+                  i18nKey="routes.admin.proyectosMineros.archivos.confirmarQuitar"
+                  values={{ nombre: archivoAEliminar.nombre }}
+                  components={{ b: <span className="font-semibold" /> }}
+                />
               </p>
             ) : null}
           </ModalBody>
           <ModalFooter>
             <Button variant="flat" onPress={() => setArchivoAEliminar(null)}>
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
             <Button
               color="danger"
@@ -194,7 +200,7 @@ export const ProyectoMineroArchivosManager = ({ proyectoMineroId }: ProyectoMine
                 });
               }}
             >
-              Quitar
+              {t('common.acciones.quitar')}
             </Button>
           </ModalFooter>
         </ModalContent>

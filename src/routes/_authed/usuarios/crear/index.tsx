@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Alert, Button, Checkbox, Input, addToast } from '@heroui/react';
 import { useState } from 'react';
 import type { SubmitEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { createUsuarioFn } from '@/usuarios/create-usuario.fn';
 
 export const Route = createFileRoute('/_authed/usuarios/crear/')({
@@ -13,10 +14,12 @@ export const Route = createFileRoute('/_authed/usuarios/crear/')({
     }
   },
   errorComponent: ({ error }) => {
+    const { t } = useTranslation();
+
     if (error.message === 'Not authorized') {
       return (
         <div className="max-w-6xl w-full">
-          <Alert color="danger" title="No estás autorizado. No tienes permisos para acceder a esta página." />
+          <Alert color="danger" title={t('common.errores.noAutorizado')} />
         </div>
       );
     }
@@ -27,6 +30,7 @@ export const Route = createFileRoute('/_authed/usuarios/crear/')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [data, setData] = useState({
     username: '',
@@ -50,8 +54,8 @@ function RouteComponent() {
     mutationFn: createUsuario,
     onSuccess: () => {
       addToast({
-        title: 'Usuario creado',
-        description: 'El usuario fue creado correctamente',
+        title: t('routes.admin.usuarios.crear.exitoTitulo'),
+        description: t('routes.admin.usuarios.crear.exitoDescripcion'),
         color: 'success',
         variant: 'flat',
       });
@@ -74,17 +78,17 @@ function RouteComponent() {
 
   return (
     <div className="mt-4 space-y-6">
-      <h1 className="text-2xl font-bold">Crear Usuario</h1>
+      <h1 className="text-2xl font-bold">{t('routes.admin.usuarios.crear.titulo')}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="Username"
+          label={t('routes.admin.usuarios.form.username')}
           value={data.username}
           onValueChange={(v) => setData((prev) => ({ ...prev, username: v }))}
           maxLength={50}
           isRequired
         />
         <Input
-          label="Contraseña"
+          label={t('routes.admin.usuarios.form.contrasena')}
           value={data.contraseña}
           onValueChange={(v) => setData((prev) => ({ ...prev, contraseña: v }))}
           type="password"
@@ -92,21 +96,21 @@ function RouteComponent() {
           isRequired
         />
         <Input
-          label="Nombre"
+          label={t('routes.admin.usuarios.form.nombre')}
           value={data.nombre}
           onValueChange={(v) => setData((prev) => ({ ...prev, nombre: v }))}
           maxLength={50}
           isRequired
         />
         <Input
-          label="Apellido"
+          label={t('routes.admin.usuarios.form.apellido')}
           value={data.apellido}
           onValueChange={(v) => setData((prev) => ({ ...prev, apellido: v }))}
           maxLength={50}
           isRequired
         />
         <Input
-          label="Email"
+          label={t('routes.admin.usuarios.form.email')}
           value={data.email}
           onValueChange={(v) => setData((prev) => ({ ...prev, email: v }))}
           type="email"
@@ -115,19 +119,19 @@ function RouteComponent() {
         />
         <div>
           <Checkbox isSelected={data.esAdmin} onValueChange={(v) => setData((prev) => ({ ...prev, esAdmin: v }))}>
-            Es administrador
+            {t('routes.admin.usuarios.form.esAdmin')}
           </Checkbox>
         </div>
 
         {(validationError || error) && (
-          <Alert color="danger">{validationError ?? (error as any)?.message ?? 'Error al crear el usuario.'}</Alert>
+          <Alert color="danger">{validationError ?? (error as any)?.message ?? t('routes.admin.usuarios.crear.error')}</Alert>
         )}
 
         <Button type="submit" isLoading={isPending} color="primary">
-          Crear Usuario
+          {t('routes.admin.usuarios.crear.boton')}
         </Button>
         <Button type="button" onPress={() => navigate({ to: '/usuarios' })} className="bg-primary-50 ml-2">
-          Volver
+          {t('common.acciones.volver')}
         </Button>
       </form>
     </div>

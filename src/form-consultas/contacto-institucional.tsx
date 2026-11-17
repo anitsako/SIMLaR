@@ -1,15 +1,17 @@
 import { Button, Card, CardBody, CardHeader, Chip, Divider, addToast } from '@heroui/react';
 import { Building2, Clipboard, Clock, Mail, Send } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function ContactoInstitucional() {
+  const { t } = useTranslation();
   const email = 'simlar@emse.ar'; 
 
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(email);
       addToast({
-        title: 'Email copiado',
-        description: `El email se copió al portapapeles`,
+        title: t('routes.contacto.contactoInstitucional.copiadoTitulo'),
+        description: t('routes.contacto.contactoInstitucional.copiadoDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -26,13 +28,13 @@ export function ContactoInstitucional() {
             <Building2 className="w-6 h-6" />
           </div>
           <div>
-            <p className="text-2xl font-bold">Contacto institucional</p>
-            <p className="text-default-500">Canal oficial para consultas y notas.</p>
+            <p className="text-2xl font-bold">{t('routes.contacto.contactoInstitucional.title')}</p>
+            <p className="text-default-500">{t('routes.contacto.contactoInstitucional.cardDescripcion')}</p>
           </div>
         </div>
 
         <Chip color="primary" variant="flat">
-          Oficial
+          {t('routes.contacto.contactoInstitucional.oficial')}
         </Chip>
       </CardHeader>
 
@@ -42,7 +44,7 @@ export function ContactoInstitucional() {
         <div className="rounded-2xl p-4 bg-default-50 border border-default-200">
           <div className="flex items-center gap-2">
             <Mail className="w-5 h-5" />
-            <p className="font-semibold">Email</p>
+            <p className="font-semibold">{t('routes.contacto.contactoInstitucional.email')}</p>
           </div>
 
           <a href={`mailto:${email}`} className="block mt-2 text-lg font-medium text-primary">
@@ -57,27 +59,26 @@ export function ContactoInstitucional() {
               as="a"
               href={`mailto:${email}`}
             >
-              Enviar
+              {t('common.acciones.enviar')}
             </Button>
             <Button variant="flat" startContent={<Clipboard className="w-4 h-4" />} onPress={copy}>
-              Copiar
+              {t('common.acciones.copiar')}
             </Button>
           </div>
 
-          <p className="mt-3 text-sm text-default-500">Tiempo estimado de respuesta: 24–48 h hábiles.</p>
+          <p className="mt-3 text-sm text-default-500">{t('routes.contacto.contactoInstitucional.tiempoRespuesta')}</p>
         </div>
 
         <div className="rounded-2xl p-4 bg-default-50 border border-default-200">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5" />
-            <p className="font-semibold">Horario de atención</p>
+            <p className="font-semibold">{t('routes.contacto.contactoInstitucional.horarioTitulo')}</p>
           </div>
 
-          <p className="mt-2 text-default-700">Lunes a viernes - 09:00 a 13:00 y 18:00 a 21:00</p>
+          <p className="mt-2 text-default-700">{t('routes.contacto.contactoInstitucional.horario')}</p>
 
           <p className="mt-3 text-sm text-default-500">
-            Para consultas técnicas sobre proyectos, podes escribirnos a través del formulario de consultas o al email
-            institucional.
+            {t('routes.contacto.contactoInstitucional.consultasTecnicas')}
           </p>
         </div>
       </CardBody>

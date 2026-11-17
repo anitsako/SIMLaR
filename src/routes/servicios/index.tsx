@@ -17,6 +17,7 @@ import {
   Plus,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { ReactNode } from 'react';
 
 import 'leaflet/dist/leaflet.css';
@@ -73,6 +74,7 @@ function SectionHeader({
 }
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const { usuario } =
     rootRoute.useRouteContext();
 
@@ -117,15 +119,15 @@ function RouteComponent() {
     <div className="mt-4 space-y-10 pb-12">
       <section>
         <SectionTitle
-          title="Servicios"
-          subtitle="Trámites, plataformas oficiales y canales de atención vinculados al sector minero."
+          title={t('routes.servicios.page.title')}
+          subtitle={t('routes.servicios.page.subtitle')}
         />
       </section>
 
       <section>
         <SectionHeader
-          title="Registro de Proveedores Mineros"
-          subtitle="Acceso al sistema provincial para la inscripción y actualización de proveedores del sector minero."
+          title={t('routes.servicios.proveedores.title')}
+          subtitle={t('routes.servicios.proveedores.subtitle')}
         />
 
         <Card className="rounded-none border border-default-300 shadow-sm">
@@ -138,18 +140,15 @@ function RouteComponent() {
 
                 <div>
                   <h3 className="text-lg font-semibold text-default-700">
-                    Portal de Proveedores Mineros
+                    {t('routes.servicios.proveedores.portalTitulo')}
                   </h3>
 
                   <p className="mt-2 max-w-4xl text-sm leading-6 text-default-600">
-                    Ingresá al portal oficial para iniciar una
-                    inscripción, presentar antecedentes o actualizar
-                    los datos de un proveedor registrado.
+                    {t('routes.servicios.proveedores.portalDescripcion')}
                   </p>
 
                   <p className="mt-2 text-xs text-default-500">
-                    El enlace abre una plataforma externa del Gobierno
-                    de La Rioja.
+                    {t('routes.servicios.proveedores.enlaceExterno')}
                   </p>
                 </div>
               </div>
@@ -165,7 +164,7 @@ function RouteComponent() {
                 }
                 className="w-full md:w-auto"
               >
-                Abrir portal
+                {t('routes.servicios.proveedores.abrirPortal')}
               </Button>
             </div>
           </CardBody>
@@ -175,7 +174,7 @@ function RouteComponent() {
       {/* Trámites digitales */}
       <section>
         <SectionHeader
-          title="Trámites digitales"
+          title={t('routes.servicios.tramitesDigitales.title')}
         />
 
         <Alert
@@ -188,14 +187,11 @@ function RouteComponent() {
         >
           <div>
             <p className="font-semibold">
-              Módulo en desarrollo
+              {t('routes.servicios.tramitesDigitales.enDesarrollo')}
             </p>
 
             <p className="mt-1 text-sm leading-6">
-              Actualmente no es posible iniciar trámites directamente
-              desde SIMLaR. Mientras se completa su implementación,
-              las consultas y presentaciones deben realizarse ante los
-              organismos indicados a continuación.
+              {t('routes.servicios.tramitesDigitales.descripcion')}
             </p>
           </div>
         </Alert>
@@ -204,8 +200,8 @@ function RouteComponent() {
       {/* Organismos */}
       <section>
         <SectionHeader
-          title="Organismos y canales de atención"
-          subtitle="Información institucional, trámites relacionados, datos de contacto y ubicación."
+          title={t('routes.servicios.organismos.title')}
+          subtitle={t('routes.servicios.organismos.subtitle')}
           right={
             autenticado ? (
               <Button
@@ -216,7 +212,7 @@ function RouteComponent() {
                 }
                 onPress={abrirNuevo}
               >
-                Agregar organismo
+                {t('routes.servicios.organismos.agregar')}
               </Button>
             ) : undefined
           }
@@ -224,7 +220,7 @@ function RouteComponent() {
 
         {isLoading ? (
           <div className="flex min-h-48 items-center justify-center border border-default-300 bg-background">
-            <Spinner label="Cargando organismos..." />
+            <Spinner label={t('routes.servicios.organismos.cargando')} />
           </div>
         ) : null}
 
@@ -234,7 +230,7 @@ function RouteComponent() {
             variant="flat"
             className="rounded-none"
           >
-            No fue posible cargar los organismos de contacto.
+            {t('routes.servicios.organismos.error')}
           </Alert>
         ) : null}
 
@@ -246,13 +242,13 @@ function RouteComponent() {
               <Building2 className="mb-3 h-8 w-8 text-default-400" />
 
               <p className="font-medium text-default-700">
-                No hay organismos publicados
+                {t('routes.servicios.organismos.vacioTitulo')}
               </p>
 
               <p className="mt-2 max-w-xl text-sm leading-6 text-default-500">
                 {autenticado
-                  ? 'Todavía no hay organismos cargados. Utilizá “Agregar organismo” para crear el primero.'
-                  : 'Los canales de atención serán publicados próximamente.'}
+                  ? t('routes.servicios.organismos.vacioAdmin')
+                  : t('routes.servicios.organismos.vacioPublico')}
               </p>
 
               {autenticado ? (
@@ -266,7 +262,7 @@ function RouteComponent() {
                   }
                   onPress={abrirNuevo}
                 >
-                  Agregar organismo
+                  {t('routes.servicios.organismos.agregar')}
                 </Button>
               ) : null}
             </CardBody>
@@ -294,8 +290,8 @@ function RouteComponent() {
       {/* Directorio de correos y redes */}
       <section>
         <SectionHeader
-          title="Correos y redes oficiales"
-          subtitle="Contacto directo con cada área de la Secretaría de Minería."
+          title={t('routes.servicios.directorio.title')}
+          subtitle={t('routes.servicios.directorio.subtitle')}
         />
 
         <DirectorioContacto />

@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Alert, Button, Input, NumberInput, Switch, Textarea, addToast } from '@heroui/react';
 import 'leaflet/dist/leaflet.css';
 import { useServerFn } from '@tanstack/react-start';
+import { useTranslation } from 'react-i18next';
 import type { SubmitEvent } from 'react';
 import type { ModeloTerrenoData } from '@/modelos-terreno/modelos-terreno-fields';
 import { createProyectoMineroFn } from '@/proyectos-mineros/create-proyecto-minero.fn';
@@ -19,6 +20,7 @@ export const Route = createFileRoute('/_authed/proyectos-mineros/crear/')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [data, setData] = useState({
     nombre: '',
@@ -67,8 +69,8 @@ function RouteComponent() {
     },
     onSuccess: () => {
       addToast({
-        title: 'Proyecto creado',
-        description: 'El proyecto minero fue creado correctamente.',
+        title: t('routes.admin.proyectosMineros.crear.exitoTitulo'),
+        description: t('routes.admin.proyectosMineros.crear.exitoDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -92,17 +94,17 @@ function RouteComponent() {
       !Number.isFinite(data.areaHectareas) ||
       data.areaHectareas <= 0
     ) {
-      setValidationError('Debe ingresar una superficie válida en hectáreas.');
+      setValidationError(t('routes.admin.proyectosMineros.validacion.superficie'));
       return;
     }
 
     if (!data.msnm) {
-      setValidationError('Debe ingresar la altitud (msnm).');
+      setValidationError(t('routes.admin.proyectosMineros.validacion.altitud'));
       return;
     }
 
     if (!data.archivoMapa) {
-      setValidationError('Debe subir un archivo de mapa.');
+      setValidationError(t('routes.admin.proyectosMineros.validacion.archivoMapa'));
       return;
     }
 
@@ -175,11 +177,11 @@ function RouteComponent() {
   };
   return (
     <div className="my-4 space-y-6">
-      <h1 className="text-2xl font-bold">Crear proyecto minero</h1>
+      <h1 className="text-2xl font-bold">{t('routes.admin.proyectosMineros.crear.titulo')}</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="Nombre"
+          label={t('routes.admin.proyectosMineros.form.nombre')}
           value={data.nombre}
           onValueChange={(v) => setData((prev) => ({ ...prev, nombre: v }))}
           maxLength={100}
@@ -193,7 +195,7 @@ function RouteComponent() {
         />
 
         <Textarea
-          label="Ubicación"
+          label={t('routes.admin.proyectosMineros.form.ubicacion')}
           value={data.ubicacion}
           onValueChange={(v) => setData((prev) => ({ ...prev, ubicacion: v }))}
           maxLength={100}
@@ -202,7 +204,7 @@ function RouteComponent() {
         />
 
         <Textarea
-          label="Provincia geológica"
+          label={t('routes.admin.proyectosMineros.form.provinciaGeologica')}
           value={data.provinciaGeologica}
           onValueChange={(v) => setData((prev) => ({ ...prev, provinciaGeologica: v }))}
           maxLength={100}
@@ -211,8 +213,8 @@ function RouteComponent() {
         />
 
         <NumberInput
-          label="Superficie (hectáreas)"
-          description="Ingresá únicamente el número, sin escribir ha ni Hs."
+          label={t('routes.admin.proyectosMineros.form.superficie')}
+          description={t('routes.admin.proyectosMineros.form.superficieAyuda')}
           value={data.areaHectareas}
           onValueChange={(v) =>
             setData((prev) => ({
@@ -226,7 +228,7 @@ function RouteComponent() {
         />
 
         <Textarea
-          label="Litología"
+          label={t('routes.admin.proyectosMineros.form.litologia')}
           value={data.litologia}
           onValueChange={(v) => setData((prev) => ({ ...prev, litologia: v }))}
           isRequired
@@ -234,7 +236,7 @@ function RouteComponent() {
         />
 
         <Textarea
-          label="Mineralización"
+          label={t('routes.admin.proyectosMineros.form.mineralizacion')}
           value={data.mineralizacion}
           onValueChange={(v) => setData((prev) => ({ ...prev, mineralizacion: v }))}
           isRequired
@@ -242,7 +244,7 @@ function RouteComponent() {
         />
 
         <Input
-          label="Mineral de interés"
+          label={t('routes.admin.proyectosMineros.form.mineral')}
           value={data.mineralInteres}
           onValueChange={(v) => setData((prev) => ({ ...prev, mineralInteres: v }))}
           maxLength={100}
@@ -250,14 +252,14 @@ function RouteComponent() {
         />
 
         <Textarea
-          label="Modelo genético"
+          label={t('routes.admin.proyectosMineros.form.modeloGenetico')}
           value={data.modeloGenetico}
           onValueChange={(v) => setData((prev) => ({ ...prev, modeloGenetico: v }))}
           minRows={3}
         />
 
         <Textarea
-          label="Accesos"
+          label={t('routes.admin.proyectosMineros.form.accesos')}
           value={data.accesos}
           onValueChange={(v) => setData((prev) => ({ ...prev, accesos: v }))}
           isRequired
@@ -271,7 +273,7 @@ function RouteComponent() {
         />
 
         <Input
-          label="Propietario"
+          label={t('routes.admin.proyectosMineros.form.propietario')}
           value={data.propietario}
           onValueChange={(v) => setData((prev) => ({ ...prev, propietario: v }))}
           maxLength={100}
@@ -279,7 +281,7 @@ function RouteComponent() {
         />
 
         <Textarea
-          label="Localidades cercanas"
+          label={t('routes.admin.proyectosMineros.form.localidades')}
           value={data.localidadesCercanas}
           onValueChange={(v) => setData((prev) => ({ ...prev, localidadesCercanas: v }))}
           maxLength={100}
@@ -295,7 +297,7 @@ function RouteComponent() {
         </ClientOnly>
 
         <NumberInput
-          label="Altitud (msnm)"
+          label={t('routes.admin.proyectosMineros.form.altitud')}
           value={data.msnm}
           onValueChange={(v) => setData((prev) => ({ ...prev, msnm: v }))}
           isRequired
@@ -306,17 +308,17 @@ function RouteComponent() {
             isSelected={data.convenioEmse}
             onValueChange={(v) => setData((prev) => ({ ...prev, convenioEmse: v }))}
           >
-            Convenio EMSE
+            {t('routes.admin.proyectosMineros.form.convenio')}
           </Switch>
           <Switch isSelected={data.visible} onValueChange={(v) => setData((prev) => ({ ...prev, visible: v }))}>
-            Visible
+            {t('routes.admin.proyectosMineros.form.visible')}
           </Switch>
         </div>
 
         <ArchivoField
           required
           accept="image/png, image/jpeg, image/webp"
-          label="Archivo de mapa"
+          label={t('routes.admin.proyectosMineros.form.archivoMapa')}
           onChange={(archivoMapa) => setData((prev) => ({ ...prev, archivoMapa }))}
         />
         {/* NUEVO: sección de modelo de terreno */}
@@ -324,12 +326,12 @@ function RouteComponent() {
 
         {(validationError || error) && (
           <Alert color="danger">
-            {validationError ?? (error as any)?.message ?? 'Error al crear el proyecto minero.'}
+            {validationError ?? (error as any)?.message ?? t('routes.admin.proyectosMineros.crear.error')}
           </Alert>
         )}
 
         <Button type="submit" color="primary" isLoading={isPending} className="w-full">
-          Crear proyecto
+          {t('routes.admin.proyectosMineros.crear.boton')}
         </Button>
       </form>
     </div>

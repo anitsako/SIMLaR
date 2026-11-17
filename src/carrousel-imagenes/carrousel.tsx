@@ -1,5 +1,6 @@
 import { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useTranslation } from 'react-i18next';
 import { useImagenesCarrousel } from './use-imagenes-carrousel';
 
 // Por el momento se deja el carrousel sin props,
@@ -15,6 +16,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export const Carrousel = () => {
+  const { t } = useTranslation();
   const { data: imagenes } = useImagenesCarrousel();
 
   return (
@@ -32,7 +34,7 @@ export const Carrousel = () => {
         <SwiperSlide key={imagen.archivoId} className="h-full">
           <img
             src={`/archivos/${imagen.archivoId}/${imagen.nombre}`}
-            alt={`Slide ${index + 1}`}
+            alt={t('routes.inicio.carrousel.slideAlt', { n: index + 1 })}
             className="h-full w-full object-cover"
             style={{ objectPosition: `center ${imagen.positionY}%` }}
           />

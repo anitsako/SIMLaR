@@ -1,6 +1,7 @@
 import { Card, CardBody, CardHeader } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { ExternalLink, FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/transparencia/')({
@@ -9,54 +10,50 @@ export const Route = createFileRoute('/transparencia/')({
 
 const documentosNormativos = [
   {
-    titulo: 'Ley Nº 24.430 - Constitución Nacional',
-    descripcion: 'Establece que el Estado adopta un sistema de gobierno representativo, republicano y federal',
+    titulo: 'routes.transparencia.normas.constitucionNacional.titulo',
+    descripcion: 'routes.transparencia.normas.constitucionNacional.descripcion',
     url: 'https://servicios.infoleg.gob.ar/infolegInternet/anexos/0-4999/804/norma.htm',
   },
   {
-    titulo: 'Convocada mediante la Ley Nº 10.609 - Constitución Provincial',
-    descripcion: 'Establece que el Estado provincial adopta un sistema de gobierno representativo, republicano, democrático y social',
+    titulo: 'routes.transparencia.normas.constitucionProvincial.titulo',
+    descripcion: 'routes.transparencia.normas.constitucionProvincial.descripcion',
     url: 'https://www.saij.gob.ar/0-local-rioja-constitucion-provincia-rioja-lpf1000000-2008-05-14/123456789-0abc-defg-000-0001fvorpyel',
   },
   {
-    titulo: 'Ley Nº 1919 - Código de Minería',
-    descripcion:
-      'Código nacional que regula los derechos, obligaciones y procedimientos vinculados a la actividad minera en Argentina.',
+    titulo: 'routes.transparencia.normas.codigoMineria.titulo',
+    descripcion: 'routes.transparencia.normas.codigoMineria.descripcion',
     url: 'https://www.argentina.gob.ar/normativa/nacional/ley-1919-43797/actualizacion',
   },
   {
-    titulo: 'Ley Nº 7277 - Código de Procedimientos Mineros',
-    descripcion:
-      'Norma provincial que regula el procedimiento de las actividades mineras en la Provincia de La Rioja.',
+    titulo: 'routes.transparencia.normas.codigoProcedimientos.titulo',
+    descripcion: 'routes.transparencia.normas.codigoProcedimientos.descripcion',
     url: 'https://www.argentina.gob.ar/normativa/provincial/ley-7277-123456789-0abc-defg-772-7000fvorpyel/actualizacion',
   },
   {
-    titulo: 'Ley Nº 24.196 - Inversiones Mineras',
-    descripcion:
-      'Régimen nacional de inversiones para la actividad minera en Argentina.',
+    titulo: 'routes.transparencia.normas.inversionesMineras.titulo',
+    descripcion: 'routes.transparencia.normas.inversionesMineras.descripcion',
     url: 'https://www.argentina.gob.ar/normativa/nacional/ley-24196-594/actualizacion',
   },
   {
-    titulo: 'Ley Nº 24.585 - Protección Ambiental Minera',
-    descripcion:
-      'Normativa nacional vinculada a la protección ambiental para la actividad minera.',
+    titulo: 'routes.transparencia.normas.proteccionAmbiental.titulo',
+    descripcion: 'routes.transparencia.normas.proteccionAmbiental.descripcion',
     url: 'https://www.argentina.gob.ar/normativa/nacional/ley-24585-30096/texto',
   },
   {
-    titulo: 'Ley Nº 10.799 - Proveedores Mineros',
-    descripcion: 'Regula la declaración jurada de compras a proveedores locales y el desarrollo de la cadena de valor regional.',
+    titulo: 'routes.transparencia.normas.proveedoresMineros.titulo',
+    descripcion: 'routes.transparencia.normas.proveedoresMineros.descripcion',
     url: 'https://proveedoresmineros.larioja.gob.ar/wp-content/uploads/2025/07/Ley_10799_2025-06-27_para_el_desarrollo_de_proveedores_mineros_y_mano_de_obra_riojana.pdf',
   }
 ];
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <div className="mt-4 w-full max-w-6xl space-y-8">
-      <SectionTitle title="Marco normativo" />
+      <SectionTitle title={t('routes.transparencia.page.title')} />
 
       <p className="text-default-600">
-        En esta sección se ponen a disposición enlaces oficiales a normativa vinculada a la actividad minera,
-        el procedimiento administrativo minero, la protección ambiental y el marco legal aplicable.
+        {t('routes.transparencia.page.description')}
       </p>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -71,15 +68,15 @@ function RouteComponent() {
               </div>
 
               <div>
-                <p className="text-xl font-bold">{documento.titulo}</p>
+                <p className="text-xl font-bold">{t(documento.titulo)}</p>
                 <p className="text-sm text-default-500">
-                  Enlace oficial disponible en argentina.gob.ar
+                  {t('routes.transparencia.enlaceOficial')}
                 </p>
               </div>
             </CardHeader>
 
             <CardBody className="space-y-4">
-              <p className="text-default-600">{documento.descripcion}</p>
+              <p className="text-default-600">{t(documento.descripcion)}</p>
 
               <a
                 href={documento.url}
@@ -87,7 +84,7 @@ function RouteComponent() {
                 rel="noopener noreferrer"
                 className="inline-flex w-fit items-center gap-2 rounded-lg bg-danger px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
               >
-                Ver normativa
+                {t('routes.transparencia.verNormativa')}
                 <ExternalLink size={16} />
               </a>
             </CardBody>

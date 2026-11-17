@@ -3,6 +3,9 @@ import { useEffect, useRef } from 'react';
 import { Circle, Hexagon, Pentagon, Square, Triangle } from 'lucide-react';
 import { useProyectosMinerosTipos } from './use-proyectos-mineros-tipos';
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+
+
 
 export const ProyectoMineroTiposField = ({
   ids,
@@ -32,9 +35,11 @@ export const ProyectoMineroTiposField = ({
     hexagon: <Hexagon />,
   };
 
+  const { t } = useTranslation();
+
   return (
     <Select
-      label="Tipos de proyecto minero"
+      label={t("routes.inicio.mapa.tipos")}
       isLoading={isFetching}
       isRequired={required}
       selectionMode="multiple"

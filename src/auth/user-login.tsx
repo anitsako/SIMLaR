@@ -13,9 +13,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useServerFn } from '@tanstack/react-start';
 import { useState } from 'react';
 import { CircleUserRound } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { loginFn } from './login.fn';
 
 export const UserLogin = () => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -46,17 +48,17 @@ export const UserLogin = () => {
   return (
     <>
       <Button color="primary" startContent={<CircleUserRound />} onPress={onOpen}>
-        Ingresar
+        {t('auth.login.abrir')}
       </Button>
 
       <Modal isOpen={isOpen} onClose={handleClose} placement="center">
         <ModalContent>
-          <ModalHeader>Iniciar sesión</ModalHeader>
+          <ModalHeader>{t('auth.login.titulo')}</ModalHeader>
           <ModalBody>
             {error && <Alert color="danger" title={error} />}
-            <Input label="Usuario" value={username} onValueChange={setUsername} />
+            <Input label={t('auth.login.usuario')} value={username} onValueChange={setUsername} />
             <Input
-              label="Contraseña"
+              label={t('auth.login.contrasena')}
               type="password"
               value={password}
               onValueChange={setPassword}
@@ -67,10 +69,10 @@ export const UserLogin = () => {
           </ModalBody>
           <ModalFooter>
             <Button variant="flat" onPress={handleClose}>
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
             <Button color="primary" isLoading={isPending} onPress={handleLogin}>
-              Ingresar
+              {t('auth.login.ingresar')}
             </Button>
           </ModalFooter>
         </ModalContent>

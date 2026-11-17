@@ -11,6 +11,7 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BookOpenText, Edit, Files } from 'lucide-react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
@@ -24,6 +25,7 @@ export const ProyectosMinerosTable = ({
 }: {
   visibleBase?: boolean;
 }) => {
+  const { t } = useTranslation();
   const {
     nombreLike,
     tiposIds,
@@ -87,7 +89,7 @@ export const ProyectosMinerosTable = ({
 
   if (error) {
     console.error(error);
-    return <div>Error al cargar los proyectos</div>;
+    return <div>{t('routes.proyectosMineros.tabla.error')}</div>;
   }
 
   if (
@@ -96,7 +98,7 @@ export const ProyectosMinerosTable = ({
   ) {
     return (
       <div className="flex items-center justify-center text-lg">
-        Cargando proyectos...
+        {t('routes.proyectosMineros.tabla.cargando')}
       </div>
     );
   }
@@ -104,7 +106,7 @@ export const ProyectosMinerosTable = ({
   if (proyectosMineros.length === 0) {
     return (
       <div className="flex items-center justify-center py-16 text-xl">
-        No hay proyectos para mostrar
+        {t('routes.proyectosMineros.tabla.vacio')}
       </div>
     );
   }
@@ -137,14 +139,14 @@ export const ProyectosMinerosTable = ({
         }}
       >
         <TableHeader>
-          <TableColumn key="nombre">NOMBRE</TableColumn>
-          <TableColumn key="tipo.nombre">TIPO</TableColumn>
-          <TableColumn key="ubicacion">UBICACIÓN</TableColumn>
-          <TableColumn key="mineral">MINERAL</TableColumn>
-          <TableColumn key="etapa.nombre">ETAPA</TableColumn>
-          <TableColumn key="propietario">PROPIETARIO</TableColumn>
-          <TableColumn key="coordenadas">COORDENADAS</TableColumn>
-          <TableColumn key="detalles">DETALLES</TableColumn>
+          <TableColumn key="nombre">{t('routes.proyectosMineros.tabla.columnas.nombre')}</TableColumn>
+          <TableColumn key="tipo.nombre">{t('routes.proyectosMineros.tabla.columnas.tipo')}</TableColumn>
+          <TableColumn key="ubicacion">{t('routes.proyectosMineros.tabla.columnas.ubicacion')}</TableColumn>
+          <TableColumn key="mineral">{t('routes.proyectosMineros.tabla.columnas.mineral')}</TableColumn>
+          <TableColumn key="etapa.nombre">{t('routes.proyectosMineros.tabla.columnas.etapa')}</TableColumn>
+          <TableColumn key="propietario">{t('routes.proyectosMineros.tabla.columnas.propietario')}</TableColumn>
+          <TableColumn key="coordenadas">{t('routes.proyectosMineros.tabla.columnas.coordenadas')}</TableColumn>
+          <TableColumn key="detalles">{t('routes.proyectosMineros.tabla.columnas.detalles')}</TableColumn>
         </TableHeader>
 
         <TableBody items={proyectosMineros}>
@@ -178,7 +180,7 @@ export const ProyectosMinerosTable = ({
                         size="sm"
                         variant="light"
                         color="primary"
-                        aria-label={`Ver detalles de ${item.nombre}`}
+                        aria-label={t('routes.proyectosMineros.tabla.verDetallesAria', { nombre: item.nombre })}
                         onPress={() => {
                           setSelectedId(item.id);
                           onOpen();
@@ -192,7 +194,7 @@ export const ProyectosMinerosTable = ({
                         size="sm"
                         variant="light"
                         color="secondary"
-                        aria-label={`Modificar ${item.nombre}`}
+                        aria-label={t('routes.proyectosMineros.tabla.modificarAria', { nombre: item.nombre })}
                         onPress={() =>
                           navigate({
                             to: '/proyectos-mineros/$id/modificar',
@@ -210,7 +212,7 @@ export const ProyectosMinerosTable = ({
                         size="sm"
                         variant="light"
                         color="secondary"
-                        aria-label={`Administrar archivos de ${item.nombre}`}
+                        aria-label={t('routes.proyectosMineros.tabla.archivosAria', { nombre: item.nombre })}
                         onPress={() =>
                           navigate({
                             to: '/proyectos-mineros/$id/archivos',

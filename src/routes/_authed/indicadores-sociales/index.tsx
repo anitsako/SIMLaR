@@ -10,6 +10,7 @@ import {
 import { createFileRoute } from '@tanstack/react-router';
 import { ChartBar, Pencil, Plus } from 'lucide-react';
 
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 import { IndicadoresDepartamentoModal } from '@/indicadores-sociales/indicadores-departamento.modal';
 import { useDepartamentosIndicadores } from '@/indicadores-sociales/use-departamentos-indicadores';
@@ -24,6 +25,7 @@ type DepartamentoSeleccionado = {
 };
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const [departamentoSeleccionado, setDepartamentoSeleccionado] =
     useState<DepartamentoSeleccionado | null>(null);
 
@@ -53,13 +55,13 @@ function RouteComponent() {
   return (
     <div className="mt-4 flex flex-col gap-6">
       <SectionTitle
-        title="Indicadores por departamento"
-        subtitle="Carga y edición de estadísticas sociales y económicas"
+        title={t('routes.admin.indicadoresSociales.page.title')}
+        subtitle={t('routes.admin.indicadoresSociales.page.subtitle')}
       />
 
       {error ? (
         <Alert color="danger">
-          Error al consultar los departamentos: {error.message}
+          {t('routes.admin.indicadoresSociales.errorDepartamentos', { mensaje: error.message })}
         </Alert>
       ) : null}
 
@@ -71,7 +73,7 @@ function RouteComponent() {
             <Card shadow="sm">
               <CardBody>
                 <p className="text-sm text-default-500">
-                  Departamentos
+                  {t('routes.admin.indicadoresSociales.departamentos')}
                 </p>
 
                 <p className="text-3xl font-semibold">
@@ -83,7 +85,7 @@ function RouteComponent() {
             <Card shadow="sm">
               <CardBody>
                 <p className="text-sm text-default-500">
-                  Con datos cargados
+                  {t('routes.admin.indicadoresSociales.conDatos')}
                 </p>
 
                 <p className="text-3xl font-semibold text-success">
@@ -95,7 +97,7 @@ function RouteComponent() {
             <Card shadow="sm">
               <CardBody>
                 <p className="text-sm text-default-500">
-                  Pendientes
+                  {t('routes.admin.indicadoresSociales.pendientes')}
                 </p>
 
                 <p className="text-3xl font-semibold text-warning">
@@ -107,7 +109,7 @@ function RouteComponent() {
 
           {departamentos.length === 0 && !error ? (
             <Alert color="warning">
-              No se encontraron departamentos para mostrar.
+              {t('routes.admin.indicadoresSociales.sinDepartamentos')}
             </Alert>
           ) : null}
 
@@ -139,8 +141,8 @@ function RouteComponent() {
                         }
                       >
                         {departamento.tieneIndicadores
-                          ? 'Datos cargados'
-                          : 'Sin datos'}
+                          ? t('routes.admin.indicadoresSociales.datosCargados')
+                          : t('routes.admin.indicadoresSociales.sinDatos')}
                       </Chip>
                     </div>
                   </div>
@@ -172,8 +174,8 @@ function RouteComponent() {
                     }
                   >
                     {departamento.tieneIndicadores
-                      ? 'Editar'
-                      : 'Cargar'}
+                      ? t('common.acciones.editar')
+                      : t('common.acciones.cargar')}
                   </Button>
                 </CardBody>
               </Card>

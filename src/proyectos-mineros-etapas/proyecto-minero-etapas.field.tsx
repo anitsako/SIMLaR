@@ -4,6 +4,7 @@ import { Square } from 'lucide-react';
 import { useProyectosMinerosEtapas } from './use-proyectos-mineros-etapas';
 import type { MarkerColor } from '@/mapa-principal/main-marker';
 import { colorValues } from '@/mapa-principal/main-marker';
+import { useTranslation } from 'react-i18next';
 
 export const ProyectoMineroEtapasField = ({
   ids,
@@ -24,9 +25,11 @@ export const ProyectoMineroEtapasField = ({
     }
   }, [proyectosMinerosEtapas]);
 
+  const { t } = useTranslation();
+
   return (
     <Select
-      label="Etapas de proyecto minero"
+      label={t("routes.inicio.mapa.etapas")}
       isLoading={isFetching}
       isRequired={required}
       selectionMode="multiple"

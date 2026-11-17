@@ -1,10 +1,11 @@
-import textosJson from './funciones-competencias.json';
+import es from '@/i18n/es.json';
 
 /**
  * Estructura de "Funciones y competencias".
  * El árbol (qué unidad depende de cuál y qué funciones tiene) viene de
- * institucionalService.ts del otro proyecto. Los textos salen del JSON,
- * que es el bloque `institucional.funciones` de su archivo de traducciones.
+ * institucionalService.ts del otro proyecto. Los textos están en
+ * src/i18n/{es,en}.json, bloque `routes.institucional.funciones`;
+ * acá se guardan las claves y el componente llama a t().
  */
 
 type TextosUnidad = {
@@ -18,7 +19,8 @@ type TextosFunciones = {
   unidades: Record<string, TextosUnidad>;
 };
 
-const textos = textosJson as TextosFunciones;
+const textos = es.routes.institucional.funciones as TextosFunciones;
+const BASE = 'routes.institucional.funciones';
 
 export type UnidadFuncion = {
   id: string;
@@ -41,16 +43,16 @@ function unidad(
   return {
     id,
     numero,
-    titulo: texto?.title ?? `[falta título: ${clave}]`,
-    dependeDe: texto?.dependsOn,
-    funciones: itemIds.map(
-      (itemId) => texto?.items?.[itemId] ?? `[falta texto: ${clave}.${itemId}]`,
+    titulo: texto?.title ? `${BASE}.unidades.${clave}.title` : `[falta título: ${clave}]`,
+    dependeDe: texto?.dependsOn ? `${BASE}.unidades.${clave}.dependsOn` : undefined,
+    funciones: itemIds.map((itemId) =>
+      texto?.items?.[itemId] ? `${BASE}.unidades.${clave}.items.${itemId}` : `[falta texto: ${clave}.${itemId}]`,
     ),
     hijos,
   };
 }
 
-export const FUNCIONES_TITULO = textos.title;
+export const FUNCIONES_TITULO = `${BASE}.title`;
 
 export const UNIDADES_FUNCIONES: Array<UnidadFuncion> = [
   unidad('funcion-secretaria', '1.', 'secretaria', [

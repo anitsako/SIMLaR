@@ -1,10 +1,12 @@
 import { semanticColors, useDisclosure } from '@heroui/react';
 import { useState } from 'react';
 import { GeoJSON } from 'react-leaflet';
+import { useTranslation } from 'react-i18next';
 import { DepartamentoModal } from './departamento.modal';
 import { useCapaDepartamentos } from '@/departamentos/use-capa-departamentos';
 
 export const CapaDepartamentos = () => {
+  const { t } = useTranslation();
   const { data } = useCapaDepartamentos();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedFeatureId, setSelectedFeatureId] = useState<string | null>(null);
@@ -27,7 +29,7 @@ export const CapaDepartamentos = () => {
           const nombre = feature.properties?.nombre;
 
           if (nombre) {
-            layer.bindTooltip(`Departamento: ${nombre}`, { direction: 'top' });
+            layer.bindTooltip(t('routes.inicio.mapa.tooltips.departamento', { nombre }), { direction: 'top' });
           }
 
           layer.on('click', () => {

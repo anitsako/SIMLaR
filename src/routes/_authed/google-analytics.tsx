@@ -15,6 +15,7 @@ import {
 import { createFileRoute } from '@tanstack/react-router';
 import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 import { getGoogleAnalyticsStatsFn } from '@/analytics/get-google-analytics-stats.fn';
 
@@ -28,13 +29,15 @@ const googleAnalyticsStatsQuery = () =>
 export const Route = createFileRoute('/_authed/google-analytics')({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(googleAnalyticsStatsQuery()),
   errorComponent: ({ error }) => {
+    const { t } = useTranslation();
+
     if (error instanceof Error && (error.message === 'Not authenticated' || error.message.startsWith('Missing GA_'))) {
       return (
         <div className="max-w-6xl w-full mt-4">
           <Alert
             color="danger"
             title={
-              error.message === 'Not authenticated' ? 'No estás autorizado.' : 'Falta configurar Google Analytics.'
+              error.message === 'Not authenticated' ? t('routes.admin.googleAnalytics.noAutorizado') : t('routes.admin.googleAnalytics.faltaConfigurar')
             }
           />
         </div>
@@ -47,9 +50,10 @@ export const Route = createFileRoute('/_authed/google-analytics')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-6 mt-4">
-      <SectionTitle title="Google Analytics" subtitle="Últimos 30 días" />
+      <SectionTitle title={t('routes.admin.googleAnalytics.page.title')} subtitle={t('routes.admin.googleAnalytics.page.subtitle')} />
       <Suspense
         fallback={
           <div className="flex justify-center py-10">
@@ -64,12 +68,13 @@ function RouteComponent() {
 }
 
 function GoogleAnalyticsDashboard() {
+  const { t } = useTranslation();
   const { data } = useSuspenseQuery(googleAnalyticsStatsQuery());
 
   if (data === null) {
     return (
       <div className="max-w-6xl w-full mt-4">
-        <Alert color="danger" title="Falta configurar Google Analytics." />
+        <Alert color="danger" title={t('routes.admin.googleAnalytics.faltaConfigurar')} />
       </div>
     );
   }
@@ -77,20 +82,20 @@ function GoogleAnalyticsDashboard() {
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-6">
-        <MetricCard label="Usuarios activos" value={data.activeUsers30d} />
-        <MetricCard label="Sesiones" value={data.sessions30d} />
-        <MetricCard label="Vistas de página" value={data.screenPageViews30d} />
-        <MetricCard label="Tasa de engagement" value={formatPercent(data.engagementRate30d)} />
-        <MetricCard label="Tiempo de engagement" value={formatDuration(data.averageSessionDuration30d)} />
-        <MetricCard label="Usuarios nuevos" value={data.newUsers30d} />
+        <MetricCard label={t('routes.admin.googleAnalytics.metricas.usuariosActivos')} value={data.activeUsers30d} />
+        <MetricCard label={t('routes.admin.googleAnalytics.metricas.sesiones')} value={data.sessions30d} />
+        <MetricCard label={t('routes.admin.googleAnalytics.metricas.vistas')} value={data.screenPageViews30d} />
+        <MetricCard label={t('routes.admin.googleAnalytics.metricas.tasaEngagement')} value={formatPercent(data.engagementRate30d)} />
+        <MetricCard label={t('routes.admin.googleAnalytics.metricas.tiempoEngagement')} value={formatDuration(data.averageSessionDuration30d)} />
+        <MetricCard label={t('routes.admin.googleAnalytics.metricas.usuariosNuevos')} value={data.newUsers30d} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-        <DataCard title="Páginas más vistas">
+        <DataCard title={t('routes.admin.googleAnalytics.paginas')}>
           <MetricTable
-            emptyLabel="Sin datos."
-            rowLabel="Ruta"
-            valueLabel="Vistas"
+            emptyLabel={t('common.estados.sinDatos')}
+            rowLabel={t('routes.admin.googleAnalytics.columnas.ruta')}
+            valueLabel={t('routes.admin.googleAnalytics.columnas.vistas')}
             rows={data.topPages.map((row, index) => ({
               key: `${row.value}-${index}`,
               label: row.value,
@@ -99,11 +104,11 @@ function GoogleAnalyticsDashboard() {
           />
         </DataCard>
 
-        <DataCard title="Países">
+        <DataCard title={t('routes.admin.googleAnalytics.paises')}>
           <MetricTable
-            emptyLabel="Sin datos de país disponibles."
-            rowLabel="País"
-            valueLabel="Sesiones"
+            emptyLabel={t('routes.admin.googleAnalytics.sinDatosPais')}
+            rowLabel={t('routes.admin.googleAnalytics.columnas.pais')}
+            valueLabel={t('routes.admin.googleAnalytics.columnas.sesiones')}
             rows={data.countries.map((row, index) => ({
               key: `${row.value}-${index}`,
               label: row.value,
@@ -112,11 +117,11 @@ function GoogleAnalyticsDashboard() {
           />
         </DataCard>
 
-        <DataCard title="Dispositivos">
+        <DataCard title={t('routes.admin.googleAnalytics.dispositivos')}>
           <MetricTable
-            emptyLabel="Sin datos."
-            rowLabel="Dispositivo"
-            valueLabel="Sesiones"
+            emptyLabel={t('common.estados.sinDatos')}
+            rowLabel={t('routes.admin.googleAnalytics.columnas.dispositivo')}
+            valueLabel={t('routes.admin.googleAnalytics.columnas.sesiones')}
             rows={data.devices.map((row, index) => ({
               key: `${row.value}-${index}`,
               label: row.value,

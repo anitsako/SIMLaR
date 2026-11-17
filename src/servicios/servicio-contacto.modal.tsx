@@ -26,6 +26,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   SelectorUbicacionServicio,
 } from './servicio-contacto.map';
@@ -76,6 +77,7 @@ export function ServicioContactoModal({
   contacto,
   onClose,
 }: Props) {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const guardarContacto = useServerFn(
@@ -130,10 +132,10 @@ export function ServicioContactoModal({
 
       addToast({
         title: contacto
-          ? 'Contacto actualizado'
-          : 'Contacto creado',
+          ? t('routes.servicios.modal.actualizado')
+          : t('routes.servicios.modal.creado'),
         description:
-          'La información fue guardada correctamente.',
+          t('routes.servicios.modal.guardadoDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -164,7 +166,7 @@ export function ServicioContactoModal({
 
     if (!data.nombre.trim()) {
       setErrorValidacion(
-        'Debe ingresar el nombre del organismo.',
+        t('routes.servicios.modal.errorNombre'),
       );
 
       return false;
@@ -180,7 +182,7 @@ export function ServicioContactoModal({
 
     if (tieneLatitud !== tieneLongitud) {
       setErrorValidacion(
-        'La latitud y la longitud deben completarse juntas.',
+        t('routes.servicios.modal.errorCoordenadas'),
       );
 
       return false;
@@ -227,13 +229,12 @@ export function ServicioContactoModal({
               <div>
                 <h2 className="text-xl font-semibold">
                   {contacto
-                    ? `Editar ${contacto.nombre}`
-                    : 'Agregar organismo de contacto'}
+                    ? t('routes.servicios.modal.editarTitulo', { nombre: contacto.nombre })
+                    : t('routes.servicios.modal.agregarTitulo')}
                 </h2>
 
                 <p className="mt-1 text-sm font-normal text-default-500">
-                  Completá la información institucional,
-                  los canales de atención y la ubicación.
+                  {t('routes.servicios.modal.descripcion')}
                 </p>
               </div>
             </div>
@@ -244,17 +245,17 @@ export function ServicioContactoModal({
               <section className="space-y-5">
                 <div>
                   <h3 className="text-base font-semibold">
-                    Información general
+                    {t('routes.servicios.modal.general.titulo')}
                   </h3>
 
                   <p className="text-sm text-default-500">
-                    Datos principales que verá el público.
+                    {t('routes.servicios.modal.general.descripcion')}
                   </p>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_170px]">
                   <Input
-                    label="Nombre del organismo"
+                    label={t('routes.servicios.modal.general.nombre')}
                     value={data.nombre}
                     onValueChange={(nombre) =>
                       setData((actual) => ({
@@ -268,7 +269,7 @@ export function ServicioContactoModal({
                   />
 
                   <NumberInput
-                    label="Orden"
+                    label={t('routes.servicios.modal.general.orden')}
                     value={data.orden}
                     minValue={0}
                     maxValue={999}
@@ -282,13 +283,13 @@ export function ServicioContactoModal({
                             : 0,
                       }))
                     }
-                    description="Menor = primero"
+                    description={t('routes.servicios.modal.general.ordenAyuda')}
                   />
                 </div>
 
                 <Textarea
-                  label="Descripción"
-                  description="Explicá brevemente qué organismo es y qué tipo de atención brinda."
+                  label={t('routes.servicios.modal.general.descripcionLabel')}
+                  description={t('routes.servicios.modal.general.descripcionAyuda')}
                   value={data.descripcion}
                   onValueChange={(descripcion) =>
                     setData((actual) => ({
@@ -301,8 +302,8 @@ export function ServicioContactoModal({
                 />
 
                 <Textarea
-                  label="Trámites y consultas"
-                  description="Escribí un trámite por renglón."
+                  label={t('routes.servicios.modal.general.tramites')}
+                  description={t('routes.servicios.modal.general.tramitesAyuda')}
                   value={data.tramites}
                   onValueChange={(tramites) =>
                     setData((actual) => ({
@@ -318,17 +319,17 @@ export function ServicioContactoModal({
 
                 <div>
                   <h3 className="text-base font-semibold">
-                    Canales de atención
+                    {t('routes.servicios.modal.canales.titulo')}
                   </h3>
 
                   <p className="text-sm text-default-500">
-                    Completá solamente los datos confirmados.
+                    {t('routes.servicios.modal.canales.descripcion')}
                   </p>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
                   <Input
-                    label="Horario de atención"
+                    label={t('routes.servicios.modal.canales.horario')}
                     value={data.horario ?? ''}
                     onValueChange={(horario) =>
                       setData((actual) => ({
@@ -337,11 +338,11 @@ export function ServicioContactoModal({
                       }))
                     }
                     maxLength={150}
-                    placeholder="Lunes a viernes de 8:00 a 13:00"
+                    placeholder={t('routes.servicios.modal.canales.horarioPlaceholder')}
                   />
 
                   <Input
-                    label="Teléfono"
+                    label={t('routes.servicios.modal.canales.telefono')}
                     value={data.telefono ?? ''}
                     onValueChange={(telefono) =>
                       setData((actual) => ({
@@ -354,7 +355,7 @@ export function ServicioContactoModal({
                   />
 
                   <Input
-                    label="WhatsApp"
+                    label={t('routes.servicios.modal.canales.whatsapp')}
                     value={data.whatsapp ?? ''}
                     onValueChange={(whatsapp) =>
                       setData((actual) => ({
@@ -368,7 +369,7 @@ export function ServicioContactoModal({
 
                   <Input
                     type="email"
-                    label="Correo electrónico"
+                    label={t('routes.servicios.modal.canales.email')}
                     value={data.email ?? ''}
                     onValueChange={(email) =>
                       setData((actual) => ({
@@ -384,17 +385,17 @@ export function ServicioContactoModal({
                 <details className="rounded-xl border border-default-200 p-4">
                   <summary className="flex cursor-pointer list-none items-center gap-2 font-medium">
                     <Globe2 className="h-4 w-4 text-primary" />
-                    Sitio web y redes sociales
+                    {t('routes.servicios.modal.redes.titulo')}
                   </summary>
 
                   <p className="mt-1 text-sm text-default-500">
-                    Campos opcionales.
+                    {t('routes.servicios.modal.redes.descripcion')}
                   </p>
 
                   <div className="mt-4 grid gap-4 md:grid-cols-2">
                     <Input
                       type="url"
-                      label="Sitio web"
+                      label={t('routes.servicios.modal.redes.sitioWeb')}
                       value={data.sitioWeb ?? ''}
                       onValueChange={(nuevoSitioWeb) =>
                         setData((actual) => ({
@@ -408,7 +409,7 @@ export function ServicioContactoModal({
 
                     <Input
                       type="url"
-                      label="Facebook"
+                      label={t('routes.servicios.modal.redes.facebook')}
                       value={data.facebook ?? ''}
                       onValueChange={(nuevoFacebook) =>
                         setData((actual) => ({
@@ -422,7 +423,7 @@ export function ServicioContactoModal({
 
                     <Input
                       type="url"
-                      label="Instagram"
+                      label={t('routes.servicios.modal.redes.instagram')}
                       value={data.instagram ?? ''}
                       onValueChange={(nuevoInstagram) =>
                         setData((actual) => ({
@@ -440,16 +441,16 @@ export function ServicioContactoModal({
               <section className="space-y-4 lg:sticky lg:top-0 lg:self-start">
                 <div>
                   <h3 className="text-base font-semibold">
-                    Ubicación
+                    {t('routes.servicios.modal.ubicacion.titulo')}
                   </h3>
 
                   <p className="text-sm text-default-500">
-                    Dirección y punto exacto del organismo.
+                    {t('routes.servicios.modal.ubicacion.descripcion')}
                   </p>
                 </div>
 
                 <Input
-                  label="Dirección"
+                  label={t('routes.servicios.modal.ubicacion.direccion')}
                   value={data.direccion ?? ''}
                   onValueChange={(direccion) =>
                     setData((actual) => ({
@@ -458,7 +459,7 @@ export function ServicioContactoModal({
                     }))
                   }
                   maxLength={250}
-                  placeholder="Pelagio B. Luna 811, La Rioja Capital"
+                  placeholder={t('routes.servicios.modal.ubicacion.direccionPlaceholder')}
                 />
 
                 <div className="rounded-xl border border-default-200 bg-default-50 p-3">
@@ -468,11 +469,11 @@ export function ServicioContactoModal({
 
                       <div>
                         <p className="text-sm font-medium">
-                          Ubicación en el mapa
+                          {t('routes.servicios.modal.ubicacion.mapaTitulo')}
                         </p>
 
                         <p className="text-xs text-default-500">
-                          Seleccioná el punto haciendo clic.
+                          {t('routes.servicios.modal.ubicacion.mapaAyuda')}
                         </p>
                       </div>
                     </div>
@@ -500,10 +501,10 @@ export function ServicioContactoModal({
                       }
                     >
                       {mostrarMapa
-                        ? 'Ocultar mapa'
+                        ? t('routes.servicios.modal.ubicacion.ocultarMapa')
                         : tieneUbicacion
-                          ? 'Editar ubicación'
-                          : 'Seleccionar ubicación'}
+                          ? t('routes.servicios.modal.ubicacion.editarUbicacion')
+                          : t('routes.servicios.modal.ubicacion.seleccionarUbicacion')}
                     </Button>
                   </div>
                 </div>
@@ -535,8 +536,7 @@ export function ServicioContactoModal({
                       <MapPin className="mx-auto mb-2 h-7 w-7 text-default-400" />
 
                       <p className="text-sm text-default-500">
-                        Abrí el mapa para seleccionar o
-                        modificar la ubicación.
+                        {t('routes.servicios.modal.ubicacion.abrirMapa')}
                       </p>
                     </div>
                   </div>
@@ -544,12 +544,12 @@ export function ServicioContactoModal({
 
                 <details className="rounded-xl border border-default-200 p-4">
                   <summary className="cursor-pointer font-medium">
-                    Coordenadas manuales
+                    {t('routes.servicios.modal.ubicacion.coordenadasManuales')}
                   </summary>
 
                   <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                     <NumberInput
-                      label="Latitud"
+                      label={t('routes.servicios.modal.ubicacion.latitud')}
                       value={
                         data.latitud ?? undefined
                       }
@@ -568,7 +568,7 @@ export function ServicioContactoModal({
                     />
 
                     <NumberInput
-                      label="Longitud"
+                      label={t('routes.servicios.modal.ubicacion.longitud')}
                       value={
                         data.longitud ?? undefined
                       }
@@ -610,11 +610,11 @@ export function ServicioContactoModal({
             >
               <div>
                 <p className="font-medium">
-                  Mostrar al público
+                  {t('routes.servicios.modal.mostrarPublico')}
                 </p>
 
                 <p className="text-xs text-default-500">
-                  Desactivado: se guarda como borrador.
+                  {t('routes.servicios.modal.mostrarPublicoAyuda')}
                 </p>
               </div>
             </Switch>
@@ -624,7 +624,7 @@ export function ServicioContactoModal({
               variant="light"
               onPress={onClose}
             >
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
 
             <Button
@@ -638,8 +638,8 @@ export function ServicioContactoModal({
               }
             >
               {data.visible
-                ? 'Guardar y publicar'
-                : 'Guardar borrador'}
+                ? t('routes.servicios.modal.guardarPublicar')
+                : t('routes.servicios.modal.guardarBorrador')}
             </Button>
           </ModalFooter>
         </form>

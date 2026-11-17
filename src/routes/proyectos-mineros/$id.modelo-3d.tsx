@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { ClientOnly, createFileRoute, useParams, Link } from '@tanstack/react-router';
 import { Button, Spinner } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import { useModeloTerrenoFn } from '@/modelos-terreno/use-modelo-terreno';
 import SectionTitle from '@/common/section-title';
 
@@ -14,6 +15,7 @@ const VisorTerreno3D = lazy(() =>
 );
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const { id } = useParams({ from: '/proyectos-mineros/$id/modelo-3d' });
   const proyectoId = Number(id);
 
@@ -22,7 +24,7 @@ function RouteComponent() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <Spinner label="Cargando modelo de terreno..." />
+        <Spinner label={t('routes.proyectosMineros.mapa.cargandoModelo')} />
       </div>
     );
   }
@@ -33,12 +35,12 @@ function RouteComponent() {
   if (!modelo || !tieneArchivos3D) {
     return (
       <div className="flex flex-col items-center justify-center h-screen gap-4">
-        <SectionTitle title="Este proyecto no tiene modelo 3D disponible" />
+        <SectionTitle title={t('routes.proyectosMineros.modelo3d.sinModelo')} />
         <p className="text-sm text-default-500 max-w-md text-center">
-          Para visualizar en 3D, el proyecto debe tener cargado el MDT raw y la ortofoto PNG.
+          {t('routes.proyectosMineros.modelo3d.requisitos')}
         </p>
         <Button as={Link} to="/proyectos-mineros" color="primary">
-          Volver a proyectos
+          {t('routes.proyectosMineros.modelo3d.volverProyectos')}
         </Button>
       </div>
     );
@@ -49,7 +51,7 @@ function RouteComponent() {
       <Suspense
         fallback={
           <div className="flex items-center justify-center h-screen">
-            <Spinner label="Cargando visor 3D..." />
+            <Spinner label={t('routes.proyectosMineros.modelo3d.cargandoVisor')} />
           </div>
         }
       >

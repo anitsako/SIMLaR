@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 type PoblacionComparativaChartProps = {
   poblacion2010: number;
@@ -22,6 +23,7 @@ export function PoblacionComparativaChart({
   poblacion2010,
   poblacion2022,
 }: PoblacionComparativaChartProps) {
+  const { t } = useTranslation();
   const datos = [
     {
       anio: '2010',
@@ -51,11 +53,11 @@ export function PoblacionComparativaChart({
       <CardBody className="gap-5 p-5">
         <div>
           <h3 className="text-lg font-semibold">
-            Evolución de la población
+            {t('routes.inicio.departamento.graficos.evolucion.titulo')}
           </h3>
 
           <p className="text-sm text-default-500">
-            Comparación entre los censos 2010 y 2022.
+            {t('routes.inicio.departamento.graficos.evolucion.descripcion')}
           </p>
         </div>
 
@@ -100,13 +102,13 @@ export function PoblacionComparativaChart({
                   fill: 'rgba(0, 0, 0, 0.04)',
                 }}
                 labelFormatter={(etiqueta) =>
-                  `Censo ${String(etiqueta)}`
+                  t('routes.inicio.departamento.graficos.evolucion.censo', { anio: String(etiqueta) })
                 }
                 formatter={(valor) => [
-                  `${formatearNumero(
-                    Number(valor)
-                  )} habitantes`,
-                  'Población',
+                  t('routes.inicio.departamento.variacionHabitantes', {
+                    valor: formatearNumero(Number(valor)),
+                  }),
+                  t('routes.inicio.departamento.graficos.evolucion.poblacion'),
                 ]}
               />
 
@@ -129,24 +131,22 @@ export function PoblacionComparativaChart({
 
         <div className="rounded-xl bg-default-50 px-4 py-3">
           <p className="text-sm text-default-600">
-            Entre 2010 y 2022 la población{' '}
             {variacionAbsoluta >= 0
-              ? 'aumentó'
-              : 'disminuyó'}{' '}
-            en{' '}
+              ? t('routes.inicio.departamento.graficos.evolucion.aumento')
+              : t('routes.inicio.departamento.graficos.evolucion.disminucion')}{' '}
             <strong>
               {formatearNumero(
                 Math.abs(variacionAbsoluta)
               )}{' '}
-              habitantes
+              {t('routes.inicio.departamento.habitantes')}
             </strong>
             {variacionRelativa !== null
-              ? `, equivalente a un ${Math.abs(
-                  variacionRelativa
-                ).toLocaleString('es-AR', {
-                  minimumFractionDigits: 1,
-                  maximumFractionDigits: 1,
-                })} %.`
+              ? t('routes.inicio.departamento.graficos.evolucion.equivalente', {
+                  porcentaje: Math.abs(variacionRelativa).toLocaleString('es-AR', {
+                    minimumFractionDigits: 1,
+                    maximumFractionDigits: 1,
+                  }),
+                })
               : '.'}
           </p>
         </div>

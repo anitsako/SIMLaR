@@ -1,6 +1,7 @@
 import { Link, createFileRoute, getRouteApi } from '@tanstack/react-router';
 import { Button } from '@heroui/react';
 import { z } from 'zod';
+import { useTranslation } from 'react-i18next';
 
 import { ProyectosMinerosTable } from '@/proyectos-mineros/proyectos-mineros.table';
 import { ProyectosMinerosFilters } from '@/proyectos-mineros/proyectos-mineros.filters';
@@ -29,6 +30,7 @@ export const Route = createFileRoute('/proyectos-mineros/')({
 const rootRoute = getRouteApi('__root__');
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const { usuario } = rootRoute.useRouteContext();
 
   // Visitantes: solamente proyectos visibles.
@@ -40,10 +42,10 @@ function RouteComponent() {
     <div className="mt-4">
       <div className="mb-4 flex items-center justify-between">
         <SectionTitle
-          title="Proyectos Mineros"
+          title={t('routes.proyectosMineros.page.title')}
           rightSlot={
             <Button as={Link} to="/proyectos-mineros/crear" color="primary" size="sm">
-              Crear proyecto
+              {t('routes.proyectosMineros.page.crear')}
             </Button>
           }
         />

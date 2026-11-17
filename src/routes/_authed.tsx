@@ -1,5 +1,6 @@
 import { Alert } from '@heroui/react';
 import { createFileRoute } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 
 export const Route = createFileRoute('/_authed')({
   beforeLoad: ({ context }) => {
@@ -8,10 +9,12 @@ export const Route = createFileRoute('/_authed')({
     }
   },
   errorComponent: ({ error }) => {
+    const { t } = useTranslation();
+
     if (error.message === 'Not authenticated') {
       return (
         <div className="max-w-6xl w-full">
-          <Alert color="danger" title="No estás autenticado. Por favor, inicia sesión para acceder a esta página." />
+          <Alert color="danger" title={t('auth.noAutenticado')} />
         </div>
       );
     }

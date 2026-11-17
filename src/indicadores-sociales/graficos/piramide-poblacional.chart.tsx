@@ -10,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 type PoblacionEdadSexo = {
   grupoEdad: string;
@@ -27,6 +28,7 @@ const formatearNumero = (valor: number): string =>
 export function PiramidePoblacionalChart({
   datos,
 }: PiramidePoblacionalChartProps) {
+  const { t } = useTranslation();
   /*
    * Se invierte el orden para mostrar:
    * - edades mayores arriba;
@@ -88,13 +90,11 @@ export function PiramidePoblacionalChart({
       <CardBody className="gap-5 p-5">
         <div>
           <h3 className="text-lg font-semibold">
-            Pirámide poblacional
+            {t('routes.inicio.departamento.graficos.piramide.titulo')}
           </h3>
 
           <p className="text-sm text-default-500">
-            Distribución de la población por grupos de edad y
-            sexo. Los varones se muestran a la izquierda y las
-            mujeres a la derecha.
+            {t('routes.inicio.departamento.graficos.piramide.descripcion')}
           </p>
         </div>
 
@@ -155,12 +155,12 @@ export function PiramidePoblacionalChart({
                   fill: 'rgba(0, 0, 0, 0.04)',
                 }}
                 labelFormatter={(etiqueta) =>
-                  `Grupo de edad: ${String(etiqueta)}`
+                  t('routes.inicio.departamento.graficos.piramide.grupoEdad', { grupo: String(etiqueta) })
                 }
                 formatter={(valor, nombre) => [
-                  `${formatearNumero(
-                    Math.abs(Number(valor))
-                  )} habitantes`,
+                  t('routes.inicio.departamento.variacionHabitantes', {
+                    valor: formatearNumero(Math.abs(Number(valor))),
+                  }),
                   String(nombre),
                 ]}
               />
@@ -172,7 +172,7 @@ export function PiramidePoblacionalChart({
 
               <Bar
                 dataKey="varones"
-                name="Varones"
+                name={t('routes.inicio.departamento.varones')}
                 stackId="poblacion"
                 fill="#4f78a8"
                 radius={[6, 0, 0, 6]}
@@ -181,7 +181,7 @@ export function PiramidePoblacionalChart({
 
               <Bar
                 dataKey="mujeres"
-                name="Mujeres"
+                name={t('routes.inicio.departamento.mujeres')}
                 stackId="poblacion"
                 fill="#c83d43"
                 radius={[0, 6, 6, 0]}
@@ -194,7 +194,7 @@ export function PiramidePoblacionalChart({
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <div className="rounded-xl bg-default-50 px-4 py-3">
             <p className="text-sm text-default-500">
-              Población representada
+              {t('routes.inicio.departamento.graficos.piramide.poblacionRepresentada')}
             </p>
 
             <p className="mt-1 text-xl font-semibold">
@@ -202,13 +202,13 @@ export function PiramidePoblacionalChart({
             </p>
 
             <p className="text-xs text-default-400">
-              habitantes
+              {t('routes.inicio.departamento.habitantes')}
             </p>
           </div>
 
           <div className="rounded-xl bg-default-50 px-4 py-3">
             <p className="text-sm text-default-500">
-              Grupo más numeroso
+              {t('routes.inicio.departamento.graficos.piramide.grupoMasNumeroso')}
             </p>
 
             <p className="mt-1 text-xl font-semibold">
@@ -220,21 +220,21 @@ export function PiramidePoblacionalChart({
                 grupoMasNumeroso.mujeres +
                   grupoMasNumeroso.varones
               )}{' '}
-              habitantes
+              {t('routes.inicio.departamento.habitantes')}
             </p>
           </div>
 
           <div className="rounded-xl bg-default-50 px-4 py-3">
             <p className="text-sm text-default-500">
-              Composición
+              {t('routes.inicio.departamento.graficos.piramide.composicion')}
             </p>
 
             <p className="mt-1 text-sm font-semibold">
-              Mujeres: {formatearNumero(totalMujeres)}
+              {t('routes.inicio.departamento.mujeres')}: {formatearNumero(totalMujeres)}
             </p>
 
             <p className="text-sm font-semibold">
-              Varones: {formatearNumero(totalVarones)}
+              {t('routes.inicio.departamento.varones')}: {formatearNumero(totalVarones)}
             </p>
           </div>
         </div>

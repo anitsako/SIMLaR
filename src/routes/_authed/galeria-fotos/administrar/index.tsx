@@ -24,6 +24,7 @@ import { addGaleriaFotoFn } from '@/galeria-fotos/add-galeria-foto.fn';
 import { removeGaleriaFotoFn } from '@/galeria-fotos/remove-galeria-foto.fn';
 import { updateGaleriaFotoFn } from '@/galeria-fotos//update-galeria-foto.fn';
 import { useGaleriaFotos } from '@/galeria-fotos/use-galeria-fotos';
+import { Trans, useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/_authed/galeria-fotos/administrar/')({
@@ -39,6 +40,7 @@ const fileToBase64 = (file: File) =>
   });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
@@ -57,8 +59,8 @@ function RouteComponent() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['galeria-fotos'] });
       addToast({
-        title: 'Imagen agregada',
-        description: 'La foto fue agregada a la galería.',
+        title: t('common.imagenes.agregada'),
+        description: t('routes.admin.galeriaFotos.agregadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -79,8 +81,8 @@ function RouteComponent() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['galeria-fotos'] });
       addToast({
-        title: 'Imagen eliminada',
-        description: 'La foto fue eliminada de la galería.',
+        title: t('common.imagenes.eliminada'),
+        description: t('routes.admin.galeriaFotos.eliminadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -103,8 +105,8 @@ function RouteComponent() {
 
     if (!selectedFile) {
       addToast({
-        title: 'Falta la imagen',
-        description: 'Seleccioná una imagen para continuar.',
+        title: t('routes.admin.galeriaFotos.faltaImagenTitulo'),
+        description: t('routes.admin.galeriaFotos.faltaImagenDescripcion'),
         color: 'danger',
         variant: 'solid',
       });
@@ -126,8 +128,8 @@ function RouteComponent() {
       });
     } catch (error) {
       addToast({
-        title: 'Error al subir imagen',
-        description: error instanceof Error ? error.message : 'Ocurrió un error desconocido',
+        title: t('common.errores.subirImagen'),
+        description: error instanceof Error ? error.message : t('common.errores.desconocido'),
         color: 'danger',
         variant: 'solid',
       });
@@ -154,11 +156,11 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col gap-6">
-      <SectionTitle title="Administrar galería de fotos" />
+      <SectionTitle title={t('routes.admin.galeriaFotos.page.title')} />
 
-      {addMutation.error && <Alert color="danger">Error al agregar imagen: {addMutation.error.message}</Alert>}
-      {updateMutation.error && <Alert color="danger">Error al actualizar imagen: {updateMutation.error.message}</Alert>}
-      {removeMutation.error && <Alert color="danger">Error al eliminar imagen: {removeMutation.error.message}</Alert>}
+      {addMutation.error && <Alert color="danger">{t('common.errores.agregarImagen', { mensaje: addMutation.error.message })}</Alert>}
+      {updateMutation.error && <Alert color="danger">{t('common.errores.actualizarImagen', { mensaje: updateMutation.error.message })}</Alert>}
+      {removeMutation.error && <Alert color="danger">{t('common.errores.eliminarImagen', { mensaje: removeMutation.error.message })}</Alert>}
 
       <form className="space-y-4 rounded-xl border border-default-200 bg-content1 p-4" onSubmit={handleAddImage}>
         <div className="grid gap-4 md:grid-cols-2">
@@ -175,15 +177,15 @@ function RouteComponent() {
           >
             <div className="flex flex-col items-center gap-2 text-center">
               <Upload className="h-8 w-8 text-default-500" />
-              <p className="text-sm text-default-600">Arrastrá una imagen o seleccioná un archivo.</p>
+              <p className="text-sm text-default-600">{t('routes.admin.galeriaFotos.arrastrar')}</p>
               <Button type="button" variant="flat" onPress={() => inputRef.current?.click()}>
-                Seleccionar imagen
+                {t('routes.admin.galeriaFotos.seleccionarImagen')}
               </Button>
               {selectedFile ? <p className="text-xs text-default-500">{selectedFile.name}</p> : null}
             </div>
           </div>
           <Textarea
-            label="Descripción"
+            label={t('routes.admin.galeriaFotos.descripcion')}
             value={data.descripcion}
             onValueChange={(value) => setData((prev) => ({ ...prev, descripcion: value }))}
             minRows={3}
@@ -205,7 +207,7 @@ function RouteComponent() {
 
         <div className="flex justify-end">
           <Button type="submit" color="primary" isLoading={addMutation.isPending}>
-            Agregar foto
+            {t('routes.admin.galeriaFotos.agregarFoto')}
           </Button>
         </div>
       </form>
@@ -213,7 +215,7 @@ function RouteComponent() {
       {isFetching ? (
         <Skeleton className="h-[300px] w-full rounded-xl" />
       ) : fotos.length === 0 ? (
-        <p>No hay fotos cargadas.</p>
+        <p>{t('routes.admin.galeriaFotos.vacio')}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {fotos.map((foto, index) => {
@@ -232,13 +234,13 @@ function RouteComponent() {
                   </div>
 
                   <Textarea
-                    label="Descripción"
+                    label={t('routes.admin.galeriaFotos.descripcion')}
                     value={descripcionValue}
                     onValueChange={(value) => setDescripcionDrafts((prev) => ({ ...prev, [foto.id]: value }))}
                     minRows={3}
                   />
 
-                  <p className="text-xs text-default-500">Orden actual: {index + 1}</p>
+                  <p className="text-xs text-default-500">{t('common.imagenes.ordenActual', { n: index + 1 })}</p>
                 </CardBody>
                 <CardFooter className="flex flex-wrap gap-2">
                   <Button
@@ -249,7 +251,7 @@ function RouteComponent() {
                     isLoading={updateMutation.isPending}
                     onPress={() => handleMove(foto.id, 'up')}
                   >
-                    Subir
+                    {t('common.acciones.subir')}
                   </Button>
                   <Button
                     size="sm"
@@ -259,7 +261,7 @@ function RouteComponent() {
                     isLoading={updateMutation.isPending}
                     onPress={() => handleMove(foto.id, 'down')}
                   >
-                    Bajar
+                    {t('common.acciones.bajar')}
                   </Button>
                   <Button
                     size="sm"
@@ -267,7 +269,7 @@ function RouteComponent() {
                     isLoading={updateMutation.isPending}
                     onPress={() => handleSaveDescription(foto.id, descripcionValue)}
                   >
-                    Guardar descripción
+                    {t('routes.admin.galeriaFotos.guardarDescripcion')}
                   </Button>
                   <Button
                     size="sm"
@@ -277,7 +279,7 @@ function RouteComponent() {
                     isLoading={removeMutation.isPending}
                     onPress={() => setFotoABorrar({ id: foto.id, descripcion: foto.descripcion })}
                   >
-                    Quitar
+                    {t('common.acciones.quitar')}
                   </Button>
                 </CardFooter>
               </Card>
@@ -288,17 +290,21 @@ function RouteComponent() {
 
       <Modal isOpen={fotoABorrar !== null} onClose={() => setFotoABorrar(null)}>
         <ModalContent>
-          <ModalHeader>Quitar foto</ModalHeader>
+          <ModalHeader>{t('routes.admin.galeriaFotos.quitarFoto')}</ModalHeader>
           <ModalBody>
             {fotoABorrar ? (
               <p>
-                ¿Querés quitar <span className="font-semibold">{fotoABorrar.descripcion}</span> de la galería?
+                <Trans
+                  i18nKey="routes.admin.galeriaFotos.confirmarQuitar"
+                  values={{ nombre: fotoABorrar.descripcion }}
+                  components={{ b: <span className="font-semibold" /> }}
+                />
               </p>
             ) : null}
           </ModalBody>
           <ModalFooter>
             <Button variant="flat" onPress={() => setFotoABorrar(null)}>
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
             <Button
               color="danger"
@@ -310,7 +316,7 @@ function RouteComponent() {
                 handleRemove(fotoABorrar.id);
               }}
             >
-              Quitar
+              {t('common.acciones.quitar')}
             </Button>
           </ModalFooter>
         </ModalContent>

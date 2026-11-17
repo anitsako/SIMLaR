@@ -31,28 +31,28 @@ export interface MineralProps {
 
 export const datosMinerales: Array<Mineral> = [
   {
-    name: 'Oro',
+    name: 'routes.educacion.informativa.minerales.oro.nombre',
     descripcion:
-      'Es un metal de transición blando que se encuentra normalmente en estado puro, en forma de pepitas y depósitos aluviales. Su concentración económica suele darse en sistemas hidrotermales (vetas y diseminaciones) y en depósitos secundarios tipo placer, producto de la erosión de fuentes primarias. Se caracteriza por su alto valor económico, tener baja alterabilidad, excelente conductividad, gran maleabilidad, ductilidad y resistencia a la corrosión, lo que lo convierte en un recurso de gran importancia.',
+      'routes.educacion.informativa.minerales.oro.descripcion',
     formulaQuimica: 'Au',
-    sistemaCristalino: 'Cúbico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.oro.sistemaCristalino',
     dureza: 4,
-    colorCaracteristico: 'Ambar, dorado',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.oro.colorCaracteristico',
     usosAplicaciones: [
-      { name: 'Joyería y orfebrería', detalle: 'principal destino del oro.' },
-      { name: 'Reserva de valor', detalle: 'utilizado como activo financiero y respaldo económico.' },
+      { name: 'routes.educacion.informativa.minerales.oro.usos.joyeriaOrfebreria.nombre', detalle: 'routes.educacion.informativa.minerales.oro.usos.joyeriaOrfebreria.detalle' },
+      { name: 'routes.educacion.informativa.minerales.oro.usos.reservaValor.nombre', detalle: 'routes.educacion.informativa.minerales.oro.usos.reservaValor.detalle' },
       {
-        name: 'Industria electrónica',
+        name: 'routes.educacion.informativa.minerales.oro.usos.industriaElectronica.nombre',
         detalle:
-          'presente en circuitos y componentes debido a su estabilidad y conductividad. Se utiliza en conectores, interruptores y cables de alta fiabilidad en teléfonos móviles, ordenadores y satélites por su resistencia a la corrosión.',
+          'routes.educacion.informativa.minerales.oro.usos.industriaElectronica.detalle',
       },
       {
-        name: 'Medicina y Odontología',
-        detalle: 'empleado en empastes, coronas dentales y fármacos contra la artritis reumatoide.',
+        name: 'routes.educacion.informativa.minerales.oro.usos.medicinaOdontologia.nombre',
+        detalle: 'routes.educacion.informativa.minerales.oro.usos.medicinaOdontologia.detalle',
       },
       {
-        name: 'Industria Aeroespacial',
-        detalle: 'sus láminas se usan para reflejar la radiación infrarroja en trajes espaciales y satélites.',
+        name: 'routes.educacion.informativa.minerales.oro.usos.industriaAeroespacial.nombre',
+        detalle: 'routes.educacion.informativa.minerales.oro.usos.industriaAeroespacial.detalle',
       },
     ],
     origenGeologico: '',
@@ -63,34 +63,34 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-yellow-500',
   },
   {
-    name: 'Plata',
+    name: 'routes.educacion.informativa.minerales.plata.nombre',
     descripcion:
-      'Es un metal precioso blanco-grisáceo, que puede presentarse en estado nativo o formando parte de minerales como sulfuros (por ejemplo, galena argentífera). Suele encontrarse asociada a otros metales, especialmente al oro, en sistemas hidrotermales. Se caracteriza por presentar la mayor conductividad eléctrica y térmica entre los metales, además de buena maleabilidad y ductilidad, poseer propiedades antibacterianas y relativa resistencia a la corrosión. Estas propiedades la hacen ampliamente utilizada.',
+      'routes.educacion.informativa.minerales.plata.descripcion',
     formulaQuimica: 'Ag',
-    sistemaCristalino: 'Cúbico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.plata.sistemaCristalino',
     dureza: 2.5,
-    colorCaracteristico: 'Blanco-grisáceo',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.plata.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Joyería y orfebrería',
-        detalle: 'se usa en aleaciones para aumentar su dureza y fabricar joyas, cubiertos y objetos decorativos.',
+        name: 'routes.educacion.informativa.minerales.plata.usos.joyeriaOrfebreria.nombre',
+        detalle: 'routes.educacion.informativa.minerales.plata.usos.joyeriaOrfebreria.detalle',
       },
       {
-        name: 'Industria electrónica',
+        name: 'routes.educacion.informativa.minerales.plata.usos.industriaElectronica.nombre',
         detalle:
-          'es principal uso industrial. En contactos, circuitos y componentes eléctricos como componentes de alta gama, interruptores, placas solares, baterías, y en conectores de dispositivos electrónicos debido a su baja resistencia. ',
+          'routes.educacion.informativa.minerales.plata.usos.industriaElectronica.detalle',
       },
-      { name: 'Aplicaciones industriales y químicas', detalle: 'en aleaciones, catalizadores y procesos químicos. ' },
+      { name: 'routes.educacion.informativa.minerales.plata.usos.aplicacionesIndustrialesQuimicas.nombre', detalle: 'routes.educacion.informativa.minerales.plata.usos.aplicacionesIndustrialesQuimicas.detalle' },
       {
-        name: 'Medicina y Salud',
+        name: 'routes.educacion.informativa.minerales.plata.usos.medicinaSalud.nombre',
         detalle:
-          'se utiliza en vendajes antimicrobianos, cremas para quemaduras, instrumentos médicos y amalgamas dentales.',
+          'routes.educacion.informativa.minerales.plata.usos.medicinaSalud.detalle',
       },
       {
-        name: 'Purificación de Agua',
-        detalle: 'aplicado para desinfectar agua potable y en piscinas debido a sus propiedades antibacterianas.',
+        name: 'routes.educacion.informativa.minerales.plata.usos.purificacionAgua.nombre',
+        detalle: 'routes.educacion.informativa.minerales.plata.usos.purificacionAgua.detalle',
       },
-      { name: 'Fotografía (históricamente)', detalle: 'en materiales fotosensibles.' },
+      { name: 'routes.educacion.informativa.minerales.plata.usos.fotografiaHistoricamente.nombre', detalle: 'routes.educacion.informativa.minerales.plata.usos.fotografiaHistoricamente.detalle' },
     ],
     origenGeologico: '',
     modelPath: '/modelos-3d/native_silver-v1.glb',
@@ -100,34 +100,34 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-gray-500',
   },
   {
-    name: 'Cobre',
+    name: 'routes.educacion.informativa.minerales.cobre.nombre',
     descripcion:
-      'Es un metal de transición de color rojizo, que se presenta en la naturaleza en estado nativo, pero principalmente combinado con otros elementos formando parte de sulfuros (como calcopirita), óxidos y carbonatos. Sus yacimientos se encuentran principalmente en sistemas hidrotermales y depósitos tipo pórfido, donde puede presentarse en grandes volúmenes de baja ley. Se caracteriza por su alta conductividad eléctrica y térmica, ductilidad, maleabilidad y resistencia a la corrosión, lo que lo convierte en uno de los metales más utilizados a nivel mundial. Es 100% reciclable, fundamental en la industria eléctrica, construcción, transporte y, más recientemente, por sus propiedades antimicrobianas en la salud.',
+      'routes.educacion.informativa.minerales.cobre.descripcion',
     formulaQuimica: 'Cu',
-    sistemaCristalino: 'Cúbico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.cobre.sistemaCristalino',
     dureza: 3,
-    colorCaracteristico: 'Rojizo',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.cobre.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Industria eléctrica',
+        name: 'routes.educacion.informativa.minerales.cobre.usos.industriaElectrica.nombre',
         detalle:
-          'principal componente en cables, conductores y componentes electrónicos (transformadores, generadores, redes de internet). ',
+          'routes.educacion.informativa.minerales.cobre.usos.industriaElectrica.detalle',
       },
-      { name: 'Aleaciones metálicas', detalle: 'fabricación de aleaciones como bronce y latón.' },
+      { name: 'routes.educacion.informativa.minerales.cobre.usos.aleacionesMetalicas.nombre', detalle: 'routes.educacion.informativa.minerales.cobre.usos.aleacionesMetalicas.detalle' },
       {
-        name: 'Construcción',
-        detalle: 'tuberías de agua potable y gas, sistemas de climatización, techos y materiales estructurales.',
+        name: 'routes.educacion.informativa.minerales.cobre.usos.construccion.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobre.usos.construccion.detalle',
       },
-      { name: 'Tecnologías energéticas', detalle: 'energías renovables y electromovilidad.' },
+      { name: 'routes.educacion.informativa.minerales.cobre.usos.tecnologiasEnergeticas.nombre', detalle: 'routes.educacion.informativa.minerales.cobre.usos.tecnologiasEnergeticas.detalle' },
       {
-        name: 'Transporte',
-        detalle: ' indispensable en motores de automóviles (especialmente eléctricos), trenes, barcos y aviones.',
+        name: 'routes.educacion.informativa.minerales.cobre.usos.transporte.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobre.usos.transporte.detalle',
       },
       {
-        name: 'Innovación y Salud',
-        detalle: 'superficies antimicrobianas en hospitales, telas con nanopartículas de cobre y equipos médicos.',
+        name: 'routes.educacion.informativa.minerales.cobre.usos.innovacionSalud.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobre.usos.innovacionSalud.detalle',
       },
-      { name: 'Otros usos', detalle: 'monedas, tuberías, utensilios de cocina, instrumentos musicales y joyería.' },
+      { name: 'routes.educacion.informativa.minerales.cobre.usos.otrosUsos.nombre', detalle: 'routes.educacion.informativa.minerales.cobre.usos.otrosUsos.detalle' },
     ],
     origenGeologico: '',
     modelPath: '/modelos-3d/native_copper-v1.glb',
@@ -137,39 +137,39 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-red-500',
   },
   {
-    name: 'Litio',
+    name: 'routes.educacion.informativa.minerales.litio.nombre',
     descripcion:
-      'Es un metal alcalino que se encuentra en la naturaleza principalmente formando minerales (como espodumeno y lepidolita), siendo sus fuentes principales las salmueras subterráneas de cuencas evaporíticas (salares), rocas pegmatitas, y en menor medida, aguas geotermales y arcillas. Se caracteriza por su bajo peso, alta reactividad y gran capacidad de almacenamiento energético, lo que lo convierte en un recurso estratégico.',
+      'routes.educacion.informativa.minerales.litio.descripcion',
     formulaQuimica: 'Li',
-    sistemaCristalino: 'Cúbico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.litio.sistemaCristalino',
     dureza: 0.6,
-    colorCaracteristico: 'Blanco plateado',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.litio.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Baterias recargables',
-        detalle: 'principal uso en dispositivos electrónicos y vehículos eléctricos.',
+        name: 'routes.educacion.informativa.minerales.litio.usos.bateriasRecargables.nombre',
+        detalle: 'routes.educacion.informativa.minerales.litio.usos.bateriasRecargables.detalle',
       },
       {
-        name: 'Industria del vidrio y cerámica',
-        detalle: 'mejora resistencia térmica y reducir el punto de fusión en vidrios especiales y cerámicas.',
+        name: 'routes.educacion.informativa.minerales.litio.usos.industriaVidrioCeramica.nombre',
+        detalle: 'routes.educacion.informativa.minerales.litio.usos.industriaVidrioCeramica.detalle',
       },
       {
-        name: 'Lubricantes y grasas industriales',
-        detalle: 'Utilizado en la fabricación de lubricantes y grasas para industrias.',
+        name: 'routes.educacion.informativa.minerales.litio.usos.lubricantesGrasasIndustriales.nombre',
+        detalle: 'routes.educacion.informativa.minerales.litio.usos.lubricantesGrasasIndustriales.detalle',
       },
       {
-        name: 'Industria farmacéutica',
+        name: 'routes.educacion.informativa.minerales.litio.usos.industriaFarmaceutica.nombre',
         detalle:
-          'en tratamientos médicos específicos. Ejemplo: carbonato de litio se utiliza como estabilizador del estado de ánimo en el tratamiento del trastorno bipolar.',
+          'routes.educacion.informativa.minerales.litio.usos.industriaFarmaceutica.detalle',
       },
       {
-        name: 'Aleaciones aeronáuticas',
+        name: 'routes.educacion.informativa.minerales.litio.usos.aleacionesAeronauticas.nombre',
         detalle:
-          'se alea con aluminio, cobre o magnesio para crear materiales ligeros y resistentes para aviones y trenes.',
+          'routes.educacion.informativa.minerales.litio.usos.aleacionesAeronauticas.detalle',
       },
       {
-        name: 'Otros usos',
-        detalle: 'en depuradores de aire en submarinos, aire acondicionado industrial y como fundente en soldadura.',
+        name: 'routes.educacion.informativa.minerales.litio.usos.otrosUsos.nombre',
+        detalle: 'routes.educacion.informativa.minerales.litio.usos.otrosUsos.detalle',
       },
     ],
     origenGeologico: '',
@@ -180,39 +180,39 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-blue-500',
   },
   {
-    name: 'Cobalto',
+    name: 'routes.educacion.informativa.minerales.cobalto.nombre',
     descripcion:
-      'Es un metal de transición duro, ferromagnético y de color blanco azulado que se encuentra asociado a minerales de níquel y cobre, generalmente como subproducto de su explotación. No suele encontrarse en concentraciones independientes significativas. Se caracteriza por su alta resistencia a la corrosión y desgaste, estabilidad térmica y propiedades magnéticas, lo que lo hace relevante en diversas aplicaciones tecnológicas.',
+      'routes.educacion.informativa.minerales.cobalto.descripcion',
     formulaQuimica: 'Co',
-    sistemaCristalino: 'Hexagonal',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.cobalto.sistemaCristalino',
     dureza: 5.5,
-    colorCaracteristico: 'Blanco azulado',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.cobalto.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Baterías recargables',
+        name: 'routes.educacion.informativa.minerales.cobalto.usos.bateriasRecargables.nombre',
         detalle:
-          'especialmente en baterías de ion-litio. Es un componente crítico en el cátodo de baterías para vehículos eléctricos y dispositivos electrónicos (teléfonos, laptops).',
+          'routes.educacion.informativa.minerales.cobalto.usos.bateriasRecargables.detalle',
       },
       {
-        name: 'Aleaciones metálicas',
+        name: 'routes.educacion.informativa.minerales.cobalto.usos.aleacionesMetalicas.nombre',
         detalle:
-          'para mejorar resistencia y durabilidad. Se utiliza para fabricar piezas de motores de aviones, turbinas de gas y herramientas de corte que requieren alta resistencia al calor y al desgaste.',
+          'routes.educacion.informativa.minerales.cobalto.usos.aleacionesMetalicas.detalle',
       },
       {
-        name: 'Industria química',
-        detalle: 'como catalizador en procesos industriales.',
+        name: 'routes.educacion.informativa.minerales.cobalto.usos.industriaQuimica.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobalto.usos.industriaQuimica.detalle',
       },
       {
-        name: 'Imanes de alto rendimiento',
-        detalle: 'se emplea en la creación de imanes permanentes potentes.',
+        name: 'routes.educacion.informativa.minerales.cobalto.usos.imanesAltoRendimiento.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobalto.usos.imanesAltoRendimiento.detalle',
       },
       {
-        name: 'Pigmentos',
-        detalle: 'en la fabricación de cerámicas, esmaltes y vidrios para obtener el característico “azul cobalto”.',
+        name: 'routes.educacion.informativa.minerales.cobalto.usos.pigmentos.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobalto.usos.pigmentos.detalle',
       },
       {
-        name: 'Medicina',
-        detalle: 'el Cobalto-60 se usa en radioterapia para tratar el cáncer y esterilizar equipos médicos.',
+        name: 'routes.educacion.informativa.minerales.cobalto.usos.medicina.nombre',
+        detalle: 'routes.educacion.informativa.minerales.cobalto.usos.medicina.detalle',
       },
     ],
     origenGeologico: '',
@@ -223,35 +223,35 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-blue-500',
   },
   {
-    name: 'Uranio',
+    name: 'routes.educacion.informativa.minerales.uranio.nombre',
     descripcion:
-      'Es un metal radiactivo que se encuentra en la naturaleza formando parte de minerales como la uraninita. Es un recurso estratégico debido a su uso como fuente de energía. Se caracteriza por su densidad alta, capacidad de generar energía mediante procesos de fisión nuclear, lo que lo convierte en un elemento clave para la producción energética.',
+      'routes.educacion.informativa.minerales.uranio.descripcion',
     formulaQuimica: 'U',
-    sistemaCristalino: 'Cúbico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.uranio.sistemaCristalino',
     dureza: 6,
-    colorCaracteristico: 'Gris plateado',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.uranio.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Generación de energía nuclear',
+        name: 'routes.educacion.informativa.minerales.uranio.usos.generacionEnergiaNuclear.nombre',
         detalle:
-          'combustible en centrales nucleares para generar electricidad. El uranio natural se enriquece (aumentando el U-235 al 3-5%) para esta función.',
+          'routes.educacion.informativa.minerales.uranio.usos.generacionEnergiaNuclear.detalle',
       },
       {
-        name: 'Uranio empobrecido (U-238)',
+        name: 'routes.educacion.informativa.minerales.uranio.usos.uranioEmpobrecidoU238.nombre',
         detalle:
-          'se utiliza en el blindaje de vehículos militares, contrapesos en aviones y rotores de helicópteros debido a su extrema densidad.',
+          'routes.educacion.informativa.minerales.uranio.usos.uranioEmpobrecidoU238.detalle',
       },
       {
-        name: 'Aplicaciones médicas e industriales',
-        detalle: 'utilizado en diagnósticos, tratamientos contra el cáncer (radioterapia).',
+        name: 'routes.educacion.informativa.minerales.uranio.usos.aplicacionesMedicasIndustriales.nombre',
+        detalle: 'routes.educacion.informativa.minerales.uranio.usos.aplicacionesMedicasIndustriales.detalle',
       },
       {
-        name: 'Ciencia',
-        detalle: 'para la datación de minerales y rocas.',
+        name: 'routes.educacion.informativa.minerales.uranio.usos.ciencia.nombre',
+        detalle: 'routes.educacion.informativa.minerales.uranio.usos.ciencia.detalle',
       },
       {
-        name: 'Usos históricos',
-        detalle: 'utilizado en el pasado para colorear vidrios y cerámicas.',
+        name: 'routes.educacion.informativa.minerales.uranio.usos.usosHistoricos.nombre',
+        detalle: 'routes.educacion.informativa.minerales.uranio.usos.usosHistoricos.detalle',
       },
     ],
     origenGeologico: '',
@@ -262,37 +262,37 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-gray-500',
   },
   {
-    name: 'Cuarzo',
+    name: 'routes.educacion.informativa.minerales.cuarzo.nombre',
     descripcion:
-      'Es uno de los minerales más abundantes de la corteza terrestre, solo superado por los feldespatos. Su composición corresponde a dióxido de silicio (SiO₂), formado por una red tridimensional de tetraedros de silicio y oxígeno. En estado puro es incoloro y transparente, aunque puede presentar diversas coloraciones debido a impurezas. Se encuentra en rocas ígneas, metamórficas y sedimentarias.',
+      'routes.educacion.informativa.minerales.cuarzo.descripcion',
     formulaQuimica: 'SiO₂',
-    sistemaCristalino: 'Trigonal',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.cuarzo.sistemaCristalino',
     dureza: 7,
-    colorCaracteristico: 'Naranja (por hierro)',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.cuarzo.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Industria vidriera',
+        name: 'routes.educacion.informativa.minerales.cuarzo.usos.industriaVidriera.nombre',
         detalle:
-          'en fabricación de distintos tipos de vidrio, como para ventanas, para envases, de placa plana, vidrio especial y fibra de vidrio.',
+          'routes.educacion.informativa.minerales.cuarzo.usos.industriaVidriera.detalle',
       },
       {
-        name: 'Industria eléctrica',
+        name: 'routes.educacion.informativa.minerales.cuarzo.usos.industriaElectrica.nombre',
         detalle:
-          'en fabricación de osciladores, relojes, circuitos y dispositivos de comunicación por su capacidad de resonar frecuencias constantes lo hace fundamental.',
+          'routes.educacion.informativa.minerales.cuarzo.usos.industriaElectrica.detalle',
       },
       {
-        name: 'Abrasivos',
+        name: 'routes.educacion.informativa.minerales.cuarzo.usos.abrasivos.nombre',
         detalle:
-          'material abrasivo en arenas silíceas, empleadas en procesos de pulido, lijado y corte de distintos materiales debido a su dureza (7 en escala de Mohs) y amplia disponibilidad.',
+          'routes.educacion.informativa.minerales.cuarzo.usos.abrasivos.detalle',
       },
       {
-        name: 'Fundición en arena',
+        name: 'routes.educacion.informativa.minerales.cuarzo.usos.fundicionArena.nombre',
         detalle:
-          'se utiliza en la fabricación de moldes para piezas metálicas, aprovechando su alta resistencia térmica y estabilidad a elevadas temperaturas.',
+          'routes.educacion.informativa.minerales.cuarzo.usos.fundicionArena.detalle',
       },
     ],
     origenGeologico:
-      'Se forma en vetas hidrotermales y cavidades en rocas ígneas y metamórficas. Las inclusiones de hierro provienen de fluidos mineralizados durante el proceso de cristalización.',
+      'routes.educacion.informativa.minerales.cuarzo.origenGeologico',
     modelPath: '/modelos-3d/quartz.glb',
     color: 'orange',
     chipColor: 'warning',
@@ -300,30 +300,30 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-orange-500',
   },
   {
-    name: 'Feldespato',
+    name: 'routes.educacion.informativa.minerales.feldespato.nombre',
     descripcion:
-      ' Son aluminosilicatos mezclados con cantidades variables de potasio, sodio y calcio. Junto con el cuarzo son los más abundante en la corteza, alrededor del 60%. Se encuentran en rocas ígneas, metamórficas y, en menor medida, sedimentarias. Para su aprovechamiento industrial requieren procesos de trituración, molienda y tamizado. Se caracterizan por su baja temperatura de fusión relativa, estabilidad química y capacidad fundente, lo que los hace esenciales en diversos procesos industriales.',
+      'routes.educacion.informativa.minerales.feldespato.descripcion',
     formulaQuimica: 'Fds',
-    sistemaCristalino: 'Triclinico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.feldespato.sistemaCristalino',
     dureza: 6,
-    colorCaracteristico: 'Blanco, amarillo',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.feldespato.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Industria cerámica',
-        detalle: 'actúa como fundente, favoreciendo la fusión y mejorando la resistencia del producto final.',
+        name: 'routes.educacion.informativa.minerales.feldespato.usos.industriaCeramica.nombre',
+        detalle: 'routes.educacion.informativa.minerales.feldespato.usos.industriaCeramica.detalle',
       },
       {
-        name: 'Industria del vidrio',
-        detalle: 'contribuye a reducir la temperatura de fusión y mejora las propiedades del vidrio. ',
+        name: 'routes.educacion.informativa.minerales.feldespato.usos.industriaVidrio.nombre',
+        detalle: 'routes.educacion.informativa.minerales.feldespato.usos.industriaVidrio.detalle',
       },
       {
-        name: 'Pinturas, plásticos y cauchos',
+        name: 'routes.educacion.informativa.minerales.feldespato.usos.pinturasPlasticosCauchos.nombre',
         detalle:
-          'utilizado como carga y extensor, aportando estabilidad, buena dispersión y resistencia a la abrasión.',
+          'routes.educacion.informativa.minerales.feldespato.usos.pinturasPlasticosCauchos.detalle',
       },
       {
-        name: 'Industria del papel',
-        detalle: 'empleado como carga mineral para mejorar propiedades físicas y ópticas.',
+        name: 'routes.educacion.informativa.minerales.feldespato.usos.industriaPapel.nombre',
+        detalle: 'routes.educacion.informativa.minerales.feldespato.usos.industriaPapel.detalle',
       },
     ],
     origenGeologico: '',
@@ -334,38 +334,38 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-green-500',
   },
   {
-    name: 'Baritina',
+    name: 'routes.educacion.informativa.minerales.baritina.nombre',
     descripcion:
-      'Es un mineral compuesto principalmente por sulfato de bario (BaSO₄), principal mena del bario, caracterizado por su inusual alto peso específico (densidad elevada) y su relativa inercia química. Generalmente se presenta en tonos blancos, grisáceos o amarillentos, aunque puede adquirir distintas coloraciones debido a impurezas. Es un mineral no metálico, inerte, estable y no tóxico. El objetivo fundamental de su uso industrial radica en aprovechar su elevada densidad, estabilidad química y capacidad como material de carga, lo que mejora las propiedades físicas de diversos productos. Se encuentra comúnmente en vetas hidrotermales, asociado a minerales como galena, sulfuros y carbonatos, así como también en depósitos sedimentarios.',
+      'routes.educacion.informativa.minerales.baritina.descripcion',
     formulaQuimica: 'BaSO₄',
-    sistemaCristalino: 'Ortorrombico',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.baritina.sistemaCristalino',
     dureza: 3,
-    colorCaracteristico: 'Blanco, grisáceo o amarillento',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.baritina.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Industria petrolera',
+        name: 'routes.educacion.informativa.minerales.baritina.usos.industriaPetrolera.nombre',
         detalle:
-          'es su aplicación más importante, donde se utiliza como agente densificante en los lodos de perforación. Su alta densidad permite controlar la presión en los pozos, evitando derrumbes y explosiones durante la perforación. ',
+          'routes.educacion.informativa.minerales.baritina.usos.industriaPetrolera.detalle',
       },
       {
-        name: 'Industria química',
+        name: 'routes.educacion.informativa.minerales.baritina.usos.industriaQuimica.nombre',
         detalle:
-          'se emplea en la obtención de compuestos de bario utilizados en la fabricación de pinturas, plásticos, vidrios y productos químicos diversos. ',
+          'routes.educacion.informativa.minerales.baritina.usos.industriaQuimica.detalle',
       },
       {
-        name: 'Industria de la construcción',
+        name: 'routes.educacion.informativa.minerales.baritina.usos.industriaConstruccion.nombre',
         detalle:
-          'se utiliza como agregado en hormigones pesados para blindaje contra radiaciones (hospitales, centrales nucleares), debido a su alta densidad.',
+          'routes.educacion.informativa.minerales.baritina.usos.industriaConstruccion.detalle',
       },
       {
-        name: 'Pinturas y recubrimientos',
+        name: 'routes.educacion.informativa.minerales.baritina.usos.pinturasRecubrimientos.nombre',
         detalle:
-          'actúa como carga mineral, mejorando propiedades como la resistencia, durabilidad y acabado superficial.',
+          'routes.educacion.informativa.minerales.baritina.usos.pinturasRecubrimientos.detalle',
       },
       {
-        name: 'Industria del caucho y plásticos',
+        name: 'routes.educacion.informativa.minerales.baritina.usos.industriaCauchoPlasticos.nombre',
         detalle:
-          'se emplea como relleno, aportando mayor densidad, estabilidad y resistencia mecánica a los productos finales.',
+          'routes.educacion.informativa.minerales.baritina.usos.industriaCauchoPlasticos.detalle',
       },
     ],
     origenGeologico: '',
@@ -376,13 +376,13 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-gray-500',
   },
   {
-    name: 'Arena Silícea',
+    name: 'routes.educacion.informativa.minerales.arenaSilicea.nombre',
     descripcion:
-      'Es un material sedimentario y un árido industrial, compuesto mayoritariamente por granos de cuarzo (SiO₂), generalmente con contenidos superiores al 95%. Se origina a partir de la meteorización, transporte y acumulación de rocas ricas en cuarzo, dando lugar a depósitos en ambientes fluviales, eólicos y costeros. Se caracteriza por su alta pureza, dureza y resistencia química, lo que la convierte en un recurso de gran importancia industrial. Sus aplicaciones son esencialmente las mismas que las del cuarzo, destacándose su uso en la fabricación de vidrio, la industria de la construcción, procesos abrasivos, fundición en arena y sistemas de filtración. El objetivo de su uso industrial es aprovechar su elevado contenido de sílice, su resistencia mecánica y su comportamiento estable frente a altas temperaturas. Los principales depósitos de arena silícea se encuentran en ambientes sedimentarios, como ríos, dunas y antiguos sistemas costeros, donde los procesos de selección natural concentran granos de cuarzo de alta pureza.',
+      'routes.educacion.informativa.minerales.arenaSilicea.descripcion',
     formulaQuimica: 'SiO₂',
-    sistemaCristalino: 'Trigonal',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.arenaSilicea.sistemaCristalino',
     dureza: 7,
-    colorCaracteristico: 'Blanco',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.arenaSilicea.colorCaracteristico',
     origenGeologico: '',
     modelPath: '',
     color: 'white',
@@ -391,34 +391,34 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-gray-500',
   },
   {
-    name: 'Diatomea',
+    name: 'routes.educacion.informativa.minerales.diatomea.nombre',
     descripcion:
-      'Es un material sedimentario y un mineral industrial, formado por la acumulación de frústulas (caparazones) de algas microscópicas llamadas diatomeas, compuestas principalmente por sílice amorfa (SiO₂·nH₂O). Se origina en ambientes lacustres y marinos, donde la acumulación y compactación de estos restos biogénicos da lugar a depósitos de gran pureza y elevada porosidad. Se caracteriza por su baja densidad, alta porosidad, gran capacidad de absorción y propiedades abrasivas suaves, lo que la convierte en un recurso de amplia aplicación industrial.',
+      'routes.educacion.informativa.minerales.diatomea.descripcion',
     formulaQuimica: 'SiO₂·nH₂O',
-    sistemaCristalino: 'Amorfo',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.diatomea.sistemaCristalino',
     dureza: 1 - 2,
-    colorCaracteristico: 'Blanco, grisáceo o amarillento',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.diatomea.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Filtración',
+        name: 'routes.educacion.informativa.minerales.diatomea.usos.filtracion.nombre',
         detalle:
-          'es uno de sus usos más importantes, empleándose como medio filtrante en la industria alimenticia (bebidas, aceites), farmacéutica y química.',
+          'routes.educacion.informativa.minerales.diatomea.usos.filtracion.detalle',
       },
       {
-        name: 'Absorbente',
-        detalle: 'utilizada para la contención de derrames de líquidos debido a su alta capacidad de absorción.',
+        name: 'routes.educacion.informativa.minerales.diatomea.usos.absorbente.nombre',
+        detalle: 'routes.educacion.informativa.minerales.diatomea.usos.absorbente.detalle',
       },
       {
-        name: 'Abrasivo suave',
-        detalle: 'presente en productos como pastas dentales, pulidores y limpiadores.',
+        name: 'routes.educacion.informativa.minerales.diatomea.usos.abrasivoSuave.nombre',
+        detalle: 'routes.educacion.informativa.minerales.diatomea.usos.abrasivoSuave.detalle',
       },
       {
-        name: 'Aislante térmico y acústico',
-        detalle: 'debido a su baja conductividad térmica.',
+        name: 'routes.educacion.informativa.minerales.diatomea.usos.aislanteTermicoAcustico.nombre',
+        detalle: 'routes.educacion.informativa.minerales.diatomea.usos.aislanteTermicoAcustico.detalle',
       },
       {
-        name: 'Agricultura',
-        detalle: 'utilizada como insecticida natural y acondicionador de suelos.',
+        name: 'routes.educacion.informativa.minerales.diatomea.usos.agricultura.nombre',
+        detalle: 'routes.educacion.informativa.minerales.diatomea.usos.agricultura.detalle',
       },
     ],
     origenGeologico: '',
@@ -429,18 +429,18 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-yellow-500',
   },
   {
-    name: 'Granito',
+    name: 'routes.educacion.informativa.minerales.granito.nombre',
     descripcion:
-      'Corresponde a una categoría comercial dentro de las rocas de aplicación, utilizada en la industria de la construcción y ornamental para agrupar materiales pétreos de alta dureza, resistencia y aptitud para el pulido. En este sentido, el término no se limita estrictamente al granito desde el punto de vista petrográfico, sino que incluye diversas rocas ígneas y metamórficas con propiedades físicas similares como mármoles, calizas, basaltos, pizarras y cuarcitas. Se caracteriza por su elevada resistencia mecánica, durabilidad frente a la intemperie y buena terminación superficial, lo que lo convierte en un material ampliamente utilizado.',
+      'routes.educacion.informativa.minerales.granito.descripcion',
     formulaQuimica: 'Grn',
-    sistemaCristalino: 'N/A',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.granito.sistemaCristalino',
     dureza: 6,
-    colorCaracteristico: 'Varía según la composición mineralógica',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.granito.colorCaracteristico',
     usosAplicaciones: [
-      { name: 'Construcción', detalle: 'revestimientos, pisos, mesadas, escaleras y fachadas.' },
-      { name: 'Obra pública', detalle: 'adoquines, cordones cuneta y elementos estructurales.' },
-      { name: 'Piedra triturada', detalle: 'áridos para hormigones y bases de caminos.' },
-      { name: 'Decoración', detalle: 'elementos ornamentales debido a su variedad de colores y texturas.' },
+      { name: 'routes.educacion.informativa.minerales.granito.usos.construccion.nombre', detalle: 'routes.educacion.informativa.minerales.granito.usos.construccion.detalle' },
+      { name: 'routes.educacion.informativa.minerales.granito.usos.obraPublica.nombre', detalle: 'routes.educacion.informativa.minerales.granito.usos.obraPublica.detalle' },
+      { name: 'routes.educacion.informativa.minerales.granito.usos.piedraTriturada.nombre', detalle: 'routes.educacion.informativa.minerales.granito.usos.piedraTriturada.detalle' },
+      { name: 'routes.educacion.informativa.minerales.granito.usos.decoracion.nombre', detalle: 'routes.educacion.informativa.minerales.granito.usos.decoracion.detalle' },
     ],
     origenGeologico: '',
     modelPath: '/modelos-3d/granite_stone.glb',
@@ -450,33 +450,33 @@ export const datosMinerales: Array<Mineral> = [
     segundoColorHeader: 'to-gray-400',
   },
   {
-    name: 'Zeolita',
+    name: 'routes.educacion.informativa.minerales.zeolita.nombre',
     descripcion:
-      'Corresponden a un grupo de minerales aluminosilicatos hidratados y un mineral industrial no metalífero, caracterizados por poseer una estructura cristalina porosa con cavidades y canales internos. Esta estructura les permite intercambiar cationes y adsorber moléculas, lo que constituye la base de sus aplicaciones. Se forman principalmente en rocas volcánicas (especialmente en tobas) mediante procesos de alteración hidrotermal o diagenética. Se destacan por su alta capacidad de intercambio catiónico, elevada porosidad, capacidad de adsorción y estabilidad química, propiedades que las convierten en un recurso de gran interés industrial.',
+      'routes.educacion.informativa.minerales.zeolita.descripcion',
     formulaQuimica: 'Zeo',
-    sistemaCristalino: 'Varía según el tipo de zeolita',
+    sistemaCristalino: 'routes.educacion.informativa.minerales.zeolita.sistemaCristalino',
     dureza: 3 - 5,
-    colorCaracteristico: 'Varía según el tipo de zeolita',
+    colorCaracteristico: 'routes.educacion.informativa.minerales.zeolita.colorCaracteristico',
     usosAplicaciones: [
       {
-        name: 'Tratamiento de agua',
-        detalle: 'eliminación de metales pesados, amonio y otros contaminantes.',
+        name: 'routes.educacion.informativa.minerales.zeolita.usos.tratamientoAgua.nombre',
+        detalle: 'routes.educacion.informativa.minerales.zeolita.usos.tratamientoAgua.detalle',
       },
       {
-        name: 'Agricultura',
-        detalle: 'mejorador de suelos, reteniendo nutrientes y humedad.',
+        name: 'routes.educacion.informativa.minerales.zeolita.usos.agricultura.nombre',
+        detalle: 'routes.educacion.informativa.minerales.zeolita.usos.agricultura.detalle',
       },
       {
-        name: 'Ganadería',
-        detalle: 'aditivo en alimentos para animales, ayudando a la absorción de toxinas.',
+        name: 'routes.educacion.informativa.minerales.zeolita.usos.ganaderia.nombre',
+        detalle: 'routes.educacion.informativa.minerales.zeolita.usos.ganaderia.detalle',
       },
       {
-        name: 'Industria química',
-        detalle: 'como tamiz molecular y catalizador en distintos procesos.',
+        name: 'routes.educacion.informativa.minerales.zeolita.usos.industriaQuimica.nombre',
+        detalle: 'routes.educacion.informativa.minerales.zeolita.usos.industriaQuimica.detalle',
       },
       {
-        name: 'Medio ambiente',
-        detalle: 'control de olores y remediación de suelos contaminados.',
+        name: 'routes.educacion.informativa.minerales.zeolita.usos.medioAmbiente.nombre',
+        detalle: 'routes.educacion.informativa.minerales.zeolita.usos.medioAmbiente.detalle',
       },
     ],
     origenGeologico: '',

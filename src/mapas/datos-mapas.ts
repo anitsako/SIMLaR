@@ -23,39 +23,39 @@ export const mapas: Array<Mapa> = [
     accordionDescription: [
       {
         key: 1,
-        ariaLabel: 'Objetivo del mapa',
-        title: 'Objetivo del mapa',
+        ariaLabel: 'routes.mapasGeologicos.mapas.hojaPais.items.objetivo.titulo',
+        title: 'routes.mapasGeologicos.mapas.hojaPais.items.objetivo.titulo',
         description:
-          'Mostrar la distribución de las cartas geológicas oficiales de Argentina y su cobertura territorial.',
+          'routes.mapasGeologicos.mapas.hojaPais.items.objetivo.descripcion',
       },
       {
         key: 2,
-        ariaLabel: 'Escala geográfica',
-        title: 'Escala geográfica',
+        ariaLabel: 'routes.mapasGeologicos.mapas.hojaPais.items.escala.titulo',
+        title: 'routes.mapasGeologicos.mapas.hojaPais.items.escala.titulo',
         description:
-          'El mapa utiliza una escala 1:250.000, permitiendo representar grandes áreas con buen nivel de detalle.',
+          'routes.mapasGeologicos.mapas.hojaPais.items.escala.descripcion',
       },
       {
         key: 3,
-        ariaLabel: 'Información geológica',
-        title: 'Información geológica',
+        ariaLabel: 'routes.mapasGeologicos.mapas.hojaPais.items.informacion.titulo',
+        title: 'routes.mapasGeologicos.mapas.hojaPais.items.informacion.titulo',
         description:
-          'Las cartas contienen datos sobre formaciones rocosas, estructuras geológicas y recursos minerales.',
+          'routes.mapasGeologicos.mapas.hojaPais.items.informacion.descripcion',
       },
       {
         key: 4,
-        ariaLabel: 'Importancia científica y minera',
-        title: 'Importancia científica y minera',
+        ariaLabel: 'routes.mapasGeologicos.mapas.hojaPais.items.importancia.titulo',
+        title: 'routes.mapasGeologicos.mapas.hojaPais.items.importancia.titulo',
         description:
-          'Es una herramienta fundamental para investigaciones geológicas, exploración minera y estudios del suelo.',
+          'routes.mapasGeologicos.mapas.hojaPais.items.importancia.descripcion',
       },
     ],
     gridPosition: 'col-start-1',
     card: [
       {
-        title: 'Hoja geológica del país',
+        title: 'routes.mapasGeologicos.mapas.hojaPais.titulo',
         description:
-          'Mapa que representa la distribución de las cartas geológicas de Argentina, mostrando la organización territorial de los estudios geológicos realizados en el país.',
+          'routes.mapasGeologicos.mapas.hojaPais.descripcion',
       },
     ],
   },
@@ -64,39 +64,39 @@ export const mapas: Array<Mapa> = [
     accordionDescription: [
       {
         key: 1,
-        ariaLabel: 'Diversidad de relieves y rocas',
-        title: 'Diversidad de relieves y rocas',
+        ariaLabel: 'routes.mapasGeologicos.mapas.regional.items.diversidad.titulo',
+        title: 'routes.mapasGeologicos.mapas.regional.items.diversidad.titulo',
         description:
-          'El mapa muestra sierras, valles y diferentes tipos de rocas mediante colores y símbolos geológicos.',
+          'routes.mapasGeologicos.mapas.regional.items.diversidad.descripcion',
       },
       {
         key: 2,
-        ariaLabel: 'Escala geográfica',
-        title: 'Escala geográfica',
+        ariaLabel: 'routes.mapasGeologicos.mapas.regional.items.escala.titulo',
+        title: 'routes.mapasGeologicos.mapas.regional.items.escala.titulo',
         description:
-          'Está elaborado a escala 1:500.000, permitiendo observar la distribución regional de las unidades geológicas.',
+          'routes.mapasGeologicos.mapas.regional.items.escala.descripcion',
       },
       {
         key: 3,
-        ariaLabel: 'Estructuras tectónicas',
-        title: 'Estructuras tectónicas',
+        ariaLabel: 'routes.mapasGeologicos.mapas.regional.items.estructuras.titulo',
+        title: 'routes.mapasGeologicos.mapas.regional.items.estructuras.titulo',
         description:
-          'El mapa identifica fallas, plegamientos y zonas de actividad geológica importantes en la provincia.',
+          'routes.mapasGeologicos.mapas.regional.items.estructuras.descripcion',
       },
       {
         key: 4,
-        ariaLabel: 'Valor educativo y técnico',
-        title: 'Valor educativo y técnico',
+        ariaLabel: 'routes.mapasGeologicos.mapas.regional.items.valor.titulo',
+        title: 'routes.mapasGeologicos.mapas.regional.items.valor.titulo',
         description:
-          'Es utilizado en investigaciones, enseñanza universitaria y planificación de actividades relacionadas con geología y minería.',
+          'routes.mapasGeologicos.mapas.regional.items.valor.descripcion',
       },
     ],
     gridPosition: 'col-start-5',
     card: [
       {
-        title: 'Hoja geológica regional de La Rioja',
+        title: 'routes.mapasGeologicos.mapas.regional.titulo',
         description:
-          'Mapa geológico que muestra las principales formaciones rocosas, estructuras tectónicas y características geológicas de la provincia de La Rioja.',
+          'routes.mapasGeologicos.mapas.regional.descripcion',
       },
     ],
   },

@@ -4,11 +4,13 @@ import { useServerFn } from '@tanstack/react-start';
 import { getRouteApi } from '@tanstack/react-router';
 import { CircleUserRound, Key, LogOut } from 'lucide-react';
 import { logoutFn } from './logout.fn';
+import { useTranslation } from 'react-i18next';
 
 const rootRoute = getRouteApi('__root__');
 
 export const UserMenu = () => {
   const { usuario } = rootRoute.useRouteContext();
+  const { t } = useTranslation();
 
   const logout = useServerFn(logoutFn);
   const { mutate: salir, isPending } = useMutation({ mutationFn: logout });
@@ -22,10 +24,10 @@ export const UserMenu = () => {
       </DropdownTrigger>
       <DropdownMenu>
         <DropdownItem key="update-password" href="/usuarios/modificar-contraseña" startContent={<Key />}>
-          Modificar contraseña
+          {t('auth.menu.modificarContrasena')}
         </DropdownItem>
         <DropdownItem key="logout" startContent={<LogOut />} onPress={() => salir({})}>
-          Salir
+          {t('auth.menu.salir')}
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

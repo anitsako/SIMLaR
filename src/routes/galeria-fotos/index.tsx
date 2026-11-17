@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Button, Card, CardBody, Image, Modal, ModalBody, ModalContent, Skeleton } from '@heroui/react';
 import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
 import { createFileRoute } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { useGaleriaFotos } from '@/galeria-fotos/use-galeria-fotos';
 import SectionTitle from '@/common/section-title';
 
@@ -10,6 +11,7 @@ export const Route = createFileRoute('/galeria-fotos/')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const { data: fotos = [], isFetching } = useGaleriaFotos();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -40,12 +42,12 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col gap-6">
-      <SectionTitle title="Galería de fotos" />
+      <SectionTitle title={t('routes.galeriaFotos.page.title')} />
 
       {isFetching ? (
         <Skeleton className="h-[300px] w-full rounded-xl" />
       ) : fotos.length === 0 ? (
-        <p>No hay fotos cargadas.</p>
+        <p>{t('routes.galeriaFotos.vacio')}</p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {fotos.map((foto, index) => (
@@ -84,7 +86,7 @@ function RouteComponent() {
                   isIconOnly
                   variant="solid"
                   className="absolute left-4 top-1/2 z-20 -translate-y-1/2"
-                  aria-label="Imagen anterior"
+                  aria-label={t('common.acciones.imagenAnterior')}
                   onPress={() => moveFoto('prev')}
                 >
                   <ChevronLeft size={20} />
@@ -93,7 +95,7 @@ function RouteComponent() {
                   isIconOnly
                   variant="solid"
                   className="absolute right-4 top-1/2 z-20 -translate-y-1/2"
-                  aria-label="Imagen siguiente"
+                  aria-label={t('common.acciones.imagenSiguiente')}
                   onPress={() => moveFoto('next')}
                 >
                   <ChevronRight size={20} />
@@ -102,7 +104,7 @@ function RouteComponent() {
                   isIconOnly
                   variant="flat"
                   className="absolute right-4 top-4 z-20"
-                  aria-label="Cerrar"
+                  aria-label={t('common.acciones.cerrar')}
                   onPress={closeFoto}
                 >
                   <X size={18} />

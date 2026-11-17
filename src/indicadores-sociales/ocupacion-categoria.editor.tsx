@@ -1,4 +1,5 @@
 import { Input } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 
 export type FilaOcupacionCategoriaFormulario = {
   categoria: string;
@@ -12,6 +13,14 @@ const categoriasOcupacionales = [
   'Trabajador/a por cuenta propia',
   'Trabajador/a familiar',
 ];
+
+// Los valores de arriba se guardan en la base; estas claves son solo para mostrarlos.
+const CLAVES_CATEGORIA: Record<string, string> = {
+  'Obrero/a o empleado/a': 'routes.admin.indicadoresSociales.ocupacion.categorias.obrero',
+  'Patrón/a': 'routes.admin.indicadoresSociales.ocupacion.categorias.patron',
+  'Trabajador/a por cuenta propia': 'routes.admin.indicadoresSociales.ocupacion.categorias.cuentaPropia',
+  'Trabajador/a familiar': 'routes.admin.indicadoresSociales.ocupacion.categorias.familiar',
+};
 
 export const crearFilasOcupacionCategoria =
   (): Array<FilaOcupacionCategoriaFormulario> =>
@@ -35,6 +44,7 @@ export function OcupacionCategoriaEditor({
   value,
   onChange,
 }: OcupacionCategoriaEditorProps) {
+  const { t } = useTranslation();
   const actualizarFila = (
     indice: number,
     campo: 'mujeres' | 'varones',
@@ -58,22 +68,21 @@ export function OcupacionCategoriaEditor({
     <section className="space-y-4 border-t border-default-200 pt-5">
       <div>
         <h2 className="text-lg font-semibold">
-          Categoría ocupacional
+          {t('routes.admin.indicadoresSociales.ocupacion.titulo')}
         </h2>
 
         <p className="text-sm text-default-500">
-          Población ocupada de 14 años y más, según sexo y
-          categoría ocupacional.
+          {t('routes.admin.indicadoresSociales.ocupacion.descripcion')}
         </p>
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-default-200">
         <div className="min-w-162.5">
           <div className="grid grid-cols-[1.6fr_1fr_1fr_1fr] items-center gap-3 bg-default-100 px-4 py-3 text-sm font-semibold">
-            <span>Categoría</span>
-            <span className="text-center">Mujeres</span>
-            <span className="text-center">Varones</span>
-            <span className="text-center">Total</span>
+            <span>{t('routes.admin.indicadoresSociales.ocupacion.categoria')}</span>
+            <span className="text-center">{t('routes.admin.indicadoresSociales.ocupacion.mujeres')}</span>
+            <span className="text-center">{t('routes.admin.indicadoresSociales.ocupacion.varones')}</span>
+            <span className="text-center">{t('routes.admin.indicadoresSociales.ocupacion.total')}</span>
           </div>
 
           {value.map((fila, indice) => {
@@ -88,6 +97,9 @@ export function OcupacionCategoriaEditor({
                 : 0;
 
             const total = mujeres + varones;
+            const etiqueta = CLAVES_CATEGORIA[fila.categoria]
+              ? t(CLAVES_CATEGORIA[fila.categoria])
+              : fila.categoria;
 
             return (
               <div
@@ -95,11 +107,11 @@ export function OcupacionCategoriaEditor({
                 className="grid grid-cols-[1.6fr_1fr_1fr_1fr] items-center gap-3 border-t border-default-200 px-4 py-2"
               >
                 <span className="text-sm font-medium">
-                  {fila.categoria}
+                  {etiqueta}
                 </span>
 
                 <Input
-                  aria-label={`Mujeres en ${fila.categoria}`}
+                  aria-label={t('routes.admin.indicadoresSociales.ocupacion.mujeresAria', { categoria: etiqueta })}
                   size="sm"
                   variant="bordered"
                   value={fila.mujeres}
@@ -118,7 +130,7 @@ export function OcupacionCategoriaEditor({
                 />
 
                 <Input
-                  aria-label={`Varones en ${fila.categoria}`}
+                  aria-label={t('routes.admin.indicadoresSociales.ocupacion.varonesAria', { categoria: etiqueta })}
                   size="sm"
                   variant="bordered"
                   value={fila.varones}
@@ -148,8 +160,7 @@ export function OcupacionCategoriaEditor({
       </div>
 
       <p className="text-xs text-default-500">
-        El total de cada categoría se calcula automáticamente
-        sumando mujeres y varones.
+        {t('routes.admin.indicadoresSociales.ocupacion.ayuda')}
       </p>
     </section>
   );

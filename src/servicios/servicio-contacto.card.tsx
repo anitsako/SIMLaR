@@ -23,6 +23,7 @@ import {
   Phone,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ServicioContactoMap } from './servicio-contacto.map';
 import type {
@@ -54,6 +55,7 @@ export function ServicioContactoCard({
   puedeEditar,
   onEdit,
 }: Props) {
+  const { t } = useTranslation();
   const [mapaVisible, setMapaVisible] =
     useState(false);
 
@@ -129,7 +131,7 @@ export function ServicioContactoCard({
                       color="warning"
                       variant="flat"
                     >
-                      Borrador
+                      {t('routes.servicios.card.borrador')}
                     </Chip>
                   ) : null}
                 </div>
@@ -153,7 +155,7 @@ export function ServicioContactoCard({
                   onEdit(contacto)
                 }
               >
-                Editar
+                {t('common.acciones.editar')}
               </Button>
             ) : null}
           </div>
@@ -169,7 +171,7 @@ export function ServicioContactoCard({
                     icono={
                       <MapPin className="h-4 w-4" />
                     }
-                    etiqueta="Dirección"
+                    etiqueta={t('routes.servicios.card.direccion')}
                     valor={contacto.direccion}
                   />
                 ) : null}
@@ -179,7 +181,7 @@ export function ServicioContactoCard({
                     icono={
                       <Clock3 className="h-4 w-4" />
                     }
-                    etiqueta="Horario de atención"
+                    etiqueta={t('routes.servicios.card.horario')}
                     valor={contacto.horario}
                   />
                 ) : null}
@@ -189,7 +191,7 @@ export function ServicioContactoCard({
                     icono={
                       <Phone className="h-4 w-4" />
                     }
-                    etiqueta="Teléfono"
+                    etiqueta={t('routes.servicios.card.telefono')}
                     valor={contacto.telefono}
                   />
                 ) : null}
@@ -199,7 +201,7 @@ export function ServicioContactoCard({
                     icono={
                       <MessageCircle className="h-4 w-4" />
                     }
-                    etiqueta="WhatsApp"
+                    etiqueta={t('routes.servicios.card.whatsapp')}
                     valor={contacto.whatsapp}
                   />
                 ) : null}
@@ -209,7 +211,7 @@ export function ServicioContactoCard({
                     icono={
                       <Mail className="h-4 w-4" />
                     }
-                    etiqueta="Correo electrónico"
+                    etiqueta={t('routes.servicios.card.email')}
                     valor={contacto.email}
                   />
                 ) : null}
@@ -217,8 +219,7 @@ export function ServicioContactoCard({
             </>
           ) : (
             <p className="border border-dashed border-default-300 p-4 text-sm text-default-500">
-              Los datos de contacto todavía no fueron
-              completados.
+              {t('routes.servicios.card.sinDatos')}
             </p>
           )}
 
@@ -229,7 +230,7 @@ export function ServicioContactoCard({
               {/* Trámites */}
               <div>
                 <h4 className="text-sm font-semibold text-default-700">
-                  Consultas y trámites relacionados
+                  {t('routes.servicios.card.tramites')}
                 </h4>
 
                 <ul className="mt-3 grid list-disc gap-x-10 gap-y-2 pl-5 text-sm leading-6 text-default-600 md:grid-cols-2 lg:grid-cols-3">
@@ -259,7 +260,7 @@ export function ServicioContactoCard({
                   <Navigation className="h-4 w-4" />
                 }
               >
-                Cómo llegar
+                {t('routes.servicios.card.comoLlegar')}
               </Button>
             ) : null}
 
@@ -274,7 +275,7 @@ export function ServicioContactoCard({
                   <MessageCircle className="h-4 w-4" />
                 }
               >
-                WhatsApp
+                {t('routes.servicios.card.whatsapp')}
               </Button>
             ) : null}
 
@@ -287,7 +288,7 @@ export function ServicioContactoCard({
                   <Phone className="h-4 w-4" />
                 }
               >
-                Llamar
+                {t('routes.servicios.card.llamar')}
               </Button>
             ) : null}
 
@@ -300,7 +301,7 @@ export function ServicioContactoCard({
                   <Mail className="h-4 w-4" />
                 }
               >
-                Correo
+                {t('routes.servicios.card.correo')}
               </Button>
             ) : null}
 
@@ -318,7 +319,7 @@ export function ServicioContactoCard({
                   <ExternalLink className="h-3.5 w-3.5" />
                 }
               >
-                Sitio web
+                {t('routes.servicios.card.sitioWeb')}
               </Button>
             ) : null}
 
@@ -330,7 +331,7 @@ export function ServicioContactoCard({
                 rel="noopener noreferrer"
                 isIconOnly
                 variant="flat"
-                aria-label={`Facebook de ${contacto.nombre}`}
+                aria-label={t('routes.servicios.card.facebookAria', { nombre: contacto.nombre })}
               >
                 <Facebook className="h-4 w-4" />
               </Button>
@@ -344,7 +345,7 @@ export function ServicioContactoCard({
                 rel="noopener noreferrer"
                 isIconOnly
                 variant="flat"
-                aria-label={`Instagram de ${contacto.nombre}`}
+                aria-label={t('routes.servicios.card.instagramAria', { nombre: contacto.nombre })}
               >
                 <Instagram className="h-4 w-4" />
               </Button>
@@ -369,8 +370,8 @@ export function ServicioContactoCard({
                 }
               >
                 {mapaVisible
-                  ? 'Ocultar ubicación'
-                  : 'Ver ubicación'}
+                  ? t('routes.servicios.card.ocultarUbicacion')
+                  : t('routes.servicios.card.verUbicacion')}
               </Button>
             ) : null}
           </div>

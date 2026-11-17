@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { commonColors } from '@heroui/react';
 import { GeoJSON, useMapEvents } from 'react-leaflet';
+import { useTranslation } from 'react-i18next';
 import { useCapaDiques } from './use-capa-diques';
 
 export const CapaDiques = () => {
+  const { t } = useTranslation();
   const { data } = useCapaDiques();
   const [zoom, setZoom] = useState<number | null>(null);
   const map = useMapEvents({
@@ -24,7 +26,7 @@ export const CapaDiques = () => {
       onEachFeature={(feature, layer) => {
         const nombre = feature.properties?.nombre;
         if (nombre && mostrarTooltip) {
-          layer.bindTooltip(`Dique: ${nombre}`, { direction: 'top' });
+          layer.bindTooltip(t('routes.inicio.mapa.tooltips.dique', { nombre }), { direction: 'top' });
         }
       }}
       pathOptions={{

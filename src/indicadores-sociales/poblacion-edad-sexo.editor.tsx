@@ -1,4 +1,5 @@
 import { Input } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 
 export type FilaPoblacionEdadSexoFormulario = {
   grupoEdad: string;
@@ -80,6 +81,7 @@ export function PoblacionEdadSexoEditor({
   value,
   onChange,
 }: PoblacionEdadSexoEditorProps) {
+  const { t } = useTranslation();
   const actualizarFila = (
     indice: number,
     campo: 'mujeres' | 'varones',
@@ -103,23 +105,22 @@ export function PoblacionEdadSexoEditor({
     <section className="space-y-4 border-t border-default-200 pt-5">
       <div>
         <h2 className="text-lg font-semibold">
-          Población por edad y sexo
+          {t('routes.admin.indicadoresSociales.edadSexo.titulo')}
         </h2>
 
         <p className="text-sm text-default-500">
-          Ingresá la cantidad de mujeres y varones para cada
-          grupo quinquenal de edad.
+          {t('routes.admin.indicadoresSociales.edadSexo.descripcion')}
         </p>
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-default-200">
         <div className="min-w-170">
           <div className="grid grid-cols-[1.3fr_1fr_1fr_1fr] items-center gap-3 bg-default-100 px-4 py-3 text-sm font-semibold">
-            <span>Grupo de edad</span>
-            <span className="text-center">Mujeres</span>
-            <span className="text-center">Varones</span>
+            <span>{t('routes.admin.indicadoresSociales.edadSexo.grupoEdad')}</span>
+            <span className="text-center">{t('routes.admin.indicadoresSociales.edadSexo.mujeres')}</span>
+            <span className="text-center">{t('routes.admin.indicadoresSociales.edadSexo.varones')}</span>
             <span className="text-center">
-              Índice de feminidad
+              {t('routes.admin.indicadoresSociales.edadSexo.indiceFeminidad')}
             </span>
           </div>
 
@@ -133,7 +134,7 @@ export function PoblacionEdadSexoEditor({
               </span>
 
               <Input
-                aria-label={`Mujeres de ${fila.grupoEdad} años`}
+                aria-label={t('routes.admin.indicadoresSociales.edadSexo.mujeresAria', { grupo: fila.grupoEdad })}
                 size="sm"
                 variant="bordered"
                 value={fila.mujeres}
@@ -148,7 +149,7 @@ export function PoblacionEdadSexoEditor({
               />
 
               <Input
-                aria-label={`Varones de ${fila.grupoEdad} años`}
+                aria-label={t('routes.admin.indicadoresSociales.edadSexo.varonesAria', { grupo: fila.grupoEdad })}
                 size="sm"
                 variant="bordered"
                 value={fila.varones}
@@ -171,7 +172,7 @@ export function PoblacionEdadSexoEditor({
                 </span>
 
                 <span className="ml-1 text-xs text-default-500">
-                  mujeres cada 100 varones
+                  {t('routes.admin.indicadoresSociales.edadSexo.mujeresCada100')}
                 </span>
               </div>
             </div>
@@ -180,8 +181,7 @@ export function PoblacionEdadSexoEditor({
       </div>
 
       <p className="text-xs text-default-500">
-        El índice de feminidad se calcula automáticamente como
-        mujeres ÷ varones × 100.
+        {t('routes.admin.indicadoresSociales.edadSexo.ayuda')}
       </p>
     </section>
   );

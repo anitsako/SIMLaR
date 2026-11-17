@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Button, Spinner } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { fromArrayBuffer } from 'geotiff';
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export function VisorTerreno3D({ modelo }: Props) {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
     scene: THREE.Scene;
@@ -162,7 +164,7 @@ export function VisorTerreno3D({ modelo }: Props) {
         setLoading(false);
       } catch (err) {
         console.error('Error cargando terreno:', err);
-        setError(err instanceof Error ? err.message : 'Error al cargar el modelo 3D');
+        setError(err instanceof Error ? err.message : t('routes.proyectosMineros.modelo3d.error'));
         setLoading(false);
       }
     };
@@ -205,9 +207,9 @@ export function VisorTerreno3D({ modelo }: Props) {
   return (
     <div className="flex flex-col w-full h-screen overflow-hidden">
       <header className="flex items-center justify-between px-6 py-3 border-b">
-        <h1 className="text-xl font-semibold">{modelo.nombre} — Vista 3D</h1>
+        <h1 className="text-xl font-semibold">{t('routes.proyectosMineros.modelo3d.titulo', { nombre: modelo.nombre })}</h1>
         <Button as={Link} to="/proyectos-mineros" size="sm" variant="flat">
-          Volver
+          {t('common.acciones.volver')}
         </Button>
       </header>
 
@@ -217,7 +219,7 @@ export function VisorTerreno3D({ modelo }: Props) {
           <div ref={containerRef} className="w-full h-full" />
           {loading && (
             <div className="absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-sm">
-              <Spinner label="Cargando modelo 3D..." />
+              <Spinner label={t('routes.proyectosMineros.modelo3d.cargando')} />
             </div>
           )}
           {error && (
@@ -230,23 +232,23 @@ export function VisorTerreno3D({ modelo }: Props) {
         {/* Panel lateral con info del modelo */}
         <aside className="w-72 border-l p-4 overflow-y-auto space-y-4">
           <div>
-            <h3 className="text-sm font-semibold mb-2">Información del modelo</h3>
+            <h3 className="text-sm font-semibold mb-2">{t('routes.proyectosMineros.modelo3d.info')}</h3>
             <dl className="text-sm space-y-1">
               {modelo.elevation.min != null && modelo.elevation.max != null && (
                 <>
                   <div className="flex justify-between">
-                    <dt className="text-default-500">Elevación mín:</dt>
+                    <dt className="text-default-500">{t('routes.proyectosMineros.modelo3d.elevacionMin')}</dt>
                     <dd>{modelo.elevation.min.toFixed(1)} m</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-default-500">Elevación máx:</dt>
+                    <dt className="text-default-500">{t('routes.proyectosMineros.modelo3d.elevacionMax')}</dt>
                     <dd>{modelo.elevation.max.toFixed(1)} m</dd>
                   </div>
                 </>
               )}
 
               <div className="flex justify-between">
-                <dt className="text-default-500">CRS:</dt>
+                <dt className="text-default-500">{t('routes.proyectosMineros.modelo3d.crs')}</dt>
                 <dd>{modelo.crs}</dd>
               </div>
             </dl>
@@ -255,7 +257,7 @@ export function VisorTerreno3D({ modelo }: Props) {
           <div>
 
             <p className="text-xs text-default-400 mt-2">
-              Arrastrá con el mouse para rotar. Rueda para zoom. Click derecho para mover.
+              {t('routes.proyectosMineros.modelo3d.ayuda')}
             </p>
           </div>
         </aside>

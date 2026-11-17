@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { Card, CardBody, Modal, ModalBody, ModalContent } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 
-
-const TEXTO_CUERPO =
-  'A través del Taller de Piedra, la Secretaría promueve de forma activa el agregado de valor en origen a las rocas de aplicación y minerales industriales característicos de nuestra tierra, tales como el granito, la laja y el travertino.';
 
 const IMAGEN_PRINCIPAL: { src: string; alt: string } | null = {
   src: '/images/taller-artesanias/03.jpg',
-  alt: 'Taller de Artesanías',
+  alt: 'routes.programas.tallerArtesanias.imageAlt',
 };
 
 const GALERIA: Array<string> = [
@@ -23,14 +21,14 @@ type ImagenSeleccionada = { src: string; alt: string };
 
 export function TallerArtesanias() {
   const [seleccionada, setSeleccionada] = useState<ImagenSeleccionada | null>(null);
-
+  const { t } = useTranslation();
   return (
     <div className="space-y-6">
       <div className="relative">
         {IMAGEN_PRINCIPAL ? (
           <img
             src={IMAGEN_PRINCIPAL.src}
-            alt={IMAGEN_PRINCIPAL.alt}
+            alt={t(IMAGEN_PRINCIPAL.alt)}
             loading="lazy"
             decoding="async"
             className="aspect-[4/3] w-full rounded-lg object-cover md:aspect-[21/9]"
@@ -44,7 +42,7 @@ export function TallerArtesanias() {
           className="mt-4 rounded-lg bg-white/85 backdrop-blur-sm md:absolute md:bottom-5 md:left-5 md:mt-0 md:max-w-sm"
         >
           <CardBody className="p-5">
-            <p className="text-sm leading-relaxed text-black/70">{TEXTO_CUERPO}</p>
+            <p className="text-sm leading-relaxed text-black/70">{t('routes.programas.tallerArtesanias.body')}</p>
           </CardBody>
         </Card>
       </div>
@@ -52,14 +50,14 @@ export function TallerArtesanias() {
       {GALERIA.length > 0 && (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {GALERIA.map((src, i) => {
-            const alt = `Artesanía en piedra ${i + 1}`;
+            const alt = t('routes.programas.tallerArtesanias.gallery.itemAlt', { n: i + 1 });
 
             return (
               <button
                 key={src}
                 type="button"
                 onClick={() => setSeleccionada({ src, alt })}
-                aria-label={`Ver imagen ampliada: ${alt}`}
+                aria-label={t('routes.programas.tallerArtesanias.gallery.expandAria', { alt })}
                 className="group overflow-hidden cursor-pointer rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-default-700"
               >
                 <img
@@ -80,7 +78,7 @@ export function TallerArtesanias() {
         isOpen={seleccionada !== null}
         onClose={() => setSeleccionada(null)}
         size="5xl"
-        aria-label="Vista ampliada de la imagen"
+        aria-label={t('routes.programas.tallerArtesanias.gallery.dialogAria')}
         classNames={{
           closeButton: "bg-white hover:bg-black/50 hover:text-white active:bg-black/80"
         }}

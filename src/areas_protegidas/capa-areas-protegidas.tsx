@@ -2,9 +2,11 @@
 import { useState } from 'react';
 import { commonColors } from '@heroui/react';
 import { GeoJSON, useMapEvents } from 'react-leaflet';
+import { useTranslation } from 'react-i18next';
 import { useCapaAreasProtegidas } from './use-capa-areas-protegidas.ts';
 
 export const CapaAreasProtegidas = () => {
+  const { t } = useTranslation();
   const { data } = useCapaAreasProtegidas();
   const [zoom, setZoom] = useState<number | null>(null);
   const map = useMapEvents({
@@ -25,7 +27,7 @@ export const CapaAreasProtegidas = () => {
       onEachFeature={(feature, layer) => {
         const nombre = feature.properties?.nombre;
         if (nombre && mostrarTooltip) {
-          layer.bindTooltip(`Area Protegida: ${nombre}`, { direction: 'top' });
+          layer.bindTooltip(t('routes.inicio.mapa.tooltips.areaProtegida', { nombre }), { direction: 'top' });
         }
       }}
       pathOptions={{

@@ -21,6 +21,7 @@ import { addImagenDepartamentoFn } from '@/departamentos/add-imagen-departamento
 import { removeImagenDepartamentoFn } from '@/departamentos/remove-imagen-departamento.fn';
 import { updateImagenDepartamentoFn } from '@/departamentos/update-imagen-departamento.fn';
 import { useDepartamentosImagenes } from '@/departamentos/use-departamentos-imagenes';
+import { Trans, useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/_authed/departamentos-imagenes/')({
@@ -36,6 +37,7 @@ const fileToBase64 = (file: File) =>
   });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const inputRefs = useRef<Record<number, HTMLInputElement | null>>({});
   const [imagenAEliminar, setImagenAEliminar] = useState<{ departamentoId: number; departamentoNombre: string } | null>(
     null
@@ -55,8 +57,8 @@ function RouteComponent() {
       queryClient.invalidateQueries({ queryKey: ['departamentos-imagenes'] });
       queryClient.invalidateQueries({ queryKey: ['capa-departamentos'] });
       addToast({
-        title: 'Imagen agregada',
-        description: 'La imagen del departamento fue cargada correctamente.',
+        title: t('common.imagenes.agregada'),
+        description: t('routes.admin.departamentosImagenes.agregadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -69,8 +71,8 @@ function RouteComponent() {
       queryClient.invalidateQueries({ queryKey: ['departamentos-imagenes'] });
       queryClient.invalidateQueries({ queryKey: ['capa-departamentos'] });
       addToast({
-        title: 'Imagen actualizada',
-        description: 'La imagen del departamento fue actualizada correctamente.',
+        title: t('common.imagenes.actualizada'),
+        description: t('routes.admin.departamentosImagenes.actualizadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -83,8 +85,8 @@ function RouteComponent() {
       queryClient.invalidateQueries({ queryKey: ['departamentos-imagenes'] });
       queryClient.invalidateQueries({ queryKey: ['capa-departamentos'] });
       addToast({
-        title: 'Imagen quitada',
-        description: 'La imagen del departamento fue eliminada.',
+        title: t('common.imagenes.quitada'),
+        description: t('routes.admin.departamentosImagenes.quitadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -121,8 +123,8 @@ function RouteComponent() {
       });
     } catch (error) {
       addToast({
-        title: 'Error al subir imagen',
-        description: error instanceof Error ? error.message : 'Ocurrió un error desconocido',
+        title: t('common.errores.subirImagen'),
+        description: error instanceof Error ? error.message : t('common.errores.desconocido'),
         color: 'danger',
         variant: 'solid',
       });
@@ -144,11 +146,11 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col mt-4 gap-6">
-      <SectionTitle title="Imágenes por departamento" />
+      <SectionTitle title={t('routes.admin.departamentosImagenes.page.title')} />
 
-      {addMutation.error && <Alert color="danger">Error al agregar imagen: {addMutation.error.message}</Alert>}
-      {updateMutation.error && <Alert color="danger">Error al actualizar imagen: {updateMutation.error.message}</Alert>}
-      {removeMutation.error && <Alert color="danger">Error al quitar imagen: {removeMutation.error.message}</Alert>}
+      {addMutation.error && <Alert color="danger">{t('common.errores.agregarImagen', { mensaje: addMutation.error.message })}</Alert>}
+      {updateMutation.error && <Alert color="danger">{t('common.errores.actualizarImagen', { mensaje: updateMutation.error.message })}</Alert>}
+      {removeMutation.error && <Alert color="danger">{t('common.errores.quitarImagen', { mensaje: removeMutation.error.message })}</Alert>}
 
       {isFetching ? (
         <Skeleton className="h-[320px] w-full rounded-xl" />
@@ -176,7 +178,7 @@ function RouteComponent() {
                       startContent={<Expand className="h-4 w-4" />}
                       onPress={() => openImageModal(departamento.archivoImagen!.id, departamento.archivoImagen!.nombre)}
                     >
-                      Expandir
+                      {t('common.acciones.expandir')}
                     </Button>
                     <Button
                       size="sm"
@@ -185,7 +187,7 @@ function RouteComponent() {
                       isLoading={updateMutation.isPending}
                       onPress={() => inputRefs.current[departamento.id]?.click()}
                     >
-                      Cambiar imagen
+                      {t('routes.admin.departamentosImagenes.cambiarImagen')}
                     </Button>
                     <Button
                       size="sm"
@@ -197,7 +199,7 @@ function RouteComponent() {
                         setImagenAEliminar({ departamentoId: departamento.id, departamentoNombre: departamento.nombre })
                       }
                     >
-                      Quitar
+                      {t('common.acciones.quitar')}
                     </Button>
                   </div>
                 </div>
@@ -209,7 +211,7 @@ function RouteComponent() {
                     isLoading={addMutation.isPending}
                     onPress={() => inputRefs.current[departamento.id]?.click()}
                   >
-                    Agregar imagen
+                    {t('common.acciones.agregarImagen')}
                   </Button>
                 </div>
               )}
@@ -245,17 +247,21 @@ function RouteComponent() {
 
       <Modal isOpen={!!imagenAEliminar} onClose={() => setImagenAEliminar(null)}>
         <ModalContent>
-          <ModalHeader>Quitar imagen</ModalHeader>
+          <ModalHeader>{t('common.imagenes.quitarImagen')}</ModalHeader>
           <ModalBody>
             {imagenAEliminar ? (
               <p>
-                ¿Querés quitar la imagen de <span className="font-semibold">{imagenAEliminar.departamentoNombre}</span>?
+                <Trans
+                  i18nKey="routes.admin.departamentosImagenes.confirmarQuitar"
+                  values={{ nombre: imagenAEliminar.departamentoNombre }}
+                  components={{ b: <span className="font-semibold" /> }}
+                />
               </p>
             ) : null}
           </ModalBody>
           <ModalFooter>
             <Button variant="flat" onPress={() => setImagenAEliminar(null)}>
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
             <Button
               color="danger"
@@ -267,7 +273,7 @@ function RouteComponent() {
                 removeMutation.mutate({ data: { departamentoId: imagenAEliminar.departamentoId } });
               }}
             >
-              Quitar
+              {t('common.acciones.quitar')}
             </Button>
           </ModalFooter>
         </ModalContent>

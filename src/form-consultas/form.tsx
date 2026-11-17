@@ -1,11 +1,13 @@
 import { Button, Card, CardBody, Form, Input, Textarea, addToast } from '@heroui/react';
 import { useState } from 'react';
 import { useServerFn } from '@tanstack/react-start';
+import { useTranslation } from 'react-i18next';
 import { sendEmailFn } from './send-email.fn';
 // import Lottie from 'lottie-react';
 // import HandShake from '../assets/lotties/Handshake Loop.json';
 
 export default function Formulario() {
+  const { t } = useTranslation();
   const [isSending, setIsSending] = useState(false);
 
   const sendEmail = useServerFn(sendEmailFn);
@@ -30,8 +32,8 @@ export default function Formulario() {
 
     if (consulta.length < 50) {
       addToast({
-        title: 'Consulta muy corta',
-        description: 'Por favor, escribí una consulta más detallada (al menos 50 caracteres).',
+        title: t('routes.contacto.formulario.cortaTitulo'),
+        description: t('routes.contacto.formulario.cortaDescripcion'),
         color: 'warning',
         variant: 'solid',
       });
@@ -45,8 +47,8 @@ export default function Formulario() {
       });
 
       addToast({
-        title: '¡Gracias por contactarnos!',
-        description: 'Tu consulta ha sido enviada correctamente.',
+        title: t('routes.contacto.formulario.exitoTitulo'),
+        description: t('routes.contacto.formulario.exitoDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -54,11 +56,11 @@ export default function Formulario() {
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
       addToast({
-        title: 'Error al enviar',
+        title: t('routes.contacto.formulario.errorTitulo'),
         description:
           error instanceof Error
             ? error.message
-            : 'Ocurrió un error al enviar tu consulta. Por favor, intentá nuevamente.',
+            : t('routes.contacto.formulario.errorDescripcion'),
         color: 'danger',
       });
     } finally {
@@ -70,8 +72,7 @@ export default function Formulario() {
       <Card className="w-full flex flex-row md:w-1/2 bg-gray-50 shadow-lg">
         <CardBody className="space-y-2 flex flex-col items-center justify-center text-center p-6">
           <p className="text-2xl text-center text-slate-600 leading-relaxed">
-            Por favor, ingresá tu email y tu consulta en el formulario. Nos pondremos en contacto contigo lo antes
-            posible para brindarte la asistencia que necesitás.
+            {t('routes.contacto.formulario.intro')}
           </p>
           {/* <Lottie animationData={HandShake} loop={true} className="w-48" /> */}
         </CardBody>
@@ -82,11 +83,11 @@ export default function Formulario() {
       >
         <Input
           isRequired
-          label="Email"
+          label={t('routes.contacto.formulario.emailLabel')}
           labelPlacement="outside"
           type="email"
           name="email"
-          placeholder="Ingresa tu email"
+          placeholder={t('routes.contacto.formulario.emailPlaceholder')}
           classNames={{
             label: 'text-xl font-medium',
             input: '!text-slate-900 text-lg placeholder:text-slate-400',
@@ -95,10 +96,10 @@ export default function Formulario() {
         />
         <Textarea
           isRequired
-          label="Consulta"
+          label={t('routes.contacto.formulario.consultaLabel')}
           labelPlacement="outside"
           name="consulta"
-          placeholder="Ingresa tu consulta"
+          placeholder={t('routes.contacto.formulario.consultaPlaceholder')}
           classNames={{
             label: 'text-xl font-medium',
             input: '!text-slate-900 text-lg placeholder:text-slate-400 min-h-[250px] max-h-[250px]',
@@ -106,7 +107,7 @@ export default function Formulario() {
           }}
         />
         <Button type="submit" variant="flat" size="lg" isDisabled={isSending} isLoading={isSending}>
-          {isSending ? 'Enviando...' : 'Enviar'}
+          {isSending ? t('common.acciones.enviando') : t('common.acciones.enviar')}
         </Button>
       </Form>
     </div>

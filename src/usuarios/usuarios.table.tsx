@@ -12,9 +12,11 @@ import {
 import { useMemo, useState } from 'react';
 import { KeyRound, SquarePen } from 'lucide-react';
 import { useNavigate } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { useUsuarios } from './use-usuarios';
 
 export const UsuariosTable = () => {
+  const { t } = useTranslation();
   const { data, isFetching, error } = useUsuarios();
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
@@ -31,15 +33,15 @@ export const UsuariosTable = () => {
   }, [page, data]);
 
   if (error) {
-    return <div>Error al cargar los usuarios</div>;
+    return <div>{t('routes.admin.usuarios.tabla.error')}</div>;
   }
 
   if (isFetching) {
-    return <div className="flex align-center justify-center text-lg">Cargando usuarios...</div>;
+    return <div className="flex align-center justify-center text-lg">{t('routes.admin.usuarios.tabla.cargando')}</div>;
   }
 
   if (data.length === 0) {
-    return <div className="flex align-center justify-center text-xl">No hay usuarios para mostrar</div>;
+    return <div className="flex align-center justify-center text-xl">{t('routes.admin.usuarios.tabla.vacio')}</div>;
   }
 
   return (
@@ -60,12 +62,12 @@ export const UsuariosTable = () => {
       classNames={{ wrapper: 'min-h-[400px]' }}
     >
       <TableHeader>
-        <TableColumn key="id">ID</TableColumn>
-        <TableColumn key="nombreCompleto">Nombre completo</TableColumn>
-        <TableColumn key="username">Nombre de usuario</TableColumn>
-        <TableColumn key="email">Email</TableColumn>
-        <TableColumn key="esAdmin">Es administrador</TableColumn>
-        <TableColumn key="acciones">Acciones</TableColumn>
+        <TableColumn key="id">{t('routes.admin.usuarios.tabla.columnas.id')}</TableColumn>
+        <TableColumn key="nombreCompleto">{t('routes.admin.usuarios.tabla.columnas.nombreCompleto')}</TableColumn>
+        <TableColumn key="username">{t('routes.admin.usuarios.tabla.columnas.username')}</TableColumn>
+        <TableColumn key="email">{t('routes.admin.usuarios.tabla.columnas.email')}</TableColumn>
+        <TableColumn key="esAdmin">{t('routes.admin.usuarios.tabla.columnas.esAdmin')}</TableColumn>
+        <TableColumn key="acciones">{t('routes.admin.usuarios.tabla.columnas.acciones')}</TableColumn>
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
@@ -73,7 +75,7 @@ export const UsuariosTable = () => {
             {(columnKey) => (
               <TableCell>
                 {columnKey === 'nombreCompleto' ? `${item.apellido}, ${item.nombre}` : getKeyValue(item, columnKey)}
-                {columnKey === 'esAdmin' && (item.esAdmin ? 'Sí' : 'No')}
+                {columnKey === 'esAdmin' && (item.esAdmin ? t('common.si') : t('common.no'))}
                 {columnKey === 'acciones' && (
                   <div className="flex items-center gap-2">
                     <Button

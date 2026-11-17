@@ -1,27 +1,30 @@
 import { Accordion, AccordionItem } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import { UNIDADES_FUNCIONES, type UnidadFuncion } from './funciones-competencias.data';
 
 function ListaFunciones({ funciones }: { funciones: Array<string> }) {
+  const { t } = useTranslation();
   if (funciones.length === 0) return null;
 
   return (
     <ul className="list-disc space-y-1.5 pl-5 text-sm text-black/80">
       {funciones.map((funcion, i) => (
-        <li key={i}>{funcion}</li>
+        <li key={i}>{t(funcion)}</li>
       ))}
     </ul>
   );
 }
 
 function RamaFuncion({ unidad }: { unidad: UnidadFuncion }) {
+  const { t } = useTranslation();
   return (
     <div className="mt-6 border-l-2 border-default-300 pl-4">
       <p className="font-semibold text-default-700">
         <span className="mr-1 text-black/50">{unidad.numero}</span>
-        {unidad.titulo}
+        {t(unidad.titulo)}
       </p>
 
-      {unidad.dependeDe && <p className="mb-2 text-xs italic text-black/50">{unidad.dependeDe}</p>}
+      {unidad.dependeDe && <p className="mb-2 text-xs italic text-black/50">{t(unidad.dependeDe)}</p>}
 
       <ListaFunciones funciones={unidad.funciones} />
 
@@ -33,13 +36,14 @@ function RamaFuncion({ unidad }: { unidad: UnidadFuncion }) {
 }
 
 export function FuncionesCompetencias() {
+  const { t } = useTranslation();
   return (
     <Accordion selectionMode="multiple">
       {UNIDADES_FUNCIONES.map((unidad) => (
         <AccordionItem
           key={unidad.id}
-          aria-label={unidad.titulo}
-          title={`${unidad.numero} ${unidad.titulo}`}
+          aria-label={t(unidad.titulo)}
+          title={`${unidad.numero} ${t(unidad.titulo)}`}
           classNames={{ title: 'font-semibold', trigger: 'cursor-pointer' }}
 
         >
