@@ -26,6 +26,7 @@ import {
   YAxis,
 } from 'recharts';
 
+import { useTranslation } from 'react-i18next';
 import { useProyectosMinerosStats } from './use-proyectos-mineros-stats';
 
 interface DistribucionItem {
@@ -115,6 +116,7 @@ function TooltipDistribucion({
   active?: boolean;
   payload?: Array<{ payload: DistribucionGraficoItem }>;
 }) {
+  const { t } = useTranslation();
   const item = payload?.[0]?.payload;
 
   if (!active || !item) {
@@ -125,12 +127,12 @@ function TooltipDistribucion({
     <div className="rounded-lg border border-default-200 bg-content1 px-3 py-2 shadow-lg">
       <p className="max-w-64 text-sm font-semibold">{item.nombre}</p>
       <p className="mt-1 text-xs text-default-500">
-        {formatearEntero.format(item.cantidad)} proyectos ·{' '}
+        {t('routes.proyectosMineros.estadisticas.tooltipCantidad', { cantidad: formatearEntero.format(item.cantidad) })}{' '}
         {formatearPorcentaje.format(item.porcentaje)} %
       </p>
       {!item.esAgrupado && (
         <p className="mt-1 text-[11px] text-primary">
-          Seleccionar para filtrar
+          {t('routes.proyectosMineros.estadisticas.seleccionarFiltrar')}
         </p>
       )}
     </div>
@@ -147,6 +149,7 @@ function GraficoDistribucion({
   onSeleccionar,
   estaSeleccionado,
 }: GraficoDistribucionProps) {
+  const { t } = useTranslation();
   const datosGrafico = prepararDatos(datos, total);
   const altura = Math.max(250, datos.length * 48 + 75);
   const haySeleccion = datos.some((item) => estaSeleccionado?.(item));
@@ -161,7 +164,7 @@ function GraficoDistribucion({
       <CardBody>
         {datos.length === 0 ? (
           <div className="flex min-h-56 items-center justify-center text-sm text-default-500">
-            No hay datos para los filtros seleccionados.
+            {t('routes.proyectosMineros.estadisticas.sinDatos')}
           </div>
         ) : (
           <div style={{ height: altura }}>
@@ -264,22 +267,23 @@ function GraficoTipos({
   onSeleccionar: (item: DistribucionItem) => void;
   estaSeleccionado: (item: DistribucionItem) => boolean;
 }) {
+  const { t } = useTranslation();
   const datosGrafico = prepararDatos(datos, total);
   const haySeleccion = datos.some(estaSeleccionado);
 
   return (
     <Card className="border border-default-200 shadow-sm">
       <CardHeader className="flex-col items-start gap-1 pb-0">
-        <h3 className="text-base font-semibold">Distribución por tipo</h3>
+        <h3 className="text-base font-semibold">{t('routes.proyectosMineros.estadisticas.porTipo.titulo')}</h3>
         <p className="text-xs text-default-500">
-          Seleccioná un sector o una categoría para filtrar el listado.
+          {t('routes.proyectosMineros.estadisticas.porTipo.descripcion')}
         </p>
       </CardHeader>
 
       <CardBody>
         {datos.length === 0 ? (
           <div className="flex min-h-56 items-center justify-center text-sm text-default-500">
-            No hay datos para los filtros seleccionados.
+            {t('routes.proyectosMineros.estadisticas.sinDatos')}
           </div>
         ) : (
           <div className="grid min-h-72 grid-cols-1 items-center gap-2 sm:grid-cols-[minmax(210px,1fr)_minmax(180px,0.85fr)]">
@@ -393,6 +397,7 @@ export function ProyectosMinerosStats({
 }: {
   visibleBase?: boolean;
 }) {
+  const { t } = useTranslation();
   const navigate = useNavigate({ from: '/proyectos-mineros/' });
 
   const {
@@ -448,7 +453,7 @@ export function ProyectosMinerosStats({
 
     return (
       <section className="mt-8 rounded-xl border border-danger-200 p-6 text-danger">
-        No fue posible cargar las estadísticas de proyectos mineros.
+        {t('routes.proyectosMineros.estadisticas.error')}
       </section>
     );
   }
@@ -456,7 +461,7 @@ export function ProyectosMinerosStats({
   if (isFetching || !data) {
     return (
       <section className="mt-8 flex min-h-64 items-center justify-center rounded-xl border border-default-200">
-        <Spinner label="Calculando estadísticas..." />
+        <Spinner label={t('routes.proyectosMineros.estadisticas.calculando')} />
       </section>
     );
   }
@@ -546,14 +551,14 @@ export function ProyectosMinerosStats({
           <div className="flex items-center gap-2">
             <ChartColumnIncreasing className="text-primary" size={22} />
             <h2 className="text-xl font-semibold">
-              Estadísticas de proyectos mineros
+              {t('routes.proyectosMineros.estadisticas.titulo')}
             </h2>
           </div>
 
           <p className="mt-1 text-sm text-default-500">
             {tieneFiltrosActivos
-              ? 'Resultados correspondientes a los filtros aplicados.'
-              : 'Resumen general de los proyectos registrados.'}
+              ? t('routes.proyectosMineros.estadisticas.descripcionFiltrada')
+              : t('routes.proyectosMineros.estadisticas.descripcionGeneral')}
           </p>
         </div>
 
@@ -563,8 +568,8 @@ export function ProyectosMinerosStats({
           color={tieneFiltrosActivos ? 'primary' : 'default'}
         >
           {tieneFiltrosActivos
-            ? `${formatearEntero.format(data.totalProyectos)} proyectos filtrados`
-            : 'Vista general'}
+            ? t('routes.proyectosMineros.estadisticas.chipFiltrados', { n: formatearEntero.format(data.totalProyectos) })
+            : t('routes.proyectosMineros.estadisticas.chipGeneral')}
         </Chip>
       </div>
 
@@ -578,15 +583,18 @@ export function ProyectosMinerosStats({
 
               <div className="min-w-0">
                 <p className="text-sm text-default-500">
-                  Proyectos registrados
+                  {t('routes.proyectosMineros.estadisticas.registrados')}
                 </p>
                 <p className="text-3xl font-bold">
                   {formatearEntero.format(data.totalProyectos)}
                 </p>
                 <p className="text-xs text-default-400">
                   {tieneFiltrosActivos
-                    ? `${formatearEntero.format(data.totalProyectos)} de ${formatearEntero.format(data.totalGeneral)} proyectos`
-                    : 'Total disponible en esta vista'}
+                    ? t('routes.proyectosMineros.estadisticas.registradosDeTotal', {
+                        n: formatearEntero.format(data.totalProyectos),
+                        total: formatearEntero.format(data.totalGeneral),
+                      })
+                    : t('routes.proyectosMineros.estadisticas.totalVista')}
                 </p>
               </div>
             </div>
@@ -607,18 +615,21 @@ export function ProyectosMinerosStats({
 
               <div className="min-w-0">
                 <p className="text-sm text-default-500">
-                  Superficie acumulada
+                  {t('routes.proyectosMineros.estadisticas.superficie')}
                 </p>
                 <p className="text-3xl font-bold">
                   {formatearHectareas.format(
                     data.superficieAcumuladaHectareas
                   )}{' '}
-                  <span className="text-lg font-semibold">ha</span>
+                  <span className="text-lg font-semibold">{t('routes.proyectosMineros.estadisticas.hectareas')}</span>
                 </p>
                 <p className="text-xs text-default-400">
                   {tieneFiltrosActivos
-                    ? `${formatearHectareas.format(data.superficieAcumuladaHectareas)} de ${formatearHectareas.format(data.superficieGeneralHectareas)} ha`
-                    : 'Suma de las superficies informadas'}
+                    ? t('routes.proyectosMineros.estadisticas.superficieDeTotal', {
+                        n: formatearHectareas.format(data.superficieAcumuladaHectareas),
+                        total: formatearHectareas.format(data.superficieGeneralHectareas),
+                      })
+                    : t('routes.proyectosMineros.estadisticas.sumaSuperficies')}
                 </p>
               </div>
             </div>
@@ -634,15 +645,14 @@ export function ProyectosMinerosStats({
       <div className="flex items-start gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-default-600">
         <MousePointerClick className="mt-0.5 shrink-0 text-primary" size={17} />
         <p>
-          Seleccioná una barra, un sector o una categoría para aplicar ese
-          filtro. Volvé a seleccionarlo para quitarlo.
+          {t('routes.proyectosMineros.estadisticas.ayuda')}
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <GraficoDistribucion
-          titulo="Distribución por etapa"
-          descripcion="Cantidad y porcentaje en cada etapa de desarrollo. Los colores coinciden con el visor."
+          titulo={t('routes.proyectosMineros.estadisticas.porEtapa.titulo')}
+          descripcion={t('routes.proyectosMineros.estadisticas.porEtapa.descripcion')}
           datos={data.porEtapa}
           total={data.totalProyectos}
           colorBase="#64748b"
@@ -654,8 +664,8 @@ export function ProyectosMinerosStats({
         />
 
         <GraficoDistribucion
-          titulo="Distribución por mineral"
-          descripcion="Principales minerales de interés, ordenados por cantidad."
+          titulo={t('routes.proyectosMineros.estadisticas.porMineral.titulo')}
+          descripcion={t('routes.proyectosMineros.estadisticas.porMineral.descripcion')}
           datos={data.porMineral}
           total={data.totalProyectos}
           colorBase="#2563eb"
@@ -675,8 +685,8 @@ export function ProyectosMinerosStats({
         />
 
         <GraficoDistribucion
-          titulo="Distribución por ubicación"
-          descripcion="Cantidad y porcentaje según la ubicación declarada."
+          titulo={t('routes.proyectosMineros.estadisticas.porUbicacion.titulo')}
+          descripcion={t('routes.proyectosMineros.estadisticas.porUbicacion.descripcion')}
           datos={data.porUbicacion}
           total={data.totalProyectos}
           colorBase="#9333ea"

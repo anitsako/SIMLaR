@@ -31,6 +31,7 @@ import {
   ClipboardList
 } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const rootRoute = getRouteApi('__root__');
 
@@ -68,17 +69,17 @@ type MenuGroup = {
 
 const institucionalItems: Array<MenuItem> = [
   {
-    label: 'Autoridades',
+    label: 'nav.institucional.items.autoridades',
     href: '/institucional',
     icon: <Building size={18} />,
   },
   {
-    label: 'Objetivos',
+    label: 'nav.institucional.items.objetivos',
     href: '/objetivos',
     icon: <Target size={18} />,
   },
   {
-    label: 'Contacto',
+    label: 'nav.institucional.items.contacto',
     href: '/contacto',
     icon: <ContactRound size={18} />,
   },
@@ -86,27 +87,27 @@ const institucionalItems: Array<MenuItem> = [
 
 const informacionMineraItems: Array<MenuItem> = [
   {
-    label: 'Proyectos mineros',
+    label: 'nav.informacionMinera.items.proyectosMineros',
     href: '/proyectos-mineros',
     icon: <Pickaxe size={18} />,
   },
   {
-    label: 'Mapas geológicos',
+    label: 'nav.informacionMinera.items.mapasGeologicos',
     href: '/mapas-geologicos',
     icon: <Map size={18} />,
   },
   {
-    label: 'Marco normativo',
+    label: 'nav.informacionMinera.items.marcoNormativo',
     href: '/transparencia',
     icon: <Blend size={18} />,
   },
   {
-    label: 'Catastro',
+    label: 'nav.informacionMinera.items.catastro',
     href: '/catastro',
     icon: <Map size={18} />,
   },
   {
-    label: 'Galería de fotos',
+    label: 'nav.informacionMinera.items.galeriaFotos',
     href: '/galeria-fotos',
     icon: <Images size={18} />,
   },
@@ -114,17 +115,17 @@ const informacionMineraItems: Array<MenuItem> = [
 
 const serviciosFormacionItems: Array<MenuItem> = [
   {
-    label: 'Servicios',
+    label: 'nav.serviciosFormacion.items.servicios',
     href: '/servicios',
     icon: <Briefcase size={18} />,
   },
   {
-    label: 'Educación minera',
+    label: 'nav.serviciosFormacion.items.educacionMinera',
     href: '/educacion',
     icon: <LibraryBig size={18} />,
   },
   {
-    label: 'Programas',
+    label: 'nav.serviciosFormacion.items.programas',
     href: '/programas',
     icon: <ClipboardList size={18} />,
   }
@@ -132,32 +133,32 @@ const serviciosFormacionItems: Array<MenuItem> = [
 
 const administracionItems: Array<MenuItem> = [
   {
-    label: 'Carrousel de imágenes',
+    label: 'nav.administracion.items.carrouselImagenes',
     href: '/carrousel-imagenes',
     icon: <Images size={18} />,
   },
   {
-    label: 'Galería de fotos',
+    label: 'nav.administracion.items.galeriaFotos',
     href: '/galeria-fotos/administrar',
     icon: <Images size={18} />,
   },
   {
-    label: 'Google Analytics',
+    label: 'nav.administracion.items.googleAnalytics',
     href: '/google-analytics',
     icon: <ChartBar size={18} />,
   },
   {
-    label: 'Imágenes de departamentos',
+    label: 'nav.administracion.items.imagenesDepartamentos',
     href: '/departamentos-imagenes',
     icon: <Images size={18} />,
   },
   {
-    label: 'Indicadores sociales',
+    label: 'nav.administracion.items.indicadoresSociales',
     href: '/indicadores-sociales',
     icon: <ChartBar size={18} />,
   },
   {
-    label: 'Usuarios',
+    label: 'nav.administracion.items.usuarios',
     href: '/usuarios',
     icon: <Users size={18} />,
   },
@@ -165,27 +166,28 @@ const administracionItems: Array<MenuItem> = [
 
 const publicMenuGroups: Array<MenuGroup> = [
   {
-    label: 'Institucional',
+    label: 'nav.institucional.label',
     items: institucionalItems,
   },
   {
-    label: 'Información minera',
+    label: 'nav.informacionMinera.label',
     items: informacionMineraItems,
   },
   {
-    label: 'Servicios y formación',
+    label: 'nav.serviciosFormacion.label',
     items: serviciosFormacionItems,
   },
 ];
 
 const adminMenuGroup: MenuGroup = {
-  label: 'Administración',
+  label: 'nav.administracion.label',
   items: administracionItems,
 };
 
 export const PanelLateral = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { usuario } = rootRoute.useRouteContext();
+  const { t } = useTranslation();
 
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
@@ -206,7 +208,7 @@ export const PanelLateral = () => {
             className: 'px-3 py-2 text-sm font-bold uppercase text-danger border-b-2 border-danger',
           }}
         >
-          Inicio
+          {t('nav.inicio')}
         </Link>
 
         {menuGroups.map((group) => {
@@ -224,7 +226,7 @@ export const PanelLateral = () => {
                   }
                   endContent={<ChevronDown size={16} />}
                 >
-                  {group.label}
+                  {t(group.label)}
                 </Button>
               </DropdownTrigger>
 
@@ -239,7 +241,7 @@ export const PanelLateral = () => {
                       startContent={item.icon}
                       className={itemActive ? 'text-danger font-semibold' : ''}
                     >
-                      {item.label}
+                      {t(item.label)}
                     </DropdownItem>
                   );
                 })}
@@ -257,11 +259,11 @@ export const PanelLateral = () => {
         <Drawer isOpen={isOpen} onClose={onClose} placement="left">
           <DrawerContent className="max-w-xs">
             <DrawerHeader>
-              <p className="text-xl font-bold">Menú SIMLaR</p>
+              <p className="text-xl font-bold">{t('nav.menuMovil')}</p>
             </DrawerHeader>
 
             <DrawerBody className="flex flex-col gap-4">
-              <Listbox aria-label="Inicio">
+              <Listbox aria-label={t('nav.inicio')}>
                 <ListboxItem
                   key="/"
                   href="/"
@@ -269,7 +271,7 @@ export const PanelLateral = () => {
                   startContent={<House size={18} />}
                   className={pathname === '/' ? 'text-danger font-semibold' : ''}
                 >
-                  Inicio
+                  {t('nav.inicio')}
                 </ListboxItem>
               </Listbox>
 
@@ -282,10 +284,10 @@ export const PanelLateral = () => {
                         : 'px-2 text-xs font-bold uppercase text-default-400'
                     }
                   >
-                    {group.label}
+                    {t(group.label)}
                   </p>
 
-                  <Listbox aria-label={group.label}>
+                  <Listbox aria-label={t(group.label)}>
                     {group.items.map((item) => {
                       const itemActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
@@ -297,7 +299,7 @@ export const PanelLateral = () => {
                           startContent={item.icon}
                           className={itemActive ? 'text-danger font-semibold' : ''}
                         >
-                          {item.label}
+                          {t(item.label)}
                         </ListboxItem>
                       );
                     })}

@@ -1,9 +1,11 @@
 import { SectionHeader } from './section-header';
+import { useTranslation } from 'react-i18next';
 
 export const AccesosRapidos = () => {
+  const { t } = useTranslation();
   return (
     <div>
-      <SectionHeader title="Accesos rápidos" subtitle="Organismos y sitios vinculados" />
+      <SectionHeader title={t("routes.inicio.accesosRapidos.title")} subtitle={t("routes.inicio.accesosRapidos.subtitle")} />
 
       <div className="grid grid-cols-15 gap-6 sm:grid-cols-3">
         <a
@@ -30,7 +32,7 @@ export const AccesosRapidos = () => {
           rel="noopener noreferrer"
           className="flex h-24 items-center justify-center transition hover:opacity-80"
         >
-          <img src="/accesos/mineria.jpg" alt="Secretaría de Minería" className="max-h-14 w-auto object-contain" />
+          <img src="/accesos/mineria.jpg" alt={t('routes.inicio.accesosRapidos.secretariaMineriaAlt')} className="max-h-14 w-auto object-contain" />
         </a>
 
         <a
@@ -39,7 +41,7 @@ export const AccesosRapidos = () => {
           rel="noopener noreferrer"
           className="flex h-24 items-center justify-center transition hover:opacity-80"
         >
-          <img src="/accesos/segemar.png" alt="Delegación La Rioja" className="max-h-22 w-auto object-contain" />
+          <img src="/accesos/segemar.png" alt={t('routes.inicio.accesosRapidos.delegacionAlt')} className="max-h-22 w-auto object-contain" />
         </a>
 
         <a

@@ -12,6 +12,8 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { Expand } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 import { useDepartamento } from './use-departamento';
 import { PoblacionComparativaChart } from '@/indicadores-sociales/graficos/poblacion-comparativa.chart';
@@ -32,7 +34,7 @@ const formatearNumero = (
   valor: number | null | undefined
 ): string => {
   if (valor === null || valor === undefined) {
-    return 'Sin dato';
+    return i18n.t('common.estados.sinDato');
   }
 
   return valor.toLocaleString('es-AR');
@@ -42,7 +44,7 @@ const formatearDecimal = (
   valor: number | null | undefined
 ): string => {
   if (valor === null || valor === undefined) {
-    return 'Sin dato';
+    return i18n.t('common.estados.sinDato');
   }
 
   return valor.toLocaleString('es-AR', {
@@ -56,6 +58,7 @@ export const DepartamentoModal = ({
   isOpen,
   onClose,
 }: Props) => {
+  const { t } = useTranslation();
   const { data: departamento } = useDepartamento(id ?? 0, {
     enabled: id !== null && isOpen,
   });
@@ -135,27 +138,25 @@ const indiceFeminidad =
                     variant="solid"
                     className="absolute bottom-2 right-2 z-10"
                     onPress={onImageOpen}
-                    aria-label="Ampliar imagen"
+                    aria-label={t('routes.inicio.departamento.ampliarImagen')}
                   >
                     <Expand size={16} />
                   </Button>
                 </div>
               ) : (
                 <Alert color="warning" variant="flat">
-                  Este departamento no tiene una imagen minera
-                  cargada.
+                  {t('routes.inicio.departamento.sinImagen')}
                 </Alert>
               )}
 
               <section className="space-y-5 border-t border-default-200 pt-6">
                 <div>
                   <h2 className="text-2xl font-semibold">
-                    Información social y económica
+                    {t('routes.inicio.departamento.infoSocialTitulo')}
                   </h2>
 
                   <p className="text-sm text-default-500">
-                    Indicadores correspondientes al Censo
-                    Nacional 2022.
+                    {t('routes.inicio.departamento.infoSocialDescripcion')}
                   </p>
                 </div>
 
@@ -174,8 +175,7 @@ const indiceFeminidad =
 
                 {indicadoresError ? (
                   <Alert color="danger">
-                    No se pudieron consultar los indicadores del
-                    departamento.
+                    {t('routes.inicio.departamento.errorIndicadores')}
                   </Alert>
                 ) : null}
 
@@ -183,8 +183,7 @@ const indiceFeminidad =
                 !indicadoresError &&
                 !indicadores ? (
                   <Alert color="warning" variant="flat">
-                    Todavía no se cargaron indicadores sociales y
-                    económicos para este departamento.
+                    {t('routes.inicio.departamento.sinIndicadores')}
                   </Alert>
                 ) : null}
 
@@ -203,7 +202,7 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Población 2022
+            {t('routes.inicio.departamento.poblacion2022')}
           </p>
 
           <p className="text-2xl font-semibold">
@@ -213,7 +212,7 @@ const indiceFeminidad =
           </p>
 
           <p className="text-xs text-default-400">
-            habitantes
+            {t('routes.inicio.departamento.habitantes')}
           </p>
         </CardBody>
       </Card>
@@ -225,12 +224,12 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Variación 2010–2022
+            {t('routes.inicio.departamento.variacion')}
           </p>
 
           <p className="text-2xl font-semibold">
             {variacionRelativa === null
-              ? 'Sin dato'
+              ? t('common.estados.sinDato')
               : `${variacionRelativa >= 0 ? '+' : ''}${variacionRelativa.toLocaleString(
                   'es-AR',
                   {
@@ -242,10 +241,10 @@ const indiceFeminidad =
 
           <p className="text-xs text-default-400">
             {variacionAbsoluta === null
-              ? 'Sin comparación'
-              : `${variacionAbsoluta >= 0 ? '+' : ''}${formatearNumero(
-                  variacionAbsoluta
-                )} habitantes`}
+              ? t('routes.inicio.departamento.sinComparacion')
+              : t('routes.inicio.departamento.variacionHabitantes', {
+                  valor: `${variacionAbsoluta >= 0 ? '+' : ''}${formatearNumero(variacionAbsoluta)}`,
+                })}
           </p>
         </CardBody>
       </Card>
@@ -257,7 +256,7 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Edad mediana
+            {t('routes.inicio.departamento.edadMediana')}
           </p>
 
           <p className="text-2xl font-semibold">
@@ -267,7 +266,7 @@ const indiceFeminidad =
           </p>
 
           <p className="text-xs text-default-400">
-            años
+            {t('routes.inicio.departamento.anios')}
           </p>
         </CardBody>
       </Card>
@@ -279,7 +278,7 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Índice de feminidad
+            {t('routes.inicio.departamento.indiceFeminidad')}
           </p>
 
           <p className="text-2xl font-semibold">
@@ -287,7 +286,7 @@ const indiceFeminidad =
           </p>
 
           <p className="text-xs text-default-400">
-            mujeres cada 100 varones
+            {t('routes.inicio.departamento.mujeresCada100')}
           </p>
         </CardBody>
       </Card>
@@ -338,7 +337,7 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Población 2010
+            {t('routes.inicio.departamento.poblacion2010')}
           </p>
 
           <p className="text-xl font-semibold">
@@ -356,7 +355,7 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Mujeres 2022
+            {t('routes.inicio.departamento.mujeres2022')}
           </p>
 
           <p className="text-xl font-semibold">
@@ -374,7 +373,7 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Varones 2022
+            {t('routes.inicio.departamento.varones2022')}
           </p>
 
           <p className="text-xl font-semibold">
@@ -394,14 +393,14 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Edad mediana de mujeres
+            {t('routes.inicio.departamento.edadMedianaMujeres')}
           </p>
 
           <p className="text-xl font-semibold">
             {formatearDecimal(
               indicadores.edadMedianaMujeres
             )}{' '}
-            años
+            {t('routes.inicio.departamento.anios')}
           </p>
         </CardBody>
       </Card>
@@ -412,14 +411,14 @@ const indiceFeminidad =
       >
         <CardBody className="gap-1">
           <p className="text-sm text-default-500">
-            Edad mediana de varones
+            {t('routes.inicio.departamento.edadMedianaVarones')}
           </p>
 
           <p className="text-xl font-semibold">
             {formatearDecimal(
               indicadores.edadMedianaVarones
             )}{' '}
-            años
+            {t('routes.inicio.departamento.anios')}
           </p>
         </CardBody>
       </Card>
@@ -447,12 +446,11 @@ const indiceFeminidad =
       <section className="space-y-4 border-t border-default-200 pt-6">
         <div>
           <h2 className="text-2xl font-semibold">
-            Actividad económica
+            {t('routes.inicio.departamento.actividadEconomicaTitulo')}
           </h2>
 
           <p className="text-sm text-default-500">
-            Indicadores de la población ocupada de
-            14 años y más.
+            {t('routes.inicio.departamento.actividadEconomicaDescripcion')}
           </p>
         </div>
 
@@ -471,7 +469,7 @@ const indiceFeminidad =
        ===================================================== */}
     <div className="rounded-xl bg-default-50 p-4">
       <p className="text-sm font-semibold">
-        Fuente
+        {t('routes.inicio.departamento.fuente')}
       </p>
 
       <p className="mt-1 text-sm text-default-500">
@@ -482,7 +480,7 @@ const indiceFeminidad =
       {indicadores.observaciones ? (
         <>
           <p className="mt-4 text-sm font-semibold">
-            Observaciones
+            {t('routes.inicio.departamento.observaciones')}
           </p>
 
           <p className="mt-1 text-sm text-default-500">

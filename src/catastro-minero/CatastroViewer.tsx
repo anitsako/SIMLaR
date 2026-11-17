@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type Ref } from 'react'
-import { t } from './labels'
+import { useTranslation } from 'react-i18next'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { CATASTRO_BASE_MAP } from './baseMap'
@@ -60,10 +60,10 @@ function featureName(properties: GeoJSON.GeoJsonProperties | null | undefined): 
 }
 
 type ViewerErrorKey =
-  | 'gestionMinera.tramites.catastro.errorMapInit'
-  | 'gestionMinera.tramites.catastro.errorGeojsonLoad'
-  | 'gestionMinera.tramites.catastro.errorGeojsonInvalid'
-  | 'gestionMinera.tramites.catastro.errorNoGeometries'
+  | 'routes.catastro.visor.errorMapInit'
+  | 'routes.catastro.visor.errorGeojsonLoad'
+  | 'routes.catastro.visor.errorGeojsonInvalid'
+  | 'routes.catastro.visor.errorNoGeometries'
 
 type ViewerStatus =
   | { type: 'loading' }
@@ -199,13 +199,14 @@ function ViewerFrame({
   readonly status: ViewerStatus
   readonly mapRef?: Ref<HTMLDivElement>
 }) {
+  const { t } = useTranslation()
 
   return (
     <div className={styles.shell}>
       <div ref={mapRef} className={styles.map} role="region" aria-label={title} />
       {status.type === 'ready' ? (
-        <aside className={styles.legend} aria-label={t('gestionMinera.tramites.catastro.legendTitle')}>
-          <p className={styles.legendTitle}>{t('gestionMinera.tramites.catastro.legendTitle')}</p>
+        <aside className={styles.legend} aria-label={t('routes.catastro.visor.legendTitle')}>
+          <p className={styles.legendTitle}>{t('routes.catastro.visor.legendTitle')}</p>
           <ul className={styles.legendList}>
             {CATASTRO_LAYER_TYPES.map((layerType) => (
               <li key={layerType} className={styles.legendItem}>
@@ -214,7 +215,7 @@ function ViewerFrame({
                   style={{ color: CATASTRO_LAYER_COLORS[layerType] }}
                   aria-hidden="true"
                 />
-                <span>{t(`gestionMinera.tramites.catastro.layers.${layerType}`)}</span>
+                <span>{t(`routes.catastro.visor.layers.${layerType}`)}</span>
               </li>
             ))}
           </ul>
@@ -227,7 +228,7 @@ function ViewerFrame({
           aria-live={status.type === 'error' ? 'assertive' : 'polite'}
           aria-busy={status.type === 'loading'}
         >
-          {status.type === 'loading' ? t('common.loading') : t(status.messageKey)}
+          {status.type === 'loading' ? t('routes.catastro.visor.cargando') : t(status.messageKey)}
         </div>
       ) : null}
     </div>
@@ -235,24 +236,25 @@ function ViewerFrame({
 }
 
 export function CatastroViewer({ geojsonUrls, title }: CatastroViewerProps) {
+  const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
   const [status, setStatus] = useState<ViewerStatus>({ type: 'loading' })
   const geojsonKey = geojsonUrls.join('|')
-  const emptyPropertiesLabel = t('gestionMinera.tramites.catastro.emptyProperties')
-  const fieldTypeLabel = t('gestionMinera.tramites.catastro.fields.type')
-  const fieldExpedienteLabel = t('gestionMinera.tramites.catastro.fields.expediente')
-  const fieldTitularLabel = t('gestionMinera.tramites.catastro.fields.titular')
-  const fieldDepartamentoLabel = t('gestionMinera.tramites.catastro.fields.departamento')
-  const fieldSuperficieLabel = t('gestionMinera.tramites.catastro.fields.superficie')
-  const typeCateos = t('gestionMinera.tramites.catastro.type.cateos')
-  const typeManifestaciones = t('gestionMinera.tramites.catastro.type.manifestaciones')
-  const typeCanteras = t('gestionMinera.tramites.catastro.type.canteras')
-  const typeMinas = t('gestionMinera.tramites.catastro.type.minas')
-  const typePasmaMinas = t('gestionMinera.tramites.catastro.type.pasma-minas')
-  const typeAluviones = t('gestionMinera.tramites.catastro.type.aluviones')
-  const typeAreasEspeciales = t('gestionMinera.tramites.catastro.type.areas-especiales')
-  const identifyTitle = t('gestionMinera.tramites.catastro.identifyTitle')
-  const noParcelAssociated = t('gestionMinera.tramites.catastro.noParcelAssociated')
+  const emptyPropertiesLabel = t('routes.catastro.visor.emptyProperties')
+  const fieldTypeLabel = t('routes.catastro.visor.fields.type')
+  const fieldExpedienteLabel = t('routes.catastro.visor.fields.expediente')
+  const fieldTitularLabel = t('routes.catastro.visor.fields.titular')
+  const fieldDepartamentoLabel = t('routes.catastro.visor.fields.departamento')
+  const fieldSuperficieLabel = t('routes.catastro.visor.fields.superficie')
+  const typeCateos = t('routes.catastro.visor.type.cateos')
+  const typeManifestaciones = t('routes.catastro.visor.type.manifestaciones')
+  const typeCanteras = t('routes.catastro.visor.type.canteras')
+  const typeMinas = t('routes.catastro.visor.type.minas')
+  const typePasmaMinas = t('routes.catastro.visor.type.pasma-minas')
+  const typeAluviones = t('routes.catastro.visor.type.aluviones')
+  const typeAreasEspeciales = t('routes.catastro.visor.type.areas-especiales')
+  const identifyTitle = t('routes.catastro.visor.identifyTitle')
+  const noParcelAssociated = t('routes.catastro.visor.noParcelAssociated')
 
   useEffect(() => {
     const container = containerRef.current
@@ -351,8 +353,8 @@ export function CatastroViewer({ geojsonUrls, title }: CatastroViewerProps) {
           setStatus({
             type: 'error',
             messageKey: allInvalid
-              ? 'gestionMinera.tramites.catastro.errorGeojsonInvalid'
-              : 'gestionMinera.tramites.catastro.errorGeojsonLoad',
+              ? 'routes.catastro.visor.errorGeojsonInvalid'
+              : 'routes.catastro.visor.errorGeojsonLoad',
           })
           return
         }
@@ -505,7 +507,7 @@ export function CatastroViewer({ geojsonUrls, title }: CatastroViewerProps) {
         if (!bounds.isValid()) {
           setStatus({
             type: 'error',
-            messageKey: 'gestionMinera.tramites.catastro.errorNoGeometries',
+            messageKey: 'routes.catastro.visor.errorNoGeometries',
           })
           return
         }
@@ -530,7 +532,7 @@ export function CatastroViewer({ geojsonUrls, title }: CatastroViewerProps) {
         if (!cancelled) {
           setStatus({
             type: 'error',
-            messageKey: 'gestionMinera.tramites.catastro.errorMapInit',
+            messageKey: 'routes.catastro.visor.errorMapInit',
           })
         }
       }

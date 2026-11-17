@@ -6,12 +6,14 @@ import { useState } from 'react';
 import type { SubmitEvent } from 'react';
 import { updateUsuarioContraseñaFn } from '@/usuarios/update-usuario-contraseña.fn';
 import { logoutFn } from '@/auth/logout.fn';
+import { useTranslation } from 'react-i18next';
 
 export const Route = createFileRoute('/_authed/usuarios/modificar-contraseña/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [data, setData] = useState({ passwordOld: '', passwordNew: '', passwordConfirm: '' });
 
@@ -29,8 +31,8 @@ function RouteComponent() {
     mutationFn: updateUsuarioContraseña,
     onSuccess: () => {
       addToast({
-        title: 'Contraseña modificada con éxito',
-        description: 'La contraseña fue modificada correctamente, ingrese nuevamente',
+        title: t('routes.admin.usuarios.contrasena.modificadaTitulo'),
+        description: t('routes.admin.usuarios.contrasena.modificadaDescripcion'),
         color: 'success',
         variant: 'flat',
       });
@@ -44,7 +46,7 @@ function RouteComponent() {
     setValidationError(null);
 
     if (data.passwordNew !== data.passwordConfirm) {
-      setValidationError('La nueva contraseña y la confirmación no coinciden.');
+      setValidationError(t('routes.admin.usuarios.contrasena.noCoinciden'));
     }
 
     modificarUsuarioContraseña({ data: { passwordOld: data.passwordOld, passwordNew: data.passwordNew } });
@@ -52,14 +54,14 @@ function RouteComponent() {
 
   return (
     <div className="mt-4 space-y-6">
-      <h1 className="text-2xl font-bold">Modificar contraseña</h1>
+      <h1 className="text-2xl font-bold">{t('routes.admin.usuarios.contrasena.titulo')}</h1>
       {(validationError || error) && (
-        <Alert color="danger">{validationError ?? (error as any)?.message ?? 'Error al modificar contraseña.'}</Alert>
+        <Alert color="danger">{validationError ?? (error as any)?.message ?? t('routes.admin.usuarios.contrasena.error')}</Alert>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
           isRequired
-          label="Contraseña actual"
+          label={t('routes.admin.usuarios.contrasena.actual')}
           type="password"
           minLength={8}
           value={data.passwordOld}
@@ -67,7 +69,7 @@ function RouteComponent() {
         />
         <Input
           isRequired
-          label="Contraseña nueva"
+          label={t('routes.admin.usuarios.contrasena.nueva')}
           type="password"
           minLength={8}
           value={data.passwordNew}
@@ -75,7 +77,7 @@ function RouteComponent() {
         />
         <Input
           isRequired
-          label="Confirmar contraseña"
+          label={t('routes.admin.usuarios.contrasena.confirmar')}
           type="password"
           minLength={8}
           value={data.passwordConfirm}
@@ -83,10 +85,10 @@ function RouteComponent() {
         />
 
         <Button type="submit" isLoading={isPending} color="primary">
-          Modificar contraseña
+          {t('routes.admin.usuarios.contrasena.modificarBoton')}
         </Button>
         <Button type="button" onPress={() => navigate({ to: '/' })} className="bg-primary-50 ml-2">
-          Volver
+          {t('common.acciones.volver')}
         </Button>
       </form>
     </div>

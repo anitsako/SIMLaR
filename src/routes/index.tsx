@@ -5,16 +5,18 @@ import { Carrousel } from '@/carrousel-imagenes/carrousel';
 import { MapaPrincipal } from '@/mapa-principal/mapa-principal';
 import { SectionHeader } from '@/common/section-header';
 import { AccesosRapidos } from '@/common/accesos-rapidos';
+import { useTranslation } from 'react-i18next';
 
 export const Route = createFileRoute('/')({
   component: Home,
 });
 
 function Home() {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col p-1 md:p-2 gap-4">
       {/* Carrousel */}
-      <section>
+      <section className='min-w-0 h-full'>
         <Carrousel />
       </section>
 
@@ -22,11 +24,11 @@ function Home() {
       <section>
         <div className="flex items-center justify-between">
           <SectionHeader
-            title="Visor de proyectos"
-            subtitle="Explorá nuestros proyectos en un entorno interactivo"
+            title={t("routes.inicio.visorProyectos.title")}
+            subtitle={t("routes.inicio.visorProyectos.subtitle")}
             rightSlot={
               <Link to="/proyectos-mineros" className="text-sm font-medium text-primary hover:underline">
-                Abrir proyectos mineros
+                {t("routes.inicio.abrirProyectos")}
               </Link>
             }
           />

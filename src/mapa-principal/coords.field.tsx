@@ -1,6 +1,7 @@
 import { Button, useDisclosure } from '@heroui/react';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
+import { useTranslation } from 'react-i18next';
 import { DmsCordsModal } from './dms-coords.modal';
 import { decimalToDms } from '@/common/decimal-to-dms';
 import { CapaDepartamentos } from '@/departamentos/capa-departamentos';
@@ -23,17 +24,18 @@ export const CoordsField = ({
   value: { lat: number; lng: number };
   onValueChange: (coords: { lat: number; lng: number }) => void;
 }) => {
+  const { t } = useTranslation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium">Coordenadas geográficas</p>
+        <p className="text-sm font-medium">{t('routes.admin.proyectosMineros.coordenadas.titulo')}</p>
         <Button size="sm" variant="flat" onPress={onOpen}>
-          Ingresar manualmente
+          {t('routes.admin.proyectosMineros.coordenadas.ingresarManual')}
         </Button>
       </div>
-      <p className="text-xs text-gray-500">Arrastre el marcador para seleccionar la ubicación.</p>
+      <p className="text-xs text-gray-500">{t('routes.admin.proyectosMineros.coordenadas.ayuda')}</p>
       <div className="h-128 rounded-lg overflow-hidden border border-gray-300 relative z-0">
         <MapContainer
           bounds={[
@@ -64,8 +66,8 @@ export const CoordsField = ({
         </MapContainer>
       </div>
       <p className="text-sm">
-        <span className="font-medium">Lat:</span> {decimalToDms(value.lat, true)} &nbsp;
-        <span className="font-medium">Lng:</span> {decimalToDms(value.lng, false)}
+        <span className="font-medium">{t('routes.admin.proyectosMineros.coordenadas.lat')}</span> {decimalToDms(value.lat, true)} &nbsp;
+        <span className="font-medium">{t('routes.admin.proyectosMineros.coordenadas.lng')}</span> {decimalToDms(value.lng, false)}
       </p>
       {isOpen && <DmsCordsModal value={value} isOpen={isOpen} onClose={onClose} onValueChange={onValueChange} />}
     </div>

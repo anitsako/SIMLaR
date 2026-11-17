@@ -10,6 +10,7 @@ import {
   SelectItem,
 } from '@heroui/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { dmsToDecimal } from '@/common/dms-to-decimal';
 import { decimalToDmsObj } from '@/common/decimal-to-dms';
 
@@ -24,6 +25,7 @@ export const DmsCordsModal = ({
   value: { lat: number; lng: number };
   onValueChange: (coords: { lat: number; lng: number }) => void;
 }) => {
+  const { t } = useTranslation();
   const [latDms, setLatDMS] = useState<{ deg: number; min: number; sec: number; dir: string }>(
     decimalToDmsObj(value.lat, true)
   );
@@ -34,26 +36,26 @@ export const DmsCordsModal = ({
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="lg">
       <ModalContent>
-        <ModalHeader>Ingresar coordenadas manualmente</ModalHeader>
+        <ModalHeader>{t('routes.admin.proyectosMineros.coordenadas.modalTitulo')}</ModalHeader>
         <ModalBody>
-          <p className="text-sm font-medium">Latitud</p>
+          <p className="text-sm font-medium">{t('routes.admin.proyectosMineros.coordenadas.latitud')}</p>
           <div className="flex gap-2 items-end">
             <NumberInput
-              label="Grados"
+              label={t('routes.admin.proyectosMineros.coordenadas.grados')}
               min={0}
               max={90}
               value={latDms.deg}
               onValueChange={(deg) => setLatDMS((prevLatDms) => ({ ...prevLatDms, deg }))}
             />
             <NumberInput
-              label="Minutos"
+              label={t('routes.admin.proyectosMineros.coordenadas.minutos')}
               min={0}
               max={59}
               value={latDms.min}
               onValueChange={(min) => setLatDMS((prevLatDms) => ({ ...prevLatDms, min }))}
             />
             <NumberInput
-              label="Segundos"
+              label={t('routes.admin.proyectosMineros.coordenadas.segundos')}
               min={0}
               max={59.99}
               step={0.01}
@@ -61,32 +63,32 @@ export const DmsCordsModal = ({
               onValueChange={(sec) => setLatDMS((prevLatDms) => ({ ...prevLatDms, sec }))}
             />
             <Select
-              label="Dirección"
+              label={t('routes.admin.proyectosMineros.coordenadas.direccion')}
               defaultSelectedKeys={[latDms.dir]}
               onChange={(e) => setLatDMS((prevLatDms) => ({ ...prevLatDms, dir: e.target.value }))}
             >
-              <SelectItem key="N">Norte</SelectItem>
-              <SelectItem key="S">Sur</SelectItem>
+              <SelectItem key="N">{t('routes.admin.proyectosMineros.coordenadas.norte')}</SelectItem>
+              <SelectItem key="S">{t('routes.admin.proyectosMineros.coordenadas.sur')}</SelectItem>
             </Select>
           </div>
-          <p className="text-sm font-medium mt-4">Longitud</p>
+          <p className="text-sm font-medium mt-4">{t('routes.admin.proyectosMineros.coordenadas.longitud')}</p>
           <div className="flex gap-2 items-end">
             <NumberInput
-              label="Grados"
+              label={t('routes.admin.proyectosMineros.coordenadas.grados')}
               min={0}
               max={180}
               value={lngDms.deg}
               onValueChange={(deg) => setLngDMS((prevLngDms) => ({ ...prevLngDms, deg }))}
             />
             <NumberInput
-              label="Minutos"
+              label={t('routes.admin.proyectosMineros.coordenadas.minutos')}
               min={0}
               max={59}
               value={lngDms.min}
               onValueChange={(min) => setLngDMS((prevLngDms) => ({ ...prevLngDms, min }))}
             />
             <NumberInput
-              label="Segundos"
+              label={t('routes.admin.proyectosMineros.coordenadas.segundos')}
               min={0}
               max={59.99}
               step={0.01}
@@ -94,18 +96,18 @@ export const DmsCordsModal = ({
               onValueChange={(sec) => setLngDMS((prevLngDms) => ({ ...prevLngDms, sec }))}
             />
             <Select
-              label="Dirección"
+              label={t('routes.admin.proyectosMineros.coordenadas.direccion')}
               defaultSelectedKeys={[lngDms.dir]}
               onChange={(e) => setLngDMS((prevLngDms) => ({ ...prevLngDms, dir: e.target.value }))}
             >
-              <SelectItem key="E">Este</SelectItem>
-              <SelectItem key="O">Oeste</SelectItem>
+              <SelectItem key="E">{t('routes.admin.proyectosMineros.coordenadas.este')}</SelectItem>
+              <SelectItem key="O">{t('routes.admin.proyectosMineros.coordenadas.oeste')}</SelectItem>
             </Select>
           </div>
         </ModalBody>
         <ModalFooter>
           <Button variant="flat" onPress={onClose}>
-            Cancelar
+            {t('common.acciones.cancelar')}
           </Button>
           <Button
             color="primary"
@@ -117,7 +119,7 @@ export const DmsCordsModal = ({
               onClose();
             }}
           >
-            Aplicar
+            {t('common.acciones.aplicar')}
           </Button>
         </ModalFooter>
       </ModalContent>

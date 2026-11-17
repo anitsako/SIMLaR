@@ -9,6 +9,7 @@ import { AppBar } from '@/common/app-bar';
 import { Footer } from '@/common/footer';
 import { getCurrentUserFn } from '@/auth/get-current-user.fn';
 import { GoogleAnalytics } from '@/analytics/google-analytics';
+import '@/i18n';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   beforeLoad: async () => {
@@ -67,7 +68,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           <ToastProvider placement="top-center" />
           <main className="relative z-10 min-h-screen flex flex-col items-center">
             <AppBar />
-            <div className="flex-1 bg-white md:w-full lg:max-w-4xl xl:max-w-6xl p-4 my-2">{children}</div>
+            <div className="flex-1 w-full min-w-0 bg-white lg:max-w-4xl xl:max-w-6xl p-4 my-2">{children}</div>
             <Footer />
           </main>
         </HeroUIProvider>

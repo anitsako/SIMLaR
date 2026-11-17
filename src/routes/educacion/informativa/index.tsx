@@ -4,6 +4,7 @@ import { Button } from '@heroui/react';
 import { Navigation } from 'swiper/modules';
 import { datosMinerales } from 'src/minerales-educacion/datos-minerales';
 import Mineral from 'src/minerales-educacion/minerales';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 
 // @ts-ignore: Se ignora css
@@ -16,15 +17,16 @@ export const Route = createFileRoute('/educacion/informativa/')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <div className="mt-4 space-y-6">
       <div className="flex flex-row justify-center mt-5 gap-4">
         <Link to="/educacion">
           <Button variant="flat" color="primary">
-            ← Volver
+            {t('routes.educacion.informativa.volver')}
           </Button>
         </Link>
-        <SectionTitle title="Sección Informativa" />
+        <SectionTitle title={t('routes.educacion.informativa.title')} />
       </div>
       <Swiper cssMode={true} navigation={true} spaceBetween={50} slidesPerView={1} modules={[Navigation]}>
         {datosMinerales.map((mineral, idx) => (

@@ -14,6 +14,8 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useServerFn } from '@tanstack/react-start';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 import {OcupacionCategoriaEditor, crearFilasOcupacionCategoria,} from './ocupacion-categoria.editor';
 
@@ -95,13 +97,13 @@ const parseNumeroOpcional = (
 
   if (!Number.isFinite(numero) || numero < 0) {
     throw new Error(
-      `${nombreCampo} debe ser un número válido mayor o igual a cero.`
+      i18n.t('routes.admin.indicadoresSociales.modal.validacion.numeroValido', { campo: nombreCampo })
     );
   }
 
   if (entero && !Number.isInteger(numero)) {
     throw new Error(
-      `${nombreCampo} debe ser un número entero.`
+      i18n.t('routes.admin.indicadoresSociales.modal.validacion.numeroEntero', { campo: nombreCampo })
     );
   }
 
@@ -130,7 +132,7 @@ const parsePoblacionPorEdadSexo = (
       varonesTexto.length === 0
     ) {
       throw new Error(
-        `Completá mujeres y varones para el grupo ${fila.grupoEdad}.`
+        i18n.t('routes.admin.indicadoresSociales.modal.validacion.completarGrupo', { grupo: fila.grupoEdad })
       );
     }
 
@@ -144,7 +146,7 @@ const parsePoblacionPorEdadSexo = (
       varones < 0
     ) {
       throw new Error(
-        `Los datos del grupo ${fila.grupoEdad} deben ser números enteros mayores o iguales a cero.`
+        i18n.t('routes.admin.indicadoresSociales.modal.validacion.enterosGrupo', { grupo: fila.grupoEdad })
       );
     }
 
@@ -178,7 +180,7 @@ const parseOcupacionPorCategoria = (
       varonesTexto.length === 0
     ) {
       throw new Error(
-        `Completá mujeres y varones para la categoría ${fila.categoria}.`
+        i18n.t('routes.admin.indicadoresSociales.modal.validacion.completarCategoria', { categoria: fila.categoria })
       );
     }
 
@@ -192,7 +194,7 @@ const parseOcupacionPorCategoria = (
       varones < 0
     ) {
       throw new Error(
-        `Los valores de ${fila.categoria} deben ser números enteros mayores o iguales a cero.`
+        i18n.t('routes.admin.indicadoresSociales.modal.validacion.enterosCategoria', { categoria: fila.categoria })
       );
     }
 
@@ -209,6 +211,7 @@ export function IndicadoresDepartamentoModal({
   departamento,
   onClose,
 }: IndicadoresDepartamentoModalProps) {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const [formulario, setFormulario] =
@@ -253,8 +256,8 @@ export function IndicadoresDepartamentoModal({
       setValidationError(null);
 
       addToast({
-        title: 'Indicadores guardados',
-        description: `Los datos de ${departamento.nombre} fueron guardados correctamente.`,
+        title: t('routes.admin.indicadoresSociales.modal.guardadoTitulo'),
+        description: t('routes.admin.indicadoresSociales.modal.guardadoDescripcion', { nombre: departamento.nombre }),
         color: 'success',
         variant: 'solid',
       });
@@ -266,12 +269,12 @@ export function IndicadoresDepartamentoModal({
       const mensaje =
         error instanceof Error
           ? error.message
-          : 'No se pudieron guardar los indicadores.';
+          : t('routes.admin.indicadoresSociales.modal.errorGuardar');
 
       setValidationError(mensaje);
 
       addToast({
-        title: 'No se pudieron guardar los indicadores',
+        title: t('routes.admin.indicadoresSociales.modal.errorGuardarTitulo'),
         description: mensaje,
         color: 'danger',
         variant: 'solid',
@@ -410,45 +413,45 @@ export function IndicadoresDepartamentoModal({
     try {
       const poblacion2010 = parseNumeroOpcional(
         formulario.poblacion2010,
-        'Población 2010',
+        t('routes.admin.indicadoresSociales.modal.campos.poblacion2010'),
         true
       );
 
       const poblacion2022 = parseNumeroOpcional(
         formulario.poblacion2022,
-        'Población 2022',
+        t('routes.admin.indicadoresSociales.modal.campos.poblacion2022'),
         true
       );
 
       const mujeres2022 = parseNumeroOpcional(
         formulario.mujeres2022,
-        'Mujeres 2022',
+        t('routes.admin.indicadoresSociales.modal.campos.mujeres2022'),
         true
       );
 
       const varones2022 = parseNumeroOpcional(
         formulario.varones2022,
-        'Varones 2022',
+        t('routes.admin.indicadoresSociales.modal.campos.varones2022'),
         true
       );
 
       const edadMedianaTotal = parseNumeroOpcional(
         formulario.edadMedianaTotal,
-        'Edad mediana total',
+        t('routes.admin.indicadoresSociales.modal.campos.edadMedianaTotal'),
         false
       );
 
       const edadMedianaMujeres =
         parseNumeroOpcional(
           formulario.edadMedianaMujeres,
-          'Edad mediana de mujeres',
+          t('routes.admin.indicadoresSociales.modal.campos.edadMedianaMujeres'),
           false
         );
 
       const edadMedianaVarones =
         parseNumeroOpcional(
           formulario.edadMedianaVarones,
-          'Edad mediana de varones',
+          t('routes.admin.indicadoresSociales.modal.campos.edadMedianaVarones'),
           false
         );
 
@@ -465,7 +468,7 @@ export function IndicadoresDepartamentoModal({
       const fuente = formulario.fuente.trim();
 
       if (fuente.length === 0) {
-        throw new Error('La fuente es obligatoria.');
+        throw new Error(t('routes.admin.indicadoresSociales.modal.validacion.fuenteObligatoria'));
       }
 
       /*
@@ -479,7 +482,7 @@ export function IndicadoresDepartamentoModal({
         mujeres2022 + varones2022 !== poblacion2022
       ) {
         throw new Error(
-          'La suma de mujeres y varones debe coincidir con la población 2022.'
+          t('routes.admin.indicadoresSociales.modal.validacion.sumaPoblacion')
         );
       }
 
@@ -505,7 +508,7 @@ export function IndicadoresDepartamentoModal({
           totalMujeresPorEdad !== mujeres2022
         ) {
           throw new Error(
-            `La suma de mujeres por edad es ${totalMujeresPorEdad}, pero el total de mujeres 2022 es ${mujeres2022}.`
+            t('routes.admin.indicadoresSociales.modal.validacion.sumaMujeres', { suma: totalMujeresPorEdad, total: mujeres2022 })
           );
         }
 
@@ -514,7 +517,7 @@ export function IndicadoresDepartamentoModal({
           totalVaronesPorEdad !== varones2022
         ) {
           throw new Error(
-            `La suma de varones por edad es ${totalVaronesPorEdad}, pero el total de varones 2022 es ${varones2022}.`
+            t('routes.admin.indicadoresSociales.modal.validacion.sumaVarones', { suma: totalVaronesPorEdad, total: varones2022 })
           );
         }
       }
@@ -556,14 +559,14 @@ export function IndicadoresDepartamentoModal({
       setValidationError(
         error instanceof Error
           ? error.message
-          : 'Revisá los datos ingresados.'
+          : t('routes.admin.indicadoresSociales.modal.revisarDatos')
       );
     }
   };
 
   const tituloModal = indicadores
-    ? 'Editar indicadores'
-    : 'Cargar indicadores';
+    ? t('routes.admin.indicadoresSociales.modal.editarTitulo')
+    : t('routes.admin.indicadoresSociales.modal.cargarTitulo');
 
   return (
     <Modal
@@ -593,54 +596,53 @@ export function IndicadoresDepartamentoModal({
               <section className="space-y-4">
                 <div>
                   <h2 className="text-lg font-semibold">
-                    Población
+                    {t('routes.admin.indicadoresSociales.modal.poblacionTitulo')}
                   </h2>
 
                   <p className="text-sm text-default-500">
-                    Datos generales de los censos 2010 y
-                    2022.
+                    {t('routes.admin.indicadoresSociales.modal.poblacionDescripcion')}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <Input
-                    label="Población 2010"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.poblacion2010')}
                     value={formulario.poblacion2010}
                     onValueChange={actualizarCampo(
                       'poblacion2010'
                     )}
                     inputMode="numeric"
-                    placeholder="Ejemplo: 9184"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemplo', { valor: '9184' })}
                   />
 
                   <Input
-                    label="Población 2022"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.poblacion2022')}
                     value={formulario.poblacion2022}
                     onValueChange={actualizarCampo(
                       'poblacion2022'
                     )}
                     inputMode="numeric"
-                    placeholder="Ejemplo: 11176"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemplo', { valor: '11176' })}
                   />
 
                   <Input
-                    label="Mujeres 2022"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.mujeres2022')}
                     value={formulario.mujeres2022}
                     onValueChange={actualizarCampo(
                       'mujeres2022'
                     )}
                     inputMode="numeric"
-                    placeholder="Ejemplo: 5721"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemplo', { valor: '5721' })}
                   />
 
                   <Input
-                    label="Varones 2022"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.varones2022')}
                     value={formulario.varones2022}
                     onValueChange={actualizarCampo(
                       'varones2022'
                     )}
                     inputMode="numeric"
-                    placeholder="Ejemplo: 5455"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemplo', { valor: '5455' })}
                   />
                 </div>
               </section>
@@ -648,44 +650,43 @@ export function IndicadoresDepartamentoModal({
               <section className="space-y-4 border-t border-default-200 pt-5">
                 <div>
                   <h2 className="text-lg font-semibold">
-                    Edad mediana
+                    {t('routes.admin.indicadoresSociales.modal.edadMedianaTitulo')}
                   </h2>
 
                   <p className="text-sm text-default-500">
-                    Podés ingresar números decimales con punto
-                    o coma.
+                    {t('routes.admin.indicadoresSociales.modal.edadMedianaDescripcion')}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                   <Input
-                    label="Edad mediana total"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.edadMedianaTotal')}
                     value={formulario.edadMedianaTotal}
                     onValueChange={actualizarCampo(
                       'edadMedianaTotal'
                     )}
                     inputMode="decimal"
-                    placeholder="Ejemplo: 31,2"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemploEdadTotal')}
                   />
 
                   <Input
-                    label="Edad mediana de mujeres"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.edadMedianaMujeres')}
                     value={formulario.edadMedianaMujeres}
                     onValueChange={actualizarCampo(
                       'edadMedianaMujeres'
                     )}
                     inputMode="decimal"
-                    placeholder="Ejemplo: 32,1"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemploEdadMujeres')}
                   />
 
                   <Input
-                    label="Edad mediana de varones"
+                    label={t('routes.admin.indicadoresSociales.modal.campos.edadMedianaVarones')}
                     value={formulario.edadMedianaVarones}
                     onValueChange={actualizarCampo(
                       'edadMedianaVarones'
                     )}
                     inputMode="decimal"
-                    placeholder="Ejemplo: 30,4"
+                    placeholder={t('routes.admin.indicadoresSociales.modal.ejemploEdadVarones')}
                   />
                 </div>
               </section>
@@ -717,12 +718,12 @@ export function IndicadoresDepartamentoModal({
               <section className="space-y-4 border-t border-default-200 pt-5">
                 <div>
                   <h2 className="text-lg font-semibold">
-                    Fuente y observaciones
+                    {t('routes.admin.indicadoresSociales.modal.fuenteTitulo')}
                   </h2>
                 </div>
 
                 <Input
-                  label="Fuente"
+                  label={t('routes.admin.indicadoresSociales.modal.fuente')}
                   value={formulario.fuente}
                   onValueChange={actualizarCampo(
                     'fuente'
@@ -731,13 +732,13 @@ export function IndicadoresDepartamentoModal({
                 />
 
                 <Textarea
-                  label="Observaciones"
+                  label={t('routes.admin.indicadoresSociales.modal.observaciones')}
                   value={formulario.observaciones}
                   onValueChange={actualizarCampo(
                     'observaciones'
                   )}
                   minRows={3}
-                  placeholder="Información adicional, aclaraciones o referencias del cuadro del INDEC."
+                  placeholder={t('routes.admin.indicadoresSociales.modal.observacionesPlaceholder')}
                 />
               </section>
 
@@ -749,15 +750,13 @@ export function IndicadoresDepartamentoModal({
 
               {queryError ? (
                 <Alert color="danger">
-                  Error al consultar los indicadores:{' '}
-                  {queryError.message}
+                  {t('routes.admin.indicadoresSociales.modal.errorConsultar', { mensaje: queryError.message })}
                 </Alert>
               ) : null}
 
               {saveMutation.error ? (
                 <Alert color="danger">
-                  Error al guardar los indicadores:{' '}
-                  {saveMutation.error.message}
+                  {t('routes.admin.indicadoresSociales.modal.errorGuardarDetalle', { mensaje: saveMutation.error.message })}
                 </Alert>
               ) : null}
             </form>
@@ -770,7 +769,7 @@ export function IndicadoresDepartamentoModal({
             onPress={onClose}
             isDisabled={saveMutation.isPending}
           >
-            Cancelar
+            {t('common.acciones.cancelar')}
           </Button>
 
           <Button
@@ -794,7 +793,7 @@ export function IndicadoresDepartamentoModal({
               }
             }}
           >
-            Guardar indicadores
+            {t('routes.admin.indicadoresSociales.modal.guardar')}
           </Button>
         </ModalFooter>
       </ModalContent>

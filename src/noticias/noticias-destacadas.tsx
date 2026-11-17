@@ -2,6 +2,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Chip, Spinner } from '@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ExternalLink, RefreshCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { getLatestFromSources } from './rss/noticias-rss';
 import { NUEVAS_FUENTES } from './rss/nuevas-fuentes';
@@ -19,6 +20,7 @@ function formatDate(d?: string | Date | null) {
 }
 
 export function FeaturedNews() {
+  const { t } = useTranslation();
   const featured: Array<{
     title: string;
     url: string;
@@ -28,28 +30,28 @@ export function FeaturedNews() {
     imageUrl?: string;
   }> = [
     {
-      title: 'EMSE',
+      title: 'routes.inicio.noticias.destacadas.emse.titulo',
       url: 'https://emse.ar/blog/',
       source: 'EMSE',
-      summary: 'Noticias de la empresa estatal de minería de La Rioja',
+      summary: 'routes.inicio.noticias.destacadas.emse.resumen',
     },
     {
-      title: 'SaltaMining — Novedades del sector (selección editorial)',
+      title: 'routes.inicio.noticias.destacadas.saltaMining.titulo',
       url: 'https://saltamining.com/',
       source: 'SaltaMining',
-      summary: 'Portal de noticias mineras con foco regional.',
+      summary: 'routes.inicio.noticias.destacadas.saltaMining.resumen',
     },
     {
-      title: 'Panorama Minero — Actualidad minera y economía',
+      title: 'routes.inicio.noticias.destacadas.panoramaMinero.titulo',
       url: 'https://www.panorama-minero.com/es',
       source: 'Panorama Minero',
-      summary: 'Cobertura del sector, entrevistas y análisis.',
+      summary: 'routes.inicio.noticias.destacadas.panoramaMinero.resumen',
     },
     {
-      title: 'Rumbo Minero — Noticias y tendencias',
+      title: 'routes.inicio.noticias.destacadas.rumboMinero.titulo',
       url: 'https://www.rumbominero.com/',
       source: 'Rumbo Minero',
-      summary: 'Actualidad del sector minero en la región.',
+      summary: 'routes.inicio.noticias.destacadas.rumboMinero.resumen',
     },
   ];
 
@@ -77,18 +79,18 @@ export function FeaturedNews() {
             isLoading={rssQuery.isFetching}
             onPress={() => void rssQuery.refetch()}
           >
-            Actualizar ahora
+            {t('routes.inicio.noticias.actualizar')}
           </Button>
 
           <Button as={Link} to="/noticias" color="primary">
-            Ver todas
+            {t('routes.inicio.noticias.verTodas')}
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
         <div>
-          <h3 className="text-lg font-semibold">Selección editorial</h3>
+          <h3 className="text-lg font-semibold">{t('routes.inicio.noticias.seleccionEditorial')}</h3>
 
           <div className="grid grid-cols-1 gap-4 mt-3">
             {featured.map((n) => (
@@ -100,7 +102,7 @@ export function FeaturedNews() {
                     </Chip>
                     {n.date ? <span className="text-xs opacity-70">{formatDate(n.date)}</span> : null}
                   </div>
-                  <p className="font-semibold leading-snug">{n.title}</p>
+                  <p className="font-semibold leading-snug">{t(n.title)}</p>
                 </CardHeader>
 
                 <CardBody className="pt-0">
@@ -114,7 +116,7 @@ export function FeaturedNews() {
                     />
                   ) : null}
 
-                  {n.summary ? <p className="text-sm opacity-80 mt-3">{n.summary}</p> : null}
+                  {n.summary ? <p className="text-sm opacity-80 mt-3">{t(n.summary)}</p> : null}
                 </CardBody>
 
                 <CardFooter className="justify-end">
@@ -126,7 +128,7 @@ export function FeaturedNews() {
                     endContent={<ExternalLink size={16} />}
                     variant="flat"
                   >
-                    Abrir
+                    {t('routes.inicio.noticias.abrir')}
                   </Button>
                 </CardFooter>
               </Card>
@@ -135,17 +137,17 @@ export function FeaturedNews() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold">Últimas noticias</h3>
+          <h3 className="text-lg font-semibold">{t('routes.inicio.noticias.ultimasNoticias')}</h3>
 
           {rssQuery.isLoading ? (
             <div className="mt-3 flex items-center gap-3">
               <Spinner size="sm" />
-              <span>Cargando fuentes…</span>
+              <span>{t('routes.inicio.noticias.cargandoFuentes')}</span>
             </div>
           ) : items.length === 0 ? (
             <Card className="mt-3">
               <CardBody>
-                <p>No se pudieron cargar noticias desde las fuentes configuradas.</p>
+                <p>{t('routes.inicio.noticias.errorFuentes')}</p>
               </CardBody>
             </Card>
           ) : (
@@ -155,7 +157,7 @@ export function FeaturedNews() {
                   <CardHeader className="flex flex-col items-start gap-2">
                     <div className="flex items-center gap-2 flex-wrap">
                       <Chip size="sm" variant="flat">
-                        {n.source ?? 'Noticias'}
+                        {n.source ?? t('routes.inicio.noticias.fuentePorDefecto')}
                       </Chip>
                       {n.publishedAt ? <span className="text-xs opacity-70">{formatDate(n.publishedAt)}</span> : null}
                     </div>
@@ -185,7 +187,7 @@ export function FeaturedNews() {
                       endContent={<ExternalLink size={16} />}
                       variant="flat"
                     >
-                      Abrir
+                      {t('routes.inicio.noticias.abrir')}
                     </Button>
                   </CardFooter>
                 </Card>

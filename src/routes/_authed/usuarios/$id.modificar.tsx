@@ -5,6 +5,7 @@ import { useServerFn } from '@tanstack/react-start';
 import { Alert, Button, Checkbox, Input, addToast } from '@heroui/react';
 import type { SubmitEvent } from 'react';
 import { updateUsuarioFn } from '@/usuarios/update-usuario.fn';
+import { useTranslation } from 'react-i18next';
 import { usuarioQuery } from '@/usuarios/use-usuario';
 
 export const Route = createFileRoute('/_authed/usuarios/$id/modificar')({
@@ -14,10 +15,12 @@ export const Route = createFileRoute('/_authed/usuarios/$id/modificar')({
     }
   },
   errorComponent: ({ error }) => {
+    const { t } = useTranslation();
+
     if (error.message === 'Not authorized') {
       return (
         <div className="max-w-6xl w-full">
-          <Alert color="danger" title="No estás autorizado. No tienes permisos para acceder a esta página." />
+          <Alert color="danger" title={t('common.errores.noAutorizado')} />
         </div>
       );
     }
@@ -31,6 +34,7 @@ export const Route = createFileRoute('/_authed/usuarios/$id/modificar')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const { id } = Route.useParams();
   const { data: usuario } = useSuspenseQuery(usuarioQuery(Number(id)));
   const { queryClient } = Route.useRouteContext();
@@ -56,8 +60,8 @@ function RouteComponent() {
     mutationFn: updateUsuario,
     onSuccess: () => {
       addToast({
-        title: 'Usuario modificado',
-        description: 'El usuario fue modificado exitosamente',
+        title: t('routes.admin.usuarios.modificar.exitoTitulo'),
+        description: t('routes.admin.usuarios.modificar.exitoDescripcion'),
         color: 'success',
         variant: 'flat',
       });
@@ -66,8 +70,10 @@ function RouteComponent() {
     },
     onError: () => {
       addToast({
-        title: 'Error',
-        description: `Ocurrió un error al modificar el usuario: ${error instanceof Error ? error.message : 'Error desconocido'}`,
+        title: t('routes.admin.usuarios.modificar.errorTitulo'),
+        description: t('routes.admin.usuarios.modificar.errorDescripcion', {
+          mensaje: error instanceof Error ? error.message : t('common.errores.errorDesconocido'),
+        }),
         color: 'danger',
         variant: 'flat',
       });
@@ -86,31 +92,31 @@ function RouteComponent() {
 
   return (
     <div className="mt-4 space-y-6">
-      <h1 className="text-2xl font-bold">Modificar Usuario</h1>
+      <h1 className="text-2xl font-bold">{t('routes.admin.usuarios.modificar.titulo')}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="Username"
+          label={t('routes.admin.usuarios.form.username')}
           value={data.username}
           onValueChange={(v) => setData((prev) => ({ ...prev, username: v }))}
           maxLength={50}
           isRequired
         />
         <Input
-          label="Nombre"
+          label={t('routes.admin.usuarios.form.nombre')}
           value={data.nombre}
           onValueChange={(v) => setData((prev) => ({ ...prev, nombre: v }))}
           maxLength={50}
           isRequired
         />
         <Input
-          label="Apellido"
+          label={t('routes.admin.usuarios.form.apellido')}
           value={data.apellido}
           onValueChange={(v) => setData((prev) => ({ ...prev, apellido: v }))}
           maxLength={50}
           isRequired
         />
         <Input
-          label="Email"
+          label={t('routes.admin.usuarios.form.email')}
           value={data.email}
           onValueChange={(v) => setData((prev) => ({ ...prev, email: v }))}
           type="email"
@@ -119,20 +125,20 @@ function RouteComponent() {
         />
         <div>
           <Checkbox isSelected={data.esAdmin} onValueChange={(v) => setData((prev) => ({ ...prev, esAdmin: v }))}>
-            Es administrador
+            {t('routes.admin.usuarios.form.esAdmin')}
           </Checkbox>
         </div>
         <div>
           <Checkbox isSelected={data.activo} onValueChange={(v) => setData((prev) => ({ ...prev, activo: v }))}>
-            Activo
+            {t('routes.admin.usuarios.form.activo')}
           </Checkbox>
         </div>
 
         <Button type="submit" isLoading={isPending} color="primary">
-          Modificar Usuario
+          {t('routes.admin.usuarios.modificar.boton')}
         </Button>
         <Button type="button" onPress={() => navigate({ to: '/usuarios' })} className="bg-primary-50 ml-2">
-          Volver
+          {t('common.acciones.volver')}
         </Button>
       </form>
     </div>

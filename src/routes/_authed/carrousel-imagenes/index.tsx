@@ -21,6 +21,7 @@ import { addImagenCarrouselFn } from '@/carrousel-imagenes/add-imagen-carrousel.
 import { removeImagenCarrouselFn } from '@/carrousel-imagenes/remove-imagen-carrousel.fn';
 import { updateImagenCarrouselFn } from '@/carrousel-imagenes/update-imagen-carrousel.fn';
 import { useImagenesCarrousel } from '@/carrousel-imagenes/use-imagenes-carrousel';
+import { Trans, useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 
 // @ts-ignore: Se ignora css
@@ -41,6 +42,7 @@ const fileToBase64 = (file: File) =>
   });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);
   const [imagenAEliminar, setImagenAEliminar] = useState<{ archivoId: string; nombre: string } | null>(null);
@@ -57,8 +59,8 @@ function RouteComponent() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['imagenes-carrousel'] });
       addToast({
-        title: 'Imagen agregada',
-        description: 'La imagen fue agregada al final del carrusel.',
+        title: t('common.imagenes.agregada'),
+        description: t('routes.admin.carrouselImagenes.agregadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -77,8 +79,8 @@ function RouteComponent() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['imagenes-carrousel'] });
       addToast({
-        title: 'Imagen quitada',
-        description: 'La imagen fue removida del carrusel.',
+        title: t('common.imagenes.quitada'),
+        description: t('routes.admin.carrouselImagenes.quitadaDescripcion'),
         color: 'success',
         variant: 'solid',
       });
@@ -100,8 +102,8 @@ function RouteComponent() {
       addMutation.mutate({ data: { archivo: { nombre: file.name, tamaño: file.size, mimeType: file.type, base64 } } });
     } catch (error) {
       addToast({
-        title: 'Error al subir imagen',
-        description: error instanceof Error ? error.message : 'Ocurrió un error desconocido',
+        title: t('common.errores.subirImagen'),
+        description: error instanceof Error ? error.message : t('common.errores.desconocido'),
         color: 'danger',
         variant: 'solid',
       });
@@ -135,16 +137,16 @@ function RouteComponent() {
 
   return (
     <div className="flex flex-col mt-4 space-y-6">
-      <SectionTitle title="Configuración del carrousel de imágenes" />
+      <SectionTitle title={t('routes.admin.carrouselImagenes.page.title')} />
 
-      {addMutation.error && <Alert color="danger">Error al agregar imagen: {addMutation.error.message}</Alert>}
-      {updateMutation.error && <Alert color="danger">Error al actualizar imagen: {updateMutation.error.message}</Alert>}
-      {removeMutation.error && <Alert color="danger">Error al quitar imagen: {removeMutation.error.message}</Alert>}
+      {addMutation.error && <Alert color="danger">{t('common.errores.agregarImagen', { mensaje: addMutation.error.message })}</Alert>}
+      {updateMutation.error && <Alert color="danger">{t('common.errores.actualizarImagen', { mensaje: updateMutation.error.message })}</Alert>}
+      {removeMutation.error && <Alert color="danger">{t('common.errores.quitarImagen', { mensaje: removeMutation.error.message })}</Alert>}
 
       {isFetching ? (
         <Skeleton className="h-[300px] w-full rounded-xl" />
       ) : imagenesCarrousel.length === 0 ? (
-        <p>No hay imágenes cargadas en el carrusel.</p>
+        <p>{t('routes.admin.carrouselImagenes.vacio')}</p>
       ) : (
         <>
           <Swiper
@@ -158,7 +160,7 @@ function RouteComponent() {
               <SwiperSlide key={image.archivoId} className="h-full">
                 <img
                   src={`/archivos/${image.archivoId}/${image.nombre}`}
-                  alt={`Slide ${index + 1}`}
+                  alt={t('routes.admin.carrouselImagenes.slideAlt', { n: index + 1 })}
                   className="h-full w-full object-cover"
                   style={{ objectPosition: `center ${image.positionY}%` }}
                 />
@@ -182,11 +184,11 @@ function RouteComponent() {
                   </div>
 
                   <div className="space-y-3">
-                    <p className="text-sm font-medium">Orden actual: {index + 1}</p>
+                    <p className="text-sm font-medium">{t('common.imagenes.ordenActual', { n: index + 1 })}</p>
                     <p className="line-clamp-1 text-xs text-default-500">{image.nombre}</p>
 
                     <div>
-                      <p className="mb-1 text-xs font-medium text-default-600">Posición vertical</p>
+                      <p className="mb-1 text-xs font-medium text-default-600">{t('routes.admin.carrouselImagenes.posicionVertical')}</p>
                       <input
                         type="range"
                         min={0}
@@ -205,7 +207,7 @@ function RouteComponent() {
                           onPress={() => handleSavePosition(image.archivoId, positionValue)}
                           isLoading={updateMutation.isPending}
                         >
-                          Guardar altura
+                          {t('routes.admin.carrouselImagenes.guardarAltura')}
                         </Button>
                       </div>
                     </div>
@@ -219,7 +221,7 @@ function RouteComponent() {
                         isLoading={updateMutation.isPending}
                         onPress={() => handleMove(image.archivoId, 'up')}
                       >
-                        Subir orden
+                        {t('routes.admin.carrouselImagenes.subirOrden')}
                       </Button>
                       <Button
                         size="sm"
@@ -229,7 +231,7 @@ function RouteComponent() {
                         isLoading={updateMutation.isPending}
                         onPress={() => handleMove(image.archivoId, 'down')}
                       >
-                        Bajar orden
+                        {t('routes.admin.carrouselImagenes.bajarOrden')}
                       </Button>
                       <Button
                         size="sm"
@@ -239,7 +241,7 @@ function RouteComponent() {
                         isLoading={removeMutation.isPending}
                         onPress={() => setImagenAEliminar({ archivoId: image.archivoId, nombre: image.nombre })}
                       >
-                        Quitar
+                        {t('common.acciones.quitar')}
                       </Button>
                     </div>
                   </div>
@@ -265,26 +267,30 @@ function RouteComponent() {
       >
         <div className="mx-auto flex max-w-xl flex-col items-center gap-3">
           <Upload className="h-8 w-8 text-default-500" />
-          <p className="text-sm text-default-600">Arrastrá y soltá una imagen aquí o seleccioná una imagen.</p>
+          <p className="text-sm text-default-600">{t('routes.admin.carrouselImagenes.arrastrar')}</p>
           <Button onPress={() => inputRef.current?.click()} isLoading={addMutation.isPending}>
-            Agregar imagen
+            {t('common.acciones.agregarImagen')}
           </Button>
         </div>
       </div>
 
       <Modal isOpen={!!imagenAEliminar} onClose={() => setImagenAEliminar(null)}>
         <ModalContent>
-          <ModalHeader>Quitar imagen</ModalHeader>
+          <ModalHeader>{t('common.imagenes.quitarImagen')}</ModalHeader>
           <ModalBody>
             {imagenAEliminar ? (
               <p>
-                ¿Querés quitar <span className="font-semibold">{imagenAEliminar.nombre}</span> del carrusel?
+                <Trans
+                  i18nKey="routes.admin.carrouselImagenes.confirmarQuitar"
+                  values={{ nombre: imagenAEliminar.nombre }}
+                  components={{ b: <span className="font-semibold" /> }}
+                />
               </p>
             ) : null}
           </ModalBody>
           <ModalFooter>
             <Button variant="flat" onPress={() => setImagenAEliminar(null)}>
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
             <Button
               color="danger"
@@ -294,7 +300,7 @@ function RouteComponent() {
                 handleRemoveImage(imagenAEliminar.archivoId);
               }}
             >
-              Quitar
+              {t('common.acciones.quitar')}
             </Button>
           </ModalFooter>
         </ModalContent>

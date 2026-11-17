@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Card, CardBody } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 import { SectionHeader } from '@/common/section-header';
 import { FuncionesCompetencias } from '@/common/funciones-competencias';
@@ -38,88 +39,88 @@ type AccesoRapido = {
 const AUTORIDADES: Array<Autoridad> = [
   {
     nombre: 'RICARDO QUINTELA',
-    cargo: 'Gobernador de La Rioja',
+    cargo: 'routes.institucional.autoridades.cargos.gobernador',
     foto: '/autoridades/gobernador.jpg',
   },
   {
     nombre: 'TERESITA MADERA',
-    cargo: 'Vice Gobernadora de La Rioja',
+    cargo: 'routes.institucional.autoridades.cargos.vicegobernadora',
     foto: '/autoridades/vicegob.jpg',
   },
   {
     nombre: 'JUAN LUNA CORZO',
-    cargo: 'Jefe de Gabinete de Ministros',
+    cargo: 'routes.institucional.autoridades.cargos.jefeGabinete',
     foto: '/autoridades/gabinete.jpg',
   },
   {
     nombre: 'FEDERICO BAZAN',
-    cargo: 'Ministro de Trabajo, Empleo, Industria y Minería',
+    cargo: 'routes.institucional.autoridades.cargos.ministroTrabajo',
     foto: '/autoridades/ministro.jpg',
   },
   {
     nombre: 'LUZ SANTANGELO',
-    cargo: 'Secretaria de Comunicación y Planificación Pública',
+    cargo: 'routes.institucional.autoridades.cargos.secretariaComunicacion',
     foto: '/autoridades/sec-com.jpg',
   },
   {
     nombre: 'IVANNA GUARDIA',
-    cargo: 'Secretaria Mineria',
+    cargo: 'routes.institucional.autoridades.cargos.secretariaMineria',
     foto: '/autoridades/sec-min.jpg',
   },
   {
     nombre: 'SANTIAGO AZULAY',
-    cargo: 'Secretario de Ambiente',
+    cargo: 'routes.institucional.autoridades.cargos.secretarioAmbiente',
     foto: '/autoridades/sec-amb.jpg',
   },
   {
     nombre: 'WALTER GOMEZ',
-    cargo: 'Presidente de EMSE S.E',
+    cargo: 'routes.institucional.autoridades.cargos.presidenteEmse',
     foto: '/autoridades/emse.jpg',
   },
   {
     nombre: 'ARIEL PARMEGIANI',
-    cargo: 'Presidente de KALLPA',
+    cargo: 'routes.institucional.autoridades.cargos.presidenteKallpa',
     foto: '/autoridades/kalpa.jpg',
   },
 ];
 
 const SECCIONES_AUTORIDADES: Array<SeccionAutoridades> = [
   {
-    titulo: 'Gobernación',
+    titulo: 'routes.institucional.autoridades.secciones.gobernacion',
     items: AUTORIDADES.slice(0, 1),
     columns: 'flex justify-center',
     itemWrapper: 'w-full max-w-sm',
     centered: true,
   },
   {
-    titulo: 'Vicegobernación',
+    titulo: 'routes.institucional.autoridades.secciones.vicegobernacion',
     items: AUTORIDADES.slice(1, 2),
     columns: 'flex justify-center',
     itemWrapper: 'w-full max-w-sm',
     centered: true,
   },
   {
-    titulo: 'Gabinete',
+    titulo: 'routes.institucional.autoridades.secciones.gabinete',
     items: AUTORIDADES.slice(2, 3),
     columns: 'flex justify-center',
     itemWrapper: 'w-full max-w-sm',
     centered: true,
   },
   {
-    titulo: 'Ministerio',
+    titulo: 'routes.institucional.autoridades.secciones.ministerio',
     items: AUTORIDADES.slice(3, 4),
     columns: 'flex justify-center',
     itemWrapper: 'w-full max-w-sm',
     centered: true,
   },
   {
-    titulo: 'Secretarías',
+    titulo: 'routes.institucional.autoridades.secciones.secretarias',
     items: AUTORIDADES.slice(4, 7),
     columns: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8',
     centered: false,
   },
   {
-    titulo: 'Empresas estatales',
+    titulo: 'routes.institucional.autoridades.secciones.empresasEstatales',
     items: AUTORIDADES.slice(7, 9),
     columns: 'grid grid-cols-1 sm:grid-cols-2 gap-8',
     centered: false,
@@ -145,6 +146,7 @@ const ACCESOS_RAPIDOS: Array<AccesoRapido> = [
 ];
 
 function AutoridadCard({ item }: { item: Autoridad }) {
+  const { t } = useTranslation();
   return (
     <Card className="overflow-hidden rounded-none shadow-md">
       <div className="w-full bg-default-200">
@@ -157,7 +159,7 @@ function AutoridadCard({ item }: { item: Autoridad }) {
 
           <div className="my-4 h-px w-full bg-white/40" />
 
-          <p className="text-center text-lg font-semibold">{item.cargo}</p>
+          <p className="text-center text-lg font-semibold">{t(item.cargo)}</p>
 
           <div className="mt-5 flex items-center justify-center gap-4">
             {item.redes?.facebook && (
@@ -203,22 +205,23 @@ function AutoridadCard({ item }: { item: Autoridad }) {
 }
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <div className="mt-4 space-y-6">
       <section>
         <div className="mb-4">
-          <SectionTitle title="Autoridades" subtitle="Información de autoridades y organismos vinculados" />
+          <SectionTitle title={t('routes.institucional.page.title')} subtitle={t('routes.institucional.page.subtitle')} />
         </div>
       </section>
 
       <section>
-        <SectionHeader title="Autoridades" subtitle="Gobierno provincial, áreas vinculadas y empresas estatales" />
+        <SectionHeader title={t('routes.institucional.autoridades.title')} subtitle={t('routes.institucional.autoridades.subtitle')} />
 
         <div className="space-y-14">
           {SECCIONES_AUTORIDADES.map((seccion) => (
             <div key={seccion.titulo}>
               <p className={`mb-4 text-sm font-medium text-black/60 ${seccion.centered ? 'text-center' : ''}`}>
-                {seccion.titulo}
+                {t(seccion.titulo)}
               </p>
 
               <div className={seccion.columns}>
@@ -238,7 +241,7 @@ function RouteComponent() {
       </section>
 
       <section>
-        <SectionHeader title={FUNCIONES_TITULO} subtitle="Unidades de la Secretaría de Minería y sus funciones" />
+        <SectionHeader title={t(FUNCIONES_TITULO)} subtitle={t('routes.institucional.funcionesSubtitle')} />
         <FuncionesCompetencias />
       </section>
 

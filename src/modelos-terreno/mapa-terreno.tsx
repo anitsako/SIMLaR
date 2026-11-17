@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Button, Slider } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import maplibregl from 'maplibre-gl';
 import { cogProtocol } from '@geomatico/maplibre-cog-protocol';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -9,6 +10,7 @@ import type { getModeloTerrenoFn } from '@/modelos-terreno/get-modelo-terreno.fn
 type ModeloTerreno = Awaited<ReturnType<typeof getModeloTerrenoFn>>;
 
 export function MapaTerreno({ modelo }: { modelo: NonNullable<ModeloTerreno> }) {
+  const { t } = useTranslation();
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const [orthoOpacity, setOrthoOpacity] = useState(1);
@@ -132,7 +134,7 @@ export function MapaTerreno({ modelo }: { modelo: NonNullable<ModeloTerreno> }) 
       <header className="flex items-center justify-between px-6 py-3 border-b">
         <h1 className="text-xl font-semibold">{modelo.nombre}</h1>
         <Button as={Link} to="/proyectos-mineros" size="sm" variant="flat">
-          Volver
+          {t('common.acciones.volver')}
         </Button>
       </header>
 
@@ -145,7 +147,7 @@ export function MapaTerreno({ modelo }: { modelo: NonNullable<ModeloTerreno> }) 
             step={0.01}
             minValue={0}
             maxValue={1}
-            label="Opacidad"
+            label={t('routes.proyectosMineros.mapa.opacidad')}
             orientation="vertical"
             value={orthoOpacity}
             onChange={(v) => setOrthoOpacity(Array.isArray(v) ? v[0] : v)}
@@ -158,7 +160,7 @@ export function MapaTerreno({ modelo }: { modelo: NonNullable<ModeloTerreno> }) 
               step={0.01}
               minValue={0}
               maxValue={1}
-              label="Opacidad DTM"
+              label={t('routes.proyectosMineros.mapa.opacidadDtm')}
               orientation="vertical"
               value={coloreadoOpacity}
               onChange={(v) => setColoreadoOpacity(Array.isArray(v) ? v[0] : v)}

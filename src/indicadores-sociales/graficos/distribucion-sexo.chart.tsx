@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { useTranslation } from 'react-i18next';
 
 type DistribucionSexoChartProps = {
   mujeres: number;
@@ -28,6 +29,7 @@ export function DistribucionSexoChart({
   mujeres,
   varones,
 }: DistribucionSexoChartProps) {
+  const { t } = useTranslation();
   const total = mujeres + varones;
 
   const porcentajeMujeres =
@@ -38,7 +40,7 @@ export function DistribucionSexoChart({
 
   const datos = [
     {
-      grupo: 'Población 2022',
+      grupo: t('routes.inicio.departamento.poblacion2022'),
       mujeres: porcentajeMujeres,
       varones: porcentajeVarones,
     },
@@ -52,11 +54,11 @@ export function DistribucionSexoChart({
       <CardBody className="gap-5 p-5">
         <div>
           <h3 className="text-lg font-semibold">
-            Distribución por sexo
+            {t('routes.inicio.departamento.graficos.distribucionSexo.titulo')}
           </h3>
 
           <p className="text-sm text-default-500">
-            Composición de la población en el Censo 2022.
+            {t('routes.inicio.departamento.graficos.distribucionSexo.descripcion')}
           </p>
         </div>
 
@@ -104,16 +106,15 @@ export function DistribucionSexoChart({
                   const porcentaje = Number(valor);
 
                   const cantidad =
-                    nombre === 'Mujeres'
+                    nombre === t('routes.inicio.departamento.mujeres')
                       ? mujeres
                       : varones;
 
                   return [
-                    `${formatearNumero(
-                      cantidad
-                    )} habitantes (${formatearPorcentaje(
-                      porcentaje
-                    )} %)`,
+                    t('routes.inicio.departamento.graficos.distribucionSexo.tooltip', {
+                      cantidad: formatearNumero(cantidad),
+                      porcentaje: formatearPorcentaje(porcentaje),
+                    }),
                     String(nombre),
                   ];
                 }}
@@ -121,7 +122,7 @@ export function DistribucionSexoChart({
 
               <Bar
                 dataKey="mujeres"
-                name="Mujeres"
+                name={t('routes.inicio.departamento.mujeres')}
                 stackId="sexo"
                 fill="#c83d43"
                 radius={[8, 0, 0, 8]}
@@ -142,7 +143,7 @@ export function DistribucionSexoChart({
 
               <Bar
                 dataKey="varones"
-                name="Varones"
+                name={t('routes.inicio.departamento.varones')}
                 stackId="sexo"
                 fill="#4f78a8"
                 radius={[0, 8, 8, 0]}
@@ -170,7 +171,7 @@ export function DistribucionSexoChart({
               <span className="h-3 w-3 rounded-full bg-[#c83d43]" />
 
               <p className="text-sm font-medium">
-                Mujeres
+                {t('routes.inicio.departamento.mujeres')}
               </p>
             </div>
 
@@ -182,7 +183,7 @@ export function DistribucionSexoChart({
               {formatearPorcentaje(
                 porcentajeMujeres
               )}{' '}
-              % de la población
+              {t('routes.inicio.departamento.graficos.distribucionSexo.porcentajePoblacion')}
             </p>
           </div>
 
@@ -191,7 +192,7 @@ export function DistribucionSexoChart({
               <span className="h-3 w-3 rounded-full bg-[#4f78a8]" />
 
               <p className="text-sm font-medium">
-                Varones
+                {t('routes.inicio.departamento.varones')}
               </p>
             </div>
 
@@ -203,7 +204,7 @@ export function DistribucionSexoChart({
               {formatearPorcentaje(
                 porcentajeVarones
               )}{' '}
-              % de la población
+              {t('routes.inicio.departamento.graficos.distribucionSexo.porcentajePoblacion')}
             </p>
           </div>
         </div>

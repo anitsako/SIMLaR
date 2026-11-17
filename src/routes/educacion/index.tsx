@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { BookOpen, Construction, ExternalLink, GraduationCap, Mail } from 'lucide-react';
 import { Alert, Card, CardBody, CardFooter, CardHeader } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
 
 export const Route = createFileRoute('/educacion/')({
@@ -29,13 +30,13 @@ type OfertaAcademica = {
 
 const ofertaAcademica: Array<OfertaAcademica> = [
   {
-    titulo: 'Ingeniería en Minas',
-    institucion: 'Universidad Nacional de La Rioja',
+    titulo: 'routes.educacion.oferta.carreras.ingenieriaMinas.titulo',
+    institucion: 'routes.educacion.oferta.carreras.ingenieriaMinas.institucion',
     descripcion:
-      'Carrera orientada a la formación de profesionales especializados en exploración, explotación, planificación y gestión de recursos mineros.',
+      'routes.educacion.oferta.carreras.ingenieriaMinas.descripcion',
     correo: 'dmina@unlar.edu.ar',
     planEstudio: {
-      texto: 'Ver plan de estudio',
+      texto: 'routes.educacion.oferta.verPlan',
       url: 'https://www.unlar.edu.ar/index.php/oferta-academica/carreras-de-grado/325-ingenieria-en-minas',
     },
     redes: [
@@ -50,13 +51,13 @@ const ofertaAcademica: Array<OfertaAcademica> = [
     ],
   },
   {
-    titulo: 'Geología',
-    institucion: 'Universidad Nacional de La Rioja',
+    titulo: 'routes.educacion.oferta.carreras.geologia.titulo',
+    institucion: 'routes.educacion.oferta.carreras.geologia.institucion',
     descripcion:
-      'Formación vinculada al estudio de la Tierra, los recursos geológicos, la prospección, exploración y evaluación del potencial minero.',
+      'routes.educacion.oferta.carreras.geologia.descripcion',
     correo: 'dgeologia@unlar.edu.ar',
     planEstudio: {
-      texto: 'Ver plan de estudio',
+      texto: 'routes.educacion.oferta.verPlan',
       url: 'https://www.unlar.edu.ar/index.php/oferta-academica/carreras-de-grado/320-geologia',
     },
     redes: [
@@ -67,25 +68,25 @@ const ofertaAcademica: Array<OfertaAcademica> = [
     ],
   },
   {
-    titulo: 'Tecnicatura Superior en Minas',
-    institucion: 'Instituto Superior de Formación Docente y Técnica de Guandacol',
+    titulo: 'routes.educacion.oferta.carreras.tecnicaturaMinas.titulo',
+    institucion: 'routes.educacion.oferta.carreras.tecnicaturaMinas.institucion',
     descripcion:
-      'Propuesta técnica orientada a fortalecer capacidades operativas y profesionales relacionadas con la actividad minera provincial.',
+      'routes.educacion.oferta.carreras.tecnicaturaMinas.descripcion',
     planEstudio: {
-      texto: 'Ver plan de estudio',
+      texto: 'routes.educacion.oferta.verPlan',
       url: 'https://isfdytguandacol-lrj.infd.edu.ar/sitio/plan-de-estudios-3/',
     },
     contactos: [
       {
-        cargo: 'Instituto',
+        cargo: 'routes.educacion.oferta.contactos.instituto',
         correo: 'instguandacol@gmail.com',
       },
       {
-        cargo: 'Directora',
+        cargo: 'routes.educacion.oferta.contactos.directora',
         correo: 'adrianagnzlz93@gmail.com',
       },
       {
-        cargo: 'Coordinadora de Carrera',
+        cargo: 'routes.educacion.oferta.contactos.coordinadora',
         correo: 'patobsoledo@hotmail.com',
       },
     ],
@@ -99,29 +100,30 @@ const ofertaAcademica: Array<OfertaAcademica> = [
 ];
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <div className="mt-4 space-y-10">
-      <SectionTitle title="Educación minera" />
+      <SectionTitle title={t('routes.educacion.page.title')} />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Link to="/educacion/informativa">
           <Card className="py-4 h-full transition duration-200 ease-in-out hover:scale-102 cursor-pointer">
             <CardHeader>
-              <p className="text-2xl font-bold">Sección Informativa</p>
+              <p className="text-2xl font-bold">{t('routes.educacion.secciones.informativaTitulo')}</p>
             </CardHeader>
-            <CardBody>Aquí se encuentra el contenido informativo sobre minería.</CardBody>
+            <CardBody>{t('routes.educacion.secciones.informativaDescripcion')}</CardBody>
           </Card>
         </Link>
 
         {/* <Link to="/educacion/dinamica"> */}
         <Card className="py-4 h-full transition duration-200 ease-in-out hover:scale-102 cursor-pointer">
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-            <p className="text-2xl font-bold">Sección Dinámica</p>
+            <p className="text-2xl font-bold">{t('routes.educacion.secciones.dinamicaTitulo')}</p>
           </CardHeader>
-          <CardBody>Aquí se encuentra el contenido dinámico sobre minería, con actividades interactivas.</CardBody>
+          <CardBody>{t('routes.educacion.secciones.dinamicaDescripcion')}</CardBody>
           <CardFooter>
             <Alert icon={<Construction />} color="warning">
-              En construcción
+              {t('routes.educacion.secciones.enConstruccion')}
             </Alert>
           </CardFooter>
         </Card>
@@ -130,10 +132,9 @@ function RouteComponent() {
 
       <section className="space-y-4">
         <div className="text-center space-y-2">
-          <h2 className="text-3xl font-bold">Oferta académica minera en La Rioja</h2>
+          <h2 className="text-3xl font-bold">{t('routes.educacion.oferta.title')}</h2>
           <p className="text-default-600 max-w-3xl mx-auto">
-            La provincia cuenta con propuestas de formación universitaria y técnica vinculadas al desarrollo minero,
-            fortaleciendo la capacitación de profesionales y recursos humanos especializados para el sector.
+            {t('routes.educacion.oferta.descripcion')}
           </p>
         </div>
 
@@ -143,13 +144,13 @@ function RouteComponent() {
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start gap-2">
                 <div className="flex items-center gap-2">
                   <GraduationCap className="text-primary" size={24} />
-                  <p className="text-2xl font-bold">{carrera.titulo}</p>
+                  <p className="text-2xl font-bold">{t(carrera.titulo)}</p>
                 </div>
-                <p className="text-sm text-default-500">{carrera.institucion}</p>
+                <p className="text-sm text-default-500">{t(carrera.institucion)}</p>
               </CardHeader>
 
               <CardBody className="space-y-4">
-                <p className="text-default-600">{carrera.descripcion}</p>
+                <p className="text-default-600">{t(carrera.descripcion)}</p>
 
                 <div className="space-y-2">
                   {carrera.planEstudio && (
@@ -160,7 +161,7 @@ function RouteComponent() {
                       className="flex items-center gap-2 text-sm font-semibold text-primary hover:underline transition"
                     >
                       <BookOpen size={18} />
-                      {carrera.planEstudio.texto}
+                      {t(carrera.planEstudio.texto)}
                       <ExternalLink size={14} />
                     </a>
                   )}
@@ -183,7 +184,7 @@ function RouteComponent() {
                     >
                       <Mail size={18} />
                       <span>
-                        <strong>{contacto.cargo}:</strong> {contacto.correo}
+                        <strong>{t(contacto.cargo)}:</strong> {contacto.correo}
                       </span>
                     </a>
                   ))}

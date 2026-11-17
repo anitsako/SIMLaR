@@ -23,33 +23,36 @@ import {
   useDisclosure,
 } from '@heroui/react';
 import { ArrowDownToLine, Trash2 } from 'lucide-react';
+import { Trans, useTranslation } from 'react-i18next';
 import SectionTitle from '@/common/section-title';
+import i18n from '@/i18n';
 import { useCatastroHistorico } from '@/catastro-historico/use-catastro-historico';
 import { ArchivoField } from '@/common/archivo.field';
 import { addCatastroHistoricoArchivoFn } from '@/catastro-historico/add-catastro-historico-archivo.fn';
 import { deleteCatastroHistoricoFn } from '@/catastro-historico/delete-catastro-historico.fn';
 
 export const Route = createFileRoute('/_authed/catastro-historico/administrar/')({
-  beforeLoad: ({ context }) => { if (!context.usuario?.esAdmin) throw new Error('Se requiere un administrador de SIMLaR.'); },
+  beforeLoad: ({ context }) => { if (!context.usuario?.esAdmin) throw new Error(i18n.t('common.errores.requiereAdmin')); },
   component: RouteComponent,
 });
 
 const meses = [
-  'Enero',
-  'Febrero',
-  'Marzo',
-  'Abril',
-  'Mayo',
-  'Junio',
-  'Julio',
-  'Agosto',
-  'Septiembre',
-  'Octubre',
-  'Noviembre',
-  'Diciembre',
+  'common.meses.enero',
+  'common.meses.febrero',
+  'common.meses.marzo',
+  'common.meses.abril',
+  'common.meses.mayo',
+  'common.meses.junio',
+  'common.meses.julio',
+  'common.meses.agosto',
+  'common.meses.septiembre',
+  'common.meses.octubre',
+  'common.meses.noviembre',
+  'common.meses.diciembre',
 ];
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { data: catastro, isPending, isError } = useCatastroHistorico();
   const crearModal = useDisclosure();
@@ -67,8 +70,8 @@ function RouteComponent() {
     mutationFn: addCatastroHistorico,
     onSuccess: () => {
       addToast({
-        title: 'Registro agregado',
-        description: 'El registro fue creado correctamente',
+        title: t('routes.admin.catastroHistorico.agregadoTitulo'),
+        description: t('routes.admin.catastroHistorico.agregadoDescripcion'),
         color: 'success',
         variant: 'flat',
       });
@@ -79,10 +82,10 @@ function RouteComponent() {
       const esDuplicado = err.message.includes('23505') || err.message.toLowerCase().includes('unique');
 
       addToast({
-        title: esDuplicado ? 'Registro duplicado' : 'Error al guardar',
+        title: esDuplicado ? t('routes.admin.catastroHistorico.duplicadoTitulo') : t('routes.admin.catastroHistorico.errorGuardarTitulo'),
         description: esDuplicado
-          ? 'Ya existe un archivo cargado para ese año y mes.'
-          : 'No se pudo crear el registro. Intentá de nuevo.',
+          ? t('routes.admin.catastroHistorico.duplicadoServidor')
+          : t('routes.admin.catastroHistorico.errorGuardarDescripcion'),
         color: 'danger',
         variant: 'flat',
       });
@@ -94,8 +97,8 @@ function RouteComponent() {
     mutationFn: deleteCatastroHistorico,
     onSuccess: () => {
       addToast({
-        title: 'Registro eliminado',
-        description: 'La fila se eliminó correctamente',
+        title: t('routes.admin.catastroHistorico.eliminadoTitulo'),
+        description: t('routes.admin.catastroHistorico.eliminadoDescripcion'),
         color: 'success',
         variant: 'flat',
       });
@@ -105,7 +108,7 @@ function RouteComponent() {
     },
     onError: () => {
       addToast({
-        title: 'No se pudo eliminar el registro',
+        title: t('routes.admin.catastroHistorico.errorEliminarTitulo'),
         color: 'danger',
         variant: 'flat',
       });
@@ -118,8 +121,8 @@ function RouteComponent() {
     borrarCatastroHistorico({ data: { id: filaABorrar.id } });
   };
 
-  if (isPending) return <div className="flex justify-center">Cargando catastro...</div>;
-  if (isError) return <p>No se pudo cargar el catastro histórico.</p>;
+  if (isPending) return <div className="flex justify-center">{t('routes.admin.catastroHistorico.cargando')}</div>;
+  if (isError) return <p>{t('routes.admin.catastroHistorico.error')}</p>;
   const filas = catastro.flatMap((cat) =>
     cat.meses.map((m) => ({
       key: `${cat.anio}-${m.mes}`,
@@ -145,7 +148,7 @@ function RouteComponent() {
     console.log('SUBMIT DISPARADO: ', data);
 
     if (!data.archivo) {
-      addToast({ title: 'Falta el archivo', color: 'danger', variant: 'flat' });
+      addToast({ title: t('routes.admin.catastroHistorico.faltaArchivo'), color: 'danger', variant: 'flat' });
       return;
     }
 
@@ -153,8 +156,8 @@ function RouteComponent() {
 
     if (yaExiste) {
       addToast({
-        title: 'Registro duplicado',
-        description: 'Ya existe un archivo para ese año y mes.',
+        title: t('routes.admin.catastroHistorico.duplicadoTitulo'),
+        description: t('routes.admin.catastroHistorico.duplicadoDescripcion'),
         color: 'danger',
         variant: 'flat',
       });
@@ -177,53 +180,53 @@ function RouteComponent() {
   return (
     <div>
       <SectionTitle
-        title="Administrar Catastro Histórico"
+        title={t('routes.admin.catastroHistorico.page.title')}
         rightSlot={
           <Button color="primary" size="sm" onPress={crearModal.onOpen}>
-            Crear
+            {t('common.acciones.crear')}
           </Button>
         }
       />
       <Modal isOpen={crearModal.isOpen} placement="top-center" onClose={crearModal.onClose}>
         <ModalContent>
           <Form onSubmit={handleSubmit}>
-            <ModalHeader className="flex flex-col gap-1">Agregar Registro</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1">{t('routes.admin.catastroHistorico.modal.agregarTitulo')}</ModalHeader>
             <ModalBody>
               <div className="flex flex-col justify-center gap-3">
                 <NumberInput
                   value={data.anio}
                   minValue={2020}
                   maxValue={new Date().getFullYear()}
-                  label="Año"
+                  label={t('routes.admin.catastroHistorico.modal.anio')}
                   isRequired
                   onValueChange={(v) => setData((d) => ({ ...d, anio: v }))}
                 />
                 <Select
                   className="max-w-sm"
-                  label="Selecciona el mes"
+                  label={t('routes.admin.catastroHistorico.modal.mes')}
                   isRequired
                   selectedKeys={data.mes ? [String(data.mes)] : []}
                   onSelectionChange={(keys) => setData((d) => ({ ...d, mes: Number([...keys][0]) }))}
                 >
                   {meses.map((mes, idx) => (
-                    <SelectItem key={String(idx + 1)}>{mes}</SelectItem>
+                    <SelectItem key={String(idx + 1)}>{t(mes)}</SelectItem>
                   ))}
                 </Select>
                 <ArchivoField
                   required
                   accept=".dwg"
-                  label="Selecciona el archivo"
+                  label={t('routes.admin.catastroHistorico.modal.archivo')}
                   onChange={(f) => setData((d) => ({ ...d, archivo: f }))}
                 />
               </div>
             </ModalBody>
             <ModalFooter>
               <Button color="primary" type="submit">
-                Guardar
+                {t('common.acciones.guardar')}
               </Button>
 
               <Button color="danger" variant="flat" onPress={crearModal.onClose}>
-                Cancelar
+                {t('common.acciones.cancelar')}
               </Button>
             </ModalFooter>
           </Form>
@@ -232,47 +235,47 @@ function RouteComponent() {
       {/* Modal para borrar */}
       <Modal isOpen={borrarModal.isOpen} placement="top-center" onClose={borrarModal.onClose}>
         <ModalContent>
-          <ModalHeader className="flex flex-col gap-1">Eliminar Registro</ModalHeader>
+          <ModalHeader className="flex flex-col gap-1">{t('routes.admin.catastroHistorico.modal.eliminarTitulo')}</ModalHeader>
           <ModalBody>
             <p>
-              ¿Seguro que querés borrar el registro de{' '}
-              <strong>
-                {filaABorrar && meses[filaABorrar.mes - 1]} {filaABorrar?.anio}
-              </strong>
-              ? Se eliminará también el archivo.
+              <Trans
+                i18nKey="routes.admin.catastroHistorico.modal.confirmarBorrar"
+                values={{ mes: filaABorrar ? t(meses[filaABorrar.mes - 1]) : '', anio: filaABorrar?.anio ?? '' }}
+                components={{ b: <strong /> }}
+              />
             </p>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onPress={handleBorrar} isLoading={borrando}>
-              Borrar
+              {t('common.acciones.borrar')}
             </Button>
 
             <Button color="danger" variant="flat" onPress={borrarModal.onClose}>
-              Cancelar
+              {t('common.acciones.cancelar')}
             </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
 
-      <Table aria-label="Tabla de catastro histórico" className="my-5">
+      <Table aria-label={t('routes.admin.catastroHistorico.tabla.aria')} className="my-5">
         <TableHeader>
-          <TableColumn>AÑO</TableColumn>
-          <TableColumn>MES</TableColumn>
-          <TableColumn>ARCHIVO</TableColumn>
-          <TableColumn>ACCIONES</TableColumn>
+          <TableColumn>{t('routes.admin.catastroHistorico.tabla.anio')}</TableColumn>
+          <TableColumn>{t('routes.admin.catastroHistorico.tabla.mes')}</TableColumn>
+          <TableColumn>{t('routes.admin.catastroHistorico.tabla.archivo')}</TableColumn>
+          <TableColumn>{t('routes.admin.catastroHistorico.tabla.acciones')}</TableColumn>
         </TableHeader>
 
-        <TableBody emptyContent="No hay archivos cargados todavía.">
+        <TableBody emptyContent={t('routes.admin.catastroHistorico.tabla.vacio')}>
           {filas.map((fila) => (
             <TableRow key={fila.key}>
               <TableCell>{fila.anio}</TableCell>
-              <TableCell>{meses[fila.mes - 1]}</TableCell>
+              <TableCell>{t(meses[fila.mes - 1])}</TableCell>
               <TableCell>
                 <a
                   href={`/archivos/${fila.archivoId}/${fila.nombre}`}
                   className="inline-flex items-center gap-1 text-primary hover:underline"
                 >
-                  <ArrowDownToLine size={16} /> Descargar
+                  <ArrowDownToLine size={16} /> {t('common.acciones.descargar')}
                 </a>
               </TableCell>
               <TableCell>

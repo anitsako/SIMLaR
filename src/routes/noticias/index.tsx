@@ -2,6 +2,7 @@ import { Button, Card, CardBody, Chip, Spinner } from '@heroui/react';
 import { useQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { ExternalLink, RefreshCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { NUEVAS_FUENTES } from '../../noticias/rss/nuevas-fuentes';
 import { getLatestFromSources } from '../../noticias/rss/noticias-rss';
@@ -25,6 +26,7 @@ function SectionHeader({ title, subtitle, right }: { title: string; subtitle?: s
 }
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const rssQuery = useQuery<Array<LatestNewsItem>>({
     queryKey: ['news', 'multi', { limit: 20 }],
     queryFn: () =>
@@ -47,10 +49,10 @@ function RouteComponent() {
       <section>
         <div className="border-b border-[#E62138]/50 pb-3 mb-4">
           <SectionTitle
-            title="Noticias"
+            title={t('routes.noticias.page.title')}
             sizeTitle="3xl"
             responsiveMd
-            subtitle="Últimas noticias desde múltiples portales."
+            subtitle={t('routes.noticias.page.subtitle')}
             sizeSubtitle="sm"
           />
         </div>
@@ -59,8 +61,8 @@ function RouteComponent() {
       {/* Contenido */}
       <section>
         <SectionHeader
-          title="Últimas noticias"
-          subtitle="Selección automática desde fuentes configuradas"
+          title={t('routes.noticias.ultimas.title')}
+          subtitle={t('routes.noticias.ultimas.subtitle')}
           right={
             <Button
               variant="flat"
@@ -69,7 +71,7 @@ function RouteComponent() {
               onPress={() => void rssQuery.refetch()}
               className="text-[#E62138]"
             >
-              Actualizar
+              {t('routes.noticias.actualizar')}
             </Button>
           }
         />
@@ -77,12 +79,12 @@ function RouteComponent() {
         {rssQuery.isLoading ? (
           <div className="flex items-center gap-3 text-black/70">
             <Spinner size="sm" />
-            <span>Cargando noticias…</span>
+            <span>{t('routes.noticias.cargando')}</span>
           </div>
         ) : items.length === 0 ? (
           <Card className="rounded-none border shadow-sm">
             <CardBody>
-              <p className="text-black/70">No se pudieron cargar noticias desde las fuentes configuradas.</p>
+              <p className="text-black/70">{t('routes.noticias.error')}</p>
             </CardBody>
           </Card>
         ) : (
@@ -105,7 +107,7 @@ function RouteComponent() {
                 <CardBody className="flex flex-col gap-3 p-6">
                   <div className="flex items-center gap-2 flex-wrap">
                     <Chip size="sm" variant="flat">
-                      {top.source ?? 'Noticias'}
+                      {top.source ?? t('routes.noticias.fuentePorDefecto')}
                     </Chip>
                     {top.publishedAt ? (
                       <span className="text-xs text-black/60">{new Date(top.publishedAt).toLocaleString('es-AR')}</span>
@@ -127,7 +129,7 @@ function RouteComponent() {
                       endContent={<ExternalLink size={16} />}
                       className="bg-[#E62138] text-white"
                     >
-                      Leer nota
+                      {t('routes.noticias.leerNota')}
                     </Button>
                   </div>
                 </CardBody>
@@ -156,7 +158,7 @@ function RouteComponent() {
                   <CardBody className="flex flex-col gap-3 p-6">
                     <div className="flex items-center gap-2 flex-wrap">
                       <Chip size="sm" variant="flat">
-                        {n.source ?? 'Noticias'}
+                        {n.source ?? t('routes.noticias.fuentePorDefecto')}
                       </Chip>
                       {n.publishedAt ? (
                         <span className="text-xs text-black/60">
@@ -180,7 +182,7 @@ function RouteComponent() {
                         size="sm"
                         className="text-[#E62138]"
                       >
-                        Leer nota
+                        {t('routes.noticias.leerNota')}
                       </Button>
                     </div>
                   </CardBody>

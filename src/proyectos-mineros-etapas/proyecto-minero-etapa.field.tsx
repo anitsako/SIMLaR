@@ -1,4 +1,5 @@
 import { Select, SelectItem } from '@heroui/react';
+import { useTranslation } from 'react-i18next';
 import { useProyectosMinerosEtapas } from './use-proyectos-mineros-etapas';
 
 export const ProyectoMineroEtapaField = ({
@@ -10,11 +11,12 @@ export const ProyectoMineroEtapaField = ({
   required?: boolean;
   onChange: (id: number | undefined) => void;
 }) => {
+  const { t } = useTranslation();
   const { data: proyectosMinerosEtapas, isFetching } = useProyectosMinerosEtapas();
 
   return (
     <Select
-      label="Etapa de proyecto minero"
+      label={t('routes.admin.proyectosMineros.form.etapa')}
       isLoading={isFetching}
       isRequired={required}
       selectedKeys={id ? [id.toString()] : []}

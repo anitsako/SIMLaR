@@ -1,7 +1,10 @@
 import { Image } from '@heroui/react';
 import { Mail, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="w-full">
       <div
@@ -23,11 +26,11 @@ export const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-opacity hover:opacity-80"
-                  aria-label="Ir al sitio oficial del Gobierno de La Rioja"
+                  aria-label={t('common.gobierno.linkAria')}
                 >
                   <Image
                     src="/branding/la-rioja-gobierno-white.png"
-                    alt="La Rioja Gobierno"
+                    alt={t('common.gobierno.logoAlt')}
                     className="h-30 w-auto"
                     radius="none"
                   />
@@ -35,7 +38,7 @@ export const Footer = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-4">Contacto</h3>
+                <h3 className="text-xl font-semibold mb-4">{t("footer.contacto")}</h3>
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center justify-center gap-3">
                     <MapPin className="h-4 w-4 mt-1" />
@@ -57,7 +60,7 @@ export const Footer = () => {
 
       <div className="w-full bg-[#E62138]">
         <div className="max-w-6xl mx-auto px-6 py-4 text-center text-white">
-          © 2026 | Sistema de Informacion Minera La Rioja
+          © 2026 | {t("footer.simlar")}
         </div>
       </div>
     </footer>

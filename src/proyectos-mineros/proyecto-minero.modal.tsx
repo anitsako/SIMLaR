@@ -12,6 +12,7 @@ import {
 } from '@heroui/react';
 import { Expand, File as FileIcon } from 'lucide-react';
 import { Link } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { useProyectoMinero } from './use-proyecto-minero';
 import { decimalToDms } from '@/common/decimal-to-dms';
 import { formatBytes } from '@/common/format-bytes';
@@ -43,6 +44,7 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
     enabled: id !== null && isOpen,
   });
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure();
+  const { t } = useTranslation();
 
   if (!data) return null;
 
@@ -71,64 +73,64 @@ export const ProyectoMineroModal = ({ id, isOpen, onClose }: Props) => {
             </div>
             <div className="flex flex-col">
               <Button variant="faded" as={Link} to={`/proyectos-mineros/${id}/mapa`}>
-                Modelo de Terreno
+                {t('routes.proyectosMineros.modal.modeloTerreno')}
               </Button>
               <Divider className="my-2" />
               <Button variant="faded" as={Link} to={`/proyectos-mineros/${id}/modelo-3d`}>
-                Modelo 3D
+                {t('routes.proyectosMineros.modal.modelo3d')}
               </Button>
-              <FieldRow label="Ubicación" value={data.ubicacion} />
+              <FieldRow label={t('routes.proyectosMineros.modal.ubicacion')} value={data.ubicacion} />
               <Divider className="my-2" />
-              <FieldRow label="Provincia geológica" value={data.provinciaGeologica} />
+              <FieldRow label={t('routes.proyectosMineros.modal.provinciaGeologica')} value={data.provinciaGeologica} />
               <Divider className="my-2" />
               <FieldRow
-                label="Superficie"
+                label={t('routes.proyectosMineros.modal.superficie')}
                 value={
                   data.areaHectareas !== null
-                    ? `${hectareasFormatter.format(data.areaHectareas)} ha`
+                    ? t('routes.proyectosMineros.modal.superficieHa', { valor: hectareasFormatter.format(data.areaHectareas) })
                     : data.area
                 }
               />
               <Divider className="my-2" />
-              <FieldRow label="Etapa" value={data.etapa.nombre} />
+              <FieldRow label={t('routes.proyectosMineros.modal.etapa')} value={data.etapa.nombre} />
               <Divider className="my-2" />
-              <FieldRow label="Propietario" value={data.propietario} />
+              <FieldRow label={t('routes.proyectosMineros.modal.propietario')} value={data.propietario} />
               <Divider className="my-2" />
-              <FieldRow label="Mineral de interés" value={data.mineralInteres} />
+              <FieldRow label={t('routes.proyectosMineros.modal.mineral')} value={data.mineralInteres} />
               <Divider className="my-2" />
-              <FieldRow label="Localidades cercanas" value={data.localidadesCercanas} />
+              <FieldRow label={t('routes.proyectosMineros.modal.localidades')} value={data.localidadesCercanas} />
               <Divider className="my-2" />
-              <FieldRow label="Altitud (msnm)" value={data.msnm} />
+              <FieldRow label={t('routes.proyectosMineros.modal.altitud')} value={data.msnm} />
               <Divider className="my-2" />
-              <FieldRow label="Convenio EMSE" value={data.convenioEmse ? 'Sí' : 'No'} />
+              <FieldRow label={t('routes.proyectosMineros.modal.convenio')} value={data.convenioEmse ? t('common.si') : t('common.no')} />
               <Divider className="my-2" />
               <FieldRow
-                label="Coordenadas"
+                label={t('routes.proyectosMineros.modal.coordenadas')}
                 value={`${decimalToDms(data.coordenadasGeograficas[1], true)}, ${decimalToDms(data.coordenadasGeograficas[0], false)}`}
               />
               <Divider className="my-2" />
               <Accordion className="px-0" isCompact>
-                <AccordionItem title="Litología">
+                <AccordionItem title={t('routes.proyectosMineros.modal.litologia')}>
                   <p className="text-sm pb-2">{data.litologia}</p>
                 </AccordionItem>
-                <AccordionItem title="Mineralización">
+                <AccordionItem title={t('routes.proyectosMineros.modal.mineralizacion')}>
                   <p className="text-sm pb-2">{data.mineralizacion}</p>
                 </AccordionItem>
-                <AccordionItem title="Modelo genético">
+                <AccordionItem title={t('routes.proyectosMineros.modal.modeloGenetico')}>
                   <p className="text-sm pb-2">{data.modeloGenetico}</p>
                 </AccordionItem>
-                <AccordionItem title="Accesos">
+                <AccordionItem title={t('routes.proyectosMineros.modal.accesos')}>
                   <p className="text-sm pb-2">{data.accesos}</p>
                 </AccordionItem>
               </Accordion>
 
               <Divider className="my-2" />
               <div className="space-y-3">
-                <h3 className="text-sm font-semibold">Archivos del proyecto</h3>
+                <h3 className="text-sm font-semibold">{t('routes.proyectosMineros.modal.archivos')}</h3>
                 {isArchivosFetching ? (
-                  <p className="text-sm text-default-500">Cargando archivos...</p>
+                  <p className="text-sm text-default-500">{t('routes.proyectosMineros.modal.cargandoArchivos')}</p>
                 ) : archivos.length === 0 ? (
-                  <p className="text-sm text-default-500">No hay archivos adicionales cargados.</p>
+                  <p className="text-sm text-default-500">{t('routes.proyectosMineros.modal.sinArchivos')}</p>
                 ) : (
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {archivos.map((archivo) => (

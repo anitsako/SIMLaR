@@ -7,6 +7,7 @@ import {
   Map,
   Network,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { ComponentType } from 'react';
 import SectionTitle from '@/common/section-title';
 import contenidoSecretaria from './objetivos-secretaria.json';
@@ -30,86 +31,76 @@ const PLAN_QUINQUENAL_IMAGE =
 const OBJETIVOS: Array<Objetivo> = [
   {
     icon: Database,
-    titulo: 'Centralización de información',
+    titulo: 'routes.objetivos.sistema.centralizacion.titulo',
     descripcion:
-      'Integrar y organizar información minera provincial en una plataforma digital unificada.',
+      'routes.objetivos.sistema.centralizacion.descripcion',
   },
   {
     icon: Map,
-    titulo: 'Información geoespacial',
+    titulo: 'routes.objetivos.sistema.geoespacial.titulo',
     descripcion:
-      'Facilitar el acceso a datos geográficos y técnicos sobre proyectos mineros y áreas de interés geológico.',
+      'routes.objetivos.sistema.geoespacial.descripcion',
   },
   {
     icon: Eye,
-    titulo: 'Transparencia y acceso público',
+    titulo: 'routes.objetivos.sistema.transparencia.titulo',
     descripcion:
-      'Promover el acceso a información actualizada sobre el desarrollo del sector minero en la provincia.',
+      'routes.objetivos.sistema.transparencia.descripcion',
   },
   {
     icon: Layers,
-    titulo: 'Planificación territorial',
+    titulo: 'routes.objetivos.sistema.planificacion.titulo',
     descripcion:
-      'Apoyar la planificación y gestión del territorio mediante herramientas de visualización geoespacial.',
+      'routes.objetivos.sistema.planificacion.descripcion',
   },
   {
     icon: Network,
-    titulo: 'Articulación institucional',
+    titulo: 'routes.objetivos.sistema.articulacion.titulo',
     descripcion:
-      'Fortalecer la vinculación entre organismos públicos, empresas estatales y actores del sector minero.',
+      'routes.objetivos.sistema.articulacion.descripcion',
   },
 ];
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <div className="mt-4 space-y-10">
       <section className="space-y-6">
-        <SectionTitle title="Objetivos provinciales" />
+        <SectionTitle title={t('routes.objetivos.page.title')} />
 
         <a
           href={PLAN_QUINQUENAL_URL}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Abrir el Plan Quinquenal para el Desarrollo Minero 2026–2030"
+          aria-label={t('routes.objetivos.planQuinquenal.abrirAria')}
           className="group block overflow-hidden rounded-xl border shadow-sm transition hover:shadow-lg"
         >
           <img
             src={PLAN_QUINQUENAL_IMAGE}
-            alt="Plan Quinquenal para el Desarrollo Minero de La Rioja 2026–2030"
+            alt={t('routes.objetivos.planQuinquenal.imageAlt')}
             className="h-auto w-full transition duration-300 group-hover:scale-[1.01]"
           />
         </a>
 
         <div className="rounded-xl border p-6 sm:p-8">
           <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">
-            Política minera provincial
+            {t('routes.objetivos.planQuinquenal.etiqueta')}
           </p>
 
           <h2 className="text-2xl font-bold leading-tight sm:text-3xl">
-            Plan Quinquenal para el Desarrollo Minero 2026–2030
+            {t('routes.objetivos.planQuinquenal.title')}
           </h2>
 
           <p className="mt-4 leading-relaxed text-black/70">
-            El Plan Quinquenal para el Desarrollo Minero establece la hoja de
-            ruta de la política minera de La Rioja para el período 2026–2030.
-            Su propósito es transformar el potencial geológico y humano de la
-            provincia en desarrollo productivo, empleo, inversión y
-            oportunidades para las comunidades riojanas.
+            {t('routes.objetivos.planQuinquenal.parrafo1')}
           </p>
 
           <p className="mt-3 leading-relaxed text-black/70">
-            El Plan impulsa una minería moderna, sostenible, transparente,
-            inclusiva y con identidad provincial. Para alcanzar estos
-            objetivos, articula políticas públicas, inversión, educación,
-            participación ciudadana, innovación tecnológica, cuidado ambiental
-            y fortalecimiento institucional.
+            {t('routes.objetivos.planQuinquenal.parrafo2')}
           </p>
 
           <p className="mt-3 leading-relaxed text-black/70">
-            Su hoja de ruta se organiza en cinco ejes estratégicos:
-            modernización institucional y normativa; educación, empleo y
-            territorio; ambiente y comunidad; inversión y economía local; y
-            comunicación minera.
+            {t('routes.objetivos.planQuinquenal.parrafo3')}
           </p>
 
           <a
@@ -118,16 +109,16 @@ function RouteComponent() {
             rel="noopener noreferrer"
             className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
           >
-            Consultar el Plan Quinquenal
+            {t('routes.objetivos.planQuinquenal.consultar')}
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>
       </section>
 
       <section className='space-y-6'>
-        <SectionTitle title="Misión" />
+        <SectionTitle title={t('routes.objetivos.mision.title')} />
         <p className="text-lg text-black/70 leading-relaxed text-black/60">
-          Promover, regular y controlar la actividad minera en La Rioja para que se desarrolle de manera responsable, sostenible y transparente, y que se traduzca en empleo, oportunidades y bienestar para las y los riojanos. Lo hacemos en articulación con las comunidades, los municipios, el sector productivo y el sistema educativo y científico, fortaleciendo una minería integrada al desarrollo territorial y productivo de la provincia.
+          {t('routes.objetivos.mision.texto')}
         </p>
 
       </section>
@@ -181,7 +172,7 @@ function RouteComponent() {
       </section>
 
       <section className="space-y-6">
-        <SectionTitle title="Objetivos del sistema" />
+        <SectionTitle title={t('routes.objetivos.sistema.title')} />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {OBJETIVOS.map((objetivo) => {
@@ -195,11 +186,11 @@ function RouteComponent() {
                 <Icon className="mb-3 h-8 w-8 text-primary" />
 
                 <p className="mb-1 font-semibold">
-                  {objetivo.titulo}
+                  {t(objetivo.titulo)}
                 </p>
 
                 <p className="text-sm leading-relaxed text-black/60">
-                  {objetivo.descripcion}
+                  {t(objetivo.descripcion)}
                 </p>
               </div>
             );

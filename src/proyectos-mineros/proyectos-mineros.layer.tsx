@@ -1,5 +1,6 @@
 import { useDisclosure } from '@heroui/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ProyectoMineroModal } from './proyecto-minero.modal';
 import { useProyectosMineros } from './use-proyectos-mineros';
 import type { MarkerColor, MarkerShape } from '@/mapa-principal/main-marker';
@@ -12,6 +13,7 @@ export const ProyectosMinerosLayer = ({
   tiposIds?: Array<number>;
   etapasIds?: Array<number>;
 }) => {
+  const { t } = useTranslation();
   const { data: proyectosMineros } = useProyectosMineros({ etapasIds, tiposIds, visible: true });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -24,7 +26,7 @@ export const ProyectosMinerosLayer = ({
           key={proyectoMinero.id}
           position={[proyectoMinero.coordenadasGeograficas[1], proyectoMinero.coordenadasGeograficas[0]]}
           value={index + 1}
-          title={`Proyecto: ${proyectoMinero.nombre}`}
+          title={t('routes.inicio.mapa.tooltips.proyecto', { nombre: proyectoMinero.nombre })}
           color={proyectoMinero.etapa.color as MarkerColor}
           shape={proyectoMinero.tipo.forma as MarkerShape}
           isTooltipActive={activeTooltipId === proyectoMinero.id}

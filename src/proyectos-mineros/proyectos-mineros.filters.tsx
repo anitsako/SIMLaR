@@ -11,6 +11,7 @@ import {
   Search,
   SlidersHorizontal,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import type { FormEvent, Key } from 'react';
@@ -36,6 +37,7 @@ const keysToStringSet = (
 };
 
 export function ProyectosMinerosFilters({ visibleBase }: Props) {
+  const { t } = useTranslation();
   const {
     nombreLike,
     tiposIds,
@@ -241,8 +243,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
         "
       >
         <Input
-          label="Nombre del proyecto"
-          placeholder="Buscar por nombre..."
+          label={t('routes.proyectosMineros.filtros.nombreLabel')}
+          placeholder={t('routes.proyectosMineros.filtros.nombrePlaceholder')}
           value={nombre}
           onValueChange={setNombre}
           variant="bordered"
@@ -252,8 +254,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
         />
 
         <Select
-          label="Tipo de proyecto"
-          placeholder="Todos los tipos"
+          label={t('routes.proyectosMineros.filtros.tipoLabel')}
+          placeholder={t('routes.proyectosMineros.filtros.tipoPlaceholder')}
           selectionMode="multiple"
           selectedKeys={tiposSeleccionados}
           variant="bordered"
@@ -273,8 +275,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
         </Select>
 
         <Select
-          label="Etapa del proyecto"
-          placeholder="Todas las etapas"
+          label={t('routes.proyectosMineros.filtros.etapaLabel')}
+          placeholder={t('routes.proyectosMineros.filtros.etapaPlaceholder')}
           selectionMode="multiple"
           selectedKeys={etapasSeleccionadas}
           variant="bordered"
@@ -294,8 +296,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
         </Select>
 
         <Select
-          label="Mineral de interés"
-          placeholder="Todos los minerales"
+          label={t('routes.proyectosMineros.filtros.mineralLabel')}
+          placeholder={t('routes.proyectosMineros.filtros.mineralPlaceholder')}
           selectionMode="multiple"
           selectedKeys={mineralesSeleccionados}
           variant="bordered"
@@ -320,7 +322,7 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
           startContent={<Search size={17} />}
           className="w-full xl:w-auto"
         >
-          Aplicar
+          {t('routes.proyectosMineros.filtros.aplicar')}
         </Button>
       </div>
 
@@ -337,8 +339,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
           onPress={() => setMostrarAvanzados((actual) => !actual)}
         >
           {cantidadFiltrosAvanzados > 0
-            ? `Más filtros (${cantidadFiltrosAvanzados})`
-            : 'Más filtros'}
+            ? t('routes.proyectosMineros.filtros.masFiltrosCantidad', { n: cantidadFiltrosAvanzados })
+            : t('routes.proyectosMineros.filtros.masFiltros')}
         </Button>
 
         <Button
@@ -347,23 +349,23 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
           startContent={<RotateCcw size={17} />}
           onPress={limpiarFiltros}
         >
-          Limpiar filtros
+          {t('routes.proyectosMineros.filtros.limpiar')}
         </Button>
       </div>
 
       {mostrarAvanzados && (
         <div className="rounded-xl border border-default-200 bg-default-50/50 p-3">
           <div className="mb-3">
-            <h3 className="text-sm font-semibold">Filtros avanzados</h3>
+            <h3 className="text-sm font-semibold">{t('routes.proyectosMineros.filtros.avanzadosTitulo')}</h3>
             <p className="text-xs text-default-500">
-              Podés combinar estos criterios con los filtros principales.
+              {t('routes.proyectosMineros.filtros.avanzadosDescripcion')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
             <Select
-              label="Ubicación"
-              placeholder="Todas las ubicaciones"
+              label={t('routes.proyectosMineros.filtros.ubicacionLabel')}
+              placeholder={t('routes.proyectosMineros.filtros.ubicacionPlaceholder')}
               selectionMode="multiple"
               selectedKeys={ubicacionesSeleccionadas}
               variant="bordered"
@@ -383,8 +385,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
             </Select>
 
             <Select
-              label="Propietario"
-              placeholder="Todos los propietarios"
+              label={t('routes.proyectosMineros.filtros.propietarioLabel')}
+              placeholder={t('routes.proyectosMineros.filtros.propietarioPlaceholder')}
               selectionMode="multiple"
               selectedKeys={propietariosSeleccionados}
               variant="bordered"
@@ -404,8 +406,8 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
             </Select>
 
             <Select
-              label="Provincia geológica"
-              placeholder="Todas las provincias geológicas"
+              label={t('routes.proyectosMineros.filtros.provinciaLabel')}
+              placeholder={t('routes.proyectosMineros.filtros.provinciaPlaceholder')}
               selectionMode="multiple"
               selectedKeys={provinciasSeleccionadas}
               variant="bordered"
@@ -425,7 +427,7 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
             </Select>
 
             <Select
-              label="Convenio EMSE"
+              label={t('routes.proyectosMineros.filtros.convenioLabel')}
               selectedKeys={new Set([convenio])}
               variant="bordered"
               size="sm"
@@ -437,9 +439,9 @@ export function ProyectosMinerosFilters({ visibleBase }: Props) {
                 setConvenio(String(Array.from(keys)[0] ?? 'todos'));
               }}
             >
-              <SelectItem key="todos">Con o sin convenio</SelectItem>
-              <SelectItem key="si">Con convenio EMSE</SelectItem>
-              <SelectItem key="no">Sin convenio EMSE</SelectItem>
+              <SelectItem key="todos">{t('routes.proyectosMineros.filtros.convenioTodos')}</SelectItem>
+              <SelectItem key="si">{t('routes.proyectosMineros.filtros.convenioSi')}</SelectItem>
+              <SelectItem key="no">{t('routes.proyectosMineros.filtros.convenioNo')}</SelectItem>
             </Select>
           </div>
         </div>

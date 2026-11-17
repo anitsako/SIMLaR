@@ -15,6 +15,7 @@ import {
 } from '@heroui/react';
 import { Expand } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Mapa } from '@/mapas/datos-mapas';
 import { mapas } from '@/mapas/datos-mapas';
 import SectionTitle from '@/common/section-title';
@@ -24,6 +25,7 @@ export const Route = createFileRoute('/mapas-geologicos/')({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string>('');
 
@@ -34,7 +36,7 @@ function RouteComponent() {
 
   return (
     <>
-      <SectionTitle title="Mapas geológicos" />
+      <SectionTitle title={t('routes.mapasGeologicos.page.title')} />
       {mapas.map((mapa: Mapa, index: number) => (
         <div key={index} className="max-w-6xl mb-4">
           <div className="flex flex-col gap-6 mt-6">
@@ -42,19 +44,19 @@ function RouteComponent() {
               <div className={`col-span-8 col-start-1 mb-2`}>
                 <Card>
                   <CardHeader>
-                    <h3 className="text-lg font-bold">{mapa.card.map((c) => c.title)}</h3>
+                    <h3 className="text-lg font-bold">{mapa.card.map((c) => t(c.title))}</h3>
                   </CardHeader>
                   <Divider />
                   <CardBody>
-                    <p>{mapa.card.map((c) => c.description)}</p>
+                    <p>{mapa.card.map((c) => t(c.description))}</p>
                   </CardBody>
                 </Card>
               </div>
               <div className="col-span-7 col-start-1 mb-2">
                 <Accordion selectionMode="multiple">
                   {mapa.accordionDescription.map((item) => (
-                    <AccordionItem key={item.key} aria-label={item.ariaLabel} title={item.title}>
-                      {item.description}
+                    <AccordionItem key={item.key} aria-label={t(item.ariaLabel)} title={t(item.title)}>
+                      {t(item.description)}
                     </AccordionItem>
                   ))}
                 </Accordion>
@@ -63,7 +65,7 @@ function RouteComponent() {
                 <Image
                   className="w-[250px] md:w-[300px] object-cover"
                   src={mapa.path}
-                  alt="Hoja geológica del país"
+                  alt={t('routes.mapasGeologicos.miniaturaAlt')}
                   radius="none"
                 />
                 <Button isIconOnly size="sm" variant="solid" className="" onPress={() => handleImage(mapa.path)}>
@@ -76,7 +78,7 @@ function RouteComponent() {
           <Modal isOpen={isImageOpen} onClose={onImageClose} size="full">
             <ModalContent>
               <ModalBody className="pb-6 flex items-center justify-center">
-                <Image className="max-h-screen" src={selectedImage} alt="Hoja geológica" radius="none" />
+                <Image className="max-h-screen" src={selectedImage} alt={t('routes.mapasGeologicos.ampliadaAlt')} radius="none" />
               </ModalBody>
             </ModalContent>
           </Modal>
