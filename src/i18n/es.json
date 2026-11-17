@@ -1,0 +1,1988 @@
+{
+  "nav": {
+    "brandName": "Sistema de Información Minera La Rioja",
+    "inicio": "Inicio",
+    "institucional": {
+      "label": "Institucional",
+      "items": {
+        "autoridades": "Autoridades",
+        "objetivos": "Objetivos",
+        "contacto": "Contacto"
+      }
+    },
+    "informacionMinera": {
+      "label": "Información Minera",
+      "items": {
+        "proyectosMineros": "Proyectos mineros",
+        "mapasGeologicos": "Mapas geológicos",
+        "marcoNormativo": "Marco normativo",
+        "catastro": "Catastro",
+        "galeriaFotos": "Galería de fotos"
+      }
+    },
+    "serviciosFormacion": {
+      "label": "Servicios y Formación",
+      "items": {
+        "servicios": "Servicios",
+        "educacionMinera": "Educación minera",
+        "programas": "Programas"
+      }
+    },
+    "administracion": {
+      "label": "Administración",
+      "items": {
+        "carrouselImagenes": "Carrusel de imágenes",
+        "galeriaFotos": "Galería de fotos",
+        "googleAnalytics": "Google Analytics",
+        "imagenesDepartamentos": "Imágenes de departamentos",
+        "indicadoresSociales": "Indicadores sociales",
+        "usuarios": "Usuarios"
+      }
+    },
+    "menuMovil": "Menú SIMLaR",
+    "volverInicioAria": "Volver al inicio de SIMLaR"
+  },
+  "footer": {
+    "contacto": "Contacto",
+    "simlar": "Sistema de Información Minera La Rioja"
+  },
+  "routes": {
+    "inicio": {
+      "mapa": {
+        "etapas": "Etapas de proyecto minero",
+        "tipos": "Tipos de proyecto minero",
+        "capasExtra": "Capas extra",
+        "descargarCapa": "Descargar capa",
+        "capas": {
+          "aeropuertos": "Aeropuertos",
+          "areasProtegidas": "Áreas protegidas",
+          "cerros": "Cerros",
+          "diques": "Diques",
+          "puntosExtras": "Puntos extras",
+          "refugios": "Refugios",
+          "riosIntermitentes": "Ríos intermitentes",
+          "riosPerennes": "Ríos perennes",
+          "rutasNacionales": "Rutas nacionales",
+          "rutasProvinciales": "Rutas provinciales",
+          "servidumbres": "Servidumbres"
+        },
+        "tooltips": {
+          "proyecto": "Proyecto: {{nombre}}",
+          "areaProtegida": "Area Protegida: {{nombre}}",
+          "departamento": "Departamento: {{nombre}}",
+          "dique": "Dique: {{nombre}}"
+        }
+      },
+      "visorProyectos": {
+        "title": "Visor de Proyectos",
+        "subtitle": "Explorá nuestros proyectos en un entorno interactivo"
+      },
+      "abrirProyectos": "Abrir proyectos mineros",
+      "accesosRapidos": {
+        "title": "Accesos rápidos",
+        "subtitle": "Organismos y sitios vinculados",
+        "secretariaMineriaAlt": "Secretaría de Minería",
+        "delegacionAlt": "Delegación La Rioja"
+      },
+      "carrousel": {
+        "slideAlt": "Slide {{n}}"
+      },
+      "noticias": {
+        "actualizar": "Actualizar ahora",
+        "verTodas": "Ver todas",
+        "seleccionEditorial": "Selección editorial",
+        "abrir": "Abrir",
+        "ultimasNoticias": "Últimas noticias",
+        "cargandoFuentes": "Cargando fuentes…",
+        "errorFuentes": "No se pudieron cargar noticias desde las fuentes configuradas.",
+        "fuentePorDefecto": "Noticias",
+        "destacadas": {
+          "emse": {
+            "titulo": "EMSE",
+            "resumen": "Noticias de la empresa estatal de minería de La Rioja"
+          },
+          "saltaMining": {
+            "titulo": "SaltaMining — Novedades del sector (selección editorial)",
+            "resumen": "Portal de noticias mineras con foco regional."
+          },
+          "panoramaMinero": {
+            "titulo": "Panorama Minero — Actualidad minera y economía",
+            "resumen": "Cobertura del sector, entrevistas y análisis."
+          },
+          "rumboMinero": {
+            "titulo": "Rumbo Minero — Noticias y tendencias",
+            "resumen": "Actualidad del sector minero en la región."
+          }
+        }
+      },
+      "departamento": {
+        "ampliarImagen": "Ampliar imagen",
+        "sinImagen": "Este departamento no tiene una imagen minera cargada.",
+        "infoSocialTitulo": "Información social y económica",
+        "infoSocialDescripcion": "Indicadores correspondientes al Censo Nacional 2022.",
+        "errorIndicadores": "No se pudieron consultar los indicadores del departamento.",
+        "sinIndicadores": "Todavía no se cargaron indicadores sociales y económicos para este departamento.",
+        "poblacion2022": "Población 2022",
+        "poblacion2010": "Población 2010",
+        "habitantes": "habitantes",
+        "variacion": "Variación 2010–2022",
+        "sinComparacion": "Sin comparación",
+        "variacionHabitantes": "{{valor}} habitantes",
+        "edadMediana": "Edad mediana",
+        "anios": "años",
+        "indiceFeminidad": "Índice de feminidad",
+        "mujeresCada100": "mujeres cada 100 varones",
+        "mujeres2022": "Mujeres 2022",
+        "varones2022": "Varones 2022",
+        "edadMedianaMujeres": "Edad mediana de mujeres",
+        "edadMedianaVarones": "Edad mediana de varones",
+        "actividadEconomicaTitulo": "Actividad económica",
+        "actividadEconomicaDescripcion": "Indicadores de la población ocupada de 14 años y más.",
+        "fuente": "Fuente",
+        "observaciones": "Observaciones",
+        "mujeres": "Mujeres",
+        "varones": "Varones",
+        "graficos": {
+          "distribucionSexo": {
+            "titulo": "Distribución por sexo",
+            "descripcion": "Composición de la población en el Censo 2022.",
+            "tooltip": "{{cantidad}} habitantes ({{porcentaje}} %)",
+            "porcentajePoblacion": "% de la población"
+          },
+          "ocupacion": {
+            "titulo": "Categoría ocupacional",
+            "descripcion": "Población ocupada de 14 años y más, según categoría ocupacional y sexo.",
+            "personas": "{{valor}} personas",
+            "totalOcupada": "Total de población ocupada",
+            "personas14": "personas de 14 años y más",
+            "categoriaPrincipal": "Categoría principal",
+            "sinInformacion": "Sin información",
+            "categorias": {
+              "obrero": "Obrero/a o empleado/a",
+              "patron": "Patrón/a",
+              "cuentaPropia": "Cuenta propia",
+              "familiar": "Trabajador/a familiar"
+            }
+          },
+          "piramide": {
+            "titulo": "Pirámide poblacional",
+            "descripcion": "Distribución de la población por grupos de edad y sexo. Los varones se muestran a la izquierda y las mujeres a la derecha.",
+            "grupoEdad": "Grupo de edad: {{grupo}}",
+            "poblacionRepresentada": "Población representada",
+            "grupoMasNumeroso": "Grupo más numeroso",
+            "composicion": "Composición"
+          },
+          "evolucion": {
+            "titulo": "Evolución de la población",
+            "descripcion": "Comparación entre los censos 2010 y 2022.",
+            "censo": "Censo {{anio}}",
+            "poblacion": "Población",
+            "aumento": "Entre 2010 y 2022 la población aumentó en",
+            "disminucion": "Entre 2010 y 2022 la población disminuyó en",
+            "equivalente": ", equivalente a un {{porcentaje}} %."
+          }
+        }
+      }
+    },
+    "programas": {
+      "page": {
+        "title": "Programas",
+        "description": "Conozca los programas de la Secretaría de Minería orientados al desarrollo local y la valorización del trabajo artesanal en La Rioja."
+      },
+      "tallerArtesanias": {
+        "title": "Taller de Artesanías",
+        "intro": "La minería con identidad riojana incluye de manera especial el fomento y la visibilización de la pequeña escala y el trabajo artesanal.",
+        "body": "A través del Taller de Piedra, la Secretaría promueve de forma activa el agregado de valor en origen a las rocas de aplicación y minerales industriales característicos de nuestra tierra, tales como el granito, la laja y el travertino.",
+        "imageAlt": "Taller de Artesanías",
+        "gallery": {
+          "itemAlt": "Artesanía en piedra {{n}}",
+          "expandAria": "Ver imagen ampliada: {{alt}}",
+          "closeAria": "Cerrar imagen",
+          "dialogAria": "Vista ampliada de la imagen"
+        }
+      }
+    },
+    "institucional": {
+      "page": {
+        "title": "Autoridades",
+        "subtitle": "Información de autoridades y organismos vinculados"
+      },
+      "autoridades": {
+        "title": "Autoridades",
+        "subtitle": "Gobierno provincial, áreas vinculadas y empresas estatales",
+        "secciones": {
+          "gobernacion": "Gobernación",
+          "vicegobernacion": "Vicegobernación",
+          "gabinete": "Gabinete",
+          "ministerio": "Ministerio",
+          "secretarias": "Secretarías",
+          "empresasEstatales": "Empresas estatales"
+        },
+        "cargos": {
+          "gobernador": "Gobernador de La Rioja",
+          "vicegobernadora": "Vice Gobernadora de La Rioja",
+          "jefeGabinete": "Jefe de Gabinete de Ministros",
+          "ministroTrabajo": "Ministro de Trabajo, Empleo, Industria y Minería",
+          "secretariaComunicacion": "Secretaria de Comunicación y Planificación Pública",
+          "secretariaMineria": "Secretaria Mineria",
+          "secretarioAmbiente": "Secretario de Ambiente",
+          "presidenteEmse": "Presidente de EMSE S.E",
+          "presidenteKallpa": "Presidente de KALLPA"
+        }
+      },
+      "funcionesSubtitle": "Unidades de la Secretaría de Minería y sus funciones",
+      "funciones": {
+        "title": "Funciones y competencias",
+        "unidades": {
+          "secretaria": {
+            "title": "Secretaría de Minería y Recursos No Renovables",
+            "items": {
+              "asistirPoderEjecutivo": "Asistir al Poder Ejecutivo y al Ministerio de Producción y Ambiente en lo relacionado con la actividad minera sustentable en la provincia.",
+              "definirObjetivos": "Definir los objetivos, políticas y acciones estratégicas para el desarrollo minero.",
+              "ejecutarPlanes": "Ejecutar los planes, programas y proyectos de su competencia.",
+              "proponerPolitica": "Proponer y ejecutar la política minera sustentable.",
+              "representarEstado": "Representar al Estado provincial ante organismos nacionales, regionales e internacionales.",
+              "participarCredito": "Participar en políticas de acceso al crédito minero y desarrollar programas de financiamiento.",
+              "coordinarAsistencia": "Coordinar acciones de asistencia técnica con organismos públicos, privados y organizaciones de la sociedad civil.",
+              "fortalecerVinculacion": "Fortalecer la vinculación con municipios, organizaciones sociales, profesionales y académicas."
+            }
+          },
+          "dgMineria": {
+            "title": "Dirección General de Minería",
+            "items": {
+              "planificarDesarrollo": "Planificar el desarrollo del sector minero con objetivos a corto, mediano y largo plazo.",
+              "promoverAprovechamiento": "Promover el aprovechamiento racional de los recursos geológicos y mineros para el desarrollo socioeconómico provincial.",
+              "coordinarPoliticaNacional": "Coordinar la aplicación de la política minera nacional en la provincia, mediante la participación en OFEMI y COFEMIN.",
+              "proponerEjecutarControlar": "Proponer, ejecutar y controlar la política minera provincial.",
+              "articularPoliticas": "Articular las políticas provinciales con las municipales y nacionales.",
+              "promoverRiesgos": "Promover el conocimiento de los riesgos geológicos y de las condiciones ambientales de base.",
+              "coordinarCooperacion": "Coordinar programas de cooperación e impulsar buenas prácticas industriales, ambientales y sociales."
+            }
+          },
+          "escribaniaMinas": {
+            "title": "Dirección de Escribanía de Minas",
+            "dependsOn": "Depende de Dirección General de Minería.",
+            "items": {
+              "llevarRegistros": "Llevar los registros de los derechos mineros de la provincia.",
+              "llevarPadronCanon": "Llevar el registro del padrón de canon minero.",
+              "realizarNotificaciones": "Realizar las notificaciones e intimaciones correspondientes a su competencia.",
+              "asistirDireccionGeneral": "Asistir a la Dirección General en asuntos relacionados con registros mineros, padrón y notificaciones.",
+              "informarRegistros": "Informar periódicamente sobre los registros de derechos mineros.",
+              "cumplirCodigo": "Cumplir las funciones asignadas por el Código de Minería y la legislación complementaria.",
+              "dejarConstancia": "Dejar constancia de la presentación de escritos y solicitudes, indicando fecha, hora, nombre del presentante y documentación acompañada.",
+              "extenderCertificados": "Extender certificados de dominio y otras certificaciones.",
+              "informarRequisitos": "Informar sobre el cumplimiento de los requisitos legales en los expedientes y solicitudes.",
+              "certificarPlazos": "Certificar el vencimiento de los plazos legales de cada expediente.",
+              "otrasTareas": "Realizar otras tareas requeridas por la Dirección General de Minería."
+            }
+          },
+          "mesaEntradas": {
+            "title": "Promotor de Mesa de Entradas y Salidas",
+            "dependsOn": "Depende de Dirección de Escribanía de Minas.",
+            "items": {
+              "registrarPresentacion": "Registrar el cargo, la fecha y la hora de cada escrito, solicitud, formulario o nota presentada.",
+              "llevarUbicacion": "Llevar el registro de la ubicación de cada expediente, nota o solicitud."
+            }
+          },
+          "catastroMinero": {
+            "title": "Dirección de Catastro Minero",
+            "dependsOn": "Depende de Dirección General de Minería.",
+            "items": {
+              "asignarMatriculas": "Asignar matrículas catastrales y organizar su registro cronológico y ordenado.",
+              "ordenarCatastro": "Ordenar y actualizar el Catastro Minero Provincial.",
+              "registrarDerechos": "Registrar los derechos mineros solicitados y en trámite mediante el sistema de coordenadas indicado en el documento.",
+              "informarDerechos": "Informar sobre los derechos mineros registrados, su ubicación, límites, superficie y coordenadas.",
+              "participarMensuras": "Participar en mensuras, deslindes y amojonamientos de minas, permisos de exploración, canteras y otros derechos mineros, así como de servidumbres y huellas mineras.",
+              "aprobarMensuras": "Aprobar y registrar mensuras, planos, memorias descriptivas, vinculaciones y otras tareas técnicas de su competencia."
+            }
+          },
+          "topografia": {
+            "title": "Promotor de Topografía",
+            "dependsOn": "Depende de Dirección de Catastro Minero.",
+            "items": {
+              "controlarTareas": "Controlar y ejecutar las tareas topogeodésicas de los pedimentos mineros de la provincia.",
+              "mantenerRed": "Mantener una red de puntos geodésicos de referencia para apoyar las mediciones de campo.",
+              "asegurarUbicacion": "Asegurar la correcta ubicación de los derechos mineros."
+            }
+          },
+          "graficoCatastral": {
+            "title": "Promotor de Trabajos Gráfico Catastral",
+            "dependsOn": "Depende de Dirección de Catastro Minero.",
+            "items": {
+              "controlarRegistro": "Controlar y actualizar sistemáticamente el registro catastral de los pedimentos mineros.",
+              "aplicarCodigo": "Aplicar las disposiciones del Código de Minería en materia catastral.",
+              "contribuirSeguridad": "Contribuir a la seguridad jurídica de los derechos mineros y favorecer las condiciones para la inversión."
+            }
+          },
+          "geologiaMinera": {
+            "title": "Dirección de Geología Minera",
+            "dependsOn": "Depende de Dirección General de Minería.",
+            "items": {
+              "asesorar": "Asesorar a las áreas correspondientes en los temas de su especialidad.",
+              "evaluarCanteras": "Evaluar proyectos de aprovechamiento de canteras.",
+              "evaluarMuestras": "Evaluar las muestras de minerales presentadas con las manifestaciones de descubrimiento.",
+              "organizarMuestras": "Organizar el almacenamiento y archivo de muestras legales.",
+              "analizarProgramas": "Analizar y evaluar programas mínimos de trabajo y los elementos y equipos destinados a la exploración.",
+              "evaluarLabores": "Evaluar y dictaminar sobre las labores legales presentadas.",
+              "realizarAnalisis": "Realizar, por sí o mediante terceros, análisis químicos, metalométricos y otros estudios necesarios.",
+              "analizarDeclaraciones": "Analizar declaraciones juradas para la liquidación de regalías.",
+              "estudiosGeologicos": "Realizar estudios geológicos para la explotación de minas y canteras.",
+              "estudiarAcceso": "Estudiar los problemas de acceso a los yacimientos y planificar las obras necesarias para construir huellas de acceso.",
+              "registroConsultores": "Llevar un registro de consultores habilitados para firmar proyectos geológicos o de aprovechamiento de yacimientos."
+            }
+          },
+          "trabajosGeologicos": {
+            "title": "Promotor de Trabajos Geológicos",
+            "dependsOn": "Depende de Dirección de Geología Minera.",
+            "items": {
+              "seleccionarPuntos": "Seleccionar puntos o zonas geográficas para determinar los recursos geológicos y mineros de la provincia.",
+              "promoverUso": "Promover el uso responsable de esos recursos, en beneficio de la población y dentro de un marco ambiental sostenible."
+            }
+          },
+          "economiaMinera": {
+            "title": "Dirección de Economía Minera",
+            "dependsOn": "Depende de Dirección General de Minería.",
+            "items": {
+              "estudiarInversiones": "Estudiar y evaluar las inversiones previstas en permisos de exploración y cateo.",
+              "analizarProyectos": "Analizar proyectos de inversión de capital y de activación o reactivación de minas.",
+              "determinarRegalias": "Determinar los importes de regalías mineras y derechos de explotación de canteras.",
+              "venderGuias": "Vender las guías de tránsito de minerales, rocas y áridos."
+            }
+          },
+          "registroProductores": {
+            "title": "Promotor de Registro de Productores y Mineros",
+            "dependsOn": "Depende de Dirección de Economía Minera.",
+            "items": {
+              "relevarProductores": "Relevar a los productores que realizan actividades relacionadas con la minería en el territorio provincial.",
+              "mantenerRegistro": "Mantener el registro de productores.",
+              "coordinarSuim": "Coordinar con Nación la administración de la información del Sistema Unificado de Información Minera —SUIM—.",
+              "articularInformacion": "Articular información estadística, geológica, catastral y de proyectos de los ámbitos nacional, provincial y municipal."
+            }
+          },
+          "policiaMinera": {
+            "title": "Dirección de Policía Minera",
+            "dependsOn": "Depende de Dirección General de Minería.",
+            "items": {
+              "controlarTrabajos": "Controlar y fiscalizar los trabajos de exploración, explotación y tratamiento o procesamiento de minerales y rocas.",
+              "protegerSeguridad": "Proteger la seguridad, la conservación de las labores y pertenencias mineras, la salud de los trabajadores y el ambiente natural y social.",
+              "inspeccionar": "Inspeccionar yacimientos, explotaciones, plantas y otras instalaciones o actividades mineras.",
+              "constatarInfracciones": "Constatar infracciones a las normas legales, de seguridad e higiene y labrar las actas correspondientes.",
+              "controlarTransito": "Controlar el tránsito de minerales, rocas y áridos en toda la provincia.",
+              "verificarGuias": "Verificar la existencia y correcta documentación de las guías de tránsito."
+            }
+          },
+          "fiscalizacion": {
+            "title": "Promotor de Fiscalización de Trabajos de Exploración, Explotación y Establecimiento",
+            "dependsOn": "Depende de Dirección de Policía Minera.",
+            "items": {
+              "evaluarSistemas": "Evaluar los sistemas y procedimientos utilizados en la actividad minera.",
+              "fiscalizarRacionalidad": "Fiscalizar su racionalidad y cumplimiento de los criterios de buena gestión.",
+              "comprobarNormas": "Comprobar el cumplimiento de las normas provinciales y nacionales.",
+              "verificarBuenasPracticas": "Verificar la aplicación de buenas prácticas industriales, ambientales y sociales."
+            }
+          },
+          "dgRecursos": {
+            "title": "Dirección General de Recursos No Renovables",
+            "items": {
+              "ejecutarPolitica": "Ejecutar la política minera, geológica y de recursos no renovables de la provincia.",
+              "velarNormas": "Velar por el cumplimiento de las normas nacionales y provinciales, actuando como autoridad de aplicación en la materia.",
+              "relevarRecursos": "Relevar los recursos no renovables de la provincia.",
+              "mantenerBud": "Mantener actualizados sus registros gráficos en el Banco Único de Datos —BUD—.",
+              "intervenirExplotacion": "Intervenir en la preparación y explotación de los recursos no renovables provinciales."
+            }
+          },
+          "gestionProyectos": {
+            "title": "Dirección de Gestión y Evaluación de Proyectos",
+            "dependsOn": "Depende de Dirección General de Recursos No Renovables.",
+            "items": {
+              "asistirSecretaria": "Asistir a la Secretaría en el diseño e implementación de políticas mineras.",
+              "intervenirInversores": "Intervenir en la vinculación con inversores y empresas del sector.",
+              "participarDesarrollo": "Participar en las acciones destinadas a promover el desarrollo de la minería provincial."
+            }
+          },
+          "dgDesarrollo": {
+            "title": "Dirección General de Desarrollo Productivo Minero",
+            "items": {
+              "promoverActividad": "Promover la actividad minera considerando sus aspectos sociales.",
+              "evaluarProyectos": "Evaluar y gestionar proyectos de desarrollo minero.",
+              "fomentarServicios": "Fomentar los servicios mineros y las unidades productivas y educativas.",
+              "impulsarLaboratorios": "Impulsar laboratorios de análisis de muestras y geoquímicos.",
+              "crearMuseo": "Crear y coordinar el Museo Minero–Petrológico Riojano.",
+              "mantenerRelaciones": "Mantener relaciones con la comunidad en los temas de su competencia.",
+              "brindarAsistencia": "Brindar asistencia técnica al productor minero.",
+              "intervenirRegimenes": "Intervenir en la elaboración de regímenes de promoción y protección de las actividades productivas.",
+              "coordinarProyectos": "Coordinar proyectos de promoción y desarrollo minero con organismos internacionales, nacionales, provinciales y municipales."
+            }
+          },
+          "valleBermejo": {
+            "title": "Coordinación Valle del Bermejo y Llanos Sur",
+            "dependsOn": "Depende de Dirección General de Desarrollo Productivo Minero.",
+            "items": {
+              "contribuirPlanificacion": "Contribuir a la planificación estratégica del desarrollo minero de la zona.",
+              "considerarRecursos": "Considerar los recursos minerales existentes y la demanda proyectada en los mercados local, provincial, nacional e internacional."
+            }
+          },
+          "servicioMinero": {
+            "title": "Dirección de Servicio Minero",
+            "dependsOn": "Depende de Dirección General de Desarrollo Productivo Minero.",
+            "items": {
+              "colaborarPoliticas": "Colaborar en el diseño e implementación de acciones y políticas de desarrollo minero a mediano y largo plazo.",
+              "promoverInversiones": "Promover inversiones en todas las etapas de la actividad minera.",
+              "interactuarInversores": "Interactuar con posibles inversores y facilitar la concreción de inversiones.",
+              "proporcionarInformacion": "Proporcionar información legal, geológica, catastral, de proyectos mineros y de los actores de la industria."
+            }
+          },
+          "dgAdministracion": {
+            "title": "Dirección General de Administración",
+            "items": {
+              "administrarRecursos": "Administrar los recursos humanos, económicos y financieros con criterios de eficacia, eficiencia y transparencia.",
+              "dirigirContabilidad": "Dirigir las actividades del sistema de información contable.",
+              "dirigirProcesos": "Dirigir los procesos de registro y control administrativo, contabilidad, presupuesto y tesorería.",
+              "supervisarCompras": "Supervisar las compras y contrataciones.",
+              "administrarPatrimonio": "Administrar y controlar el inventario y el registro patrimonial de bienes.",
+              "coordinarPersonal": "Coordinar los asuntos de personal y mantener actualizadas sus novedades.",
+              "definirIndicadores": "Definir indicadores para evaluar la ejecución presupuestaria.",
+              "registrarRecursos": "Registrar y fiscalizar los recursos económicos y financieros.",
+              "ejecutarAcciones": "Ejecutar y supervisar las acciones administrativas conforme a la normativa vigente.",
+              "supervisarRendiciones": "Supervisar o efectuar las rendiciones de cuentas de los recursos y bienes bajo su responsabilidad."
+            }
+          },
+          "rendicionCuentas": {
+            "title": "Coordinación de Rendición de Cuentas, Presupuesto y Patrimonio",
+            "dependsOn": "Depende de Dirección General de Administración.",
+            "items": {
+              "asistirPresupuesto": "Asistir en la formulación, ejecución y evaluación del presupuesto anual.",
+              "prepararAnteproyecto": "Preparar y tramitar el anteproyecto de presupuesto de gastos y cálculo de recursos.",
+              "registrarEjecucion": "Registrar mensualmente la ejecución presupuestaria.",
+              "tramitarModificaciones": "Tramitar modificaciones de créditos presupuestarios.",
+              "registrarCuotas": "Registrar las cuotas mensuales de compromisos y devengados e informar los saldos disponibles.",
+              "mantenerBienes": "Mantener un registro centralizado y actualizado de los bienes de la Secretaría.",
+              "intervenirMovimientos": "Intervenir en altas, bajas y transferencias patrimoniales.",
+              "organizarArchivo": "Organizar el archivo de las órdenes de pago aprobadas por la delegación fiscal."
+            }
+          },
+          "tesoreria": {
+            "title": "Coordinación de Tesorería",
+            "dependsOn": "Depende de Dirección General de Administración.",
+            "items": {
+              "asistirFondos": "Asistir en el manejo y custodia de los fondos y valores de la Secretaría.",
+              "registrarMovimientos": "Registrar contablemente los ingresos y egresos y mantener actualizados los libros correspondientes.",
+              "elaborarParte": "Elaborar el parte diario de tesorería, las conciliaciones bancarias y los balances financieros mensuales y acumulados.",
+              "administrarValores": "Administrar y custodiar fondos rotatorios, pólizas de seguro de caución, fondos de garantía y otros valores financieros.",
+              "efectuarPagos": "Efectuar los pagos de compras, contrataciones y haberes.",
+              "tramitesBancarios": "Realizar los trámites bancarios propios de su función."
+            }
+          },
+          "personal": {
+            "title": "Coordinación de Personal",
+            "dependsOn": "Depende de Dirección General de Administración.",
+            "items": {
+              "planificarRecursos": "Planificar y gestionar integralmente los recursos humanos.",
+              "determinarNecesidades": "Determinar las necesidades actuales y futuras de personal.",
+              "elevarPropuestas": "Elevar propuestas relacionadas con ingreso, promoción, designación, sucesión y egreso del personal.",
+              "mantenerHistorial": "Mantener el registro del historial del personal.",
+              "promoverCapacitacion": "Promover la capacitación continua y el desarrollo de competencias.",
+              "evaluarRiesgos": "Evaluar y controlar los factores de riesgo y seguridad del ambiente laboral.",
+              "procurarBienestar": "Procurar el bienestar de los agentes.",
+              "asistirRecursosHumanos": "Asistir a la Dirección General de Administración en los asuntos de recursos humanos."
+            }
+          },
+          "asuntosLegales": {
+            "title": "Dirección General de Asuntos Legales",
+            "items": {
+              "contribuirNormas": "Contribuir a la elaboración de proyectos de normas jurídicas.",
+              "asesorarDependencias": "Asesorar a las dependencias de la Secretaría.",
+              "intervenirDocumentacion": "Intervenir en la documentación relacionada con oficios y notificaciones.",
+              "supervisarProyectos": "Supervisar el estudio, análisis y redacción de proyectos normativos.",
+              "asesorarNormativa": "Asesorar sobre la normativa aplicable y emitir dictámenes jurídico-legales.",
+              "dictaminarRecursos": "Dictaminar sobre recursos administrativos contra actos de la Secretaría y sus áreas dependientes.",
+              "intervenirConvenios": "Intervenir en la elaboración, celebración, ejecución y aplicación de convenios y acuerdos relacionados con sus competencias.",
+              "intervenirContratos": "Intervenir en proyectos de contratos y otros instrumentos jurídicos vinculados con la actividad minera provincial."
+            }
+          },
+          "despacho": {
+            "title": "Dirección General de Despacho",
+            "items": {
+              "elaborarProyectos": "Elaborar y confeccionar proyectos de leyes, decretos y resoluciones de competencia de la Secretaría.",
+              "disponerNotificacion": "Disponer la notificación de los actos administrativos.",
+              "intervenirAsesoramiento": "Intervenir en el estudio y asesoramiento legal de las problemáticas de su competencia.",
+              "participarRecursos": "Participar en la tramitación de recursos administrativos.",
+              "registrarDocumentacion": "Registrar el ingreso, seguimiento y egreso de documentación y correspondencia.",
+              "ordenarTramitacion": "Ordenar su tramitación, distribución y archivo.",
+              "protocolizarActos": "Protocolizar, reproducir, autenticar y custodiar los actos administrativos.",
+              "analizarNormativa": "Analizar y ordenar la normativa vigente.",
+              "detectarVacios": "Detectar vacíos normativos o superposiciones legales y proponer las correcciones correspondientes."
+            }
+          }
+        }
+      }
+    },
+    "objetivos": {
+      "page": {
+        "title": "Objetivos provinciales"
+      },
+      "planQuinquenal": {
+        "abrirAria": "Abrir el Plan Quinquenal para el Desarrollo Minero 2026–2030",
+        "imageAlt": "Plan Quinquenal para el Desarrollo Minero de La Rioja 2026–2030",
+        "etiqueta": "Política minera provincial",
+        "title": "Plan Quinquenal para el Desarrollo Minero 2026–2030",
+        "parrafo1": "El Plan Quinquenal para el Desarrollo Minero establece la hoja de ruta de la política minera de La Rioja para el período 2026–2030. Su propósito es transformar el potencial geológico y humano de la provincia en desarrollo productivo, empleo, inversión y oportunidades para las comunidades riojanas.",
+        "parrafo2": "El Plan impulsa una minería moderna, sostenible, transparente, inclusiva y con identidad provincial. Para alcanzar estos objetivos, articula políticas públicas, inversión, educación, participación ciudadana, innovación tecnológica, cuidado ambiental y fortalecimiento institucional.",
+        "parrafo3": "Su hoja de ruta se organiza en cinco ejes estratégicos: modernización institucional y normativa; educación, empleo y territorio; ambiente y comunidad; inversión y economía local; y comunicación minera.",
+        "consultar": "Consultar el Plan Quinquenal"
+      },
+      "mision": {
+        "title": "Misión",
+        "texto": "Promover, regular y controlar la actividad minera en La Rioja para que se desarrolle de manera responsable, sostenible y transparente, y que se traduzca en empleo, oportunidades y bienestar para las y los riojanos. Lo hacemos en articulación con las comunidades, los municipios, el sector productivo y el sistema educativo y científico, fortaleciendo una minería integrada al desarrollo territorial y productivo de la provincia."
+      },
+      "sistema": {
+        "title": "Objetivos del sistema",
+        "centralizacion": {
+          "titulo": "Centralización de información",
+          "descripcion": "Integrar y organizar información minera provincial en una plataforma digital unificada."
+        },
+        "geoespacial": {
+          "titulo": "Información geoespacial",
+          "descripcion": "Facilitar el acceso a datos geográficos y técnicos sobre proyectos mineros y áreas de interés geológico."
+        },
+        "transparencia": {
+          "titulo": "Transparencia y acceso público",
+          "descripcion": "Promover el acceso a información actualizada sobre el desarrollo del sector minero en la provincia."
+        },
+        "planificacion": {
+          "titulo": "Planificación territorial",
+          "descripcion": "Apoyar la planificación y gestión del territorio mediante herramientas de visualización geoespacial."
+        },
+        "articulacion": {
+          "titulo": "Articulación institucional",
+          "descripcion": "Fortalecer la vinculación entre organismos públicos, empresas estatales y actores del sector minero."
+        }
+      }
+    },
+    "contacto": {
+      "page": {
+        "title": "Contacto",
+        "subtitle": "Información institucional y canales de comunicación",
+        "atencionOnline": "Atención online"
+      },
+      "anclas": {
+        "contactoInstitucional": "Contacto institucional",
+        "ubicacion": "Ubicación",
+        "formulario": "Formulario"
+      },
+      "tarjetas": {
+        "correo": {
+          "titulo": "Correo institucional",
+          "subtitulo": "Canal oficial de consultas",
+          "detalle": "Consultas institucionales y técnicas"
+        },
+        "direccion": {
+          "titulo": "Dirección",
+          "subtitulo": "Sede institucional"
+        },
+        "formulario": {
+          "titulo": "Formulario de consultas",
+          "subtitulo": "Envíanos tu consulta desde el portal",
+          "detalle": "Nuestro equipo revisará tu mensaje y responderá según el orden de ingreso."
+        }
+      },
+      "contactoInstitucional": {
+        "title": "Contacto institucional",
+        "subtitle": "Datos de contacto y comunicación oficial",
+        "bannerAntes": "Para una respuesta más rápida, utilizá el",
+        "bannerFormulario": "formulario",
+        "bannerDespues": "o el correo oficial",
+        "cardDescripcion": "Canal oficial para consultas y notas.",
+        "oficial": "Oficial",
+        "email": "Email",
+        "tiempoRespuesta": "Tiempo estimado de respuesta: 24–48 h hábiles.",
+        "horarioTitulo": "Horario de atención",
+        "horario": "Lunes a viernes - 09:00 a 13:00 y 18:00 a 21:00",
+        "consultasTecnicas": "Para consultas técnicas sobre proyectos, podes escribirnos a través del formulario de consultas o al email institucional.",
+        "copiadoTitulo": "Email copiado",
+        "copiadoDescripcion": "El email se copió al portapapeles"
+      },
+      "ubicacion": {
+        "title": "Ubicación",
+        "subtitle": "Dirección institucional y acceso al mapa",
+        "abrirGoogleMaps": "Abrir en Google Maps",
+        "mapaTitle": "Ubicación EMSE",
+        "direccion": "Dirección",
+        "verGoogleMaps": "Ver en Google Maps"
+      },
+      "formulario": {
+        "title": "Formulario de consultas",
+        "subtitle": "Envíanos tu consulta o solicitud",
+        "intro": "Por favor, ingresá tu email y tu consulta en el formulario. Nos pondremos en contacto contigo lo antes posible para brindarte la asistencia que necesitás.",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Ingresa tu email",
+        "consultaLabel": "Consulta",
+        "consultaPlaceholder": "Ingresa tu consulta",
+        "cortaTitulo": "Consulta muy corta",
+        "cortaDescripcion": "Por favor, escribí una consulta más detallada (al menos 50 caracteres).",
+        "exitoTitulo": "¡Gracias por contactarnos!",
+        "exitoDescripcion": "Tu consulta ha sido enviada correctamente.",
+        "errorTitulo": "Error al enviar",
+        "errorDescripcion": "Ocurrió un error al enviar tu consulta. Por favor, intentá nuevamente."
+      }
+    },
+    "transparencia": {
+      "page": {
+        "title": "Marco normativo",
+        "description": "En esta sección se ponen a disposición enlaces oficiales a normativa vinculada a la actividad minera, el procedimiento administrativo minero, la protección ambiental y el marco legal aplicable."
+      },
+      "enlaceOficial": "Enlace oficial disponible en argentina.gob.ar",
+      "verNormativa": "Ver normativa",
+      "normas": {
+        "constitucionNacional": {
+          "titulo": "Ley Nº 24.430 - Constitución Nacional",
+          "descripcion": "Establece que el Estado adopta un sistema de gobierno representativo, republicano y federal"
+        },
+        "constitucionProvincial": {
+          "titulo": "Convocada mediante la Ley Nº 10.609 - Constitución Provincial",
+          "descripcion": "Establece que el Estado provincial adopta un sistema de gobierno representativo, republicano, democrático y social"
+        },
+        "codigoMineria": {
+          "titulo": "Ley Nº 1919 - Código de Minería",
+          "descripcion": "Código nacional que regula los derechos, obligaciones y procedimientos vinculados a la actividad minera en Argentina."
+        },
+        "codigoProcedimientos": {
+          "titulo": "Ley Nº 7277 - Código de Procedimientos Mineros",
+          "descripcion": "Norma provincial que regula el procedimiento de las actividades mineras en la Provincia de La Rioja."
+        },
+        "inversionesMineras": {
+          "titulo": "Ley Nº 24.196 - Inversiones Mineras",
+          "descripcion": "Régimen nacional de inversiones para la actividad minera en Argentina."
+        },
+        "proteccionAmbiental": {
+          "titulo": "Ley Nº 24.585 - Protección Ambiental Minera",
+          "descripcion": "Normativa nacional vinculada a la protección ambiental para la actividad minera."
+        },
+        "proveedoresMineros": {
+          "titulo": "Ley Nº 10.799 - Proveedores Mineros",
+          "descripcion": "Regula la declaración jurada de compras a proveedores locales y el desarrollo de la cadena de valor regional."
+        }
+      }
+    },
+    "mapasGeologicos": {
+      "page": {
+        "title": "Mapas geológicos"
+      },
+      "miniaturaAlt": "Hoja geológica del país",
+      "ampliadaAlt": "Hoja geológica",
+      "mapas": {
+        "hojaPais": {
+          "titulo": "Hoja geológica del país",
+          "descripcion": "Mapa que representa la distribución de las cartas geológicas de Argentina, mostrando la organización territorial de los estudios geológicos realizados en el país.",
+          "items": {
+            "objetivo": {
+              "titulo": "Objetivo del mapa",
+              "descripcion": "Mostrar la distribución de las cartas geológicas oficiales de Argentina y su cobertura territorial."
+            },
+            "escala": {
+              "titulo": "Escala geográfica",
+              "descripcion": "El mapa utiliza una escala 1:250.000, permitiendo representar grandes áreas con buen nivel de detalle."
+            },
+            "informacion": {
+              "titulo": "Información geológica",
+              "descripcion": "Las cartas contienen datos sobre formaciones rocosas, estructuras geológicas y recursos minerales."
+            },
+            "importancia": {
+              "titulo": "Importancia científica y minera",
+              "descripcion": "Es una herramienta fundamental para investigaciones geológicas, exploración minera y estudios del suelo."
+            }
+          }
+        },
+        "regional": {
+          "titulo": "Hoja geológica regional de La Rioja",
+          "descripcion": "Mapa geológico que muestra las principales formaciones rocosas, estructuras tectónicas y características geológicas de la provincia de La Rioja.",
+          "items": {
+            "diversidad": {
+              "titulo": "Diversidad de relieves y rocas",
+              "descripcion": "El mapa muestra sierras, valles y diferentes tipos de rocas mediante colores y símbolos geológicos."
+            },
+            "escala": {
+              "titulo": "Escala geográfica",
+              "descripcion": "Está elaborado a escala 1:500.000, permitiendo observar la distribución regional de las unidades geológicas."
+            },
+            "estructuras": {
+              "titulo": "Estructuras tectónicas",
+              "descripcion": "El mapa identifica fallas, plegamientos y zonas de actividad geológica importantes en la provincia."
+            },
+            "valor": {
+              "titulo": "Valor educativo y técnico",
+              "descripcion": "Es utilizado en investigaciones, enseñanza universitaria y planificación de actividades relacionadas con geología y minería."
+            }
+          }
+        }
+      }
+    },
+    "proyectosMineros": {
+      "page": {
+        "title": "Proyectos Mineros",
+        "crear": "Crear proyecto"
+      },
+      "tabla": {
+        "error": "Error al cargar los proyectos",
+        "cargando": "Cargando proyectos...",
+        "vacio": "No hay proyectos para mostrar",
+        "columnas": {
+          "nombre": "NOMBRE",
+          "tipo": "TIPO",
+          "ubicacion": "UBICACIÓN",
+          "mineral": "MINERAL",
+          "etapa": "ETAPA",
+          "propietario": "PROPIETARIO",
+          "coordenadas": "COORDENADAS",
+          "detalles": "DETALLES"
+        },
+        "verDetallesAria": "Ver detalles de {{nombre}}",
+        "modificarAria": "Modificar {{nombre}}",
+        "archivosAria": "Administrar archivos de {{nombre}}"
+      },
+      "filtros": {
+        "nombreLabel": "Nombre del proyecto",
+        "nombrePlaceholder": "Buscar por nombre...",
+        "tipoLabel": "Tipo de proyecto",
+        "tipoPlaceholder": "Todos los tipos",
+        "etapaLabel": "Etapa del proyecto",
+        "etapaPlaceholder": "Todas las etapas",
+        "mineralLabel": "Mineral de interés",
+        "mineralPlaceholder": "Todos los minerales",
+        "aplicar": "Aplicar",
+        "masFiltros": "Más filtros",
+        "masFiltrosCantidad": "Más filtros ({{n}})",
+        "limpiar": "Limpiar filtros",
+        "avanzadosTitulo": "Filtros avanzados",
+        "avanzadosDescripcion": "Podés combinar estos criterios con los filtros principales.",
+        "ubicacionLabel": "Ubicación",
+        "ubicacionPlaceholder": "Todas las ubicaciones",
+        "propietarioLabel": "Propietario",
+        "propietarioPlaceholder": "Todos los propietarios",
+        "provinciaLabel": "Provincia geológica",
+        "provinciaPlaceholder": "Todas las provincias geológicas",
+        "convenioLabel": "Convenio EMSE",
+        "convenioTodos": "Con o sin convenio",
+        "convenioSi": "Con convenio EMSE",
+        "convenioNo": "Sin convenio EMSE"
+      },
+      "estadisticas": {
+        "titulo": "Estadísticas de proyectos mineros",
+        "error": "No fue posible cargar las estadísticas de proyectos mineros.",
+        "calculando": "Calculando estadísticas...",
+        "descripcionFiltrada": "Resultados correspondientes a los filtros aplicados.",
+        "descripcionGeneral": "Resumen general de los proyectos registrados.",
+        "chipFiltrados": "{{n}} proyectos filtrados",
+        "chipGeneral": "Vista general",
+        "registrados": "Proyectos registrados",
+        "registradosDeTotal": "{{n}} de {{total}} proyectos",
+        "totalVista": "Total disponible en esta vista",
+        "superficie": "Superficie acumulada",
+        "hectareas": "ha",
+        "superficieDeTotal": "{{n}} de {{total}} ha",
+        "sumaSuperficies": "Suma de las superficies informadas",
+        "ayuda": "Seleccioná una barra, un sector o una categoría para aplicar ese filtro. Volvé a seleccionarlo para quitarlo.",
+        "tooltipCantidad": "{{cantidad}} proyectos ·",
+        "seleccionarFiltrar": "Seleccionar para filtrar",
+        "sinDatos": "No hay datos para los filtros seleccionados.",
+        "porTipo": {
+          "titulo": "Distribución por tipo",
+          "descripcion": "Seleccioná un sector o una categoría para filtrar el listado."
+        },
+        "porEtapa": {
+          "titulo": "Distribución por etapa",
+          "descripcion": "Cantidad y porcentaje en cada etapa de desarrollo. Los colores coinciden con el visor."
+        },
+        "porMineral": {
+          "titulo": "Distribución por mineral",
+          "descripcion": "Principales minerales de interés, ordenados por cantidad."
+        },
+        "porUbicacion": {
+          "titulo": "Distribución por ubicación",
+          "descripcion": "Cantidad y porcentaje según la ubicación declarada."
+        }
+      },
+      "modal": {
+        "modeloTerreno": "Modelo de Terreno",
+        "modelo3d": "Modelo 3D",
+        "ubicacion": "Ubicación",
+        "provinciaGeologica": "Provincia geológica",
+        "superficie": "Superficie",
+        "superficieHa": "{{valor}} ha",
+        "etapa": "Etapa",
+        "propietario": "Propietario",
+        "mineral": "Mineral de interés",
+        "localidades": "Localidades cercanas",
+        "altitud": "Altitud (msnm)",
+        "convenio": "Convenio EMSE",
+        "coordenadas": "Coordenadas",
+        "litologia": "Litología",
+        "mineralizacion": "Mineralización",
+        "modeloGenetico": "Modelo genético",
+        "accesos": "Accesos",
+        "archivos": "Archivos del proyecto",
+        "cargandoArchivos": "Cargando archivos...",
+        "sinArchivos": "No hay archivos adicionales cargados."
+      },
+      "mapa": {
+        "cargandoModelo": "Cargando modelo de terreno...",
+        "sinModelo": "Este proyecto no tiene modelo de terreno",
+        "volverInicio": "Volver a Inicio",
+        "cargandoMapa": "Cargando mapa...",
+        "opacidad": "Opacidad",
+        "opacidadDtm": "Opacidad DTM"
+      },
+      "modelo3d": {
+        "sinModelo": "Este proyecto no tiene modelo 3D disponible",
+        "requisitos": "Para visualizar en 3D, el proyecto debe tener cargado el MDT raw y la ortofoto PNG.",
+        "volverProyectos": "Volver a proyectos",
+        "cargandoVisor": "Cargando visor 3D...",
+        "titulo": "{{nombre}} — Vista 3D",
+        "error": "Error al cargar el modelo 3D",
+        "cargando": "Cargando modelo 3D...",
+        "info": "Información del modelo",
+        "elevacionMin": "Elevación mín:",
+        "elevacionMax": "Elevación máx:",
+        "crs": "CRS:",
+        "ayuda": "Arrastrá con el mouse para rotar. Rueda para zoom. Click derecho para mover."
+      }
+    },
+    "catastro": {
+      "meta": {
+        "title": "Catastro | SIMLaR",
+        "description": "Catastro minero de La Rioja: visor de parcelas, descargas y archivos históricos por año y mes."
+      },
+      "page": {
+        "title": "Catastro",
+        "subtitle": "Visor minero y archivos históricos de La Rioja",
+        "administrarEdiciones": "Administrar ediciones del catastro",
+        "seccionesAria": "Secciones de Catastro"
+      },
+      "minero": {
+        "title": "Catastro Minero",
+        "subtitle": "Información catastral de la Secretaría de Minería",
+        "cargando": "Cargando catastro…",
+        "cargandoVisor": "Cargando visor catastral…",
+        "errorEdicion": "No se pudo consultar la edición actual del catastro. Intentá nuevamente más tarde.",
+        "instrucciones": "Explorá las parcelas en el mapa. Seleccioná un polígono o un punto para consultar los datos disponibles. Cuando coincidan varias parcelas, el visor te permitirá elegir una.",
+        "fechaCorte": "Fecha de corte: {{fecha}}.",
+        "recepcionInicial": "Esta vista muestra los archivos de la recepción inicial de la Secretaría de Minería. La fecha de corte está pendiente de confirmación.",
+        "estadoVigente": "Para conocer el estado vigente de un derecho minero, consultá al organismo competente.",
+        "visorTitle": "Visor del catastro minero de La Rioja",
+        "descargasTitle": "Descargas del catastro",
+        "descargasDescripcion": "Archivos correspondientes a la edición que muestra el visor.",
+        "descargar": "Descargar {{formato}}",
+        "sinDescargas": "Esta edición no incluye PDF ni DWG. Las ediciones anteriores están disponibles en el histórico."
+      },
+      "historico": {
+        "title": "Catastro Histórico",
+        "subtitle": "Consultá y descargá los registros organizados por año y mes.",
+        "cargando": "Cargando catastro histórico…",
+        "cargandoRegistros": "Cargando registros del catastro…",
+        "errorEdiciones": "No se pudieron consultar las ediciones nuevas.",
+        "errorAnteriores": "No se pudieron consultar los archivos anteriores.",
+        "sinRegistros": "Todavía no hay registros con fecha.",
+        "enVisor": "En el visor",
+        "descargarAria": "Descargar {{formato}}, {{fecha}} de {{anio}}, {{titulo}}",
+        "administrarAnteriores": "Administrar archivos anteriores",
+        "fechaConDia": "{{dia}} de {{mes}}",
+        "mesDesconocido": "Mes {{mes}}",
+        "archivoCatastral": "Archivo catastral",
+        "archivo": "Archivo"
+      },
+      "visor": {
+        "cargando": "Cargando catastro…",
+        "errorMapInit": "No fue posible inicializar el visor catastral. Intentá de nuevo más tarde.",
+        "errorGeojsonLoad": "No fue posible cargar la información geográfica del catastro.",
+        "errorGeojsonInvalid": "La información geográfica del catastro tiene un formato inválido.",
+        "errorNoGeometries": "La información geográfica no contiene geometrías válidas para mostrar.",
+        "emptyProperties": "No hay información disponible para esta parcela.",
+        "identifyTitle": "Parcelas en esta ubicación",
+        "noParcelAssociated": "No se encontró una parcela asociada.",
+        "legendTitle": "Categorías",
+        "fields": {
+          "type": "Tipo",
+          "expediente": "Expediente",
+          "titular": "Titular",
+          "departamento": "Departamento",
+          "superficie": "Superficie"
+        },
+        "type": {
+          "cateos": "Cateo",
+          "manifestaciones": "Manifestación",
+          "canteras": "Cantera",
+          "minas": "Mina",
+          "pasma-minas": "Pasma Minas",
+          "aluviones": "Aluviones",
+          "areas-especiales": "Áreas especiales"
+        },
+        "layers": {
+          "cateos": "Cateos",
+          "manifestaciones": "Manifestaciones",
+          "canteras": "Canteras",
+          "minas": "Minas",
+          "pasma-minas": "Pasma Minas",
+          "aluviones": "Aluviones",
+          "areas-especiales": "Áreas especiales"
+        }
+      }
+    },
+    "galeriaFotos": {
+      "page": {
+        "title": "Galería de fotos"
+      },
+      "vacio": "No hay fotos cargadas."
+    },
+    "servicios": {
+      "page": {
+        "title": "Servicios",
+        "subtitle": "Trámites, plataformas oficiales y canales de atención vinculados al sector minero."
+      },
+      "proveedores": {
+        "title": "Registro de Proveedores Mineros",
+        "subtitle": "Acceso al sistema provincial para la inscripción y actualización de proveedores del sector minero.",
+        "portalTitulo": "Portal de Proveedores Mineros",
+        "portalDescripcion": "Ingresá al portal oficial para iniciar una inscripción, presentar antecedentes o actualizar los datos de un proveedor registrado.",
+        "enlaceExterno": "El enlace abre una plataforma externa del Gobierno de La Rioja.",
+        "abrirPortal": "Abrir portal"
+      },
+      "tramitesDigitales": {
+        "title": "Trámites digitales",
+        "enDesarrollo": "Módulo en desarrollo",
+        "descripcion": "Actualmente no es posible iniciar trámites directamente desde SIMLaR. Mientras se completa su implementación, las consultas y presentaciones deben realizarse ante los organismos indicados a continuación."
+      },
+      "organismos": {
+        "title": "Organismos y canales de atención",
+        "subtitle": "Información institucional, trámites relacionados, datos de contacto y ubicación.",
+        "agregar": "Agregar organismo",
+        "cargando": "Cargando organismos...",
+        "error": "No fue posible cargar los organismos de contacto.",
+        "vacioTitulo": "No hay organismos publicados",
+        "vacioAdmin": "Todavía no hay organismos cargados. Utilizá “Agregar organismo” para crear el primero.",
+        "vacioPublico": "Los canales de atención serán publicados próximamente."
+      },
+      "card": {
+        "borrador": "Borrador",
+        "direccion": "Dirección",
+        "horario": "Horario de atención",
+        "telefono": "Teléfono",
+        "whatsapp": "WhatsApp",
+        "email": "Correo electrónico",
+        "sinDatos": "Los datos de contacto todavía no fueron completados.",
+        "tramites": "Consultas y trámites relacionados",
+        "comoLlegar": "Cómo llegar",
+        "llamar": "Llamar",
+        "correo": "Correo",
+        "sitioWeb": "Sitio web",
+        "facebookAria": "Facebook de {{nombre}}",
+        "instagramAria": "Instagram de {{nombre}}",
+        "ocultarUbicacion": "Ocultar ubicación",
+        "verUbicacion": "Ver ubicación"
+      },
+      "directorio": {
+        "title": "Correos y redes oficiales",
+        "subtitle": "Contacto directo con cada área de la Secretaría de Minería.",
+        "correos": "Correos electrónicos",
+        "redes": "Redes sociales",
+        "areas": {
+          "secretariaMineria": "Secretaría de Minería",
+          "direccionGeneralMineria": "Dirección General de Minería",
+          "escribaniaMinas": "Dirección de Escribanía de Minas",
+          "catastroMinero": "Dirección de Catastro Minero",
+          "policiaMinera": "Dirección de Policía Minera",
+          "economiaMinera": "Dirección de Economía Minera",
+          "geologiaMinera": "Dirección de Geología Minera",
+          "desarrolloProductivo": "Dirección General de Desarrollo Productivo Minero"
+        }
+      },
+      "modal": {
+        "actualizado": "Contacto actualizado",
+        "creado": "Contacto creado",
+        "guardadoDescripcion": "La información fue guardada correctamente.",
+        "errorNombre": "Debe ingresar el nombre del organismo.",
+        "errorCoordenadas": "La latitud y la longitud deben completarse juntas.",
+        "editarTitulo": "Editar {{nombre}}",
+        "agregarTitulo": "Agregar organismo de contacto",
+        "descripcion": "Completá la información institucional, los canales de atención y la ubicación.",
+        "general": {
+          "titulo": "Información general",
+          "descripcion": "Datos principales que verá el público.",
+          "nombre": "Nombre del organismo",
+          "orden": "Orden",
+          "ordenAyuda": "Menor = primero",
+          "descripcionLabel": "Descripción",
+          "descripcionAyuda": "Explicá brevemente qué organismo es y qué tipo de atención brinda.",
+          "tramites": "Trámites y consultas",
+          "tramitesAyuda": "Escribí un trámite por renglón."
+        },
+        "canales": {
+          "titulo": "Canales de atención",
+          "descripcion": "Completá solamente los datos confirmados.",
+          "horario": "Horario de atención",
+          "horarioPlaceholder": "Lunes a viernes de 8:00 a 13:00",
+          "telefono": "Teléfono",
+          "whatsapp": "WhatsApp",
+          "email": "Correo electrónico"
+        },
+        "redes": {
+          "titulo": "Sitio web y redes sociales",
+          "descripcion": "Campos opcionales.",
+          "sitioWeb": "Sitio web",
+          "facebook": "Facebook",
+          "instagram": "Instagram"
+        },
+        "ubicacion": {
+          "titulo": "Ubicación",
+          "descripcion": "Dirección y punto exacto del organismo.",
+          "direccion": "Dirección",
+          "direccionPlaceholder": "Pelagio B. Luna 811, La Rioja Capital",
+          "mapaTitulo": "Ubicación en el mapa",
+          "mapaAyuda": "Seleccioná el punto haciendo clic.",
+          "ocultarMapa": "Ocultar mapa",
+          "editarUbicacion": "Editar ubicación",
+          "seleccionarUbicacion": "Seleccionar ubicación",
+          "abrirMapa": "Abrí el mapa para seleccionar o modificar la ubicación.",
+          "coordenadasManuales": "Coordenadas manuales",
+          "latitud": "Latitud",
+          "longitud": "Longitud"
+        },
+        "mostrarPublico": "Mostrar al público",
+        "mostrarPublicoAyuda": "Desactivado: se guarda como borrador.",
+        "guardarPublicar": "Guardar y publicar",
+        "guardarBorrador": "Guardar borrador"
+      }
+    },
+    "educacion": {
+      "informativa": {
+        "minerales": {
+          "oro": {
+            "nombre": "Oro",
+            "descripcion": "Es un metal de transición blando que se encuentra normalmente en estado puro, en forma de pepitas y depósitos aluviales. Su concentración económica suele darse en sistemas hidrotermales (vetas y diseminaciones) y en depósitos secundarios tipo placer, producto de la erosión de fuentes primarias. Se caracteriza por su alto valor económico, tener baja alterabilidad, excelente conductividad, gran maleabilidad, ductilidad y resistencia a la corrosión, lo que lo convierte en un recurso de gran importancia.",
+            "sistemaCristalino": "Cúbico",
+            "colorCaracteristico": "Ambar, dorado",
+            "usos": {
+              "joyeriaOrfebreria": {
+                "nombre": "Joyería y orfebrería",
+                "detalle": "principal destino del oro."
+              },
+              "reservaValor": {
+                "nombre": "Reserva de valor",
+                "detalle": "utilizado como activo financiero y respaldo económico."
+              },
+              "industriaElectronica": {
+                "nombre": "Industria electrónica",
+                "detalle": "presente en circuitos y componentes debido a su estabilidad y conductividad. Se utiliza en conectores, interruptores y cables de alta fiabilidad en teléfonos móviles, ordenadores y satélites por su resistencia a la corrosión."
+              },
+              "medicinaOdontologia": {
+                "nombre": "Medicina y Odontología",
+                "detalle": "empleado en empastes, coronas dentales y fármacos contra la artritis reumatoide."
+              },
+              "industriaAeroespacial": {
+                "nombre": "Industria Aeroespacial",
+                "detalle": "sus láminas se usan para reflejar la radiación infrarroja en trajes espaciales y satélites."
+              }
+            }
+          },
+          "plata": {
+            "nombre": "Plata",
+            "descripcion": "Es un metal precioso blanco-grisáceo, que puede presentarse en estado nativo o formando parte de minerales como sulfuros (por ejemplo, galena argentífera). Suele encontrarse asociada a otros metales, especialmente al oro, en sistemas hidrotermales. Se caracteriza por presentar la mayor conductividad eléctrica y térmica entre los metales, además de buena maleabilidad y ductilidad, poseer propiedades antibacterianas y relativa resistencia a la corrosión. Estas propiedades la hacen ampliamente utilizada.",
+            "sistemaCristalino": "Cúbico",
+            "colorCaracteristico": "Blanco-grisáceo",
+            "usos": {
+              "joyeriaOrfebreria": {
+                "nombre": "Joyería y orfebrería",
+                "detalle": "se usa en aleaciones para aumentar su dureza y fabricar joyas, cubiertos y objetos decorativos."
+              },
+              "industriaElectronica": {
+                "nombre": "Industria electrónica",
+                "detalle": "es principal uso industrial. En contactos, circuitos y componentes eléctricos como componentes de alta gama, interruptores, placas solares, baterías, y en conectores de dispositivos electrónicos debido a su baja resistencia."
+              },
+              "aplicacionesIndustrialesQuimicas": {
+                "nombre": "Aplicaciones industriales y químicas",
+                "detalle": "en aleaciones, catalizadores y procesos químicos."
+              },
+              "medicinaSalud": {
+                "nombre": "Medicina y Salud",
+                "detalle": "se utiliza en vendajes antimicrobianos, cremas para quemaduras, instrumentos médicos y amalgamas dentales."
+              },
+              "purificacionAgua": {
+                "nombre": "Purificación de Agua",
+                "detalle": "aplicado para desinfectar agua potable y en piscinas debido a sus propiedades antibacterianas."
+              },
+              "fotografiaHistoricamente": {
+                "nombre": "Fotografía (históricamente)",
+                "detalle": "en materiales fotosensibles."
+              }
+            }
+          },
+          "cobre": {
+            "nombre": "Cobre",
+            "descripcion": "Es un metal de transición de color rojizo, que se presenta en la naturaleza en estado nativo, pero principalmente combinado con otros elementos formando parte de sulfuros (como calcopirita), óxidos y carbonatos. Sus yacimientos se encuentran principalmente en sistemas hidrotermales y depósitos tipo pórfido, donde puede presentarse en grandes volúmenes de baja ley. Se caracteriza por su alta conductividad eléctrica y térmica, ductilidad, maleabilidad y resistencia a la corrosión, lo que lo convierte en uno de los metales más utilizados a nivel mundial. Es 100% reciclable, fundamental en la industria eléctrica, construcción, transporte y, más recientemente, por sus propiedades antimicrobianas en la salud.",
+            "sistemaCristalino": "Cúbico",
+            "colorCaracteristico": "Rojizo",
+            "usos": {
+              "industriaElectrica": {
+                "nombre": "Industria eléctrica",
+                "detalle": "principal componente en cables, conductores y componentes electrónicos (transformadores, generadores, redes de internet)."
+              },
+              "aleacionesMetalicas": {
+                "nombre": "Aleaciones metálicas",
+                "detalle": "fabricación de aleaciones como bronce y latón."
+              },
+              "construccion": {
+                "nombre": "Construcción",
+                "detalle": "tuberías de agua potable y gas, sistemas de climatización, techos y materiales estructurales."
+              },
+              "tecnologiasEnergeticas": {
+                "nombre": "Tecnologías energéticas",
+                "detalle": "energías renovables y electromovilidad."
+              },
+              "transporte": {
+                "nombre": "Transporte",
+                "detalle": "indispensable en motores de automóviles (especialmente eléctricos), trenes, barcos y aviones."
+              },
+              "innovacionSalud": {
+                "nombre": "Innovación y Salud",
+                "detalle": "superficies antimicrobianas en hospitales, telas con nanopartículas de cobre y equipos médicos."
+              },
+              "otrosUsos": {
+                "nombre": "Otros usos",
+                "detalle": "monedas, tuberías, utensilios de cocina, instrumentos musicales y joyería."
+              }
+            }
+          },
+          "litio": {
+            "nombre": "Litio",
+            "descripcion": "Es un metal alcalino que se encuentra en la naturaleza principalmente formando minerales (como espodumeno y lepidolita), siendo sus fuentes principales las salmueras subterráneas de cuencas evaporíticas (salares), rocas pegmatitas, y en menor medida, aguas geotermales y arcillas. Se caracteriza por su bajo peso, alta reactividad y gran capacidad de almacenamiento energético, lo que lo convierte en un recurso estratégico.",
+            "sistemaCristalino": "Cúbico",
+            "colorCaracteristico": "Blanco plateado",
+            "usos": {
+              "bateriasRecargables": {
+                "nombre": "Baterias recargables",
+                "detalle": "principal uso en dispositivos electrónicos y vehículos eléctricos."
+              },
+              "industriaVidrioCeramica": {
+                "nombre": "Industria del vidrio y cerámica",
+                "detalle": "mejora resistencia térmica y reducir el punto de fusión en vidrios especiales y cerámicas."
+              },
+              "lubricantesGrasasIndustriales": {
+                "nombre": "Lubricantes y grasas industriales",
+                "detalle": "Utilizado en la fabricación de lubricantes y grasas para industrias."
+              },
+              "industriaFarmaceutica": {
+                "nombre": "Industria farmacéutica",
+                "detalle": "en tratamientos médicos específicos. Ejemplo: carbonato de litio se utiliza como estabilizador del estado de ánimo en el tratamiento del trastorno bipolar."
+              },
+              "aleacionesAeronauticas": {
+                "nombre": "Aleaciones aeronáuticas",
+                "detalle": "se alea con aluminio, cobre o magnesio para crear materiales ligeros y resistentes para aviones y trenes."
+              },
+              "otrosUsos": {
+                "nombre": "Otros usos",
+                "detalle": "en depuradores de aire en submarinos, aire acondicionado industrial y como fundente en soldadura."
+              }
+            }
+          },
+          "cobalto": {
+            "nombre": "Cobalto",
+            "descripcion": "Es un metal de transición duro, ferromagnético y de color blanco azulado que se encuentra asociado a minerales de níquel y cobre, generalmente como subproducto de su explotación. No suele encontrarse en concentraciones independientes significativas. Se caracteriza por su alta resistencia a la corrosión y desgaste, estabilidad térmica y propiedades magnéticas, lo que lo hace relevante en diversas aplicaciones tecnológicas.",
+            "sistemaCristalino": "Hexagonal",
+            "colorCaracteristico": "Blanco azulado",
+            "usos": {
+              "bateriasRecargables": {
+                "nombre": "Baterías recargables",
+                "detalle": "especialmente en baterías de ion-litio. Es un componente crítico en el cátodo de baterías para vehículos eléctricos y dispositivos electrónicos (teléfonos, laptops)."
+              },
+              "aleacionesMetalicas": {
+                "nombre": "Aleaciones metálicas",
+                "detalle": "para mejorar resistencia y durabilidad. Se utiliza para fabricar piezas de motores de aviones, turbinas de gas y herramientas de corte que requieren alta resistencia al calor y al desgaste."
+              },
+              "industriaQuimica": {
+                "nombre": "Industria química",
+                "detalle": "como catalizador en procesos industriales."
+              },
+              "imanesAltoRendimiento": {
+                "nombre": "Imanes de alto rendimiento",
+                "detalle": "se emplea en la creación de imanes permanentes potentes."
+              },
+              "pigmentos": {
+                "nombre": "Pigmentos",
+                "detalle": "en la fabricación de cerámicas, esmaltes y vidrios para obtener el característico “azul cobalto”."
+              },
+              "medicina": {
+                "nombre": "Medicina",
+                "detalle": "el Cobalto-60 se usa en radioterapia para tratar el cáncer y esterilizar equipos médicos."
+              }
+            }
+          },
+          "uranio": {
+            "nombre": "Uranio",
+            "descripcion": "Es un metal radiactivo que se encuentra en la naturaleza formando parte de minerales como la uraninita. Es un recurso estratégico debido a su uso como fuente de energía. Se caracteriza por su densidad alta, capacidad de generar energía mediante procesos de fisión nuclear, lo que lo convierte en un elemento clave para la producción energética.",
+            "sistemaCristalino": "Cúbico",
+            "colorCaracteristico": "Gris plateado",
+            "usos": {
+              "generacionEnergiaNuclear": {
+                "nombre": "Generación de energía nuclear",
+                "detalle": "combustible en centrales nucleares para generar electricidad. El uranio natural se enriquece (aumentando el U-235 al 3-5%) para esta función."
+              },
+              "uranioEmpobrecidoU238": {
+                "nombre": "Uranio empobrecido (U-238)",
+                "detalle": "se utiliza en el blindaje de vehículos militares, contrapesos en aviones y rotores de helicópteros debido a su extrema densidad."
+              },
+              "aplicacionesMedicasIndustriales": {
+                "nombre": "Aplicaciones médicas e industriales",
+                "detalle": "utilizado en diagnósticos, tratamientos contra el cáncer (radioterapia)."
+              },
+              "ciencia": {
+                "nombre": "Ciencia",
+                "detalle": "para la datación de minerales y rocas."
+              },
+              "usosHistoricos": {
+                "nombre": "Usos históricos",
+                "detalle": "utilizado en el pasado para colorear vidrios y cerámicas."
+              }
+            }
+          },
+          "cuarzo": {
+            "nombre": "Cuarzo",
+            "descripcion": "Es uno de los minerales más abundantes de la corteza terrestre, solo superado por los feldespatos. Su composición corresponde a dióxido de silicio (SiO₂), formado por una red tridimensional de tetraedros de silicio y oxígeno. En estado puro es incoloro y transparente, aunque puede presentar diversas coloraciones debido a impurezas. Se encuentra en rocas ígneas, metamórficas y sedimentarias.",
+            "sistemaCristalino": "Trigonal",
+            "colorCaracteristico": "Naranja (por hierro)",
+            "origenGeologico": "Se forma en vetas hidrotermales y cavidades en rocas ígneas y metamórficas. Las inclusiones de hierro provienen de fluidos mineralizados durante el proceso de cristalización.",
+            "usos": {
+              "industriaVidriera": {
+                "nombre": "Industria vidriera",
+                "detalle": "en fabricación de distintos tipos de vidrio, como para ventanas, para envases, de placa plana, vidrio especial y fibra de vidrio."
+              },
+              "industriaElectrica": {
+                "nombre": "Industria eléctrica",
+                "detalle": "en fabricación de osciladores, relojes, circuitos y dispositivos de comunicación por su capacidad de resonar frecuencias constantes lo hace fundamental."
+              },
+              "abrasivos": {
+                "nombre": "Abrasivos",
+                "detalle": "material abrasivo en arenas silíceas, empleadas en procesos de pulido, lijado y corte de distintos materiales debido a su dureza (7 en escala de Mohs) y amplia disponibilidad."
+              },
+              "fundicionArena": {
+                "nombre": "Fundición en arena",
+                "detalle": "se utiliza en la fabricación de moldes para piezas metálicas, aprovechando su alta resistencia térmica y estabilidad a elevadas temperaturas."
+              }
+            }
+          },
+          "feldespato": {
+            "nombre": "Feldespato",
+            "descripcion": "Son aluminosilicatos mezclados con cantidades variables de potasio, sodio y calcio. Junto con el cuarzo son los más abundante en la corteza, alrededor del 60%. Se encuentran en rocas ígneas, metamórficas y, en menor medida, sedimentarias. Para su aprovechamiento industrial requieren procesos de trituración, molienda y tamizado. Se caracterizan por su baja temperatura de fusión relativa, estabilidad química y capacidad fundente, lo que los hace esenciales en diversos procesos industriales.",
+            "sistemaCristalino": "Triclinico",
+            "colorCaracteristico": "Blanco, amarillo",
+            "usos": {
+              "industriaCeramica": {
+                "nombre": "Industria cerámica",
+                "detalle": "actúa como fundente, favoreciendo la fusión y mejorando la resistencia del producto final."
+              },
+              "industriaVidrio": {
+                "nombre": "Industria del vidrio",
+                "detalle": "contribuye a reducir la temperatura de fusión y mejora las propiedades del vidrio."
+              },
+              "pinturasPlasticosCauchos": {
+                "nombre": "Pinturas, plásticos y cauchos",
+                "detalle": "utilizado como carga y extensor, aportando estabilidad, buena dispersión y resistencia a la abrasión."
+              },
+              "industriaPapel": {
+                "nombre": "Industria del papel",
+                "detalle": "empleado como carga mineral para mejorar propiedades físicas y ópticas."
+              }
+            }
+          },
+          "baritina": {
+            "nombre": "Baritina",
+            "descripcion": "Es un mineral compuesto principalmente por sulfato de bario (BaSO₄), principal mena del bario, caracterizado por su inusual alto peso específico (densidad elevada) y su relativa inercia química. Generalmente se presenta en tonos blancos, grisáceos o amarillentos, aunque puede adquirir distintas coloraciones debido a impurezas. Es un mineral no metálico, inerte, estable y no tóxico. El objetivo fundamental de su uso industrial radica en aprovechar su elevada densidad, estabilidad química y capacidad como material de carga, lo que mejora las propiedades físicas de diversos productos. Se encuentra comúnmente en vetas hidrotermales, asociado a minerales como galena, sulfuros y carbonatos, así como también en depósitos sedimentarios.",
+            "sistemaCristalino": "Ortorrombico",
+            "colorCaracteristico": "Blanco, grisáceo o amarillento",
+            "usos": {
+              "industriaPetrolera": {
+                "nombre": "Industria petrolera",
+                "detalle": "es su aplicación más importante, donde se utiliza como agente densificante en los lodos de perforación. Su alta densidad permite controlar la presión en los pozos, evitando derrumbes y explosiones durante la perforación."
+              },
+              "industriaQuimica": {
+                "nombre": "Industria química",
+                "detalle": "se emplea en la obtención de compuestos de bario utilizados en la fabricación de pinturas, plásticos, vidrios y productos químicos diversos."
+              },
+              "industriaConstruccion": {
+                "nombre": "Industria de la construcción",
+                "detalle": "se utiliza como agregado en hormigones pesados para blindaje contra radiaciones (hospitales, centrales nucleares), debido a su alta densidad."
+              },
+              "pinturasRecubrimientos": {
+                "nombre": "Pinturas y recubrimientos",
+                "detalle": "actúa como carga mineral, mejorando propiedades como la resistencia, durabilidad y acabado superficial."
+              },
+              "industriaCauchoPlasticos": {
+                "nombre": "Industria del caucho y plásticos",
+                "detalle": "se emplea como relleno, aportando mayor densidad, estabilidad y resistencia mecánica a los productos finales."
+              }
+            }
+          },
+          "arenaSilicea": {
+            "nombre": "Arena Silícea",
+            "descripcion": "Es un material sedimentario y un árido industrial, compuesto mayoritariamente por granos de cuarzo (SiO₂), generalmente con contenidos superiores al 95%. Se origina a partir de la meteorización, transporte y acumulación de rocas ricas en cuarzo, dando lugar a depósitos en ambientes fluviales, eólicos y costeros. Se caracteriza por su alta pureza, dureza y resistencia química, lo que la convierte en un recurso de gran importancia industrial. Sus aplicaciones son esencialmente las mismas que las del cuarzo, destacándose su uso en la fabricación de vidrio, la industria de la construcción, procesos abrasivos, fundición en arena y sistemas de filtración. El objetivo de su uso industrial es aprovechar su elevado contenido de sílice, su resistencia mecánica y su comportamiento estable frente a altas temperaturas. Los principales depósitos de arena silícea se encuentran en ambientes sedimentarios, como ríos, dunas y antiguos sistemas costeros, donde los procesos de selección natural concentran granos de cuarzo de alta pureza.",
+            "sistemaCristalino": "Trigonal",
+            "colorCaracteristico": "Blanco"
+          },
+          "diatomea": {
+            "nombre": "Diatomea",
+            "descripcion": "Es un material sedimentario y un mineral industrial, formado por la acumulación de frústulas (caparazones) de algas microscópicas llamadas diatomeas, compuestas principalmente por sílice amorfa (SiO₂·nH₂O). Se origina en ambientes lacustres y marinos, donde la acumulación y compactación de estos restos biogénicos da lugar a depósitos de gran pureza y elevada porosidad. Se caracteriza por su baja densidad, alta porosidad, gran capacidad de absorción y propiedades abrasivas suaves, lo que la convierte en un recurso de amplia aplicación industrial.",
+            "sistemaCristalino": "Amorfo",
+            "colorCaracteristico": "Blanco, grisáceo o amarillento",
+            "usos": {
+              "filtracion": {
+                "nombre": "Filtración",
+                "detalle": "es uno de sus usos más importantes, empleándose como medio filtrante en la industria alimenticia (bebidas, aceites), farmacéutica y química."
+              },
+              "absorbente": {
+                "nombre": "Absorbente",
+                "detalle": "utilizada para la contención de derrames de líquidos debido a su alta capacidad de absorción."
+              },
+              "abrasivoSuave": {
+                "nombre": "Abrasivo suave",
+                "detalle": "presente en productos como pastas dentales, pulidores y limpiadores."
+              },
+              "aislanteTermicoAcustico": {
+                "nombre": "Aislante térmico y acústico",
+                "detalle": "debido a su baja conductividad térmica."
+              },
+              "agricultura": {
+                "nombre": "Agricultura",
+                "detalle": "utilizada como insecticida natural y acondicionador de suelos."
+              }
+            }
+          },
+          "granito": {
+            "nombre": "Granito",
+            "descripcion": "Corresponde a una categoría comercial dentro de las rocas de aplicación, utilizada en la industria de la construcción y ornamental para agrupar materiales pétreos de alta dureza, resistencia y aptitud para el pulido. En este sentido, el término no se limita estrictamente al granito desde el punto de vista petrográfico, sino que incluye diversas rocas ígneas y metamórficas con propiedades físicas similares como mármoles, calizas, basaltos, pizarras y cuarcitas. Se caracteriza por su elevada resistencia mecánica, durabilidad frente a la intemperie y buena terminación superficial, lo que lo convierte en un material ampliamente utilizado.",
+            "sistemaCristalino": "N/A",
+            "colorCaracteristico": "Varía según la composición mineralógica",
+            "usos": {
+              "construccion": {
+                "nombre": "Construcción",
+                "detalle": "revestimientos, pisos, mesadas, escaleras y fachadas."
+              },
+              "obraPublica": {
+                "nombre": "Obra pública",
+                "detalle": "adoquines, cordones cuneta y elementos estructurales."
+              },
+              "piedraTriturada": {
+                "nombre": "Piedra triturada",
+                "detalle": "áridos para hormigones y bases de caminos."
+              },
+              "decoracion": {
+                "nombre": "Decoración",
+                "detalle": "elementos ornamentales debido a su variedad de colores y texturas."
+              }
+            }
+          },
+          "zeolita": {
+            "nombre": "Zeolita",
+            "descripcion": "Corresponden a un grupo de minerales aluminosilicatos hidratados y un mineral industrial no metalífero, caracterizados por poseer una estructura cristalina porosa con cavidades y canales internos. Esta estructura les permite intercambiar cationes y adsorber moléculas, lo que constituye la base de sus aplicaciones. Se forman principalmente en rocas volcánicas (especialmente en tobas) mediante procesos de alteración hidrotermal o diagenética. Se destacan por su alta capacidad de intercambio catiónico, elevada porosidad, capacidad de adsorción y estabilidad química, propiedades que las convierten en un recurso de gran interés industrial.",
+            "sistemaCristalino": "Varía según el tipo de zeolita",
+            "colorCaracteristico": "Varía según el tipo de zeolita",
+            "usos": {
+              "tratamientoAgua": {
+                "nombre": "Tratamiento de agua",
+                "detalle": "eliminación de metales pesados, amonio y otros contaminantes."
+              },
+              "agricultura": {
+                "nombre": "Agricultura",
+                "detalle": "mejorador de suelos, reteniendo nutrientes y humedad."
+              },
+              "ganaderia": {
+                "nombre": "Ganadería",
+                "detalle": "aditivo en alimentos para animales, ayudando a la absorción de toxinas."
+              },
+              "industriaQuimica": {
+                "nombre": "Industria química",
+                "detalle": "como tamiz molecular y catalizador en distintos procesos."
+              },
+              "medioAmbiente": {
+                "nombre": "Medio ambiente",
+                "detalle": "control de olores y remediación de suelos contaminados."
+              }
+            }
+          }
+        },
+        "title": "Sección Informativa",
+        "volver": "← Volver",
+        "ficha": {
+          "descripcionGeneral": "Descripción General",
+          "formulaQuimica": "Fórmula Química:",
+          "sistemaCristalino": "Sistema Cristalino:",
+          "dureza": "Dureza (Mohs):",
+          "colorCaracteristico": "Color Característico:",
+          "usos": "Usos y Aplicaciones:",
+          "origenGeologico": "Origen Geológico:",
+          "cargandoModelo": "Cargando modelo...",
+          "modeloNoDisponible": "Modelo no disponible"
+        }
+      },
+      "page": {
+        "title": "Educación minera"
+      },
+      "secciones": {
+        "informativaTitulo": "Sección Informativa",
+        "informativaDescripcion": "Aquí se encuentra el contenido informativo sobre minería.",
+        "dinamicaTitulo": "Sección Dinámica",
+        "dinamicaDescripcion": "Aquí se encuentra el contenido dinámico sobre minería, con actividades interactivas.",
+        "enConstruccion": "En construcción"
+      },
+      "oferta": {
+        "title": "Oferta académica minera en La Rioja",
+        "descripcion": "La provincia cuenta con propuestas de formación universitaria y técnica vinculadas al desarrollo minero, fortaleciendo la capacitación de profesionales y recursos humanos especializados para el sector.",
+        "verPlan": "Ver plan de estudio",
+        "carreras": {
+          "ingenieriaMinas": {
+            "titulo": "Ingeniería en Minas",
+            "institucion": "Universidad Nacional de La Rioja",
+            "descripcion": "Carrera orientada a la formación de profesionales especializados en exploración, explotación, planificación y gestión de recursos mineros."
+          },
+          "geologia": {
+            "titulo": "Geología",
+            "institucion": "Universidad Nacional de La Rioja",
+            "descripcion": "Formación vinculada al estudio de la Tierra, los recursos geológicos, la prospección, exploración y evaluación del potencial minero."
+          },
+          "tecnicaturaMinas": {
+            "titulo": "Tecnicatura Superior en Minas",
+            "institucion": "Instituto Superior de Formación Docente y Técnica de Guandacol",
+            "descripcion": "Propuesta técnica orientada a fortalecer capacidades operativas y profesionales relacionadas con la actividad minera provincial."
+          }
+        },
+        "contactos": {
+          "instituto": "Instituto",
+          "directora": "Directora",
+          "coordinadora": "Coordinadora de Carrera"
+        }
+      }
+    },
+    "noticias": {
+      "page": {
+        "title": "Noticias",
+        "subtitle": "Últimas noticias desde múltiples portales."
+      },
+      "ultimas": {
+        "title": "Últimas noticias",
+        "subtitle": "Selección automática desde fuentes configuradas"
+      },
+      "actualizar": "Actualizar",
+      "cargando": "Cargando noticias…",
+      "error": "No se pudieron cargar noticias desde las fuentes configuradas.",
+      "fuentePorDefecto": "Noticias",
+      "leerNota": "Leer nota"
+    },
+    "admin": {
+      "usuarios": {
+        "page": {
+          "title": "Configuración de usuarios",
+          "crear": "Crear Usuario"
+        },
+        "tabla": {
+          "error": "Error al cargar los usuarios",
+          "cargando": "Cargando usuarios...",
+          "vacio": "No hay usuarios para mostrar",
+          "columnas": {
+            "id": "ID",
+            "nombreCompleto": "Nombre completo",
+            "username": "Nombre de usuario",
+            "email": "Email",
+            "esAdmin": "Es administrador",
+            "acciones": "Acciones"
+          }
+        },
+        "form": {
+          "username": "Username",
+          "contrasena": "Contraseña",
+          "nombre": "Nombre",
+          "apellido": "Apellido",
+          "email": "Email",
+          "esAdmin": "Es administrador",
+          "activo": "Activo"
+        },
+        "crear": {
+          "titulo": "Crear Usuario",
+          "boton": "Crear Usuario",
+          "exitoTitulo": "Usuario creado",
+          "exitoDescripcion": "El usuario fue creado correctamente",
+          "error": "Error al crear el usuario."
+        },
+        "modificar": {
+          "titulo": "Modificar Usuario",
+          "boton": "Modificar Usuario",
+          "exitoTitulo": "Usuario modificado",
+          "exitoDescripcion": "El usuario fue modificado exitosamente",
+          "errorTitulo": "Error",
+          "errorDescripcion": "Ocurrió un error al modificar el usuario: {{mensaje}}"
+        },
+        "contrasena": {
+          "titulo": "Modificar contraseña",
+          "actual": "Contraseña actual",
+          "nueva": "Contraseña nueva",
+          "confirmar": "Confirmar contraseña",
+          "noCoinciden": "La nueva contraseña y la confirmación no coinciden.",
+          "error": "Error al modificar contraseña.",
+          "cambiarBoton": "Cambiar contraseña",
+          "modificarBoton": "Modificar contraseña",
+          "cambiadaTitulo": "Contraseña cambiada con éxito",
+          "cambiadaDescripcion": "La contraseña fue cambiada correctamente",
+          "modificadaTitulo": "Contraseña modificada con éxito",
+          "modificadaDescripcion": "La contraseña fue modificada correctamente, ingrese nuevamente"
+        }
+      },
+      "carrouselImagenes": {
+        "page": {
+          "title": "Configuración del carrousel de imágenes"
+        },
+        "agregadaDescripcion": "La imagen fue agregada al final del carrusel.",
+        "quitadaDescripcion": "La imagen fue removida del carrusel.",
+        "vacio": "No hay imágenes cargadas en el carrusel.",
+        "slideAlt": "Slide {{n}}",
+        "posicionVertical": "Posición vertical",
+        "guardarAltura": "Guardar altura",
+        "subirOrden": "Subir orden",
+        "bajarOrden": "Bajar orden",
+        "arrastrar": "Arrastrá y soltá una imagen aquí o seleccioná una imagen.",
+        "confirmarQuitar": "¿Querés quitar <b>{{nombre}}</b> del carrusel?"
+      },
+      "galeriaFotos": {
+        "page": {
+          "title": "Administrar galería de fotos"
+        },
+        "agregadaDescripcion": "La foto fue agregada a la galería.",
+        "eliminadaDescripcion": "La foto fue eliminada de la galería.",
+        "faltaImagenTitulo": "Falta la imagen",
+        "faltaImagenDescripcion": "Seleccioná una imagen para continuar.",
+        "arrastrar": "Arrastrá una imagen o seleccioná un archivo.",
+        "seleccionarImagen": "Seleccionar imagen",
+        "descripcion": "Descripción",
+        "agregarFoto": "Agregar foto",
+        "vacio": "No hay fotos cargadas.",
+        "guardarDescripcion": "Guardar descripción",
+        "quitarFoto": "Quitar foto",
+        "confirmarQuitar": "¿Querés quitar <b>{{nombre}}</b> de la galería?"
+      },
+      "departamentosImagenes": {
+        "page": {
+          "title": "Imágenes por departamento"
+        },
+        "agregadaDescripcion": "La imagen del departamento fue cargada correctamente.",
+        "actualizadaDescripcion": "La imagen del departamento fue actualizada correctamente.",
+        "quitadaDescripcion": "La imagen del departamento fue eliminada.",
+        "cambiarImagen": "Cambiar imagen",
+        "confirmarQuitar": "¿Querés quitar la imagen de <b>{{nombre}}</b>?"
+      },
+      "indicadoresSociales": {
+        "page": {
+          "title": "Indicadores por departamento",
+          "subtitle": "Carga y edición de estadísticas sociales y económicas"
+        },
+        "errorDepartamentos": "Error al consultar los departamentos: {{mensaje}}",
+        "departamentos": "Departamentos",
+        "conDatos": "Con datos cargados",
+        "pendientes": "Pendientes",
+        "sinDepartamentos": "No se encontraron departamentos para mostrar.",
+        "datosCargados": "Datos cargados",
+        "sinDatos": "Sin datos",
+        "modal": {
+          "editarTitulo": "Editar indicadores",
+          "cargarTitulo": "Cargar indicadores",
+          "guardadoTitulo": "Indicadores guardados",
+          "guardadoDescripcion": "Los datos de {{nombre}} fueron guardados correctamente.",
+          "errorGuardar": "No se pudieron guardar los indicadores.",
+          "errorGuardarTitulo": "No se pudieron guardar los indicadores",
+          "revisarDatos": "Revisá los datos ingresados.",
+          "poblacionTitulo": "Población",
+          "poblacionDescripcion": "Datos generales de los censos 2010 y 2022.",
+          "edadMedianaTitulo": "Edad mediana",
+          "edadMedianaDescripcion": "Podés ingresar números decimales con punto o coma.",
+          "fuenteTitulo": "Fuente y observaciones",
+          "fuente": "Fuente",
+          "observaciones": "Observaciones",
+          "observacionesPlaceholder": "Información adicional, aclaraciones o referencias del cuadro del INDEC.",
+          "ejemplo": "Ejemplo: {{valor}}",
+          "errorConsultar": "Error al consultar los indicadores: {{mensaje}}",
+          "errorGuardarDetalle": "Error al guardar los indicadores: {{mensaje}}",
+          "guardar": "Guardar indicadores",
+          "campos": {
+            "poblacion2010": "Población 2010",
+            "poblacion2022": "Población 2022",
+            "mujeres2022": "Mujeres 2022",
+            "varones2022": "Varones 2022",
+            "edadMedianaTotal": "Edad mediana total",
+            "edadMedianaMujeres": "Edad mediana de mujeres",
+            "edadMedianaVarones": "Edad mediana de varones"
+          },
+          "validacion": {
+            "numeroValido": "{{campo}} debe ser un número válido mayor o igual a cero.",
+            "numeroEntero": "{{campo}} debe ser un número entero.",
+            "completarGrupo": "Completá mujeres y varones para el grupo {{grupo}}.",
+            "enterosGrupo": "Los datos del grupo {{grupo}} deben ser números enteros mayores o iguales a cero.",
+            "completarCategoria": "Completá mujeres y varones para la categoría {{categoria}}.",
+            "enterosCategoria": "Los valores de {{categoria}} deben ser números enteros mayores o iguales a cero.",
+            "fuenteObligatoria": "La fuente es obligatoria.",
+            "sumaPoblacion": "La suma de mujeres y varones debe coincidir con la población 2022.",
+            "sumaMujeres": "La suma de mujeres por edad es {{suma}}, pero el total de mujeres 2022 es {{total}}.",
+            "sumaVarones": "La suma de varones por edad es {{suma}}, pero el total de varones 2022 es {{total}}."
+          },
+          "ejemploEdadTotal": "Ejemplo: 31,2",
+          "ejemploEdadMujeres": "Ejemplo: 32,1",
+          "ejemploEdadVarones": "Ejemplo: 30,4"
+        },
+        "edadSexo": {
+          "titulo": "Población por edad y sexo",
+          "descripcion": "Ingresá la cantidad de mujeres y varones para cada grupo quinquenal de edad.",
+          "grupoEdad": "Grupo de edad",
+          "mujeres": "Mujeres",
+          "varones": "Varones",
+          "indiceFeminidad": "Índice de feminidad",
+          "mujeresAria": "Mujeres de {{grupo}} años",
+          "varonesAria": "Varones de {{grupo}} años",
+          "mujeresCada100": "mujeres cada 100 varones",
+          "ayuda": "El índice de feminidad se calcula automáticamente como mujeres ÷ varones × 100."
+        },
+        "ocupacion": {
+          "titulo": "Categoría ocupacional",
+          "descripcion": "Población ocupada de 14 años y más, según sexo y categoría ocupacional.",
+          "categoria": "Categoría",
+          "mujeres": "Mujeres",
+          "varones": "Varones",
+          "total": "Total",
+          "mujeresAria": "Mujeres en {{categoria}}",
+          "varonesAria": "Varones en {{categoria}}",
+          "ayuda": "El total de cada categoría se calcula automáticamente sumando mujeres y varones.",
+          "categorias": {
+            "obrero": "Obrero/a o empleado/a",
+            "patron": "Patrón/a",
+            "cuentaPropia": "Trabajador/a por cuenta propia",
+            "familiar": "Trabajador/a familiar"
+          }
+        }
+      },
+      "analytics": {
+        "page": {
+          "title": "Analytics",
+          "subtitle": "Últimos 30 días"
+        },
+        "kpis": {
+          "visitantes30d": "Visitantes únicos (30d)",
+          "sesiones30d": "Sesiones (30d)",
+          "sesiones7d": "Sesiones (7d)",
+          "paginas30d": "Páginas vistas (30d)"
+        },
+        "paginas": "Páginas más vistas",
+        "dispositivos": "Dispositivos",
+        "paises": "Países",
+        "sinDatosPais": "Sin datos de país disponibles.",
+        "columnas": {
+          "ruta": "Ruta",
+          "vistas": "Vistas",
+          "dispositivo": "Dispositivo",
+          "sesiones": "Sesiones",
+          "paisIso": "País (ISO)"
+        }
+      },
+      "googleAnalytics": {
+        "page": {
+          "title": "Google Analytics",
+          "subtitle": "Últimos 30 días"
+        },
+        "noAutorizado": "No estás autorizado.",
+        "faltaConfigurar": "Falta configurar Google Analytics.",
+        "metricas": {
+          "usuariosActivos": "Usuarios activos",
+          "sesiones": "Sesiones",
+          "vistas": "Vistas de página",
+          "tasaEngagement": "Tasa de engagement",
+          "tiempoEngagement": "Tiempo de engagement",
+          "usuariosNuevos": "Usuarios nuevos"
+        },
+        "paginas": "Páginas más vistas",
+        "paises": "Países",
+        "dispositivos": "Dispositivos",
+        "sinDatosPais": "Sin datos de país disponibles.",
+        "columnas": {
+          "ruta": "Ruta",
+          "vistas": "Vistas",
+          "pais": "País",
+          "sesiones": "Sesiones",
+          "dispositivo": "Dispositivo"
+        }
+      },
+      "proyectosMineros": {
+        "crear": {
+          "titulo": "Crear proyecto minero",
+          "boton": "Crear proyecto",
+          "exitoTitulo": "Proyecto creado",
+          "exitoDescripcion": "El proyecto minero fue creado correctamente.",
+          "error": "Error al crear el proyecto minero."
+        },
+        "modificar": {
+          "titulo": "Modificar proyecto minero",
+          "boton": "Guardar cambios",
+          "exitoTitulo": "Proyecto actualizado",
+          "exitoDescripcion": "El proyecto minero fue modificado correctamente.",
+          "error": "Error al modificar el proyecto minero.",
+          "archivoActual": "Archivo actual: <b>{{nombre}}</b>. Seleccioná un nuevo archivo solo si querés reemplazarlo."
+        },
+        "form": {
+          "nombre": "Nombre",
+          "tipo": "Tipo de proyecto minero",
+          "ubicacion": "Ubicación",
+          "provinciaGeologica": "Provincia geológica",
+          "superficie": "Superficie (hectáreas)",
+          "superficieAyuda": "Ingresá únicamente el número, sin escribir ha ni Hs.",
+          "litologia": "Litología",
+          "mineralizacion": "Mineralización",
+          "mineral": "Mineral de interés",
+          "modeloGenetico": "Modelo genético",
+          "accesos": "Accesos",
+          "etapa": "Etapa de proyecto minero",
+          "propietario": "Propietario",
+          "localidades": "Localidades cercanas",
+          "altitud": "Altitud (msnm)",
+          "convenio": "Convenio EMSE",
+          "visible": "Visible",
+          "archivoMapa": "Archivo de mapa"
+        },
+        "validacion": {
+          "superficie": "Debe ingresar una superficie válida en hectáreas.",
+          "altitud": "Debe ingresar la altitud (msnm).",
+          "archivoMapa": "Debe subir un archivo de mapa."
+        },
+        "archivos": {
+          "titulo": "Archivos del proyecto minero",
+          "volver": "Volver a proyectos",
+          "agregadoTitulo": "Archivo agregado",
+          "agregadoDescripcion": "Se cargó \"{{nombre}}\" correctamente.",
+          "quitadoTitulo": "Archivo quitado",
+          "quitadoDescripcion": "El archivo fue desvinculado del proyecto minero.",
+          "errorPrepararTitulo": "Error al preparar archivos",
+          "errorPrepararDescripcion": "No se pudieron procesar los archivos seleccionados.",
+          "arrastrar": "Arrastrá y soltá un archivo aquí o seleccioná un archivo para agregar al proyecto minero.",
+          "agregar": "Agregar archivo",
+          "errorAgregar": "Error al agregar archivo: {{mensaje}}",
+          "errorQuitar": "Error al quitar archivo: {{mensaje}}",
+          "cargando": "Cargando archivos...",
+          "vacio": "Este proyecto no tiene archivos cargados.",
+          "quitarAria": "Quitar {{nombre}}",
+          "quitarTitulo": "Quitar archivo",
+          "confirmarQuitar": "¿Querés quitar <b>{{nombre}}</b> del proyecto minero?"
+        },
+        "coordenadas": {
+          "titulo": "Coordenadas geográficas",
+          "ingresarManual": "Ingresar manualmente",
+          "ayuda": "Arrastre el marcador para seleccionar la ubicación.",
+          "lat": "Lat:",
+          "lng": "Lng:",
+          "modalTitulo": "Ingresar coordenadas manualmente",
+          "latitud": "Latitud",
+          "longitud": "Longitud",
+          "grados": "Grados",
+          "minutos": "Minutos",
+          "segundos": "Segundos",
+          "direccion": "Dirección",
+          "norte": "Norte",
+          "sur": "Sur",
+          "este": "Este",
+          "oeste": "Oeste"
+        },
+        "modeloTerreno": {
+          "titulo": "Modelo de terreno y Modelo 3D (opcional)",
+          "descripcion": "Subí los archivos COG generados desde WebODM. El MDT y la ortofoto deben estar en formato GeoTIFF (.tif) reproyectados a Web Mercator (EPSG:3857).",
+          "mdt": "MDT (COG GeoTIFF)",
+          "ortofoto": "Ortofoto (COG GeoTIFF)",
+          "coloreado": "MDT Coloreado (COG GeoTIFF)",
+          "mdtRaw": "MDT raw (GeoTIFF Float32 — para vista 3D)",
+          "ortofotoPng": "Ortofoto PNG/JPG (textura — para vista 3D)",
+          "yaHayMdt": "✓ Ya hay un MDT cargado (subí uno nuevo para reemplazar)",
+          "yaHayOrtofoto": "✓ Ya hay una ortofoto cargada (subí una nueva para reemplazar)",
+          "yaHayColoreado": "✓ Ya hay un MDT coloreado cargado (subí uno nuevo para reemplazar)",
+          "yaHayMdtRaw": "✓ Ya hay un MDT Raw cargado (subí uno nuevo para reemplazar)",
+          "yaHayOrtofotoPng": "✓ Ya hay una ortofoto PNG cargada (subí una nueva para reemplazar)",
+          "metaElevacion": "Elevación: {{min}}m – {{max}}m · {{ancho}}×{{alto}}px · {{bandas}} banda · {{crs}}",
+          "metaBandas": "{{bandas}} bandas · {{ancho}}×{{alto}}px · {{crs}}",
+          "errores": {
+            "mdtBandas": "El MDT debería tener 1 banda de elevación. ¿Subiste la ortofoto por error?",
+            "mdtLeer": "No se pudo leer el MDT. ¿Es un GeoTIFF válido?",
+            "ortofotoLeer": "No se pudo leer la ortofoto. ¿Es un GeoTIFF válido?",
+            "coloreadoLeer": "No se pudo leer el COG coloreado. ¿Es un GeoTIFF válido?",
+            "mdtRawBandas": "El MDT raw debería tener 1 banda de elevación.",
+            "mdtRawLeer": "No se pudo leer el MDT raw. ¿Es un GeoTIFF válido?"
+          }
+        }
+      },
+      "catastro": {
+        "page": {
+          "title": "Administrar Catastro",
+          "subtitle": "Publicar una edición actualiza el visor y conserva las anteriores.",
+          "volver": "Volver a Catastro"
+        },
+        "form": {
+          "titulo": "Título de la edición",
+          "fecha": "Fecha de corte de los datos",
+          "geojson": "GeoJSON obligatorio",
+          "pdf": "PDF de esta edición (opcional)",
+          "dwg": "DWG de esta edición (opcional)",
+          "limite": "Hasta 20 MB por archivo. Si no cargás PDF o DWG, esa descarga no se ofrecerá para la nueva edición. Las anteriores se conservan.",
+          "observaciones": "Observaciones",
+          "procesando": "Procesando…",
+          "revisar": "Revisar edición"
+        },
+        "preview": {
+          "resumen": "<b>{{titulo}}</b> · Corte {{fecha}} · {{cantidad}} elementos geográficos.",
+          "aviso": "La revisión de formato no sustituye la validación técnica del catastro. Al publicar, el visor cambiará a esta edición y la anterior quedará en el histórico.",
+          "cargando": "Cargando vista previa…",
+          "visorTitle": "Vista previa de la edición sin publicar",
+          "publicando": "Publicando…",
+          "publicar": "Publicar edición y guardar en histórico"
+        },
+        "mensajes": {
+          "exito": "Edición publicada. El visor ya utiliza esta edición y sus archivos quedaron conservados en el histórico.",
+          "errorRevisar": "No se pudieron revisar los archivos.",
+          "errorPublicar": "No se pudo publicar. La edición anterior sigue disponible.",
+          "tituloCorto": "Ingresá un título de al menos tres caracteres.",
+          "sinGeojson": "Seleccioná el GeoJSON de esta edición.",
+          "limiteArchivo": "El límite es 20 MB por archivo.",
+          "pesoArchivo": "Cada archivo debe pesar entre 1 byte y 20 MB.",
+          "noSePudoLeer": "No se pudo leer {{nombre}}"
+        },
+        "ediciones": {
+          "consultando": "Consultando ediciones publicadas…",
+          "error": "No se pudo consultar el historial de ediciones.",
+          "titulo": "Ediciones publicadas",
+          "enVisor": " · En el visor",
+          "fechas": "Fecha de corte: {{fecha}} · Publicación: {{publicacion}}",
+          "descargar": "Descargar {{formato}}",
+          "recepcionTitulo": "Recepción inicial de la Secretaría",
+          "recepcionDescripcion": "Archivos de origen conservados. Fecha de corte sin confirmar."
+        }
+      },
+      "catastroHistorico": {
+        "page": {
+          "title": "Administrar Catastro Histórico"
+        },
+        "agregadoTitulo": "Registro agregado",
+        "agregadoDescripcion": "El registro fue creado correctamente",
+        "duplicadoTitulo": "Registro duplicado",
+        "duplicadoServidor": "Ya existe un archivo cargado para ese año y mes.",
+        "duplicadoDescripcion": "Ya existe un archivo para ese año y mes.",
+        "errorGuardarTitulo": "Error al guardar",
+        "errorGuardarDescripcion": "No se pudo crear el registro. Intentá de nuevo.",
+        "eliminadoTitulo": "Registro eliminado",
+        "eliminadoDescripcion": "La fila se eliminó correctamente",
+        "errorEliminarTitulo": "No se pudo eliminar el registro",
+        "cargando": "Cargando catastro...",
+        "error": "No se pudo cargar el catastro histórico.",
+        "faltaArchivo": "Falta el archivo",
+        "modal": {
+          "agregarTitulo": "Agregar Registro",
+          "anio": "Año",
+          "mes": "Selecciona el mes",
+          "archivo": "Selecciona el archivo",
+          "eliminarTitulo": "Eliminar Registro",
+          "confirmarBorrar": "¿Seguro que querés borrar el registro de <b>{{mes}} {{anio}}</b>? Se eliminará también el archivo."
+        },
+        "tabla": {
+          "aria": "Tabla de catastro histórico",
+          "anio": "AÑO",
+          "mes": "MES",
+          "archivo": "ARCHIVO",
+          "acciones": "ACCIONES",
+          "vacio": "No hay archivos cargados todavía."
+        }
+      }
+    }
+  },
+  "common": {
+    "acciones": {
+      "cancelar": "Cancelar",
+      "ver": "Ver",
+      "enviar": "Enviar",
+      "enviando": "Enviando...",
+      "copiar": "Copiar",
+      "volver": "Volver",
+      "cerrar": "Cerrar",
+      "imagenAnterior": "Imagen anterior",
+      "imagenSiguiente": "Imagen siguiente",
+      "editar": "Editar",
+      "quitar": "Quitar",
+      "subir": "Subir",
+      "bajar": "Bajar",
+      "expandir": "Expandir",
+      "agregarImagen": "Agregar imagen",
+      "cargar": "Cargar",
+      "guardar": "Guardar",
+      "descargar": "Descargar",
+      "aplicar": "Aplicar",
+      "crear": "Crear",
+      "borrar": "Borrar"
+    },
+    "gobierno": {
+      "linkAria": "Ir al sitio oficial del Gobierno de La Rioja",
+      "logoAlt": "La Rioja Gobierno"
+    },
+    "meses": {
+      "enero": "Enero",
+      "febrero": "Febrero",
+      "marzo": "Marzo",
+      "abril": "Abril",
+      "mayo": "Mayo",
+      "junio": "Junio",
+      "julio": "Julio",
+      "agosto": "Agosto",
+      "septiembre": "Septiembre",
+      "octubre": "Octubre",
+      "noviembre": "Noviembre",
+      "diciembre": "Diciembre"
+    },
+    "archivoField": {
+      "seleccionado": "Archivo seleccionado: {{nombre}} ({{tamano}} KB)",
+      "vistaPrevia": "Vista previa",
+      "vistaPreviaDescripcion": "Esta es la vista previa del archivo seleccionado.",
+      "vistaPreviaAlt": "Vista previa del archivo"
+    },
+    "estados": {
+      "sinDato": "Sin dato",
+      "sinDatos": "Sin datos.",
+      "desconocido": "Desconocido"
+    },
+    "si": "Sí",
+    "no": "No",
+    "errores": {
+      "noAutorizado": "No estás autorizado. No tienes permisos para acceder a esta página.",
+      "desconocido": "Ocurrió un error desconocido",
+      "errorDesconocido": "Error desconocido",
+      "subirImagen": "Error al subir imagen",
+      "agregarImagen": "Error al agregar imagen: {{mensaje}}",
+      "actualizarImagen": "Error al actualizar imagen: {{mensaje}}",
+      "quitarImagen": "Error al quitar imagen: {{mensaje}}",
+      "eliminarImagen": "Error al eliminar imagen: {{mensaje}}",
+      "requiereAdmin": "Se requiere un administrador de SIMLaR."
+    },
+    "imagenes": {
+      "agregada": "Imagen agregada",
+      "actualizada": "Imagen actualizada",
+      "quitada": "Imagen quitada",
+      "eliminada": "Imagen eliminada",
+      "quitarImagen": "Quitar imagen",
+      "ordenActual": "Orden actual: {{n}}"
+    }
+  },
+  "auth": {
+    "login": {
+      "abrir": "Ingresar",
+      "titulo": "Iniciar sesión",
+      "usuario": "Usuario",
+      "contrasena": "Contraseña",
+      "ingresar": "Ingresar"
+    },
+    "menu": {
+      "modificarContrasena": "Modificar contraseña",
+      "salir": "Salir"
+    },
+    "noAutenticado": "No estás autenticado. Por favor, inicia sesión para acceder a esta página."
+  }
+}

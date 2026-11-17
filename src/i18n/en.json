@@ -1,0 +1,1988 @@
+{
+  "nav": {
+    "brandName": "La Rioja Mining Information System",
+    "inicio": "Home",
+    "institucional": {
+      "label": "Institutional",
+      "items": {
+        "autoridades": "Authorities",
+        "objetivos": "Objectives",
+        "contacto": "Contact"
+      }
+    },
+    "informacionMinera": {
+      "label": "Mining Information",
+      "items": {
+        "proyectosMineros": "Mining projects",
+        "mapasGeologicos": "Geological maps",
+        "marcoNormativo": "Regulatory framework",
+        "catastro": "Mining cadastre",
+        "galeriaFotos": "Photo gallery"
+      }
+    },
+    "serviciosFormacion": {
+      "label": "Services & Training",
+      "items": {
+        "servicios": "Services",
+        "educacionMinera": "Mining education",
+        "programas": "Programs"
+      }
+    },
+    "administracion": {
+      "label": "Management",
+      "items": {
+        "carrouselImagenes": "Image carousel",
+        "galeriaFotos": "Photo gallery",
+        "googleAnalytics": "Google Analytics",
+        "imagenesDepartamentos": "Department images",
+        "indicadoresSociales": "Social indicators",
+        "usuarios": "Users"
+      }
+    },
+    "menuMovil": "SIMLaR menu",
+    "volverInicioAria": "Back to the SIMLaR home page"
+  },
+  "footer": {
+    "contacto": "Contact",
+    "simlar": "La Rioja Mining Information System"
+  },
+  "routes": {
+    "inicio": {
+      "mapa": {
+        "etapas": "Mining project stages",
+        "tipos": "Mining project types",
+        "capasExtra": "Extra layers",
+        "descargarCapa": "Download layer",
+        "capas": {
+          "aeropuertos": "Airports",
+          "areasProtegidas": "Protected areas",
+          "cerros": "Hills and peaks",
+          "diques": "Dams",
+          "puntosExtras": "Additional points",
+          "refugios": "Mountain shelters",
+          "riosIntermitentes": "Intermittent rivers",
+          "riosPerennes": "Perennial rivers",
+          "rutasNacionales": "National routes",
+          "rutasProvinciales": "Provincial routes",
+          "servidumbres": "Easements"
+        },
+        "tooltips": {
+          "proyecto": "Project: {{nombre}}",
+          "areaProtegida": "Protected area: {{nombre}}",
+          "departamento": "Department: {{nombre}}",
+          "dique": "Dam: {{nombre}}"
+        }
+      },
+      "visorProyectos": {
+        "title": "Project Viewer",
+        "subtitle": "Explore our projects in an interactive environment"
+      },
+      "abrirProyectos": "Open mining projects",
+      "accesosRapidos": {
+        "title": "Quick access",
+        "subtitle": "Related organizations and websites",
+        "secretariaMineriaAlt": "Secretariat of Mining",
+        "delegacionAlt": "La Rioja Office"
+      },
+      "carrousel": {
+        "slideAlt": "Slide {{n}}"
+      },
+      "noticias": {
+        "actualizar": "Refresh now",
+        "verTodas": "View all",
+        "seleccionEditorial": "Editorial selection",
+        "abrir": "Open",
+        "ultimasNoticias": "Latest news",
+        "cargandoFuentes": "Loading sources…",
+        "errorFuentes": "News could not be loaded from the configured sources.",
+        "fuentePorDefecto": "News",
+        "destacadas": {
+          "emse": {
+            "titulo": "EMSE",
+            "resumen": "News from the state-owned mining company of La Rioja"
+          },
+          "saltaMining": {
+            "titulo": "SaltaMining — Industry news (editorial selection)",
+            "resumen": "Mining news portal with a regional focus."
+          },
+          "panoramaMinero": {
+            "titulo": "Panorama Minero — Mining news and economy",
+            "resumen": "Industry coverage, interviews and analysis."
+          },
+          "rumboMinero": {
+            "titulo": "Rumbo Minero — News and trends",
+            "resumen": "Current affairs of the mining sector in the region."
+          }
+        }
+      },
+      "departamento": {
+        "ampliarImagen": "Enlarge image",
+        "sinImagen": "No mining image has been uploaded for this department.",
+        "infoSocialTitulo": "Social and economic information",
+        "infoSocialDescripcion": "Indicators from the 2022 National Census.",
+        "errorIndicadores": "The department's indicators could not be retrieved.",
+        "sinIndicadores": "No social and economic indicators have been loaded for this department yet.",
+        "poblacion2022": "Population 2022",
+        "poblacion2010": "Population 2010",
+        "habitantes": "inhabitants",
+        "variacion": "Change 2010–2022",
+        "sinComparacion": "No comparison available",
+        "variacionHabitantes": "{{valor}} inhabitants",
+        "edadMediana": "Median age",
+        "anios": "years",
+        "indiceFeminidad": "Femininity index",
+        "mujeresCada100": "women per 100 men",
+        "mujeres2022": "Women 2022",
+        "varones2022": "Men 2022",
+        "edadMedianaMujeres": "Median age of women",
+        "edadMedianaVarones": "Median age of men",
+        "actividadEconomicaTitulo": "Economic activity",
+        "actividadEconomicaDescripcion": "Indicators for the employed population aged 14 and over.",
+        "fuente": "Source",
+        "observaciones": "Notes",
+        "mujeres": "Women",
+        "varones": "Men",
+        "graficos": {
+          "distribucionSexo": {
+            "titulo": "Distribution by sex",
+            "descripcion": "Population composition in the 2022 Census.",
+            "tooltip": "{{cantidad}} inhabitants ({{porcentaje}}%)",
+            "porcentajePoblacion": "% of the population"
+          },
+          "ocupacion": {
+            "titulo": "Occupational category",
+            "descripcion": "Employed population aged 14 and over, by occupational category and sex.",
+            "personas": "{{valor}} people",
+            "totalOcupada": "Total employed population",
+            "personas14": "people aged 14 and over",
+            "categoriaPrincipal": "Main category",
+            "sinInformacion": "No information",
+            "categorias": {
+              "obrero": "Worker or employee",
+              "patron": "Employer",
+              "cuentaPropia": "Self-employed",
+              "familiar": "Family worker"
+            }
+          },
+          "piramide": {
+            "titulo": "Population pyramid",
+            "descripcion": "Population distribution by age group and sex. Men are shown on the left and women on the right.",
+            "grupoEdad": "Age group: {{grupo}}",
+            "poblacionRepresentada": "Population represented",
+            "grupoMasNumeroso": "Largest group",
+            "composicion": "Composition"
+          },
+          "evolucion": {
+            "titulo": "Population trend",
+            "descripcion": "Comparison between the 2010 and 2022 censuses.",
+            "censo": "{{anio}} Census",
+            "poblacion": "Population",
+            "aumento": "Between 2010 and 2022, the population increased by",
+            "disminucion": "Between 2010 and 2022, the population decreased by",
+            "equivalente": ", equivalent to {{porcentaje}}%."
+          }
+        }
+      }
+    },
+    "programas": {
+      "page": {
+        "title": "Programs",
+        "description": "Learn about the Secretariat of Mining programs aimed at local development and the enhancement of artisan work in La Rioja."
+      },
+      "tallerArtesanias": {
+        "title": "Handicrafts Workshop",
+        "intro": "Mining with a Riojan identity includes, in a special way, the promotion and visibility of small-scale activity and artisan work.",
+        "body": "Through the Stone Workshop, the Secretariat actively promotes adding value at origin to the dimension stone and industrial minerals characteristic of our land, such as granite, slate, and travertine.",
+        "imageAlt": "Handicrafts Workshop",
+        "gallery": {
+          "itemAlt": "Stone craft {{n}}",
+          "expandAria": "View enlarged image: {{alt}}",
+          "closeAria": "Close image",
+          "dialogAria": "Enlarged image view"
+        }
+      }
+    },
+    "institucional": {
+      "page": {
+        "title": "Authorities",
+        "subtitle": "Information on authorities and related agencies"
+      },
+      "autoridades": {
+        "title": "Authorities",
+        "subtitle": "Provincial government, related areas and state-owned companies",
+        "secciones": {
+          "gobernacion": "Office of the Governor",
+          "vicegobernacion": "Office of the Vice Governor",
+          "gabinete": "Cabinet",
+          "ministerio": "Ministry",
+          "secretarias": "Secretariats",
+          "empresasEstatales": "State-owned companies"
+        },
+        "cargos": {
+          "gobernador": "Governor of La Rioja",
+          "vicegobernadora": "Vice Governor of La Rioja",
+          "jefeGabinete": "Chief of the Cabinet of Ministers",
+          "ministroTrabajo": "Minister of Labor, Employment, Industry and Mining",
+          "secretariaComunicacion": "Secretary of Communication and Public Planning",
+          "secretariaMineria": "Secretary of Mining",
+          "secretarioAmbiente": "Secretary of the Environment",
+          "presidenteEmse": "President of EMSE S.E.",
+          "presidenteKallpa": "President of KALLPA"
+        }
+      },
+      "funcionesSubtitle": "Units of the Secretariat of Mining and their functions",
+      "funciones": {
+        "title": "Functions and responsibilities",
+        "unidades": {
+          "secretaria": {
+            "title": "Secretariat of Mining and Non-Renewable Resources",
+            "items": {
+              "asistirPoderEjecutivo": "Assist the Executive Branch and the Ministry of Production and Environment in matters related to sustainable mining activity in the province.",
+              "definirObjetivos": "Define the objectives, policies and strategic actions for mining development.",
+              "ejecutarPlanes": "Carry out the plans, programs and projects within its remit.",
+              "proponerPolitica": "Propose and implement sustainable mining policy.",
+              "representarEstado": "Represent the provincial State before national, regional and international bodies.",
+              "participarCredito": "Take part in policies on access to mining credit and develop financing programs.",
+              "coordinarAsistencia": "Coordinate technical assistance actions with public and private bodies and civil society organizations.",
+              "fortalecerVinculacion": "Strengthen ties with municipalities and with social, professional and academic organizations."
+            }
+          },
+          "dgMineria": {
+            "title": "General Directorate of Mining",
+            "items": {
+              "planificarDesarrollo": "Plan the development of the mining sector with short-, medium- and long-term objectives.",
+              "promoverAprovechamiento": "Promote the rational use of geological and mineral resources for the socioeconomic development of the province.",
+              "coordinarPoliticaNacional": "Coordinate the implementation of national mining policy in the province through participation in OFEMI and COFEMIN.",
+              "proponerEjecutarControlar": "Propose, implement and oversee provincial mining policy.",
+              "articularPoliticas": "Align provincial policies with municipal and national policies.",
+              "promoverRiesgos": "Promote knowledge of geological hazards and baseline environmental conditions.",
+              "coordinarCooperacion": "Coordinate cooperation programs and encourage good industrial, environmental and social practices."
+            }
+          },
+          "escribaniaMinas": {
+            "title": "Directorate of the Mining Registry Office",
+            "dependsOn": "Reports to the General Directorate of Mining.",
+            "items": {
+              "llevarRegistros": "Keep the registers of mining rights in the province.",
+              "llevarPadronCanon": "Keep the register of mining fee (canon) payers.",
+              "realizarNotificaciones": "Issue the notifications and formal demands within its remit.",
+              "asistirDireccionGeneral": "Assist the General Directorate in matters related to mining registers, the fee register and notifications.",
+              "informarRegistros": "Report periodically on the registers of mining rights.",
+              "cumplirCodigo": "Perform the duties assigned by the Mining Code and supplementary legislation.",
+              "dejarConstancia": "Record the filing of submissions and applications, stating the date, time, name of the filer and the documents attached.",
+              "extenderCertificados": "Issue certificates of ownership and other certifications.",
+              "informarRequisitos": "Report on compliance with legal requirements in case files and applications.",
+              "certificarPlazos": "Certify the expiry of the legal time limits for each case file.",
+              "otrasTareas": "Carry out other tasks required by the General Directorate of Mining."
+            }
+          },
+          "mesaEntradas": {
+            "title": "Incoming and Outgoing Documents Desk Officer",
+            "dependsOn": "Reports to the Directorate of the Mining Registry Office.",
+            "items": {
+              "registrarPresentacion": "Record the receipt stamp, date and time of every submission, application, form or note filed.",
+              "llevarUbicacion": "Keep a record of the location of every case file, note or application."
+            }
+          },
+          "catastroMinero": {
+            "title": "Directorate of Mining Cadastre",
+            "dependsOn": "Reports to the General Directorate of Mining.",
+            "items": {
+              "asignarMatriculas": "Assign cadastral registration numbers and keep their register in chronological order.",
+              "ordenarCatastro": "Organize and update the Provincial Mining Cadastre.",
+              "registrarDerechos": "Register the mining rights applied for and in process using the coordinate system specified in the document.",
+              "informarDerechos": "Report on registered mining rights, their location, boundaries, area and coordinates.",
+              "participarMensuras": "Take part in the surveying, boundary delimitation and marking of mines, exploration permits, quarries and other mining rights, as well as mining easements and access tracks.",
+              "aprobarMensuras": "Approve and register surveys, plans, descriptive reports, tie-ins and other technical work within its remit."
+            }
+          },
+          "topografia": {
+            "title": "Topography Officer",
+            "dependsOn": "Reports to the Directorate of Mining Cadastre.",
+            "items": {
+              "controlarTareas": "Oversee and carry out the topographic and geodetic work for mining claims in the province.",
+              "mantenerRed": "Maintain a network of geodetic reference points to support field measurements.",
+              "asegurarUbicacion": "Ensure the correct location of mining rights."
+            }
+          },
+          "graficoCatastral": {
+            "title": "Cadastral Mapping Officer",
+            "dependsOn": "Reports to the Directorate of Mining Cadastre.",
+            "items": {
+              "controlarRegistro": "Systematically check and update the cadastral register of mining claims.",
+              "aplicarCodigo": "Apply the cadastral provisions of the Mining Code.",
+              "contribuirSeguridad": "Contribute to the legal certainty of mining rights and foster conditions for investment."
+            }
+          },
+          "geologiaMinera": {
+            "title": "Directorate of Mining Geology",
+            "dependsOn": "Reports to the General Directorate of Mining.",
+            "items": {
+              "asesorar": "Advise the relevant areas on matters within its field of expertise.",
+              "evaluarCanteras": "Evaluate quarry development projects.",
+              "evaluarMuestras": "Evaluate the mineral samples submitted with discovery claims.",
+              "organizarMuestras": "Organize the storage and filing of legal samples.",
+              "analizarProgramas": "Analyze and evaluate minimum work programs and the equipment intended for exploration.",
+              "evaluarLabores": "Evaluate and issue opinions on the statutory work submitted.",
+              "realizarAnalisis": "Carry out, directly or through third parties, chemical, metallometric and other necessary analyses.",
+              "analizarDeclaraciones": "Analyze sworn statements for the calculation of royalties.",
+              "estudiosGeologicos": "Conduct geological studies for the exploitation of mines and quarries.",
+              "estudiarAcceso": "Study access problems to deposits and plan the works needed to build access tracks.",
+              "registroConsultores": "Keep a register of consultants authorized to sign geological or deposit development projects."
+            }
+          },
+          "trabajosGeologicos": {
+            "title": "Geological Works Officer",
+            "dependsOn": "Reports to the Directorate of Mining Geology.",
+            "items": {
+              "seleccionarPuntos": "Select geographic points or areas to determine the geological and mineral resources of the province.",
+              "promoverUso": "Promote the responsible use of those resources for the benefit of the population and within a sustainable environmental framework."
+            }
+          },
+          "economiaMinera": {
+            "title": "Directorate of Mining Economics",
+            "dependsOn": "Reports to the General Directorate of Mining.",
+            "items": {
+              "estudiarInversiones": "Study and evaluate the investments planned under exploration and prospecting permits.",
+              "analizarProyectos": "Analyze capital investment projects and projects to start up or reactivate mines.",
+              "determinarRegalias": "Determine the amounts of mining royalties and quarry exploitation fees.",
+              "venderGuias": "Sell transit permits for minerals, rocks and aggregates."
+            }
+          },
+          "registroProductores": {
+            "title": "Producers and Miners Registry Officer",
+            "dependsOn": "Reports to the Directorate of Mining Economics.",
+            "items": {
+              "relevarProductores": "Survey the producers carrying out mining-related activities in the province.",
+              "mantenerRegistro": "Maintain the register of producers.",
+              "coordinarSuim": "Coordinate with the national government the management of information in the Unified Mining Information System (SUIM).",
+              "articularInformacion": "Integrate statistical, geological, cadastral and project information at the national, provincial and municipal levels."
+            }
+          },
+          "policiaMinera": {
+            "title": "Directorate of Mining Police",
+            "dependsOn": "Reports to the General Directorate of Mining.",
+            "items": {
+              "controlarTrabajos": "Monitor and inspect exploration, exploitation and mineral and rock processing work.",
+              "protegerSeguridad": "Protect safety, the preservation of mine workings and mining properties, the health of workers and the natural and social environment.",
+              "inspeccionar": "Inspect deposits, operations, plants and other mining facilities or activities.",
+              "constatarInfracciones": "Verify breaches of legal, safety and hygiene regulations and draw up the corresponding reports.",
+              "controlarTransito": "Monitor the transport of minerals, rocks and aggregates throughout the province.",
+              "verificarGuias": "Verify that transit permits exist and are properly documented."
+            }
+          },
+          "fiscalizacion": {
+            "title": "Officer for the Oversight of Exploration, Exploitation and Facility Works",
+            "dependsOn": "Reports to the Directorate of Mining Police.",
+            "items": {
+              "evaluarSistemas": "Evaluate the systems and procedures used in mining activity.",
+              "fiscalizarRacionalidad": "Oversee their soundness and compliance with good management criteria.",
+              "comprobarNormas": "Verify compliance with provincial and national regulations.",
+              "verificarBuenasPracticas": "Verify the application of good industrial, environmental and social practices."
+            }
+          },
+          "dgRecursos": {
+            "title": "General Directorate of Non-Renewable Resources",
+            "items": {
+              "ejecutarPolitica": "Implement the province's mining, geological and non-renewable resources policy.",
+              "velarNormas": "Ensure compliance with national and provincial regulations, acting as the enforcement authority in this field.",
+              "relevarRecursos": "Survey the non-renewable resources of the province.",
+              "mantenerBud": "Keep its graphic records up to date in the Single Database (BUD).",
+              "intervenirExplotacion": "Take part in the preparation and exploitation of the province's non-renewable resources."
+            }
+          },
+          "gestionProyectos": {
+            "title": "Directorate of Project Management and Evaluation",
+            "dependsOn": "Reports to the General Directorate of Non-Renewable Resources.",
+            "items": {
+              "asistirSecretaria": "Assist the Secretariat in designing and implementing mining policies.",
+              "intervenirInversores": "Take part in relations with investors and companies in the sector.",
+              "participarDesarrollo": "Take part in actions aimed at promoting the development of mining in the province."
+            }
+          },
+          "dgDesarrollo": {
+            "title": "General Directorate of Mining Production Development",
+            "items": {
+              "promoverActividad": "Promote mining activity taking its social aspects into account.",
+              "evaluarProyectos": "Evaluate and manage mining development projects.",
+              "fomentarServicios": "Foster mining services and productive and educational units.",
+              "impulsarLaboratorios": "Promote sample analysis and geochemical laboratories.",
+              "crearMuseo": "Establish and coordinate the Riojan Mining and Petrology Museum.",
+              "mantenerRelaciones": "Maintain community relations on matters within its remit.",
+              "brindarAsistencia": "Provide technical assistance to mining producers.",
+              "intervenirRegimenes": "Take part in drafting schemes for the promotion and protection of productive activities.",
+              "coordinarProyectos": "Coordinate mining promotion and development projects with international, national, provincial and municipal bodies."
+            }
+          },
+          "valleBermejo": {
+            "title": "Valle del Bermejo and Llanos Sur Coordination Office",
+            "dependsOn": "Reports to the General Directorate of Mining Production Development.",
+            "items": {
+              "contribuirPlanificacion": "Contribute to the strategic planning of mining development in the area.",
+              "considerarRecursos": "Take into account the existing mineral resources and the projected demand in local, provincial, national and international markets."
+            }
+          },
+          "servicioMinero": {
+            "title": "Directorate of Mining Services",
+            "dependsOn": "Reports to the General Directorate of Mining Production Development.",
+            "items": {
+              "colaborarPoliticas": "Collaborate in designing and implementing medium- and long-term mining development actions and policies.",
+              "promoverInversiones": "Promote investment at every stage of mining activity.",
+              "interactuarInversores": "Engage with potential investors and help bring investments to fruition.",
+              "proporcionarInformacion": "Provide legal, geological and cadastral information, as well as information on mining projects and industry stakeholders."
+            }
+          },
+          "dgAdministracion": {
+            "title": "General Directorate of Administration",
+            "items": {
+              "administrarRecursos": "Manage human, economic and financial resources according to criteria of effectiveness, efficiency and transparency.",
+              "dirigirContabilidad": "Direct the activities of the accounting information system.",
+              "dirigirProcesos": "Direct the administrative recording and control, accounting, budget and treasury processes.",
+              "supervisarCompras": "Supervise procurement and contracting.",
+              "administrarPatrimonio": "Manage and control the inventory and asset register.",
+              "coordinarPersonal": "Coordinate personnel matters and keep personnel records up to date.",
+              "definirIndicadores": "Define indicators to evaluate budget execution.",
+              "registrarRecursos": "Record and audit economic and financial resources.",
+              "ejecutarAcciones": "Carry out and supervise administrative actions in accordance with current regulations.",
+              "supervisarRendiciones": "Supervise or prepare the accounts for the resources and assets under its responsibility."
+            }
+          },
+          "rendicionCuentas": {
+            "title": "Accountability, Budget and Assets Coordination Office",
+            "dependsOn": "Reports to the General Directorate of Administration.",
+            "items": {
+              "asistirPresupuesto": "Assist in the preparation, execution and evaluation of the annual budget.",
+              "prepararAnteproyecto": "Prepare and process the draft budget of expenditures and estimated revenues.",
+              "registrarEjecucion": "Record budget execution on a monthly basis.",
+              "tramitarModificaciones": "Process changes to budget appropriations.",
+              "registrarCuotas": "Record the monthly allotments for commitments and accrued expenses and report the available balances.",
+              "mantenerBienes": "Keep a centralized, up-to-date register of the Secretariat's assets.",
+              "intervenirMovimientos": "Take part in asset additions, disposals and transfers.",
+              "organizarArchivo": "Organize the filing of payment orders approved by the fiscal delegation."
+            }
+          },
+          "tesoreria": {
+            "title": "Treasury Coordination Office",
+            "dependsOn": "Reports to the General Directorate of Administration.",
+            "items": {
+              "asistirFondos": "Assist in the handling and safekeeping of the Secretariat's funds and securities.",
+              "registrarMovimientos": "Record receipts and disbursements in the accounts and keep the corresponding ledgers up to date.",
+              "elaborarParte": "Prepare the daily treasury report, bank reconciliations and monthly and cumulative financial statements.",
+              "administrarValores": "Manage and safeguard revolving funds, surety bond policies, guarantee funds and other financial instruments.",
+              "efectuarPagos": "Make payments for purchases, contracts and salaries.",
+              "tramitesBancarios": "Carry out the banking procedures related to its function."
+            }
+          },
+          "personal": {
+            "title": "Personnel Coordination Office",
+            "dependsOn": "Reports to the General Directorate of Administration.",
+            "items": {
+              "planificarRecursos": "Plan and comprehensively manage human resources.",
+              "determinarNecesidades": "Determine current and future staffing needs.",
+              "elevarPropuestas": "Submit proposals on staff recruitment, promotion, appointment, succession and departure.",
+              "mantenerHistorial": "Keep staff history records.",
+              "promoverCapacitacion": "Promote continuous training and skills development.",
+              "evaluarRiesgos": "Assess and control risk and safety factors in the workplace.",
+              "procurarBienestar": "Look after the well-being of staff.",
+              "asistirRecursosHumanos": "Assist the General Directorate of Administration in human resources matters."
+            }
+          },
+          "asuntosLegales": {
+            "title": "General Directorate of Legal Affairs",
+            "items": {
+              "contribuirNormas": "Contribute to drafting legal instruments.",
+              "asesorarDependencias": "Advise the units of the Secretariat.",
+              "intervenirDocumentacion": "Handle documentation related to official letters and notifications.",
+              "supervisarProyectos": "Supervise the study, analysis and drafting of regulatory proposals.",
+              "asesorarNormativa": "Advise on applicable regulations and issue legal opinions.",
+              "dictaminarRecursos": "Issue opinions on administrative appeals against acts of the Secretariat and its subordinate areas.",
+              "intervenirConvenios": "Take part in drafting, signing, executing and applying agreements related to its responsibilities.",
+              "intervenirContratos": "Take part in draft contracts and other legal instruments related to mining activity in the province."
+            }
+          },
+          "despacho": {
+            "title": "General Directorate of Official Dispatch",
+            "items": {
+              "elaborarProyectos": "Draft bills, decrees and resolutions within the remit of the Secretariat.",
+              "disponerNotificacion": "Order the notification of administrative acts.",
+              "intervenirAsesoramiento": "Take part in the study of and legal advice on issues within its remit.",
+              "participarRecursos": "Take part in processing administrative appeals.",
+              "registrarDocumentacion": "Record the receipt, tracking and dispatch of documents and correspondence.",
+              "ordenarTramitacion": "Organize their processing, distribution and filing.",
+              "protocolizarActos": "Record, reproduce, authenticate and safeguard administrative acts.",
+              "analizarNormativa": "Analyze and organize current regulations.",
+              "detectarVacios": "Identify regulatory gaps or legal overlaps and propose the necessary corrections."
+            }
+          }
+        }
+      }
+    },
+    "objetivos": {
+      "page": {
+        "title": "Provincial objectives"
+      },
+      "planQuinquenal": {
+        "abrirAria": "Open the Five-Year Mining Development Plan 2026–2030",
+        "imageAlt": "Five-Year Mining Development Plan of La Rioja 2026–2030",
+        "etiqueta": "Provincial mining policy",
+        "title": "Five-Year Mining Development Plan 2026–2030",
+        "parrafo1": "The Five-Year Mining Development Plan sets out the roadmap for La Rioja's mining policy for the 2026–2030 period. Its purpose is to turn the province's geological and human potential into productive development, employment, investment and opportunities for the communities of La Rioja.",
+        "parrafo2": "The Plan promotes modern, sustainable, transparent and inclusive mining with a provincial identity. To achieve these goals, it brings together public policy, investment, education, citizen participation, technological innovation, environmental protection and institutional strengthening.",
+        "parrafo3": "Its roadmap is organized into five strategic pillars: institutional and regulatory modernization; education, employment and territory; environment and community; investment and local economy; and mining communication.",
+        "consultar": "View the Five-Year Plan"
+      },
+      "mision": {
+        "title": "Mission",
+        "texto": "To promote, regulate and oversee mining activity in La Rioja so that it is carried out responsibly, sustainably and transparently, and translates into jobs, opportunities and well-being for the people of La Rioja. We do this in coordination with communities, municipalities, the productive sector and the educational and scientific system, strengthening mining that is integrated into the territorial and productive development of the province."
+      },
+      "sistema": {
+        "title": "System objectives",
+        "centralizacion": {
+          "titulo": "Centralized information",
+          "descripcion": "Integrate and organize provincial mining information on a single digital platform."
+        },
+        "geoespacial": {
+          "titulo": "Geospatial information",
+          "descripcion": "Facilitate access to geographic and technical data on mining projects and areas of geological interest."
+        },
+        "transparencia": {
+          "titulo": "Transparency and public access",
+          "descripcion": "Promote access to up-to-date information on the development of the mining sector in the province."
+        },
+        "planificacion": {
+          "titulo": "Land-use planning",
+          "descripcion": "Support land planning and management through geospatial visualization tools."
+        },
+        "articulacion": {
+          "titulo": "Institutional coordination",
+          "descripcion": "Strengthen ties between public agencies, state-owned companies and mining sector stakeholders."
+        }
+      }
+    },
+    "contacto": {
+      "page": {
+        "title": "Contact",
+        "subtitle": "Institutional information and communication channels",
+        "atencionOnline": "Online service"
+      },
+      "anclas": {
+        "contactoInstitucional": "Institutional contact",
+        "ubicacion": "Location",
+        "formulario": "Form"
+      },
+      "tarjetas": {
+        "correo": {
+          "titulo": "Institutional email",
+          "subtitulo": "Official inquiry channel",
+          "detalle": "Institutional and technical inquiries"
+        },
+        "direccion": {
+          "titulo": "Address",
+          "subtitulo": "Institutional headquarters"
+        },
+        "formulario": {
+          "titulo": "Inquiry form",
+          "subtitulo": "Send us your inquiry through the website",
+          "detalle": "Our team will review your message and reply in order of receipt."
+        }
+      },
+      "contactoInstitucional": {
+        "title": "Institutional contact",
+        "subtitle": "Contact details and official communication",
+        "bannerAntes": "For a faster reply, use the",
+        "bannerFormulario": "form",
+        "bannerDespues": "or the official email address",
+        "cardDescripcion": "Official channel for inquiries and letters.",
+        "oficial": "Official",
+        "email": "Email",
+        "tiempoRespuesta": "Estimated response time: 24–48 business hours.",
+        "horarioTitulo": "Office hours",
+        "horario": "Monday to Friday - 9:00 a.m. to 1:00 p.m. and 6:00 p.m. to 9:00 p.m.",
+        "consultasTecnicas": "For technical inquiries about projects, you can write to us through the inquiry form or at the institutional email address.",
+        "copiadoTitulo": "Email copied",
+        "copiadoDescripcion": "The email address was copied to the clipboard"
+      },
+      "ubicacion": {
+        "title": "Location",
+        "subtitle": "Institutional address and map access",
+        "abrirGoogleMaps": "Open in Google Maps",
+        "mapaTitle": "EMSE location",
+        "direccion": "Address",
+        "verGoogleMaps": "View on Google Maps"
+      },
+      "formulario": {
+        "title": "Inquiry form",
+        "subtitle": "Send us your inquiry or request",
+        "intro": "Please enter your email address and your inquiry in the form. We will contact you as soon as possible to provide the assistance you need.",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Enter your email",
+        "consultaLabel": "Inquiry",
+        "consultaPlaceholder": "Enter your inquiry",
+        "cortaTitulo": "Inquiry too short",
+        "cortaDescripcion": "Please write a more detailed inquiry (at least 50 characters).",
+        "exitoTitulo": "Thank you for contacting us!",
+        "exitoDescripcion": "Your inquiry has been sent successfully.",
+        "errorTitulo": "Sending failed",
+        "errorDescripcion": "An error occurred while sending your inquiry. Please try again."
+      }
+    },
+    "transparencia": {
+      "page": {
+        "title": "Regulatory framework",
+        "description": "This section provides official links to regulations related to mining activity, mining administrative procedure, environmental protection and the applicable legal framework."
+      },
+      "enlaceOficial": "Official link available on argentina.gob.ar",
+      "verNormativa": "View regulation",
+      "normas": {
+        "constitucionNacional": {
+          "titulo": "Law No. 24.430 - National Constitution",
+          "descripcion": "Establishes that the State adopts a representative, republican and federal system of government"
+        },
+        "constitucionProvincial": {
+          "titulo": "Convened by Law No. 10.609 - Provincial Constitution",
+          "descripcion": "Establishes that the provincial State adopts a representative, republican, democratic and social system of government"
+        },
+        "codigoMineria": {
+          "titulo": "Law No. 1919 - Mining Code",
+          "descripcion": "National code governing the rights, obligations and procedures related to mining activity in Argentina."
+        },
+        "codigoProcedimientos": {
+          "titulo": "Law No. 7277 - Mining Procedure Code",
+          "descripcion": "Provincial law governing the procedure for mining activities in the Province of La Rioja."
+        },
+        "inversionesMineras": {
+          "titulo": "Law No. 24.196 - Mining Investments",
+          "descripcion": "National investment regime for mining activity in Argentina."
+        },
+        "proteccionAmbiental": {
+          "titulo": "Law No. 24.585 - Mining Environmental Protection",
+          "descripcion": "National regulations on environmental protection for mining activity."
+        },
+        "proveedoresMineros": {
+          "titulo": "Law No. 10.799 - Mining Suppliers",
+          "descripcion": "Regulates the sworn statement of purchases from local suppliers and the development of the regional value chain."
+        }
+      }
+    },
+    "mapasGeologicos": {
+      "page": {
+        "title": "Geological maps"
+      },
+      "miniaturaAlt": "Geological sheet of the country",
+      "ampliadaAlt": "Geological sheet",
+      "mapas": {
+        "hojaPais": {
+          "titulo": "Geological sheet of the country",
+          "descripcion": "Map showing the distribution of Argentina's geological sheets and the territorial organization of the geological surveys carried out in the country.",
+          "items": {
+            "objetivo": {
+              "titulo": "Purpose of the map",
+              "descripcion": "To show the distribution of Argentina's official geological sheets and their territorial coverage."
+            },
+            "escala": {
+              "titulo": "Geographic scale",
+              "descripcion": "The map uses a 1:250,000 scale, allowing large areas to be represented with a good level of detail."
+            },
+            "informacion": {
+              "titulo": "Geological information",
+              "descripcion": "The sheets contain data on rock formations, geological structures and mineral resources."
+            },
+            "importancia": {
+              "titulo": "Scientific and mining importance",
+              "descripcion": "It is an essential tool for geological research, mineral exploration and soil studies."
+            }
+          }
+        },
+        "regional": {
+          "titulo": "Regional geological sheet of La Rioja",
+          "descripcion": "Geological map showing the main rock formations, tectonic structures and geological features of the province of La Rioja.",
+          "items": {
+            "diversidad": {
+              "titulo": "Diversity of landforms and rocks",
+              "descripcion": "The map shows mountain ranges, valleys and different rock types using colors and geological symbols."
+            },
+            "escala": {
+              "titulo": "Geographic scale",
+              "descripcion": "It is drawn at a 1:500,000 scale, showing the regional distribution of geological units."
+            },
+            "estructuras": {
+              "titulo": "Tectonic structures",
+              "descripcion": "The map identifies major faults, folds and zones of geological activity in the province."
+            },
+            "valor": {
+              "titulo": "Educational and technical value",
+              "descripcion": "It is used in research, university teaching and the planning of geology- and mining-related activities."
+            }
+          }
+        }
+      }
+    },
+    "proyectosMineros": {
+      "page": {
+        "title": "Mining Projects",
+        "crear": "Create project"
+      },
+      "tabla": {
+        "error": "Error loading projects",
+        "cargando": "Loading projects...",
+        "vacio": "There are no projects to display",
+        "columnas": {
+          "nombre": "NAME",
+          "tipo": "TYPE",
+          "ubicacion": "LOCATION",
+          "mineral": "MINERAL",
+          "etapa": "STAGE",
+          "propietario": "OWNER",
+          "coordenadas": "COORDINATES",
+          "detalles": "DETAILS"
+        },
+        "verDetallesAria": "View details of {{nombre}}",
+        "modificarAria": "Edit {{nombre}}",
+        "archivosAria": "Manage files of {{nombre}}"
+      },
+      "filtros": {
+        "nombreLabel": "Project name",
+        "nombrePlaceholder": "Search by name...",
+        "tipoLabel": "Project type",
+        "tipoPlaceholder": "All types",
+        "etapaLabel": "Project stage",
+        "etapaPlaceholder": "All stages",
+        "mineralLabel": "Mineral of interest",
+        "mineralPlaceholder": "All minerals",
+        "aplicar": "Apply",
+        "masFiltros": "More filters",
+        "masFiltrosCantidad": "More filters ({{n}})",
+        "limpiar": "Clear filters",
+        "avanzadosTitulo": "Advanced filters",
+        "avanzadosDescripcion": "You can combine these criteria with the main filters.",
+        "ubicacionLabel": "Location",
+        "ubicacionPlaceholder": "All locations",
+        "propietarioLabel": "Owner",
+        "propietarioPlaceholder": "All owners",
+        "provinciaLabel": "Geological province",
+        "provinciaPlaceholder": "All geological provinces",
+        "convenioLabel": "EMSE agreement",
+        "convenioTodos": "With or without agreement",
+        "convenioSi": "With EMSE agreement",
+        "convenioNo": "Without EMSE agreement"
+      },
+      "estadisticas": {
+        "titulo": "Mining project statistics",
+        "error": "Mining project statistics could not be loaded.",
+        "calculando": "Calculating statistics...",
+        "descripcionFiltrada": "Results matching the applied filters.",
+        "descripcionGeneral": "Overview of registered projects.",
+        "chipFiltrados": "{{n}} filtered projects",
+        "chipGeneral": "Overview",
+        "registrados": "Registered projects",
+        "registradosDeTotal": "{{n}} of {{total}} projects",
+        "totalVista": "Total available in this view",
+        "superficie": "Total area",
+        "hectareas": "ha",
+        "superficieDeTotal": "{{n}} of {{total}} ha",
+        "sumaSuperficies": "Sum of the reported areas",
+        "ayuda": "Select a bar, a sector or a category to apply that filter. Select it again to remove it.",
+        "tooltipCantidad": "{{cantidad}} projects ·",
+        "seleccionarFiltrar": "Select to filter",
+        "sinDatos": "There is no data for the selected filters.",
+        "porTipo": {
+          "titulo": "Distribution by type",
+          "descripcion": "Select a sector or a category to filter the list."
+        },
+        "porEtapa": {
+          "titulo": "Distribution by stage",
+          "descripcion": "Number and percentage at each development stage. Colors match the map viewer."
+        },
+        "porMineral": {
+          "titulo": "Distribution by mineral",
+          "descripcion": "Main minerals of interest, sorted by count."
+        },
+        "porUbicacion": {
+          "titulo": "Distribution by location",
+          "descripcion": "Number and percentage by reported location."
+        }
+      },
+      "modal": {
+        "modeloTerreno": "Terrain Model",
+        "modelo3d": "3D Model",
+        "ubicacion": "Location",
+        "provinciaGeologica": "Geological province",
+        "superficie": "Area",
+        "superficieHa": "{{valor}} ha",
+        "etapa": "Stage",
+        "propietario": "Owner",
+        "mineral": "Mineral of interest",
+        "localidades": "Nearby towns",
+        "altitud": "Elevation (m a.s.l.)",
+        "convenio": "EMSE agreement",
+        "coordenadas": "Coordinates",
+        "litologia": "Lithology",
+        "mineralizacion": "Mineralization",
+        "modeloGenetico": "Genetic model",
+        "accesos": "Access routes",
+        "archivos": "Project files",
+        "cargandoArchivos": "Loading files...",
+        "sinArchivos": "No additional files have been uploaded."
+      },
+      "mapa": {
+        "cargandoModelo": "Loading terrain model...",
+        "sinModelo": "This project has no terrain model",
+        "volverInicio": "Back to Home",
+        "cargandoMapa": "Loading map...",
+        "opacidad": "Opacity",
+        "opacidadDtm": "DTM opacity"
+      },
+      "modelo3d": {
+        "sinModelo": "This project has no 3D model available",
+        "requisitos": "To view it in 3D, the project must have the raw DTM and the PNG orthophoto uploaded.",
+        "volverProyectos": "Back to projects",
+        "cargandoVisor": "Loading 3D viewer...",
+        "titulo": "{{nombre}} — 3D View",
+        "error": "Error loading the 3D model",
+        "cargando": "Loading 3D model...",
+        "info": "Model information",
+        "elevacionMin": "Min. elevation:",
+        "elevacionMax": "Max. elevation:",
+        "crs": "CRS:",
+        "ayuda": "Drag with the mouse to rotate. Scroll to zoom. Right-click to pan."
+      }
+    },
+    "catastro": {
+      "meta": {
+        "title": "Mining Cadastre | SIMLaR",
+        "description": "La Rioja mining cadastre: parcel viewer, downloads and historical files by year and month."
+      },
+      "page": {
+        "title": "Mining Cadastre",
+        "subtitle": "Mining viewer and historical files of La Rioja",
+        "administrarEdiciones": "Manage cadastre editions",
+        "seccionesAria": "Cadastre sections"
+      },
+      "minero": {
+        "title": "Mining Cadastre",
+        "subtitle": "Cadastral information from the Secretariat of Mining",
+        "cargando": "Loading cadastre…",
+        "cargandoVisor": "Loading cadastral viewer…",
+        "errorEdicion": "The current edition of the cadastre could not be retrieved. Please try again later.",
+        "instrucciones": "Explore the parcels on the map. Select a polygon or a point to view the available data. When several parcels overlap, the viewer will let you choose one.",
+        "fechaCorte": "Cut-off date: {{fecha}}.",
+        "recepcionInicial": "This view shows the files from the initial handover by the Secretariat of Mining. The cut-off date is pending confirmation.",
+        "estadoVigente": "To find out the current status of a mining right, please contact the competent authority.",
+        "visorTitle": "La Rioja mining cadastre viewer",
+        "descargasTitle": "Cadastre downloads",
+        "descargasDescripcion": "Files for the edition shown in the viewer.",
+        "descargar": "Download {{formato}}",
+        "sinDescargas": "This edition does not include PDF or DWG files. Previous editions are available in the historical archive."
+      },
+      "historico": {
+        "title": "Historical Cadastre",
+        "subtitle": "Browse and download records organized by year and month.",
+        "cargando": "Loading historical cadastre…",
+        "cargandoRegistros": "Loading cadastre records…",
+        "errorEdiciones": "New editions could not be retrieved.",
+        "errorAnteriores": "Previous files could not be retrieved.",
+        "sinRegistros": "There are no dated records yet.",
+        "enVisor": "In the viewer",
+        "descargarAria": "Download {{formato}}, {{fecha}} {{anio}}, {{titulo}}",
+        "administrarAnteriores": "Manage previous files",
+        "fechaConDia": "{{mes}} {{dia}}",
+        "mesDesconocido": "Month {{mes}}",
+        "archivoCatastral": "Cadastral file",
+        "archivo": "File"
+      },
+      "visor": {
+        "cargando": "Loading cadastre…",
+        "errorMapInit": "The cadastral viewer could not be initialized. Please try again later.",
+        "errorGeojsonLoad": "The cadastre's geographic information could not be loaded.",
+        "errorGeojsonInvalid": "The cadastre's geographic information has an invalid format.",
+        "errorNoGeometries": "The geographic information does not contain valid geometries to display.",
+        "emptyProperties": "No information is available for this parcel.",
+        "identifyTitle": "Parcels at this location",
+        "noParcelAssociated": "No associated parcel was found.",
+        "legendTitle": "Categories",
+        "fields": {
+          "type": "Type",
+          "expediente": "File number",
+          "titular": "Holder",
+          "departamento": "Department",
+          "superficie": "Area"
+        },
+        "type": {
+          "cateos": "Exploration permit",
+          "manifestaciones": "Discovery claim",
+          "canteras": "Quarry",
+          "minas": "Mine",
+          "pasma-minas": "PASMA Mines",
+          "aluviones": "Alluvial deposits",
+          "areas-especiales": "Special areas"
+        },
+        "layers": {
+          "cateos": "Exploration permits",
+          "manifestaciones": "Discovery claims",
+          "canteras": "Quarries",
+          "minas": "Mines",
+          "pasma-minas": "PASMA Mines",
+          "aluviones": "Alluvial deposits",
+          "areas-especiales": "Special areas"
+        }
+      }
+    },
+    "galeriaFotos": {
+      "page": {
+        "title": "Photo gallery"
+      },
+      "vacio": "No photos have been uploaded."
+    },
+    "servicios": {
+      "page": {
+        "title": "Services",
+        "subtitle": "Procedures, official platforms and service channels related to the mining sector."
+      },
+      "proveedores": {
+        "title": "Mining Suppliers Registry",
+        "subtitle": "Access to the provincial system for registering and updating mining sector suppliers.",
+        "portalTitulo": "Mining Suppliers Portal",
+        "portalDescripcion": "Go to the official portal to start a registration, submit supporting documents or update the details of a registered supplier.",
+        "enlaceExterno": "The link opens an external platform of the Government of La Rioja.",
+        "abrirPortal": "Open portal"
+      },
+      "tramitesDigitales": {
+        "title": "Online procedures",
+        "enDesarrollo": "Module under development",
+        "descripcion": "It is not currently possible to start procedures directly from SIMLaR. Until this feature is completed, inquiries and filings must be made with the agencies listed below."
+      },
+      "organismos": {
+        "title": "Agencies and service channels",
+        "subtitle": "Institutional information, related procedures, contact details and location.",
+        "agregar": "Add agency",
+        "cargando": "Loading agencies...",
+        "error": "The contact agencies could not be loaded.",
+        "vacioTitulo": "No agencies have been published",
+        "vacioAdmin": "No agencies have been added yet. Use “Add agency” to create the first one.",
+        "vacioPublico": "Service channels will be published soon."
+      },
+      "card": {
+        "borrador": "Draft",
+        "direccion": "Address",
+        "horario": "Office hours",
+        "telefono": "Phone",
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "sinDatos": "Contact details have not been completed yet.",
+        "tramites": "Related inquiries and procedures",
+        "comoLlegar": "Get directions",
+        "llamar": "Call",
+        "correo": "Email",
+        "sitioWeb": "Website",
+        "facebookAria": "Facebook page of {{nombre}}",
+        "instagramAria": "Instagram account of {{nombre}}",
+        "ocultarUbicacion": "Hide location",
+        "verUbicacion": "Show location"
+      },
+      "directorio": {
+        "title": "Official email addresses and social media",
+        "subtitle": "Direct contact with each area of the Secretariat of Mining.",
+        "correos": "Email addresses",
+        "redes": "Social media",
+        "areas": {
+          "secretariaMineria": "Secretariat of Mining",
+          "direccionGeneralMineria": "General Directorate of Mining",
+          "escribaniaMinas": "Directorate of the Mining Registry Office",
+          "catastroMinero": "Directorate of Mining Cadastre",
+          "policiaMinera": "Directorate of Mining Police",
+          "economiaMinera": "Directorate of Mining Economics",
+          "geologiaMinera": "Directorate of Mining Geology",
+          "desarrolloProductivo": "General Directorate of Mining Production Development"
+        }
+      },
+      "modal": {
+        "actualizado": "Contact updated",
+        "creado": "Contact created",
+        "guardadoDescripcion": "The information was saved successfully.",
+        "errorNombre": "You must enter the agency name.",
+        "errorCoordenadas": "Latitude and longitude must be entered together.",
+        "editarTitulo": "Edit {{nombre}}",
+        "agregarTitulo": "Add contact agency",
+        "descripcion": "Fill in the institutional information, service channels and location.",
+        "general": {
+          "titulo": "General information",
+          "descripcion": "Main details that the public will see.",
+          "nombre": "Agency name",
+          "orden": "Order",
+          "ordenAyuda": "Lower = first",
+          "descripcionLabel": "Description",
+          "descripcionAyuda": "Briefly explain what the agency is and what kind of service it provides.",
+          "tramites": "Procedures and inquiries",
+          "tramitesAyuda": "Enter one procedure per line."
+        },
+        "canales": {
+          "titulo": "Service channels",
+          "descripcion": "Only fill in confirmed details.",
+          "horario": "Office hours",
+          "horarioPlaceholder": "Monday to Friday, 8:00 a.m. to 1:00 p.m.",
+          "telefono": "Phone",
+          "whatsapp": "WhatsApp",
+          "email": "Email"
+        },
+        "redes": {
+          "titulo": "Website and social media",
+          "descripcion": "Optional fields.",
+          "sitioWeb": "Website",
+          "facebook": "Facebook",
+          "instagram": "Instagram"
+        },
+        "ubicacion": {
+          "titulo": "Location",
+          "descripcion": "Address and exact location of the agency.",
+          "direccion": "Address",
+          "direccionPlaceholder": "Pelagio B. Luna 811, La Rioja Capital",
+          "mapaTitulo": "Location on the map",
+          "mapaAyuda": "Click to select the point.",
+          "ocultarMapa": "Hide map",
+          "editarUbicacion": "Edit location",
+          "seleccionarUbicacion": "Select location",
+          "abrirMapa": "Open the map to select or change the location.",
+          "coordenadasManuales": "Manual coordinates",
+          "latitud": "Latitude",
+          "longitud": "Longitude"
+        },
+        "mostrarPublico": "Show to the public",
+        "mostrarPublicoAyuda": "Off: saved as a draft.",
+        "guardarPublicar": "Save and publish",
+        "guardarBorrador": "Save draft"
+      }
+    },
+    "educacion": {
+      "informativa": {
+        "minerales": {
+          "oro": {
+            "nombre": "Gold",
+            "descripcion": "It is a soft transition metal that is usually found in its native state, as nuggets and in alluvial deposits. Economic concentrations typically occur in hydrothermal systems (veins and disseminations) and in secondary placer deposits formed by the erosion of primary sources. It is characterized by its high economic value, low alterability, excellent conductivity, great malleability, ductility and resistance to corrosion, which makes it a resource of great importance.",
+            "sistemaCristalino": "Cubic",
+            "colorCaracteristico": "Amber, golden",
+            "usos": {
+              "joyeriaOrfebreria": {
+                "nombre": "Jewelry and goldsmithing",
+                "detalle": "the main use of gold."
+              },
+              "reservaValor": {
+                "nombre": "Store of value",
+                "detalle": "used as a financial asset and economic backing."
+              },
+              "industriaElectronica": {
+                "nombre": "Electronics industry",
+                "detalle": "present in circuits and components because of its stability and conductivity. It is used in high-reliability connectors, switches and cables in mobile phones, computers and satellites because of its resistance to corrosion."
+              },
+              "medicinaOdontologia": {
+                "nombre": "Medicine and dentistry",
+                "detalle": "used in fillings, dental crowns and drugs for rheumatoid arthritis."
+              },
+              "industriaAeroespacial": {
+                "nombre": "Aerospace industry",
+                "detalle": "gold foil is used to reflect infrared radiation in space suits and satellites."
+              }
+            }
+          },
+          "plata": {
+            "nombre": "Silver",
+            "descripcion": "It is a grayish-white precious metal that can occur in its native state or as part of minerals such as sulfides (for example, argentiferous galena). It is usually found associated with other metals, especially gold, in hydrothermal systems. It has the highest electrical and thermal conductivity of all metals, as well as good malleability and ductility, antibacterial properties and relative resistance to corrosion. These properties make it widely used.",
+            "sistemaCristalino": "Cubic",
+            "colorCaracteristico": "Grayish white",
+            "usos": {
+              "joyeriaOrfebreria": {
+                "nombre": "Jewelry and silversmithing",
+                "detalle": "used in alloys to increase hardness and to make jewelry, cutlery and decorative objects."
+              },
+              "industriaElectronica": {
+                "nombre": "Electronics industry",
+                "detalle": "its main industrial use. In contacts, circuits and electrical components such as high-end components, switches, solar panels, batteries and connectors in electronic devices because of its low resistance."
+              },
+              "aplicacionesIndustrialesQuimicas": {
+                "nombre": "Industrial and chemical applications",
+                "detalle": "in alloys, catalysts and chemical processes."
+              },
+              "medicinaSalud": {
+                "nombre": "Medicine and health",
+                "detalle": "used in antimicrobial dressings, burn creams, medical instruments and dental amalgams."
+              },
+              "purificacionAgua": {
+                "nombre": "Water purification",
+                "detalle": "used to disinfect drinking water and swimming pools because of its antibacterial properties."
+              },
+              "fotografiaHistoricamente": {
+                "nombre": "Photography (historically)",
+                "detalle": "in photosensitive materials."
+              }
+            }
+          },
+          "cobre": {
+            "nombre": "Copper",
+            "descripcion": "It is a reddish transition metal that occurs in nature in its native state, but mainly combined with other elements as part of sulfides (such as chalcopyrite), oxides and carbonates. Its deposits are found mainly in hydrothermal systems and porphyry-type deposits, where it can occur in large low-grade volumes. It is characterized by high electrical and thermal conductivity, ductility, malleability and resistance to corrosion, which makes it one of the most widely used metals in the world. It is 100% recyclable and essential to the electrical, construction and transport industries and, more recently, to health care because of its antimicrobial properties.",
+            "sistemaCristalino": "Cubic",
+            "colorCaracteristico": "Reddish",
+            "usos": {
+              "industriaElectrica": {
+                "nombre": "Electrical industry",
+                "detalle": "main component of cables, conductors and electronic components (transformers, generators, internet networks)."
+              },
+              "aleacionesMetalicas": {
+                "nombre": "Metal alloys",
+                "detalle": "manufacture of alloys such as bronze and brass."
+              },
+              "construccion": {
+                "nombre": "Construction",
+                "detalle": "drinking water and gas pipes, HVAC systems, roofing and structural materials."
+              },
+              "tecnologiasEnergeticas": {
+                "nombre": "Energy technologies",
+                "detalle": "renewable energy and electric mobility."
+              },
+              "transporte": {
+                "nombre": "Transport",
+                "detalle": "essential in the engines of cars (especially electric ones), trains, ships and aircraft."
+              },
+              "innovacionSalud": {
+                "nombre": "Innovation and health",
+                "detalle": "antimicrobial surfaces in hospitals, fabrics with copper nanoparticles and medical equipment."
+              },
+              "otrosUsos": {
+                "nombre": "Other uses",
+                "detalle": "coins, pipes, cookware, musical instruments and jewelry."
+              }
+            }
+          },
+          "litio": {
+            "nombre": "Lithium",
+            "descripcion": "It is an alkali metal found in nature mainly in minerals (such as spodumene and lepidolite). Its main sources are underground brines in evaporitic basins (salt flats), pegmatite rocks and, to a lesser extent, geothermal waters and clays. It is characterized by its low weight, high reactivity and large energy storage capacity, which makes it a strategic resource.",
+            "sistemaCristalino": "Cubic",
+            "colorCaracteristico": "Silvery white",
+            "usos": {
+              "bateriasRecargables": {
+                "nombre": "Rechargeable batteries",
+                "detalle": "main use in electronic devices and electric vehicles."
+              },
+              "industriaVidrioCeramica": {
+                "nombre": "Glass and ceramics industry",
+                "detalle": "improves thermal resistance and lowers the melting point of special glasses and ceramics."
+              },
+              "lubricantesGrasasIndustriales": {
+                "nombre": "Industrial lubricants and greases",
+                "detalle": "Used in the manufacture of lubricants and greases for industry."
+              },
+              "industriaFarmaceutica": {
+                "nombre": "Pharmaceutical industry",
+                "detalle": "in specific medical treatments. For example, lithium carbonate is used as a mood stabilizer in the treatment of bipolar disorder."
+              },
+              "aleacionesAeronauticas": {
+                "nombre": "Aerospace alloys",
+                "detalle": "alloyed with aluminum, copper or magnesium to create light, strong materials for aircraft and trains."
+              },
+              "otrosUsos": {
+                "nombre": "Other uses",
+                "detalle": "in air scrubbers in submarines, industrial air conditioning and as a flux in welding."
+              }
+            }
+          },
+          "cobalto": {
+            "nombre": "Cobalt",
+            "descripcion": "It is a hard, ferromagnetic, bluish-white transition metal found associated with nickel and copper minerals, usually as a by-product of their mining. It is rarely found in significant independent concentrations. It is characterized by high resistance to corrosion and wear, thermal stability and magnetic properties, which make it relevant in a range of technological applications.",
+            "sistemaCristalino": "Hexagonal",
+            "colorCaracteristico": "Bluish white",
+            "usos": {
+              "bateriasRecargables": {
+                "nombre": "Rechargeable batteries",
+                "detalle": "especially lithium-ion batteries. It is a critical component of the cathode in batteries for electric vehicles and electronic devices (phones, laptops)."
+              },
+              "aleacionesMetalicas": {
+                "nombre": "Metal alloys",
+                "detalle": "to improve strength and durability. It is used to make aircraft engine parts, gas turbines and cutting tools that require high resistance to heat and wear."
+              },
+              "industriaQuimica": {
+                "nombre": "Chemical industry",
+                "detalle": "as a catalyst in industrial processes."
+              },
+              "imanesAltoRendimiento": {
+                "nombre": "High-performance magnets",
+                "detalle": "used to make powerful permanent magnets."
+              },
+              "pigmentos": {
+                "nombre": "Pigments",
+                "detalle": "in the manufacture of ceramics, enamels and glass to obtain the characteristic “cobalt blue”."
+              },
+              "medicina": {
+                "nombre": "Medicine",
+                "detalle": "cobalt-60 is used in radiotherapy to treat cancer and to sterilize medical equipment."
+              }
+            }
+          },
+          "uranio": {
+            "nombre": "Uranium",
+            "descripcion": "It is a radioactive metal found in nature as part of minerals such as uraninite. It is a strategic resource because of its use as an energy source. It is characterized by its high density and its capacity to generate energy through nuclear fission, which makes it a key element in energy production.",
+            "sistemaCristalino": "Cubic",
+            "colorCaracteristico": "Silvery gray",
+            "usos": {
+              "generacionEnergiaNuclear": {
+                "nombre": "Nuclear power generation",
+                "detalle": "fuel in nuclear power plants to generate electricity. Natural uranium is enriched (raising U-235 to 3-5%) for this purpose."
+              },
+              "uranioEmpobrecidoU238": {
+                "nombre": "Depleted uranium (U-238)",
+                "detalle": "used in military vehicle armor, aircraft counterweights and helicopter rotors because of its extreme density."
+              },
+              "aplicacionesMedicasIndustriales": {
+                "nombre": "Medical and industrial applications",
+                "detalle": "used in diagnostics and cancer treatment (radiotherapy)."
+              },
+              "ciencia": {
+                "nombre": "Science",
+                "detalle": "for dating minerals and rocks."
+              },
+              "usosHistoricos": {
+                "nombre": "Historical uses",
+                "detalle": "used in the past to color glass and ceramics."
+              }
+            }
+          },
+          "cuarzo": {
+            "nombre": "Quartz",
+            "descripcion": "It is one of the most abundant minerals in the Earth's crust, surpassed only by feldspars. It is composed of silicon dioxide (SiO₂), formed by a three-dimensional framework of silicon and oxygen tetrahedra. In its pure state it is colorless and transparent, although impurities can give it various colors. It is found in igneous, metamorphic and sedimentary rocks.",
+            "sistemaCristalino": "Trigonal",
+            "colorCaracteristico": "Orange (due to iron)",
+            "origenGeologico": "It forms in hydrothermal veins and cavities in igneous and metamorphic rocks. The iron inclusions come from mineralizing fluids during crystallization.",
+            "usos": {
+              "industriaVidriera": {
+                "nombre": "Glass industry",
+                "detalle": "in the manufacture of different types of glass, such as window glass, container glass, flat glass, special glass and fiberglass."
+              },
+              "industriaElectrica": {
+                "nombre": "Electrical industry",
+                "detalle": "in the manufacture of oscillators, clocks, circuits and communication devices; its ability to resonate at constant frequencies makes it essential."
+              },
+              "abrasivos": {
+                "nombre": "Abrasives",
+                "detalle": "abrasive material in silica sands, used for polishing, sanding and cutting various materials because of its hardness (7 on the Mohs scale) and wide availability."
+              },
+              "fundicionArena": {
+                "nombre": "Sand casting",
+                "detalle": "used to make molds for metal parts, taking advantage of its high thermal resistance and stability at high temperatures."
+              }
+            }
+          },
+          "feldespato": {
+            "nombre": "Feldspar",
+            "descripcion": "Feldspars are aluminosilicates mixed with varying amounts of potassium, sodium and calcium. Together with quartz they are the most abundant minerals in the crust, about 60%. They are found in igneous, metamorphic and, to a lesser extent, sedimentary rocks. For industrial use they require crushing, grinding and screening. They are characterized by a relatively low melting temperature, chemical stability and fluxing capacity, which makes them essential in many industrial processes.",
+            "sistemaCristalino": "Triclinic",
+            "colorCaracteristico": "White, yellow",
+            "usos": {
+              "industriaCeramica": {
+                "nombre": "Ceramics industry",
+                "detalle": "acts as a flux, aiding fusion and improving the strength of the final product."
+              },
+              "industriaVidrio": {
+                "nombre": "Glass industry",
+                "detalle": "helps lower the melting temperature and improves the properties of glass."
+              },
+              "pinturasPlasticosCauchos": {
+                "nombre": "Paints, plastics and rubber",
+                "detalle": "used as a filler and extender, providing stability, good dispersion and abrasion resistance."
+              },
+              "industriaPapel": {
+                "nombre": "Paper industry",
+                "detalle": "used as a mineral filler to improve physical and optical properties."
+              }
+            }
+          },
+          "baritina": {
+            "nombre": "Barite",
+            "descripcion": "It is a mineral composed mainly of barium sulfate (BaSO₄), the main ore of barium, characterized by its unusually high specific gravity (high density) and relative chemical inertness. It usually occurs in white, grayish or yellowish tones, although impurities can give it other colors. It is a non-metallic, inert, stable and non-toxic mineral. Its industrial use is based on its high density, chemical stability and capacity as a filler, which improves the physical properties of many products. It is commonly found in hydrothermal veins, associated with minerals such as galena, sulfides and carbonates, as well as in sedimentary deposits.",
+            "sistemaCristalino": "Orthorhombic",
+            "colorCaracteristico": "White, grayish or yellowish",
+            "usos": {
+              "industriaPetrolera": {
+                "nombre": "Oil industry",
+                "detalle": "its most important application, where it is used as a weighting agent in drilling muds. Its high density makes it possible to control well pressure, preventing collapses and blowouts during drilling."
+              },
+              "industriaQuimica": {
+                "nombre": "Chemical industry",
+                "detalle": "used to obtain barium compounds for the manufacture of paints, plastics, glass and various chemical products."
+              },
+              "industriaConstruccion": {
+                "nombre": "Construction industry",
+                "detalle": "used as an aggregate in heavy concrete for radiation shielding (hospitals, nuclear power plants) because of its high density."
+              },
+              "pinturasRecubrimientos": {
+                "nombre": "Paints and coatings",
+                "detalle": "acts as a mineral filler, improving properties such as strength, durability and surface finish."
+              },
+              "industriaCauchoPlasticos": {
+                "nombre": "Rubber and plastics industry",
+                "detalle": "used as a filler, providing greater density, stability and mechanical strength to final products."
+              }
+            }
+          },
+          "arenaSilicea": {
+            "nombre": "Silica Sand",
+            "descripcion": "It is a sedimentary material and industrial aggregate composed mostly of quartz grains (SiO₂), generally with contents above 95%. It originates from the weathering, transport and accumulation of quartz-rich rocks, forming deposits in fluvial, aeolian and coastal environments. It is characterized by its high purity, hardness and chemical resistance, which makes it a resource of great industrial importance. Its applications are essentially the same as those of quartz, notably in glassmaking, the construction industry, abrasive processes, sand casting and filtration systems. Its industrial use takes advantage of its high silica content, mechanical strength and stable behavior at high temperatures. The main silica sand deposits are found in sedimentary environments such as rivers, dunes and ancient coastal systems, where natural sorting processes concentrate high-purity quartz grains.",
+            "sistemaCristalino": "Trigonal",
+            "colorCaracteristico": "White"
+          },
+          "diatomea": {
+            "nombre": "Diatomite",
+            "descripcion": "It is a sedimentary material and industrial mineral formed by the accumulation of frustules (shells) of microscopic algae called diatoms, composed mainly of amorphous silica (SiO₂·nH₂O). It originates in lake and marine environments, where the accumulation and compaction of these biogenic remains produce high-purity, highly porous deposits. It is characterized by its low density, high porosity, high absorption capacity and mild abrasive properties, which make it a resource with wide industrial application.",
+            "sistemaCristalino": "Amorphous",
+            "colorCaracteristico": "White, grayish or yellowish",
+            "usos": {
+              "filtracion": {
+                "nombre": "Filtration",
+                "detalle": "one of its most important uses, as a filter medium in the food (beverages, oils), pharmaceutical and chemical industries."
+              },
+              "absorbente": {
+                "nombre": "Absorbent",
+                "detalle": "used to contain liquid spills because of its high absorption capacity."
+              },
+              "abrasivoSuave": {
+                "nombre": "Mild abrasive",
+                "detalle": "present in products such as toothpaste, polishes and cleaners."
+              },
+              "aislanteTermicoAcustico": {
+                "nombre": "Thermal and acoustic insulation",
+                "detalle": "because of its low thermal conductivity."
+              },
+              "agricultura": {
+                "nombre": "Agriculture",
+                "detalle": "used as a natural insecticide and soil conditioner."
+              }
+            }
+          },
+          "granito": {
+            "nombre": "Granite",
+            "descripcion": "It is a commercial category within dimension stones, used in the construction and ornamental industries to group stone materials of high hardness, strength and suitability for polishing. In this sense, the term is not strictly limited to granite in the petrographic sense, but includes various igneous and metamorphic rocks with similar physical properties, such as marbles, limestones, basalts, slates and quartzites. It is characterized by high mechanical strength, weather resistance and a good surface finish, which makes it a widely used material.",
+            "sistemaCristalino": "N/A",
+            "colorCaracteristico": "Varies according to mineral composition",
+            "usos": {
+              "construccion": {
+                "nombre": "Construction",
+                "detalle": "cladding, floors, countertops, stairs and façades."
+              },
+              "obraPublica": {
+                "nombre": "Public works",
+                "detalle": "paving stones, curbs and gutters, and structural elements."
+              },
+              "piedraTriturada": {
+                "nombre": "Crushed stone",
+                "detalle": "aggregates for concrete and road bases."
+              },
+              "decoracion": {
+                "nombre": "Decoration",
+                "detalle": "ornamental elements thanks to its variety of colors and textures."
+              }
+            }
+          },
+          "zeolita": {
+            "nombre": "Zeolite",
+            "descripcion": "Zeolites are a group of hydrated aluminosilicate minerals and a non-metallic industrial mineral, characterized by a porous crystalline structure with internal cavities and channels. This structure allows them to exchange cations and adsorb molecules, which is the basis of their applications. They form mainly in volcanic rocks (especially tuffs) through hydrothermal or diagenetic alteration. They stand out for their high cation exchange capacity, high porosity, adsorption capacity and chemical stability, properties that make them a resource of great industrial interest.",
+            "sistemaCristalino": "Varies according to the type of zeolite",
+            "colorCaracteristico": "Varies according to the type of zeolite",
+            "usos": {
+              "tratamientoAgua": {
+                "nombre": "Water treatment",
+                "detalle": "removal of heavy metals, ammonium and other contaminants."
+              },
+              "agricultura": {
+                "nombre": "Agriculture",
+                "detalle": "soil improver that retains nutrients and moisture."
+              },
+              "ganaderia": {
+                "nombre": "Livestock farming",
+                "detalle": "animal feed additive that helps absorb toxins."
+              },
+              "industriaQuimica": {
+                "nombre": "Chemical industry",
+                "detalle": "as a molecular sieve and catalyst in various processes."
+              },
+              "medioAmbiente": {
+                "nombre": "Environment",
+                "detalle": "odor control and remediation of contaminated soils."
+              }
+            }
+          }
+        },
+        "title": "Information Section",
+        "volver": "← Back",
+        "ficha": {
+          "descripcionGeneral": "General Description",
+          "formulaQuimica": "Chemical Formula:",
+          "sistemaCristalino": "Crystal System:",
+          "dureza": "Hardness (Mohs):",
+          "colorCaracteristico": "Characteristic Color:",
+          "usos": "Uses and Applications:",
+          "origenGeologico": "Geological Origin:",
+          "cargandoModelo": "Loading model...",
+          "modeloNoDisponible": "Model not available"
+        }
+      },
+      "page": {
+        "title": "Mining education"
+      },
+      "secciones": {
+        "informativaTitulo": "Information Section",
+        "informativaDescripcion": "Here you will find informational content about mining.",
+        "dinamicaTitulo": "Interactive Section",
+        "dinamicaDescripcion": "Here you will find interactive content about mining, with hands-on activities.",
+        "enConstruccion": "Under construction"
+      },
+      "oferta": {
+        "title": "Mining education programs in La Rioja",
+        "descripcion": "The province offers university and technical programs related to mining development, strengthening the training of professionals and specialized human resources for the sector.",
+        "verPlan": "View curriculum",
+        "carreras": {
+          "ingenieriaMinas": {
+            "titulo": "Mining Engineering",
+            "institucion": "National University of La Rioja",
+            "descripcion": "Degree program aimed at training professionals specialized in the exploration, exploitation, planning and management of mineral resources."
+          },
+          "geologia": {
+            "titulo": "Geology",
+            "institucion": "National University of La Rioja",
+            "descripcion": "Training related to the study of the Earth, geological resources, prospecting, exploration and the assessment of mining potential."
+          },
+          "tecnicaturaMinas": {
+            "titulo": "Higher Technical Degree in Mining",
+            "institucion": "Higher Institute of Teacher and Technical Training of Guandacol",
+            "descripcion": "Technical program aimed at strengthening operational and professional skills related to mining activity in the province."
+          }
+        },
+        "contactos": {
+          "instituto": "Institute",
+          "directora": "Director",
+          "coordinadora": "Program Coordinator"
+        }
+      }
+    },
+    "noticias": {
+      "page": {
+        "title": "News",
+        "subtitle": "Latest news from multiple outlets."
+      },
+      "ultimas": {
+        "title": "Latest news",
+        "subtitle": "Automatic selection from configured sources"
+      },
+      "actualizar": "Refresh",
+      "cargando": "Loading news…",
+      "error": "News could not be loaded from the configured sources.",
+      "fuentePorDefecto": "News",
+      "leerNota": "Read article"
+    },
+    "admin": {
+      "usuarios": {
+        "page": {
+          "title": "User settings",
+          "crear": "Create user"
+        },
+        "tabla": {
+          "error": "Error loading users",
+          "cargando": "Loading users...",
+          "vacio": "There are no users to display",
+          "columnas": {
+            "id": "ID",
+            "nombreCompleto": "Full name",
+            "username": "Username",
+            "email": "Email",
+            "esAdmin": "Administrator",
+            "acciones": "Actions"
+          }
+        },
+        "form": {
+          "username": "Username",
+          "contrasena": "Password",
+          "nombre": "First name",
+          "apellido": "Last name",
+          "email": "Email",
+          "esAdmin": "Administrator",
+          "activo": "Active"
+        },
+        "crear": {
+          "titulo": "Create user",
+          "boton": "Create user",
+          "exitoTitulo": "User created",
+          "exitoDescripcion": "The user was created successfully",
+          "error": "Error creating the user."
+        },
+        "modificar": {
+          "titulo": "Edit user",
+          "boton": "Save changes",
+          "exitoTitulo": "User updated",
+          "exitoDescripcion": "The user was updated successfully",
+          "errorTitulo": "Error",
+          "errorDescripcion": "An error occurred while updating the user: {{mensaje}}"
+        },
+        "contrasena": {
+          "titulo": "Change password",
+          "actual": "Current password",
+          "nueva": "New password",
+          "confirmar": "Confirm password",
+          "noCoinciden": "The new password and the confirmation do not match.",
+          "error": "Error changing the password.",
+          "cambiarBoton": "Change password",
+          "modificarBoton": "Change password",
+          "cambiadaTitulo": "Password changed successfully",
+          "cambiadaDescripcion": "The password was changed successfully",
+          "modificadaTitulo": "Password changed successfully",
+          "modificadaDescripcion": "The password was changed successfully. Please sign in again"
+        }
+      },
+      "carrouselImagenes": {
+        "page": {
+          "title": "Image carousel settings"
+        },
+        "agregadaDescripcion": "The image was added to the end of the carousel.",
+        "quitadaDescripcion": "The image was removed from the carousel.",
+        "vacio": "There are no images in the carousel.",
+        "slideAlt": "Slide {{n}}",
+        "posicionVertical": "Vertical position",
+        "guardarAltura": "Save position",
+        "subirOrden": "Move up",
+        "bajarOrden": "Move down",
+        "arrastrar": "Drag and drop an image here or select one.",
+        "confirmarQuitar": "Do you want to remove <b>{{nombre}}</b> from the carousel?"
+      },
+      "galeriaFotos": {
+        "page": {
+          "title": "Manage photo gallery"
+        },
+        "agregadaDescripcion": "The photo was added to the gallery.",
+        "eliminadaDescripcion": "The photo was deleted from the gallery.",
+        "faltaImagenTitulo": "Image missing",
+        "faltaImagenDescripcion": "Select an image to continue.",
+        "arrastrar": "Drag an image here or select a file.",
+        "seleccionarImagen": "Select image",
+        "descripcion": "Description",
+        "agregarFoto": "Add photo",
+        "vacio": "No photos have been uploaded.",
+        "guardarDescripcion": "Save description",
+        "quitarFoto": "Remove photo",
+        "confirmarQuitar": "Do you want to remove <b>{{nombre}}</b> from the gallery?"
+      },
+      "departamentosImagenes": {
+        "page": {
+          "title": "Images by department"
+        },
+        "agregadaDescripcion": "The department image was uploaded successfully.",
+        "actualizadaDescripcion": "The department image was updated successfully.",
+        "quitadaDescripcion": "The department image was deleted.",
+        "cambiarImagen": "Change image",
+        "confirmarQuitar": "Do you want to remove the image of <b>{{nombre}}</b>?"
+      },
+      "indicadoresSociales": {
+        "page": {
+          "title": "Indicators by department",
+          "subtitle": "Entry and editing of social and economic statistics"
+        },
+        "errorDepartamentos": "Error retrieving departments: {{mensaje}}",
+        "departamentos": "Departments",
+        "conDatos": "With data entered",
+        "pendientes": "Pending",
+        "sinDepartamentos": "No departments were found.",
+        "datosCargados": "Data entered",
+        "sinDatos": "No data",
+        "modal": {
+          "editarTitulo": "Edit indicators",
+          "cargarTitulo": "Enter indicators",
+          "guardadoTitulo": "Indicators saved",
+          "guardadoDescripcion": "The data for {{nombre}} was saved successfully.",
+          "errorGuardar": "The indicators could not be saved.",
+          "errorGuardarTitulo": "The indicators could not be saved",
+          "revisarDatos": "Please check the data entered.",
+          "poblacionTitulo": "Population",
+          "poblacionDescripcion": "General data from the 2010 and 2022 censuses.",
+          "edadMedianaTitulo": "Median age",
+          "edadMedianaDescripcion": "You can enter decimal numbers using a period or a comma.",
+          "fuenteTitulo": "Source and notes",
+          "fuente": "Source",
+          "observaciones": "Notes",
+          "observacionesPlaceholder": "Additional information, clarifications or references to the INDEC table.",
+          "ejemplo": "Example: {{valor}}",
+          "errorConsultar": "Error retrieving indicators: {{mensaje}}",
+          "errorGuardarDetalle": "Error saving indicators: {{mensaje}}",
+          "guardar": "Save indicators",
+          "campos": {
+            "poblacion2010": "Population 2010",
+            "poblacion2022": "Population 2022",
+            "mujeres2022": "Women 2022",
+            "varones2022": "Men 2022",
+            "edadMedianaTotal": "Overall median age",
+            "edadMedianaMujeres": "Median age of women",
+            "edadMedianaVarones": "Median age of men"
+          },
+          "validacion": {
+            "numeroValido": "{{campo}} must be a valid number greater than or equal to zero.",
+            "numeroEntero": "{{campo}} must be a whole number.",
+            "completarGrupo": "Enter both women and men for the {{grupo}} group.",
+            "enterosGrupo": "The data for the {{grupo}} group must be whole numbers greater than or equal to zero.",
+            "completarCategoria": "Enter both women and men for the {{categoria}} category.",
+            "enterosCategoria": "The values for {{categoria}} must be whole numbers greater than or equal to zero.",
+            "fuenteObligatoria": "The source is required.",
+            "sumaPoblacion": "The sum of women and men must match the 2022 population.",
+            "sumaMujeres": "The sum of women by age is {{suma}}, but the total number of women in 2022 is {{total}}.",
+            "sumaVarones": "The sum of men by age is {{suma}}, but the total number of men in 2022 is {{total}}."
+          },
+          "ejemploEdadTotal": "Example: 31.2",
+          "ejemploEdadMujeres": "Example: 32.1",
+          "ejemploEdadVarones": "Example: 30.4"
+        },
+        "edadSexo": {
+          "titulo": "Population by age and sex",
+          "descripcion": "Enter the number of women and men for each five-year age group.",
+          "grupoEdad": "Age group",
+          "mujeres": "Women",
+          "varones": "Men",
+          "indiceFeminidad": "Femininity index",
+          "mujeresAria": "Women aged {{grupo}}",
+          "varonesAria": "Men aged {{grupo}}",
+          "mujeresCada100": "women per 100 men",
+          "ayuda": "The femininity index is calculated automatically as women ÷ men × 100."
+        },
+        "ocupacion": {
+          "titulo": "Occupational category",
+          "descripcion": "Employed population aged 14 and over, by sex and occupational category.",
+          "categoria": "Category",
+          "mujeres": "Women",
+          "varones": "Men",
+          "total": "Total",
+          "mujeresAria": "Women in {{categoria}}",
+          "varonesAria": "Men in {{categoria}}",
+          "ayuda": "The total for each category is calculated automatically by adding women and men.",
+          "categorias": {
+            "obrero": "Worker or employee",
+            "patron": "Employer",
+            "cuentaPropia": "Self-employed worker",
+            "familiar": "Family worker"
+          }
+        }
+      },
+      "analytics": {
+        "page": {
+          "title": "Analytics",
+          "subtitle": "Last 30 days"
+        },
+        "kpis": {
+          "visitantes30d": "Unique visitors (30d)",
+          "sesiones30d": "Sessions (30d)",
+          "sesiones7d": "Sessions (7d)",
+          "paginas30d": "Page views (30d)"
+        },
+        "paginas": "Most viewed pages",
+        "dispositivos": "Devices",
+        "paises": "Countries",
+        "sinDatosPais": "No country data available.",
+        "columnas": {
+          "ruta": "Path",
+          "vistas": "Views",
+          "dispositivo": "Device",
+          "sesiones": "Sessions",
+          "paisIso": "Country (ISO)"
+        }
+      },
+      "googleAnalytics": {
+        "page": {
+          "title": "Google Analytics",
+          "subtitle": "Last 30 days"
+        },
+        "noAutorizado": "You are not authorized.",
+        "faltaConfigurar": "Google Analytics has not been configured.",
+        "metricas": {
+          "usuariosActivos": "Active users",
+          "sesiones": "Sessions",
+          "vistas": "Page views",
+          "tasaEngagement": "Engagement rate",
+          "tiempoEngagement": "Engagement time",
+          "usuariosNuevos": "New users"
+        },
+        "paginas": "Most viewed pages",
+        "paises": "Countries",
+        "dispositivos": "Devices",
+        "sinDatosPais": "No country data available.",
+        "columnas": {
+          "ruta": "Path",
+          "vistas": "Views",
+          "pais": "Country",
+          "sesiones": "Sessions",
+          "dispositivo": "Device"
+        }
+      },
+      "proyectosMineros": {
+        "crear": {
+          "titulo": "Create mining project",
+          "boton": "Create project",
+          "exitoTitulo": "Project created",
+          "exitoDescripcion": "The mining project was created successfully.",
+          "error": "Error creating the mining project."
+        },
+        "modificar": {
+          "titulo": "Edit mining project",
+          "boton": "Save changes",
+          "exitoTitulo": "Project updated",
+          "exitoDescripcion": "The mining project was updated successfully.",
+          "error": "Error updating the mining project.",
+          "archivoActual": "Current file: <b>{{nombre}}</b>. Select a new file only if you want to replace it."
+        },
+        "form": {
+          "nombre": "Name",
+          "tipo": "Mining project type",
+          "ubicacion": "Location",
+          "provinciaGeologica": "Geological province",
+          "superficie": "Area (hectares)",
+          "superficieAyuda": "Enter the number only, without \"ha\" or \"Hs\".",
+          "litologia": "Lithology",
+          "mineralizacion": "Mineralization",
+          "mineral": "Mineral of interest",
+          "modeloGenetico": "Genetic model",
+          "accesos": "Access routes",
+          "etapa": "Mining project stage",
+          "propietario": "Owner",
+          "localidades": "Nearby towns",
+          "altitud": "Elevation (m a.s.l.)",
+          "convenio": "EMSE agreement",
+          "visible": "Visible",
+          "archivoMapa": "Map file"
+        },
+        "validacion": {
+          "superficie": "You must enter a valid area in hectares.",
+          "altitud": "You must enter the elevation (m a.s.l.).",
+          "archivoMapa": "You must upload a map file."
+        },
+        "archivos": {
+          "titulo": "Mining project files",
+          "volver": "Back to projects",
+          "agregadoTitulo": "File added",
+          "agregadoDescripcion": "\"{{nombre}}\" was uploaded successfully.",
+          "quitadoTitulo": "File removed",
+          "quitadoDescripcion": "The file was unlinked from the mining project.",
+          "errorPrepararTitulo": "Error preparing files",
+          "errorPrepararDescripcion": "The selected files could not be processed.",
+          "arrastrar": "Drag and drop a file here or select a file to add to the mining project.",
+          "agregar": "Add file",
+          "errorAgregar": "Error adding file: {{mensaje}}",
+          "errorQuitar": "Error removing file: {{mensaje}}",
+          "cargando": "Loading files...",
+          "vacio": "This project has no files.",
+          "quitarAria": "Remove {{nombre}}",
+          "quitarTitulo": "Remove file",
+          "confirmarQuitar": "Do you want to remove <b>{{nombre}}</b> from the mining project?"
+        },
+        "coordenadas": {
+          "titulo": "Geographic coordinates",
+          "ingresarManual": "Enter manually",
+          "ayuda": "Drag the marker to select the location.",
+          "lat": "Lat:",
+          "lng": "Lng:",
+          "modalTitulo": "Enter coordinates manually",
+          "latitud": "Latitude",
+          "longitud": "Longitude",
+          "grados": "Degrees",
+          "minutos": "Minutes",
+          "segundos": "Seconds",
+          "direccion": "Direction",
+          "norte": "North",
+          "sur": "South",
+          "este": "East",
+          "oeste": "West"
+        },
+        "modeloTerreno": {
+          "titulo": "Terrain model and 3D model (optional)",
+          "descripcion": "Upload the COG files generated with WebODM. The DTM and the orthophoto must be in GeoTIFF format (.tif) reprojected to Web Mercator (EPSG:3857).",
+          "mdt": "DTM (COG GeoTIFF)",
+          "ortofoto": "Orthophoto (COG GeoTIFF)",
+          "coloreado": "Colored DTM (COG GeoTIFF)",
+          "mdtRaw": "Raw DTM (GeoTIFF Float32 — for 3D view)",
+          "ortofotoPng": "PNG/JPG orthophoto (texture — for 3D view)",
+          "yaHayMdt": "✓ A DTM is already uploaded (upload a new one to replace it)",
+          "yaHayOrtofoto": "✓ An orthophoto is already uploaded (upload a new one to replace it)",
+          "yaHayColoreado": "✓ A colored DTM is already uploaded (upload a new one to replace it)",
+          "yaHayMdtRaw": "✓ A raw DTM is already uploaded (upload a new one to replace it)",
+          "yaHayOrtofotoPng": "✓ A PNG orthophoto is already uploaded (upload a new one to replace it)",
+          "metaElevacion": "Elevation: {{min}}m – {{max}}m · {{ancho}}×{{alto}}px · {{bandas}} band · {{crs}}",
+          "metaBandas": "{{bandas}} bands · {{ancho}}×{{alto}}px · {{crs}}",
+          "errores": {
+            "mdtBandas": "The DTM should have 1 elevation band. Did you upload the orthophoto by mistake?",
+            "mdtLeer": "The DTM could not be read. Is it a valid GeoTIFF?",
+            "ortofotoLeer": "The orthophoto could not be read. Is it a valid GeoTIFF?",
+            "coloreadoLeer": "The colored COG could not be read. Is it a valid GeoTIFF?",
+            "mdtRawBandas": "The raw DTM should have 1 elevation band.",
+            "mdtRawLeer": "The raw DTM could not be read. Is it a valid GeoTIFF?"
+          }
+        }
+      },
+      "catastro": {
+        "page": {
+          "title": "Manage Mining Cadastre",
+          "subtitle": "Publishing an edition updates the viewer and keeps previous editions.",
+          "volver": "Back to Mining Cadastre"
+        },
+        "form": {
+          "titulo": "Edition title",
+          "fecha": "Data cut-off date",
+          "geojson": "GeoJSON (required)",
+          "pdf": "PDF for this edition (optional)",
+          "dwg": "DWG for this edition (optional)",
+          "limite": "Up to 20 MB per file. If you do not upload a PDF or DWG, that download will not be offered for the new edition. Previous editions are kept.",
+          "observaciones": "Notes",
+          "procesando": "Processing…",
+          "revisar": "Review edition"
+        },
+        "preview": {
+          "resumen": "<b>{{titulo}}</b> · Cut-off {{fecha}} · {{cantidad}} geographic features.",
+          "aviso": "The format review does not replace the technical validation of the cadastre. When you publish, the viewer will switch to this edition and the previous one will remain in the historical archive.",
+          "cargando": "Loading preview…",
+          "visorTitle": "Preview of the unpublished edition",
+          "publicando": "Publishing…",
+          "publicar": "Publish edition and save to historical archive"
+        },
+        "mensajes": {
+          "exito": "Edition published. The viewer now uses this edition and its files have been kept in the historical archive.",
+          "errorRevisar": "The files could not be reviewed.",
+          "errorPublicar": "The edition could not be published. The previous edition is still available.",
+          "tituloCorto": "Enter a title of at least three characters.",
+          "sinGeojson": "Select the GeoJSON for this edition.",
+          "limiteArchivo": "The limit is 20 MB per file.",
+          "pesoArchivo": "Each file must be between 1 byte and 20 MB.",
+          "noSePudoLeer": "{{nombre}} could not be read"
+        },
+        "ediciones": {
+          "consultando": "Retrieving published editions…",
+          "error": "The edition history could not be retrieved.",
+          "titulo": "Published editions",
+          "enVisor": " · In the viewer",
+          "fechas": "Cut-off date: {{fecha}} · Published: {{publicacion}}",
+          "descargar": "Download {{formato}}",
+          "recepcionTitulo": "Initial handover from the Secretariat",
+          "recepcionDescripcion": "Original files kept. Cut-off date not confirmed."
+        }
+      },
+      "catastroHistorico": {
+        "page": {
+          "title": "Manage Historical Cadastre"
+        },
+        "agregadoTitulo": "Record added",
+        "agregadoDescripcion": "The record was created successfully",
+        "duplicadoTitulo": "Duplicate record",
+        "duplicadoServidor": "A file has already been uploaded for that year and month.",
+        "duplicadoDescripcion": "A file already exists for that year and month.",
+        "errorGuardarTitulo": "Error saving",
+        "errorGuardarDescripcion": "The record could not be created. Please try again.",
+        "eliminadoTitulo": "Record deleted",
+        "eliminadoDescripcion": "The row was deleted successfully",
+        "errorEliminarTitulo": "The record could not be deleted",
+        "cargando": "Loading cadastre...",
+        "error": "The historical cadastre could not be loaded.",
+        "faltaArchivo": "File missing",
+        "modal": {
+          "agregarTitulo": "Add record",
+          "anio": "Year",
+          "mes": "Select the month",
+          "archivo": "Select the file",
+          "eliminarTitulo": "Delete record",
+          "confirmarBorrar": "Are you sure you want to delete the record for <b>{{mes}} {{anio}}</b>? The file will also be deleted."
+        },
+        "tabla": {
+          "aria": "Historical cadastre table",
+          "anio": "YEAR",
+          "mes": "MONTH",
+          "archivo": "FILE",
+          "acciones": "ACTIONS",
+          "vacio": "No files have been uploaded yet."
+        }
+      }
+    }
+  },
+  "common": {
+    "acciones": {
+      "cancelar": "Cancel",
+      "ver": "View",
+      "enviar": "Send",
+      "enviando": "Sending...",
+      "copiar": "Copy",
+      "volver": "Back",
+      "cerrar": "Close",
+      "imagenAnterior": "Previous image",
+      "imagenSiguiente": "Next image",
+      "editar": "Edit",
+      "quitar": "Remove",
+      "subir": "Move up",
+      "bajar": "Move down",
+      "expandir": "Expand",
+      "agregarImagen": "Add image",
+      "cargar": "Add data",
+      "guardar": "Save",
+      "descargar": "Download",
+      "aplicar": "Apply",
+      "crear": "Create",
+      "borrar": "Delete"
+    },
+    "gobierno": {
+      "linkAria": "Go to the official website of the Government of La Rioja",
+      "logoAlt": "Government of La Rioja"
+    },
+    "meses": {
+      "enero": "January",
+      "febrero": "February",
+      "marzo": "March",
+      "abril": "April",
+      "mayo": "May",
+      "junio": "June",
+      "julio": "July",
+      "agosto": "August",
+      "septiembre": "September",
+      "octubre": "October",
+      "noviembre": "November",
+      "diciembre": "December"
+    },
+    "archivoField": {
+      "seleccionado": "Selected file: {{nombre}} ({{tamano}} KB)",
+      "vistaPrevia": "Preview",
+      "vistaPreviaDescripcion": "This is a preview of the selected file.",
+      "vistaPreviaAlt": "File preview"
+    },
+    "estados": {
+      "sinDato": "No data",
+      "sinDatos": "No data.",
+      "desconocido": "Unknown"
+    },
+    "si": "Yes",
+    "no": "No",
+    "errores": {
+      "noAutorizado": "You are not authorized. You do not have permission to access this page.",
+      "desconocido": "An unknown error occurred",
+      "errorDesconocido": "Unknown error",
+      "subirImagen": "Error uploading image",
+      "agregarImagen": "Error adding image: {{mensaje}}",
+      "actualizarImagen": "Error updating image: {{mensaje}}",
+      "quitarImagen": "Error removing image: {{mensaje}}",
+      "eliminarImagen": "Error deleting image: {{mensaje}}",
+      "requiereAdmin": "A SIMLaR administrator is required."
+    },
+    "imagenes": {
+      "agregada": "Image added",
+      "actualizada": "Image updated",
+      "quitada": "Image removed",
+      "eliminada": "Image deleted",
+      "quitarImagen": "Remove image",
+      "ordenActual": "Current position: {{n}}"
+    }
+  },
+  "auth": {
+    "login": {
+      "abrir": "Sign in",
+      "titulo": "Sign in",
+      "usuario": "Username",
+      "contrasena": "Password",
+      "ingresar": "Sign in"
+    },
+    "menu": {
+      "modificarContrasena": "Change password",
+      "salir": "Sign out"
+    },
+    "noAutenticado": "You are not signed in. Please sign in to access this page."
+  }
+}
